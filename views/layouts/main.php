@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Economizzer',
+                'brandLabel' => '<i class="fa fa-plug"></i> Economizzer',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,9 +37,14 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Visão Geral', 'url' => ['/site/index']],
                     ['label' => 'Lançamentos', 'url' => ['/cashbook/index']],
-                    //['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Metas', 'url' => ['/site/about']],
-                    ['label' => 'Opções', 'url' => ['/site/contact']],
+                    [
+                    'label' => 'Opções',
+                    'items' => [
+                         ['label' => 'Categoria', 'url' => '/category/index'],
+                         ['label' => 'Tipo', 'url' => '/type/index'],
+                        ],
+                    ],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Entrar', 'url' => ['/site/login']] :
                         ['label' => 'Sair (' . Yii::$app->user->identity->username . ')',
@@ -60,7 +65,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+            <p class="pull-left">&copy; Economizzer <?= date('Y') ?></p>
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
