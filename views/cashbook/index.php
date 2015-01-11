@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'tableOptions'=>['class'=>'table table-striped'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
             [
              'header' => 'Dia',
              'attribute' => 'date',

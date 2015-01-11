@@ -34,20 +34,21 @@ AppAsset::register($this);
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
+                'encodeLabels' => false,
                 'items' => [
-                    ['label' => 'Visão Geral', 'url' => ['/site/index']],
-                    ['label' => 'Lançamentos', 'url' => ['/cashbook/index']],
-                    ['label' => 'Metas', 'url' => ['/site/about']],
+                    ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index']],
+                    ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index']],
+                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/site/about']],
                     [
-                    'label' => 'Opções',
+                    'label' => '<i class="fa fa-briefcase"></i> Opções',
                     'items' => [
-                         ['label' => 'Categoria', 'url' => '/category/index'],
-                         ['label' => 'Tipo', 'url' => '/type/index'],
+                         ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => '/category/index'],
+                         ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => '/type/index'],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
-                        ['label' => 'Entrar', 'url' => ['/site/login']] :
-                        ['label' => 'Sair (' . Yii::$app->user->identity->username . ')',
+                        ['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/site/login']] :
+                        ['label' => '<i class="fa fa-unlock"></i> Sair (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
