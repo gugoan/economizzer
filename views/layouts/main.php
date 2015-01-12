@@ -39,8 +39,7 @@ AppAsset::register($this);
                     ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index']],
                     ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index']],
                     ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/site/about']],
-                    [
-                    'label' => '<i class="fa fa-briefcase"></i> Opções',
+                    ['label' => '<i class="fa fa-briefcase"></i> Opções',
                     'items' => [
                          ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => ['category/index']],
                          ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => ['/type/index']],

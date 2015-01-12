@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CashbookSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Cashbooks');
+$this->title = Yii::t('app', 'Lançamentos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-index">
