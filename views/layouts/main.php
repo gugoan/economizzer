@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => '<i class="fa fa-plug"></i> Economizzer',
+                'brandLabel' => '<img src="images/logo-icon2.png" style="height:20px;float:left;margin-right: 5px" align="absbottom">  Economizzer',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -42,8 +42,8 @@ AppAsset::register($this);
                     [
                     'label' => '<i class="fa fa-briefcase"></i> Opções',
                     'items' => [
-                         ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => '/category/index'],
-                         ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => '/type/index'],
+                         ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => ['category/index']],
+                         ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => ['/type/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
