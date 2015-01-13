@@ -5,12 +5,14 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%type}}".
+ * This is the model class for table "tb_type".
  *
  * @property integer $id_type
  * @property string $desc_type
  * @property string $hexcolor_type
  * @property string $icon_type
+ *
+ * @property Cashbook[] $cashbooks
  */
 class Type extends \yii\db\ActiveRecord
 {
@@ -19,7 +21,7 @@ class Type extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%type}}';
+        return 'tb_type';
     }
 
     /**
@@ -44,5 +46,13 @@ class Type extends \yii\db\ActiveRecord
             'hexcolor_type' => Yii::t('app', 'Hexcolor Type'),
             'icon_type' => Yii::t('app', 'Icon Type'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCashbooks()
+    {
+        return $this->hasMany(Cashbook::className(), ['type_id' => 'id_type']);
     }
 }

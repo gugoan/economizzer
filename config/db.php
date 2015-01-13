@@ -4,7 +4,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=economizzer',
     'username' => 'root',
-    'password' => 'ubuntu',
+    'password' => '',
     'charset' => 'utf8',
     'tablePrefix' => 'tb_',
 ];

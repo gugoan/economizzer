@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%cashbook}}".
+ * This is the model class for table "tb_cashbook".
  *
  * @property integer $id
  * @property integer $category_id
@@ -17,6 +17,9 @@ use Yii;
  * @property string $attachment
  * @property string $inc_datetime
  * @property string $edit_datetime
+ *
+ * @property Type $type
+ * @property Category $category
  */
 class Cashbook extends \yii\db\ActiveRecord
 {
@@ -25,7 +28,7 @@ class Cashbook extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%cashbook}}';
+        return 'tb_cashbook';
     }
 
     /**
@@ -50,9 +53,9 @@ class Cashbook extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'category_id' => Yii::t('app', 'Categoria'),
             'type_id' => Yii::t('app', 'Type ID'),
-            'value' => Yii::t('app', 'Value'),
+            'value' => Yii::t('app', 'Valor'),
             'description' => Yii::t('app', 'Description'),
             'date' => Yii::t('app', 'Date'),
             'is_pending' => Yii::t('app', 'Is Pending'),
@@ -60,5 +63,21 @@ class Cashbook extends \yii\db\ActiveRecord
             'inc_datetime' => Yii::t('app', 'Inc Datetime'),
             'edit_datetime' => Yii::t('app', 'Edit Datetime'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType()
+    {
+        return $this->hasOne(Type::className(), ['id_type' => 'type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
     }
 }

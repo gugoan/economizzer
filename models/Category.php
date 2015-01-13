@@ -5,11 +5,13 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%category}}".
+ * This is the model class for table "tb_category".
  *
  * @property integer $id_category
  * @property string $desc_category
  * @property string $hexcolor_category
+ *
+ * @property Cashbook[] $cashbooks
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -18,7 +20,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%category}}';
+        return 'tb_category';
     }
 
     /**
@@ -42,5 +44,13 @@ class Category extends \yii\db\ActiveRecord
             'desc_category' => Yii::t('app', 'Desc Category'),
             'hexcolor_category' => Yii::t('app', 'Hexcolor Category'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCashbooks()
+    {
+        return $this->hasMany(Cashbook::className(), ['category_id' => 'id_category']);
     }
 }
