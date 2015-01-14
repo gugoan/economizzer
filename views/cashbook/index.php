@@ -10,11 +10,22 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Lançamentos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-primary">
+              <div class="panel-heading"><i class="fa fa-search"></i> Filtros</div>
+              <div class="panel-body">
+                <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-9">
+
 <div class="cashbook-index">
 
-    <h1>Lançamentos</h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <h2>Lançamentos</h2>
+    
     <p>
         <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Novo', [
     'modelClass' => 'Cashbook',
@@ -86,3 +97,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+        </div>
+    </div>

@@ -54,14 +54,14 @@ class Cashbook extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'category_id' => Yii::t('app', 'Categoria'),
-            'type_id' => Yii::t('app', 'Type ID'),
+            'type_id' => Yii::t('app', 'Tipo'),
             'value' => Yii::t('app', 'Valor'),
-            'description' => Yii::t('app', 'Description'),
-            'date' => Yii::t('app', 'Date'),
-            'is_pending' => Yii::t('app', 'Is Pending'),
-            'attachment' => Yii::t('app', 'Attachment'),
-            'inc_datetime' => Yii::t('app', 'Inc Datetime'),
-            'edit_datetime' => Yii::t('app', 'Edit Datetime'),
+            'description' => Yii::t('app', 'Descrição'),
+            'date' => Yii::t('app', 'Data'),
+            'is_pending' => Yii::t('app', 'Pendente'),
+            'attachment' => Yii::t('app', 'Comprovante'),
+            'inc_datetime' => Yii::t('app', 'Incluído'),
+            'edit_datetime' => Yii::t('app', 'Alterado'),
         ];
     }
 

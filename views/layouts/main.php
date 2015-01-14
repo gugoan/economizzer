@@ -19,6 +19,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title>Economizzer</title>
     <?php $this->head() ?>
+    <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl;?>/images/favicon.ico">
 </head>
 <body>
 
