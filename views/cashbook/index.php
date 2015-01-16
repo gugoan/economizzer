@@ -27,10 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2>Lançamentos</h2>
     
     <p>
-        <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Novo', [
+        <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Receita', [
     'modelClass' => 'Cashbook',
-]), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+]), ['create'], ['class' => 'btn btn-success grid-button btn-sm']) ?>
+    
+    <?= Html::a('<i class="fa fa-plus"></i> Despesa', ['/cashbook/create'], ['class'=>'btn btn-danger grid-button btn-sm']) ?>
 <?php
     // http://stackoverflow.com/questions/27066544/yii2-adding-filter-to-gridview-widget  
     //$searchModel = New CashbookSearch(); 
@@ -77,8 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
              'header' => 'Valor',
              'attribute' => 'value',
+             'format' => 'raw',
              'value' => function ($model) {                      
-                    return 'R$ '.$model->value;
+                    return '<strong style="color:'.$model->type->hexcolor_type.'"> R$ '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
