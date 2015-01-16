@@ -73,6 +73,16 @@ $this->params['breadcrumbs'][] = $this->title;
             */
             [
              'class' => 'yii\grid\ActionColumn',
+             //'header' => 'teste',
+             'template' => '{attachment} {view} {update} {delete}',
+             'buttons' => [
+                'attachment' => function ($url, $model) {
+                    return Html::a('<span class="fa fa-paperclip"></span>', $url, [
+                                'title' => Yii::t('app', 'Visualizar anexo'),
+                                //'class'=>'btn btn-primary btn-xs',                                  
+                    ]);
+                },
+            ],
              'contentOptions'=>['style'=>'width: 15%;text-align:center'],
             ],
             [
