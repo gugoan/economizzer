@@ -40,9 +40,9 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_category' => Yii::t('app', 'Id Category'),
-            'desc_category' => Yii::t('app', 'Desc Category'),
-            'hexcolor_category' => Yii::t('app', 'Hexcolor Category'),
+            'id_category' => Yii::t('app', 'ID'),
+            'desc_category' => Yii::t('app', 'Descrição'),
+            'hexcolor_category' => Yii::t('app', 'Hex Cor'),
         ];
     }
 

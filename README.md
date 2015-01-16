@@ -8,13 +8,13 @@ For now only available in pt-BR
 
 
 
-REQUIREMENTS
+Requirements
 ------------
 
 The minimum requirement by this application template that your Web server supports PHP 5.4.0.
 
 
-INSTALLATION
+Installation
 ------------
 
 
@@ -22,7 +22,7 @@ coming soon...
 
 
 
-CONFIGURATION
+Configuration
 -------------
 
 

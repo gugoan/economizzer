@@ -41,10 +41,10 @@ class Type extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_type' => Yii::t('app', 'Id Type'),
-            'desc_type' => Yii::t('app', 'Desc Type'),
-            'hexcolor_type' => Yii::t('app', 'Hexcolor Type'),
-            'icon_type' => Yii::t('app', 'Icon Type'),
+            'id_type' => Yii::t('app', 'ID'),
+            'desc_type' => Yii::t('app', 'Descrição'),
+            'hexcolor_type' => Yii::t('app', 'Hex Cor'),
+            'icon_type' => Yii::t('app', 'Icone'),
         ];
     }
 
