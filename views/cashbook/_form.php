@@ -18,15 +18,13 @@ use app\models\Category;
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
 
-    <?= $form->field($model, 'type_id')->textInput() ?>
-
     <?= $form->field($model, 'value')->textInput() ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 45]) ?>
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-    <?= $form->field($model, 'is_pending')->textInput() ?>
+    <?= $form->field($model, 'is_pending')->checkbox() ?>
 
     <?= $form->field($model, 'attachment')->textInput(['maxlength' => 255]) ?>
 
