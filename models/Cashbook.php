@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Cashbook;
 
 /**
  * This is the model class for table "tb_cashbook".
@@ -80,4 +81,10 @@ class Cashbook extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
     }
+
+    public function getTotals($ids)
+        {
+            
+                return 7777;
+        }
 }

@@ -41,19 +41,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel'  => $searchModel,
         'tableOptions' => ['class'=>'table table-striped'],
-        'emptyText'    => 'Nenhum lançamento encontrado!',
-        'summary'     =>  '',
+        'emptyText'    => '</br><p class="text-danger">Nenhum lançamento encontrado!</p>',
+        'summary'      =>  '',
+        'showFooter'   => true,
+        'showOnEmpty'  => false,
         'columns'      => [
             //['class' => 'yii\grid\SerialColumn'],
             [
-             'header' => 'Dia',
+             'label' => 'Dia',
              'attribute' => 'date',
              'enableSorting' => true,
              'format' => ['date', 'php:d/m/Y'],
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
             ],
             [
-             'header' => 'Categoria',
+             'label' => 'Categoria',
              'attribute' => 'category_id',
              'format' => 'raw',
              'enableSorting' => true,
@@ -86,7 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'contentOptions'=>['style'=>'width: 15%;text-align:center'],
             ],
             [
-             'header' => 'Valor',
+             //'header' => 'Valor',
+             'label' => 'Valor',
              'attribute' => 'value',
              'format' => 'raw',
              'value' => function ($model) {                      
@@ -94,6 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
+             //'footer' => 
+             //'footerOptions' => '',
             ],
             //'id',
             //'category_id',

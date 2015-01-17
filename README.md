@@ -1,8 +1,8 @@
-Simple Personal Financial Manager
+Personal Finance Manager
 =================================
 
 
-Simple Personal Financial Manager made in PHP (Yii Framework) as a way to study.
+Personal Finance Manager is a simple app made in PHP (Yii Framework) as a way to study.
 
 For now only available in pt-BR
 

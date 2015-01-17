@@ -33,6 +33,7 @@ class CashbookController extends Controller
     public function actionIndex()
     {
         $searchModel = new CashbookSearch();
+        //$searchModel->date = '2015-01-16'; // initial filter 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
