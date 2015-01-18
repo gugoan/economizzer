@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Category;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Cashbook */
@@ -22,7 +23,29 @@ use app\models\Category;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 45]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(DatePicker::className(),
+                    [
+                        'language' => 'pt-BR',
+                        //'dateFormat' => 'php:d/m/Y',
+                        'dateFormat' => 'php:Y-m-d',
+                        'clientOptions' =>[
+                            //'defaultDate' => '2015-01-01',
+                            //'country' => 'BR',
+                            //'showAnim'=>'fold',
+                            //'yearRange' => 'c-25:c+0',
+                            //'changeMonth'=> false,
+                            //'changeYear'=> false,
+                            //'autoSize'=>true,
+                            //'showOn'=> "button",
+                            //'buttonImage'=> "images/calendar.gif",
+                            ],
+                        'options'=>[
+                            'class' => 'form-control input-sm',
+                            //'style'=>'width:80px;',
+                            //'font-weight'=>'x-small',
+                            ],
+                            // list params: http://api.jqueryui.com/datepicker/
+                        ]) ?> 
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
