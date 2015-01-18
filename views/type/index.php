@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'hexcolor_type',
              'format' => 'raw',
              'value' => function ($model) {                      
-                    return '<strong style="color:'.$model->hexcolor_type.'">'.$model->hexcolor_type.'</strong>';
+                    return '<strong style="color:'.$model->hexcolor_type.'"><i class="fa fa-circle"></i> '.$model->hexcolor_type.'</strong>';
                     },
              'contentOptions'=>['style'=>'width: 30%;text-align:left'],
             ],
