@@ -81,10 +81,5 @@ class Cashbook extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
     }
-
-    public function getTotals($ids)
-        {
-            
-                return 7777;
-        }
+    
 }
