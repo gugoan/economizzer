@@ -1,35 +1,25 @@
 To Do (short term) 
 ------------------
 
-- [ ] Comprar arroz
-- [ ] Comprar feijão
-- [ ] Comprar batata
-- [x] Comprar macarrão
+- [x] file upload
+- [ ] totals on gridview TESTING
+- [ ] some datepicker!! TESTING
+- [ ] filter by date, range
+- [ ] open attachment (if exist)
+- [x] initial dashboard
+- [ ] fix value with decimals
 
-
-Alimentos | Preço
---------- | ------
-Arroz | R$ 10
-Feijão | R$ 8
-Batata | R$ 7
-Macarrão | R$ 8
-
-
-
-> fix file upload
-> totals on gridview TESTING
-> some datepicker!! TESTING
-> filter by date, range
-> open attachment (if exist)
-> initial dashboard
-> fix value with decimals
 
 
 =================================================
 
 To Do (long-term) 
 -----------------
-> cat and subcat
-> login , autorization, etc
-> multiuser
-> goals
+
+# | Description
+------------ | -------------------------------------------
+Subcat | Categories with sub-categories
+Login | User autentication
+Multiuser | indepent user data separation
+Goals | Insert goals and reports 
+Translation | Multi front-end language select for user
