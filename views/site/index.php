@@ -1,6 +1,7 @@
 <?php
 use miloschuman\highcharts\Highcharts;
 use yii\bootstrap\Nav;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 $this->title = 'Economizzer';
 ?>
@@ -56,13 +57,35 @@ $this->title = 'Economizzer';
             <div class="panel">
               <div class="panel-heading"><i class="fa fa-line-chart"></i> Acompanhamento do Mês</div>
               <?php
+             	$items1 = \app\models\Cashbook::find()->select(['date','value'])->where('MONTH(date) = 01 and type_id = 1')->asArray()->all();
+             	$type1 = ArrayHelper::getColumn($items1, 'value');
+             	//array_column($records, 'first_name');
+				//array_filter($type1, 'is_numeric');
+				//var_dump(array_column($items, 'value'));
+
+				$items2 = \app\models\Cashbook::find()->select(['date','value'])->where('MONTH(date) = 01 and type_id = 2')->asArray()->all();
+             	$type2 = ArrayHelper::getColumn($items2, 'value');
+             	//array_column($records, 'first_name');
+				//array_filter($type1, 'is_numeric');
+				//var_dump(array_column($items, 'value'));
+              	
+             	/*
+              	$data = [
+				    ['id' => 123, 'data' => 'abc'],
+				    ['id' => 345, 'data' => 'def'],
+				    ['id' => 345, 'data' => 'def'],
+				];
+				$ids = ArrayHelper::getColumn($data, 'id');
+				var_dump($ids);
+				*/
+
 				// https://github.com/miloschuman/yii2-highcharts
 				echo Highcharts::widget([
 				   'options' => [
 				   'credits' => ['enabled' => false],
 				      'title' => ['text' => 'Acompanhamento do Mês'],
 				      'xAxis' => [
-				         'categories' => ['Apples', 'Bananas', 'Oranges']
+				         'categories' => ['01','02','03','04','05','06','07','08','09','10'],
 				      ],
 				      'yAxis' => [
 				         'title' => ['text' => 'Valor']
@@ -71,13 +94,13 @@ $this->title = 'Economizzer';
 				         [
 				         'name' => 'Receita',
 				         'color' => '#18bc9c',
-				         'data' => [1, 0, 4],
+				         'data' => array_map('floatval', $type1),
 				         ],
 				         [
 				         'name' => 'Despesa',
 				         'color' => '#e74c3c',
-				         'dashStyle' => 'ShortDash',
-				         'data' => [5, 7, 3],
+				         //'dashStyle' => 'ShortDash',
+				         'data' => array_map('floatval', $type2),
 				         ]
 				      ]
 				   ]
