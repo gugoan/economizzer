@@ -64,14 +64,14 @@ class CashbookController extends Controller
     {
         $model = new Cashbook();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
 
             // instance of the upload attachment
-            $model->attachment = UploadedFile::getInstance($model, 'attachment');
-            $model->attachment->saveAs('attachment/'.$model->id.'.'.$model->attachment->extension);
+            $imageName = $model->description;
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs('attachment/'.$imageName.'.'.$model->file->extension);
             // save path
-            $model->attachment = 'teste.'.$model->attachment->extension;
-            // save detail datetime
+            $model->attachment = $imageName.'.'.$model->file->extension;
             $model->inc_datetime = date('Y-m-d h:m:s');
             $model->save();
 

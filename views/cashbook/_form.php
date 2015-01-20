@@ -49,7 +49,7 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
-    <?= $form->field($model, 'attachment')->fileInput() ?>
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

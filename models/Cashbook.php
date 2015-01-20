@@ -27,7 +27,7 @@ class Cashbook extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public $attachment;
+    public $file;
 
     public static function tableName()
     {
@@ -43,9 +43,10 @@ class Cashbook extends \yii\db\ActiveRecord
             [['category_id', 'type_id', 'value', 'date'], 'required'],
             [['category_id', 'type_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
-            [['date', 'attachment', 'inc_datetime', 'edit_datetime'], 'safe'],
+            [['file'], 'file'],
+            [['date', 'inc_datetime', 'edit_datetime'], 'safe'],
             [['description'], 'string', 'max' => 100],
-            [['attachment'], 'file', 'extensions' => 'jpg, png, pdf e xps', 'mimeTypes' => 'image/jpeg, image/png, application/pdf, application/vnd.ms-xpsdocument',],
+            [['attachment'], 'string', 'max' => 255]
         ];
     }
 
