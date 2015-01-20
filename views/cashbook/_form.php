@@ -13,7 +13,7 @@ use yii\jui\DatePicker;
 
 <div class="cashbook-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'type_id')->radioList(['1' => 'Receita', '2' => 'Despesa'], ['itemOptions' => ['class' =>'radio-inline']]) ?>
 
@@ -49,7 +49,7 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
-    <?= $form->field($model, 'attachment')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'attachment')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -2,6 +2,7 @@ To Do (short term)
 ------------------
 
 - [x] file upload
+- [ ] description	varchar(100)
 - [ ] totals on gridview TESTING
 - [ ] some datepicker!! TESTING
 - [ ] filter by date, range
