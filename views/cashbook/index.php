@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel'  => $searchModel,
-        'tableOptions' => ['class'=>'table table-striped'],
+        'tableOptions' => ['class'=>'table table-striped table-hover'],
         'emptyText'    => '</br><p class="text-danger">Nenhum lançamento encontrado!</p>',
         'summary'      =>  '',
         'showFooter'   => true,
