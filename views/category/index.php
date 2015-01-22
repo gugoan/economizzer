@@ -11,16 +11,13 @@ $this->title = Yii::t('app', 'Categorias');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
-
-    <h2><?= Html::encode($this->title) ?></h2>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Categoria', [
+<h2>
+  <span><?= Html::encode($this->title) ?></span>
+  <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Categoria', [
     'modelClass' => 'Category',
-]), ['create'], ['class' => 'btn btn-primary btn-sm']) ?>
-    </p>
-
+]), ['create'], ['class' => 'btn btn-primary btn-sm pull-right']) ?>
+</h2>
+<hr/>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,

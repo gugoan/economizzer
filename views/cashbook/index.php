@@ -23,20 +23,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12 col-sm-6 col-md-9">
 
 <div class="cashbook-index">
-
-    <h2>Lançamentos</h2>
-    
-    <p>
-        <?= Html::a(Yii::t('app', '<i class="fa fa-plus"></i> Receita', [
-    'modelClass' => 'Cashbook',
-]), ['create'], ['class' => 'btn btn-success grid-button btn-sm']) ?>
-    
-    <?= Html::a('<i class="fa fa-plus"></i> Despesa', ['/cashbook/create'], ['class'=>'btn btn-danger grid-button btn-sm']) ?>
-<?php
-    // http://stackoverflow.com/questions/27066544/yii2-adding-filter-to-gridview-widget  
-    //$searchModel = New CashbookSearch(); 
-    //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-?>
+<h2>
+  <span>Lançamentos</span>
+    <?= Html::a('<i class="fa fa-plus"></i> Despesa', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
+</h2>
+<hr/>
+ 
+    <?php
+        // http://stackoverflow.com/questions/27066544/yii2-adding-filter-to-gridview-widget  
+        //$searchModel = New CashbookSearch(); 
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel'  => $searchModel,
