@@ -134,7 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?></div></div></div>
                   <div class="col-md-6">
                       <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Maiores Despesas</strong></div>
+                    <div class="panel-heading"><strong>Desempenho</strong></div>
                       <div class="panel-body">
                 <?php 
                    //$searchModel = New CashbookSearch();
@@ -159,6 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       ],
                       ]);
                 ?>
+                <p class="text-success">Saldo Positivo!</p>
                 <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         //'filterModel' => $searchModel,

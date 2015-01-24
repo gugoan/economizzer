@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="cashbook-index">
 <h2>
   <span>Lançamentos</span>
-    <?= Html::a('<i class="fa fa-plus"></i> Despesa', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
+    <?= Html::a('<i class="fa fa-plus"></i> Lançamento', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
 </h2>
 <hr/>
  
