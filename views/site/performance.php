@@ -2,6 +2,8 @@
 use miloschuman\highcharts\Highcharts;
 use yii\web\JsExpression;
 use yii\bootstrap\Nav;
+use yii\helpers\ArrayHelper;
+//use app\models\CashbookSearch;
 use yii\data\SqlDataProvider;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
@@ -181,7 +183,143 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                   </div>
             </div>
-            
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Maiores Despesas</strong></div>
+              <div class="panel-body">
+              <?php
+                  $thismonth = date('m');
+                  //echo $thismonth;
+                 $items1 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 1')->groupby('date')->asArray()->all();
+                 $type1 = ArrayHelper::getColumn($items1, 'total');
+                 //array_column($records, 'first_name');
+                //array_filter($type1, 'is_numeric');
+                //var_dump(array_column($items, 'value'));
+
+                $items2 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 2')->groupby('date')->asArray()->all();
+                 $type2 = ArrayHelper::getColumn($items2, 'total');
+                 $date = ArrayHelper::getColumn($items2, 'date');
+                 //array_column($records, 'first_name');
+                //array_filter($type1, 'is_numeric ');
+                //var_dump(array_column($items, 'value'));
+                 
+                 /*
+                  $data = [
+                    ['id' => 123, 'data' => 'abc'],
+                    ['id' => 345, 'data' => 'def'],
+                    ['id' => 345, 'data' => 'def'],
+                ];
+                $ids = ArrayHelper::getColumn($data, 'id');
+                var_dump($ids);
+                */
+
+                // https://github.com/miloschuman/yii2-highcharts
+                echo Highcharts::widget([
+                   'options' => [
+                   'credits' => ['enabled' => false],
+                      'title' => ['text' => ''],
+                      'xAxis' => [
+                         'categories' => $date,
+                      ],
+                      'yAxis' => [
+                         'title' => ['text' => 'Valor']
+                      ],
+                      'series' => [
+                         [
+                         'name' => 'Receita',
+                          'color' => '#18bc9c',
+                         'data' => array_map('floatval', $type1),
+                         ],
+                         [
+                         'name' => 'Despesa',
+                         'color' => '#e74c3c',
+                         //'dashStyle' => 'ShortDash',
+                         'data' => array_map('floatval', $type2),
+                         ]
+                      ]
+                   ]
+                ]);
+                ?>
+                </div>
+                <div class="panel panel-default">
+                <div class="panel-heading"><strong>Grafico de exemplo</strong></div>
+                  <div class="panel-body">
+                <?php
+                echo Highcharts::widget([
+
+    'options' => [
+        'credits' => ['enabled' => false],
+        'title' => [
+            'text' => '',
+        ],
+        'xAxis' => [
+            'categories' => ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plu ms '],
+        ],
+        'labels' => [
+            'items' => [
+                [
+                    'html' => 'Receita x Despesa',
+                    'style' => [
+                        'left' => '50px',
+                        'top' => '18px',
+                        'color' => new JsExpression('(Highcharts.theme && Highcharts.theme.textColor) || "black"'),
+                    ],
+                ],
+            ],
+        ],
+        'series' => [
+            [
+                'type' => 'column',
+                'name' => 'Jane',
+                'data' => [3, 2, 1, 3, 4],
+            ],
+            [
+                'type' => 'column',
+                'name' => 'John',
+                'data' => [2, 3, 5, 7, 6],
+            ],
+            [
+                'type' => 'column',
+                'name' => 'Joe',
+                'data' => [4, 3, 3, 9, 0],
+            ],
+            [
+                'type' => 'spline',
+                'name' => 'Average',
+                'data' => [3, 2.67, 3, 6.33, 3.33],
+                 'marker' => [
+                    'lineWidth' => 2,
+                    'lineColor' => new JsExpression('Highcharts.getOptions().colors[3]'),
+                    'fillColor' => 'white',
+                ],
+            ],
+            [
+                'type' => 'pie',
+                'name' => 'Total',
+                'data' => [
+                    [
+                        'name' => 'Receita',
+                        'y' => 13,
+                        'color' => '#18bc9c',
+                    ],
+                    [
+                        'name' => 'Despesa',
+                        'y' => 23,
+                        'color' => '#e74c3c',
+                    ],
+                ],
+                'center' => [100, 80],
+                'size' => 100,
+                'showInLegend' => false,
+                'dataLabels' => [
+                    'enabled' => false,
+                ],
+            ],
+        ],
+    ]
+]);
+                ?>
+                  </div>
+                </div>
             </div>
         </div>
  </div>
