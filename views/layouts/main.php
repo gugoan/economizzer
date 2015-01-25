@@ -37,19 +37,19 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'encodeLabels' => false,
                 'items' => [
-                    ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index']],
-                    ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index']],
-                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/site/about']],
-                    ['label' => '<i class="fa fa-briefcase"></i> Opções',
+                    ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/site/about'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-briefcase"></i> Opções', 'visible' => !Yii::$app->user->isGuest,
                     'items' => [
                          ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => ['category/index']],
                          ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => ['/type/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
-                        ['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/site/login']] :
-                        ['label' => '<i class="fa fa-unlock"></i> Sair (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
+                        ['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/user/login']] :
+                        ['label' => '<i class="fa fa-unlock"></i> Sair (' . Yii::$app->user->displayName . ')',
+                            'url' => ['/user/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
             ]);
