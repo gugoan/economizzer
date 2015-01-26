@@ -27,7 +27,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => '<img src="images/logo-icon2.png" style="height:20px;float:left;margin-right: 5px" align="absbottom">  Economizzer',
+                'brandLabel' => '<img src="images/logo-icon.png" style="height:20px;float:left;margin-right: 5px" align="absbottom">  Economizzer',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar navbar-default navbar-fixed-top',
@@ -39,7 +39,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index'], 'visible' => !Yii::$app->user->isGuest,],
                     ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index'], 'visible' => !Yii::$app->user->isGuest,],
-                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/site/about'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/cashbook/target'], 'visible' => !Yii::$app->user->isGuest,],
                     ['label' => '<i class="fa fa-briefcase"></i> Opções', 'visible' => !Yii::$app->user->isGuest,
                     'items' => [
                          ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => ['category/index']],
@@ -66,7 +66,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; Economizzer <?= date('Y') ?></p>
+            <p class="pull-left">Copyright &copy; <?= date('Y') ?> - Economizzer</p>
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

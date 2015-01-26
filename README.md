@@ -21,9 +21,26 @@ Installation
 coming soon...
 
 
-
 Configuration
 -------------
 
 
 coming soon...
+
+
+To-Do 
+------
+
+- [x] file upload
+- [x] initial dashboard
+- [ ] description	varchar(100)
+- [ ] totals on gridview TESTING
+- [ ] some datepicker!! TESTING
+- [ ] filter by date, range
+- [ ] open attachment (if exist)
+- [ ] fix value with decimals
+- [ ] Subcat | Categories with sub-categories
+- [x] Login | User autentication
+- [ ] Multiuser | indepent user data separation
+- [ ] Goals | Insert goals and reports 
+- [ ] Translation | Multi front-end language select for user

@@ -21,7 +21,7 @@ class CashbookController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::classname(),
-                'only'  => ['index','create','update','delete'],
+                'only'  => ['index','create','update','delete','view','target'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -124,6 +124,20 @@ class CashbookController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+     /**
+     * User targets Cashbook model.
+     * 
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionTarget()
+    {
+        $model = new Cashbook();
+        return $this->render('target', [
+                'model' => $model,
+            ]);
     }
 
     /**
