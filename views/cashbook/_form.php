@@ -11,17 +11,21 @@ use yii\jui\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="cashbook-form">
-
     <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'type_id')->radioList(['1' => 'Receita', '2' => 'Despesa'], ['itemOptions' => ['class' =>'radio-inline']]) ?>
+        <div class="cashbook-form">
 
-    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab"><i class="fa fa-cube"></i> Informações Básicas</a></li>
+        <li><a href="#profile" data-toggle="tab"><i class="fa fa-cubes"></i> Avançadas</a></li>
+    </ul>
+    <div class="tab-content">
+    <div class="tab-pane active" id="home">
 
-    <?= $form->field($model, 'value')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => 45]) ?>
+    <?= $form->field($model, 'type_id')->radioList([
+        '1' => 'Receita', 
+        '2' => 'Despesa'
+        ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('') ?>
 
     <?= $form->field($model, 'date')->widget(DatePicker::className(),
                     [
@@ -45,14 +49,27 @@ use yii\jui\DatePicker;
                             //'font-weight'=>'x-small',
                             ],
                             // list params: http://api.jqueryui.com/datepicker/
-                        ]) ?> 
+                        ])
+    ?>
+
+    <?= $form->field($model, 'value')->textInput() ?>
+
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
+
+    <?= $form->field($model, 'description')->textInput(['maxlength' => 45]) ?>
+
+    </div>
+    <div class="tab-pane" id="profile">
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
     <?= $form->field($model, 'file')->fileInput() ?>
 
+    </div>
+    </div>
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '<i class="fa fa-floppy-o"></i> Gravar') : Yii::t('app', '<i class="fa fa-floppy-o"></i> Gravar'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button btn-sm' : 'btn btn-primary grid-button btn-sm']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
