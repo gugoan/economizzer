@@ -84,5 +84,14 @@ class Cashbook extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
     }
+
+    public static function pageTotal($provider, $value)
+    {
+        $total=0;
+        foreach($provider as $item){
+            $total+=$item[$value];
+        }
+        return "R$ ".$total;
+    }
     
 }

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Cashbook;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CashbookSearch */
@@ -42,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'summary'      =>  '',
         'showFooter'   => true,
         'showOnEmpty'  => false,
+        'footerRowOptions'=>['style'=>'font-weight:bold;'],
         'columns'      => [
             //['class' => 'yii\grid\SerialColumn'],
             [
@@ -81,8 +83,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 //'class'=>'btn btn-primary btn-xs',                                  
                     ]);
                 },
-            ],
+                ],
              'contentOptions'=>['style'=>'width: 15%;text-align:center'],
+             'footer' => 'Total',
+             'footerOptions' => ['style'=>'text-align:center'],             
             ],
             [
              //'header' => 'Valor',
@@ -94,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
-             //'footer' => 
+             'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              //'footerOptions' => '',
             ],
             //'id',
