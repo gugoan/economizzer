@@ -78,12 +78,30 @@ $this->params['breadcrumbs'][] = $this->title;
              'template' => '{attachment} {view} {update} {delete}',
              'buttons' => [
                 'attachment' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-paperclip"></span>', $url, [
-                                'title' => Yii::t('app', 'Visualizar anexo'),
+                    return Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
+                                'title' => Yii::t('app', 'Possui Anexo'),
                                 //'class'=>'btn btn-primary btn-xs',                                  
                     ]);
                 },
-                ],
+                'view' => function ($url, $model) {
+                    return Html::a('<span class="fa fa-eye fa-fw fa-border"></span>', $url, [
+                                'title' => Yii::t('app', 'Exibir Lançamento'),
+                                //'class'=>'btn btn-primary btn-xs',                                  
+                    ]);
+                },   
+                'update' => function ($url, $model) {
+                    return Html::a('<span class="fa fa-pencil-square-o fa-fw fa-border"></span>', $url, [
+                                'title' => Yii::t('app', 'Alterar Lançamento'),
+                                //'class'=>'btn btn-primary btn-xs',                                  
+                    ]);
+                }, 
+                'delete' => function ($url, $model) {
+                    return Html::a('<span class="fa fa-trash-o fa-fw fa-border"></span>', $url, [
+                                'title' => Yii::t('app', 'Excluir Lançamento'),
+                                //'class'=>'btn btn-primary btn-xs',                                  
+                    ]);
+                },                                                  
+             ],
              'contentOptions'=>['style'=>'width: 15%;text-align:center'],
              'footer' => 'Total',
              'footerOptions' => ['style'=>'text-align:center'],             

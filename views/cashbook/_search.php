@@ -37,8 +37,8 @@ use app\models\Type;
     <?php // echo $form->field($model, 'edit_datetime') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Filtrar'), ['class' => 'btn btn-primary btn-sm']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Limpar'), ['class' => 'btn btn-default btn-sm']) ?>
+        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filtrar'), ['class' => 'btn btn-primary btn-sm']) ?>
+        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Limpar'), ['class' => 'btn btn-default btn-sm']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
