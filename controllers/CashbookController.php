@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
+use yii\base\Security;
 
 /**
  * CashbookController implements the CRUD actions for Cashbook model.
@@ -78,7 +79,7 @@ class CashbookController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             // instance of the upload attachment
-            $imageName = $model->description;
+            $imageName = Yii::$app->security->generateRandomString();
             $model->file = UploadedFile::getInstance($model, 'file');
             $model->file->saveAs('attachment/'.$imageName.'.'.$model->file->extension);
             // save path

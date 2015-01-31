@@ -76,7 +76,10 @@ use kartik\file\FileInput;
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
     <?php // $form->field($model, 'file')->fileInput() 
-    echo '<label class="control-label">Add Attachments</label>';
+    // try:
+    // http://webtips.krajee.com/advanced-upload-using-yii2-fileinput-widget/
+    // http://webtips.krajee.com/upload-file-yii-2-using-fileinput-widget/
+    echo '<label class="control-label">Anexos</label>';
     echo FileInput::widget([
         'model' => $model,
         'attribute' => 'file',
