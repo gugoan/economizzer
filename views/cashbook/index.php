@@ -98,7 +98,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'delete' => function ($url, $model) {
                     return Html::a('<span class="fa fa-trash-o fa-fw fa-border"></span>', $url, [
                                 'title' => Yii::t('app', 'Excluir Lançamento'),
-                                //'class'=>'btn btn-primary btn-xs',                                  
+                                //'class'=>'btn btn-primary btn-xs',         
+                                'data-confirm' => Yii::t('yii', 'Deseja realmente excluir este lançamento?'),
+                                'data-method' => 'post',
+                                'data-pjax' => '0',                         
                     ]);
                 },                                                  
              ],
