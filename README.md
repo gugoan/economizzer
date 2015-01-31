@@ -31,14 +31,14 @@ coming soon...
 To-Do 
 ------
 
-- [x] file upload
-- [x] initial dashboard
-- [ ] description	varchar(100)
-- [ ] totals on gridview TESTING
-- [ ] some datepicker!! TESTING
-- [ ] filter by date, range
-- [ ] open attachment (if exist)
-- [ ] fix value with decimals
+- [x] File upload (testing)
+- [x] Initial dashboard
+- [x] Description up to varchar(100)
+- [x] Totals on gridview
+- [ ] Some datepicker!! TESTING
+- [ ] Filter by date, range
+- [ ] Open attachment (if exist)
+- [ ] Fix value with decimals
 - [ ] Subcat | Categories with sub-categories
 - [x] Login | User autentication
 - [ ] Multiuser | indepent user data separation

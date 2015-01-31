@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
         "miloschuman/yii2-highcharts-widget": "dev-master",
-        "amnah/yii2-user": "*"
+        "amnah/yii2-user": "*",
+        "kartik-v/yii2-widgets": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

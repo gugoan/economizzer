@@ -4,7 +4,8 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Category;
-use yii\jui\DatePicker;
+use kartik\widgets\DatePicker;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Cashbook */
@@ -27,43 +28,61 @@ use yii\jui\DatePicker;
         '2' => 'Despesa'
         ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('') ?>
 
-    <?= $form->field($model, 'date')->widget(DatePicker::className(),
-                    [
-                        'language' => 'pt-BR',
-                        //'dateFormat' => 'php:d/m/Y',
-                        'dateFormat' => 'php:Y-m-d',
-                        'clientOptions' =>[
-                            //'defaultDate' => '2015-01-01',
-                            //'country' => 'BR',
-                            //'showAnim'=>'fold',
-                            //'yearRange' => 'c-25:c+0',
-                            //'changeMonth'=> false,
-                            //'changeYear'=> false,
-                            //'autoSize'=>true,
-                            //'showOn'=> "button",
-                            //'buttonImage'=> "images/calendar.gif",
-                            ],
-                        'options'=>[
-                            'class' => 'form-control input-sm',
-                            //'style'=>'width:80px;',
-                            //'font-weight'=>'x-small',
-                            ],
-                            // list params: http://api.jqueryui.com/datepicker/
-                        ])
-    ?>
+    <div class="row">
+        <div class="col-sm-2">
+        <?php
+            echo '<label class="control-label">Data</label>';
+            echo DatePicker::widget([
+                'model' => $model,
+                'attribute' => 'date',
+                'type' => DatePicker::TYPE_INPUT,
+                'size' => 'sm',
+                'value' => '2015-01-30',
+                //'readonly' => true,
+                'options' => [
+                    'placeholder' => '',
+                ],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'todayHighlight' => true,
+                    'format' => 'yyyy-mm-dd',
+                ]
+            ]);
+            // http://www.yiiframework.com/doc-2.0/yii-bootstrap-activefield.html
+        ?></div>
+        </div>
+    <p>
+    <div class="row">
+        <div class="col-sm-2">
+        <?= $form->field($model, 'value')->textInput(['size' => 10]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'value')->textInput() ?>
+    <div class="row">
+        <div class="col-sm-3">
+        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => 45]) ?>
+    <div class="row">
+        <div class="col-sm-5">
+        <?= $form->field($model, 'description')->textInput(['maxlength' => 100]) ?>
+        </div>
+    </div>
 
     </div>
     <div class="tab-pane" id="profile">
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <?php // $form->field($model, 'file')->fileInput() 
+    echo '<label class="control-label">Add Attachments</label>';
+    echo FileInput::widget([
+        'model' => $model,
+        'attribute' => 'file',
+        'options' => ['multiple' => false]
+    ]);
+    ?>
 
     </div>
     </div>
