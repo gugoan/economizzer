@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2>#<?= Html::encode($this->title) ?></h2>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Alterar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Alterar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>
         <?= Html::a(Yii::t('app', 'Excluir'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-danger btn-sm',
             'data' => [
                 'confirm' => Yii::t('app', 'Tem certeza que deseja excluir?'),
                 'method' => 'post',
@@ -30,10 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'id',
             'type.desc_type',
+            'value',            
             'category.desc_category',
-            'value',
-            'description',
             'date',
+            'description',
             'is_pending',
             'attachment',
             'inc_datetime',

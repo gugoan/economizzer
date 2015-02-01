@@ -74,25 +74,35 @@ class CashbookController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Cashbook();
+        $model = new Cashbook;
 
         if ($model->load(Yii::$app->request->post())) {
-
-            // instance of the upload attachment
-            $imageName = Yii::$app->security->generateRandomString();
-            $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('attachment/'.$imageName.'.'.$model->file->extension);
-            // save path
-            $model->attachment = $imageName.'.'.$model->file->extension;
+            // get the uploaded file instance. for multiple file uploads
+            // the following data will return an array
+            $file = UploadedFile::getInstance($model, 'file');
+ 
+            // store the source file name
+            $model->attachment = $file->name;
+            $ext = end((explode(".", $file->name)));
+ 
+            // generate a unique file name
+            $model->attachment = Yii::$app->security->generateRandomString().".{$ext}";
             $model->inc_datetime = date('Y-m-d h:m:s');
-            $model->save();
-
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+ 
+            // the path to save file, you can set an uploadPath
+            // in Yii::$app->params (as used in example below)
+            $path = 'attachment/'.$model->attachment;
+ 
+            if($model->save()){
+                $file->saveAs($path);
+                return $this->redirect(['view', 'id'=>$model->id]);
+            } else {
+                // error in saving model
+            }
         }
+        return $this->render('create', [
+            'model'=>$model,
+        ]);
     }
 
     /**

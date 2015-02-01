@@ -83,7 +83,8 @@ use kartik\file\FileInput;
     echo FileInput::widget([
         'model' => $model,
         'attribute' => 'file',
-        'options' => ['multiple' => false]
+        'options' => ['multiple' => false],
+        'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png','pdf']],
     ]);
     ?>
 
