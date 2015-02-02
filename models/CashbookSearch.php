@@ -23,6 +23,7 @@ class CashbookSearch extends Cashbook
         return [
             [['id', 'category_id', 'type_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
+            [['start_date', 'end_date'], 'date', 'format'=>'yyyy-mm-dd', 'message' => 'Data inválida!'],
             [['description', 'date', 'start_date', 'end_date', 'attachment', 'inc_datetime', 'edit_datetime'], 'safe'],
         ];
     }
@@ -77,7 +78,7 @@ class CashbookSearch extends Cashbook
             //'date' => $this->date,
             //'date1' => $this->date1,
             //'date2' => $this->date2,
-            'is_pending' => $this->is_pending,
+            //'is_pending' => $this->is_pending,
             'inc_datetime' => $this->inc_datetime,
             'edit_datetime' => $this->edit_datetime,
         ]);
