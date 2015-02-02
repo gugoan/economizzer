@@ -29,6 +29,7 @@ class Cashbook extends \yii\db\ActiveRecord
      */
     public $file;
 
+
     public static function tableName()
     {
         return 'tb_cashbook';
@@ -46,7 +47,7 @@ class Cashbook extends \yii\db\ActiveRecord
             [['file'], 'file', 'extensions'=>'jpg, gif, png'],
             [['date', 'inc_datetime', 'edit_datetime'], 'safe'],
             [['description'], 'string', 'max' => 100],
-            [['attachment'], 'string', 'max' => 255]
+            [['attachment'], 'string', 'max' => 255],
         ];
     }
 

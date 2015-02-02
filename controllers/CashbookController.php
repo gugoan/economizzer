@@ -46,7 +46,8 @@ class CashbookController extends Controller
     public function actionIndex()
     {
         $searchModel = new CashbookSearch();
-        //$searchModel->date = '2015-01-16'; // initial filter 
+        $searchModel->start_date = date('Y-m-01'); // get start date 
+        $searchModel->end_date = date("Y-m-t");; // get end date
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -15,12 +15,15 @@ class CashbookSearch extends Cashbook
     /**
      * @inheritdoc
      */
+    public $start_date;
+    public $end_date;
+    
     public function rules()
     {
         return [
             [['id', 'category_id', 'type_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
-            [['description', 'date', 'attachment', 'inc_datetime', 'edit_datetime'], 'safe'],
+            [['description', 'date', 'start_date', 'end_date', 'attachment', 'inc_datetime', 'edit_datetime'], 'safe'],
         ];
     }
 
@@ -71,11 +74,15 @@ class CashbookSearch extends Cashbook
             'category_id' => $this->category_id,
             'type_id' => $this->type_id,
             'value' => $this->value,
-            'date' => $this->date,
+            //'date' => $this->date,
+            //'date1' => $this->date1,
+            //'date2' => $this->date2,
             'is_pending' => $this->is_pending,
             'inc_datetime' => $this->inc_datetime,
             'edit_datetime' => $this->edit_datetime,
         ]);
+
+        $query->andFilterWhere(['between', 'date', $this->start_date, $this->end_date]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'attachment', $this->attachment]);
