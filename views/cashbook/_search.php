@@ -22,9 +22,11 @@ use app\models\Type;
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
 
+    <?= $form->field($model, 'date') ?>
+
     <?= $form->field($model, 'value') ?>
 
-    <?= $form->field($model, 'date') ?>
+    <?= $form->field($model, 'is_pending')->checkbox() ?>
 
     <?php // echo $form->field($model, 'date') ?>
 

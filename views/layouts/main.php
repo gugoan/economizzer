@@ -47,7 +47,8 @@ AppAsset::register($this);
                         ],
                     ],
                     Yii::$app->user->isGuest ?
-                        ['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/user/login']] :
+                        //['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/user/login']] :
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> Criar uma conta', 'url' => ['/user/register']] :
                         ['label' => '<i class="fa fa-unlock"></i> Sair (' . Yii::$app->user->displayName . ')',
                             'url' => ['/user/logout'],
                             'linkOptions' => ['data-method' => 'post']],
@@ -65,10 +66,7 @@ AppAsset::register($this);
     </div>
 
     <footer class="footer">
-        <div class="container">
-            <p class="pull-left">Copyright &copy; <?= date('Y') ?> - Economizzer</p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
-        </div>
+        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer</div>
     </footer>
 
 <?php $this->endBody() ?>
