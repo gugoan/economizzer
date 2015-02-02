@@ -25,13 +25,13 @@ use kartik\widgets\DatePicker;
     ]); ?>
 
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-9">
             <?php
                 echo '<label class="control-label">De</label>';
                 echo DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'start_date',
-                    'type' => DatePicker::TYPE_INPUT,
+                    'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                     //'size' => 'sm',
                     //'value' => '2015-01-30',
                     //'readonly' => true,
@@ -48,13 +48,13 @@ use kartik\widgets\DatePicker;
         </div>
     </div><p>
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-9">
         <?php
             echo '<label class="control-label">Até</label>';
             echo DatePicker::widget([
                 'model' => $model,
                 'attribute' => 'end_date',
-                'type' => DatePicker::TYPE_INPUT,
+                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                 //'size' => 'sm',
                 //'value' => '2015-01-30',
                 //'readonly' => true,

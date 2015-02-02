@@ -66,11 +66,12 @@ $this->params['breadcrumbs'][] = $this->title;
              'template' => '{attachment} {view} {update} {delete}',
              'buttons' => [
                 'attachment' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
+                    return $model->attachment == '' ? Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
                                 'title' => Yii::t('app', 'Possui Anexo'),
                                 //'class'=>'btn btn-primary btn-xs',                                  
-                    ]);
+                    ]) : '';
                 },
+                // return $model->status == 1 ? Html::a('<span class="fa fa-search"></span>View', $url, [ 'title' => Yii::t('app', 'View'), 'class'=>'btn btn-primary btn-xs', ]) : '';
                 'view' => function ($url, $model) {
                     return Html::a('<span class="fa fa-eye fa-fw fa-border"></span>', $url, [
                                 'title' => Yii::t('app', 'Exibir Lançamento'),
@@ -93,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 },                                                  
              ],
-             'contentOptions'=>['style'=>'width: 15%;text-align:center'],
+             'contentOptions'=>['style'=>'width: 15%;text-align:right'],
              'footer' => 'Total',
              'footerOptions' => ['style'=>'text-align:center'],             
             ],
