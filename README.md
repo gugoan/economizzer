@@ -35,8 +35,8 @@ To-Do
 - [x] Initial dashboard
 - [x] Description up to varchar(100)
 - [x] Totals on gridview
-- [ ] Some datepicker
-- [ ] Filter by date, range
+- [x] Some datepicker
+- [x] Filter by date, range
 - [ ] Open attachment (if exist)
 - [ ] Fix value with decimals
 - [ ] Subcat | Categories with sub-categories

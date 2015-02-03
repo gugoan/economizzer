@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'template' => '{attachment} {view} {update} {delete}',
              'buttons' => [
                 'attachment' => function ($url, $model) {
-                    return $model->attachment == '' ? Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
+                    return $model->attachment <> '' ? Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
                                 'title' => Yii::t('app', 'Possui Anexo'),
                                 //'class'=>'btn btn-primary btn-xs',                                  
                     ]) : '';
