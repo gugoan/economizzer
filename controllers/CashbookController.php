@@ -76,26 +76,17 @@ class CashbookController extends Controller
     public function actionCreate()
     {
         $model = new Cashbook;
-
+ 
         if ($model->load(Yii::$app->request->post())) {
-            // get the uploaded file instance. for multiple file uploads
-            // the following data will return an array
-            $file = UploadedFile::getInstance($model, 'file');
+            // process uploaded image file instance
+            $file = $model->uploadImage();
  
-            // store the source file name
-            $model->attachment = $file->name;
-            $ext = end((explode(".", $file->name)));
- 
-            // generate a unique file name
-            $model->attachment = Yii::$app->security->generateRandomString().".{$ext}";
-            $model->inc_datetime = date('Y-m-d h:m:s');
- 
-            // the path to save file, you can set an uploadPath
-            // in Yii::$app->params (as used in example below)
-            $path = 'attachment/'.$model->attachment;
- 
-            if($model->save()){
-                $file->saveAs($path);
+            if ($model->save()) {
+                // upload only if valid uploaded file instance found
+                if ($file !== false) {
+                    $path = $model->getImageFile();
+                    $file->saveAs($path);
+                }
                 return $this->redirect(['view', 'id'=>$model->id]);
             } else {
                 // error in saving model
@@ -115,14 +106,34 @@ class CashbookController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $oldFile = $model->getImageFile();
+        $oldattachment = $model->attachment;
+        $oldFileName = $model->filename;
+ 
+        if ($model->load(Yii::$app->request->post())) {
+            // process uploaded image file instance
+            $file = $model->uploadImage();
+ 
+            // revert back if no valid file instance uploaded
+            if ($file === false) {
+                $model->attachment = $oldattachment;
+                $model->filename = $oldFileName;
+            }
+ 
+            if ($model->save()) {
+                // upload only if valid uploaded file instance found
+                if ($file !== false && unlink($oldFile)) { // delete old and overwrite
+                    $path = $model->getImageFile();
+                    $file->saveAs($path);
+                }
+                return $this->redirect(['view', 'id'=>$model->id]);
+            } else {
+                // error in saving model
+            }
         }
+        return $this->render('update', [
+            'model'=>$model,
+        ]);
     }
 
     /**
@@ -133,8 +144,15 @@ class CashbookController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+ 
+        // validate deletion and on failure process any exception
+        // e.g. display an error message
+        if ($model->delete()) {
+            if (!$model->deleteImage()) {
+                Yii::$app->session->setFlash('error', 'Error deleting image');
+            }
+        }
         return $this->redirect(['index']);
     }
 

@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Cashbook;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "tb_cashbook".
@@ -28,6 +29,7 @@ class Cashbook extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public $file;
+    public $filename;
 
 
     public static function tableName()
@@ -45,10 +47,61 @@ class Cashbook extends \yii\db\ActiveRecord
             [['category_id', 'type_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
             [['file'], 'file', 'extensions'=>'jpg, gif, png'],
-            [['date', 'inc_datetime', 'edit_datetime'], 'safe'],
+            [['date', 'attachment', 'file', 'filename', 'inc_datetime', 'edit_datetime'], 'safe'],
             [['description'], 'string', 'max' => 100],
             [['attachment'], 'string', 'max' => 255],
         ];
+    }
+
+    public function getImageFile()
+    {
+        return isset($this->attachment) ? Yii::$app->params['uploadPath'] . $this->attachment : null;
+    }
+    public function getImageUrl()
+    {
+        // return a default image placeholder if your source attachment is not found
+        $attachment = isset($this->attachment) ? $this->attachment : 'default-attachment.png';
+        return Yii::$app->params['uploadUrl'] . $attachment;
+    }
+    public function uploadImage() {
+        // get the uploaded file instance. for multiple file uploads
+        // the following data will return an array (you may need to use
+        // getInstances method)
+        $file = UploadedFile::getInstance($this, 'file');
+ 
+        // if no image was uploaded abort the upload
+        if (empty($file)) {
+            return false;
+        }
+ 
+        // store the source file name
+        $this->filename = $file->name;
+        $ext = end((explode(".", $file->name)));
+ 
+        // generate a unique file name
+        $this->attachment = Yii::$app->security->generateRandomString().".{$ext}";
+ 
+        // the uploaded image instance
+        return $file;
+    }
+    public function deleteImage() {
+        $file = $this->getImageFile();
+ 
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            return false;
+        }
+ 
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            return false;
+        }
+ 
+        // if deletion successful, reset your file attributes
+        $this->attachment = null;
+        $this->filename = null;
+ 
+        return true;
     }
 
     /**

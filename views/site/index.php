@@ -9,6 +9,9 @@ $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Vistão Geral');
 $this->params['breadcrumbs'][] = $this->title;
 
+
+$thisyear  = date('Y');
+$thismonth = date('m');
 ?>
 <div class="row">
         <div class="col-xs-6 col-md-3">
@@ -64,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>
-          <span>Resumo do Mês</span>
+          <span>Resumo do Mês <small><?php echo $thismonth."/".$thisyear ?></small></span>
         </h2>
         <hr/>
             <div class="row">
@@ -73,8 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel-heading"><strong>Receita x Despesa</strong></div>
                   <div class="panel-body">       
                   <?php
-          $thisyear  = date('Y');
-          $thismonth = date('m');
           // Via Query Builder
           /*
           $query = (new \yii\db\Query())->from('tb_cashbook');
@@ -84,11 +85,11 @@ $this->params['breadcrumbs'][] = $this->title;
           // Via Data Access Objects
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype1 = $command->queryScalar();
-          //echo round((int)$vtype1);
-          //echo "<br>";
+          echo round((int)$vtype1);
+          echo "<br>";
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype2 = $command->queryScalar();
-          //echo round((int)$vtype2)*-1;
+          echo round((int)$vtype2)*-1;
 
                  //$pie1 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 1')->groupby('MONTH(date)')->all();
                  //echo $pie11 = ArrayHelper::getValue($pie1, 'total');
@@ -126,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'name'=> 'Valor',
                     'data'=> [
                         ['Receita',   round((int)$vtype1)],
-                        ['Despesa',   round((int)$vtype2)*-1],
+                        ['Despesa',   round((int)$vtype2)*-],
                     ]
                 ]]
                    ]

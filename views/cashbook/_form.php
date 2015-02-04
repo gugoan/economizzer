@@ -79,13 +79,28 @@ use kartik\file\FileInput;
     // try:
     // http://webtips.krajee.com/advanced-upload-using-yii2-fileinput-widget/
     // http://webtips.krajee.com/upload-file-yii-2-using-fileinput-widget/
-    echo '<label class="control-label">Anexos</label>';
-    echo FileInput::widget([
-        'model' => $model,
-        'attribute' => 'file',
-        'options' => ['multiple' => false],
-        'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png','pdf']],
+    // echo '<label class="control-label">Anexos</label>';
+    // echo FileInput::widget([
+    //     'model' => $model,
+    //     'attribute' => 'file',
+    //     'options' => ['multiple' => false],
+    //     'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png','pdf']],
+    // ]);
+    $title = isset($model->filename) && !empty($model->filename) ? $model->filename : 'Anexo';
+    echo Html::img($model->getImageUrl(), [
+        'class'=>'img-thumbnail',
+        'alt'=>$title,
+        'title'=>$title
     ]);
+
+    if (!$model->isNewRecord) {
+    echo Html::a('Delete', ['/Cashbook/delete', 'id'=>$model->id], ['class'=>'btn btn-danger']);
+}
+
+    echo $form->field($model, 'file')->widget(FileInput::classname(), [
+        //'options'=>['accept'=>'image/*'],
+        'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png', 'pdf']
+    ]]);
     ?>
 
     </div>
