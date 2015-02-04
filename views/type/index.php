@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <hr/>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
         'tableOptions' => ['class'=>'table table-striped'],
         'summary'     =>  '',
         'columns'      => [
@@ -37,7 +36,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'icon_type',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{update}',
+            'buttons' => [
+                 'update' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                'title' => Yii::t('app', 'Alterar Tipo'),
+                                //'class'=>'btn btn-primary btn-xs',                                  
+                    ]);
+                }, 
+            ]
+            ],
         ],
     ]); ?>
 
