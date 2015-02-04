@@ -85,11 +85,11 @@ $thismonth = date('m');
           // Via Data Access Objects
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype1 = $command->queryScalar();
-          echo round((int)$vtype1);
-          echo "<br>";
+          //echo round((int)$vtype1);
+          //echo "<br>";
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype2 = $command->queryScalar();
-          echo round((int)$vtype2)*-1;
+          //echo abs(round((int)$vtype2));
 
                  //$pie1 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 1')->groupby('MONTH(date)')->all();
                  //echo $pie11 = ArrayHelper::getValue($pie1, 'total');
@@ -127,7 +127,7 @@ $thismonth = date('m');
                     'name'=> 'Valor',
                     'data'=> [
                         ['Receita',   round((int)$vtype1)],
-                        ['Despesa',   round((int)$vtype2)*-],
+                        ['Despesa',   abs(round((int)$vtype2))],
                     ]
                 ]]
                    ]
