@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'rowOptions' => function($model){
             if($model->is_pending == 1)
                 {
-                    return ['class' => 'warning'];
+                    return ['class' => 'text-warning'];
                 }
         },
         'columns'    => [
@@ -59,44 +59,40 @@ $this->params['breadcrumbs'][] = $this->title;
              'value' => function ($model) {                      
                     return $model->category->desc_category.' <em class="text-info">('.$model->description.')</em>';
                     },
-             'contentOptions'=>['style'=>'width: 45%;text-align:left'],
+             'contentOptions'=>['style'=>'width: 35%;text-align:left'],
             ],
             [
              'class' => 'yii\grid\ActionColumn',
              'template' => '{attachment} {view} {update} {delete}',
              'buttons' => [
                 'attachment' => function ($url, $model) {
-                    return $model->attachment <> '' ? Html::a('<span class="fa fa-paperclip fa-fw fa-border"></span>', $url, [
+                    return $model->attachment <> '' ? Html::a('<span class="glyphicon glyphicon-paperclip"></span>', $url, [
                                 'title' => Yii::t('app', 'Possui Anexo'),
                                 //'class'=>'btn btn-primary btn-xs',                                  
                     ]) : '';
                 },
-                // return $model->status == 1 ? Html::a('<span class="fa fa-search"></span>View', $url, [ 'title' => Yii::t('app', 'View'), 'class'=>'btn btn-primary btn-xs', ]) : '';
-                'view' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-eye fa-fw fa-border"></span>', $url, [
-                                'title' => Yii::t('app', 'Exibir Lançamento'),
-                                //'class'=>'btn btn-primary btn-xs',                                  
-                    ]);
-                },   
-                'update' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-pencil-square-o fa-fw fa-border"></span>', $url, [
-                                'title' => Yii::t('app', 'Alterar Lançamento'),
-                                //'class'=>'btn btn-primary btn-xs',                                  
-                    ]);
-                }, 
-                'delete' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-trash-o fa-fw fa-border"></span>', $url, [
-                                'title' => Yii::t('app', 'Excluir Lançamento'),
-                                //'class'=>'btn btn-primary btn-xs',         
-                                'data-confirm' => Yii::t('yii', 'Deseja realmente excluir este lançamento?'),
-                                'data-method' => 'post',
-                                'data-pjax' => '0',                         
-                    ]);
-                },                                                  
+                // 'view' => function ($url, $model) {
+                //     return Html::a('<span class="fa fa-eye fa-fw fa-border"></span>', $url, [
+                //                 'title' => Yii::t('app', 'Exibir Lançamento'),
+                //     ]);
+                // },   
+                // 'update' => function ($url, $model) {
+                //     return Html::a('<span class="fa fa-pencil-square-o fa-fw fa-border"></span>', $url, [
+                //                 'title' => Yii::t('app', 'Alterar Lançamento'),                                
+                //     ]);
+                // }, 
+                // 'delete' => function ($url, $model) {
+                //     return Html::a('<span class="fa fa-trash-o fa-fw fa-border"></span>', $url, [
+                //                 'title' => Yii::t('app', 'Excluir Lançamento'),       
+                //                 'data-confirm' => Yii::t('yii', 'Deseja realmente excluir este lançamento?'),
+                //                 'data-method' => 'post',
+                //                 'data-pjax' => '0',                         
+                //     ]);
+                // },                                                  
              ],
-             'contentOptions'=>['style'=>'width: 15%;text-align:right'],
+             'contentOptions'=>['style'=>'width: 20%;text-align:right'],
              'footer' => 'Total',
-             'footerOptions' => ['style'=>'text-align:center'],             
+             'footerOptions' => ['style'=>'text-align:right'],             
             ],
             [
              'label' => 'Valor',
@@ -106,9 +102,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<strong style="color:'.$model->type->hexcolor_type.'"> R$ '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
-             'contentOptions'=>['style'=>'width: 10%;text-align:left'],
+             'contentOptions'=>['style'=>'width: 15%;text-align:right'],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
-             //'footerOptions' => '',
+             'footerOptions' => ['style'=>'text-align:right'],
             ],
             //'id',
             //'category_id',

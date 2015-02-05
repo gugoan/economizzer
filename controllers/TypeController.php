@@ -20,7 +20,7 @@ class TypeController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::classname(),
-                'only'  => ['index','view'],
+                'only'  => ['index','create','update','delete','view'],
                 'rules' => [
                     [
                         'allow' => true,
