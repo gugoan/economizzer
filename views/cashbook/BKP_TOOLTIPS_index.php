@@ -29,6 +29,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::a('<i class="fa fa-plus"></i> Lançamento', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
 </h2>
 <hr/>
+<?php
+// echo 'Testing for ' . Html::tag('span', 'tooltip', [
+//     'title'=>'This is a test tooltip',
+//     'data-toggle'=>'tooltip',
+//     'style'=>'text-decoration: underline: cursor:pointer;'
+// ]);
+
+// echo 'Testing for ' . Html::tag('span', 'popover', [
+//     'data-title'=>'Heading',
+//     'data-content'=>'This is the content for the popover',
+//     'data-toggle'=>'popover',
+//     'style'=>'text-decoration: underline: cursor:pointer;'
+// ]);
+?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'tableOptions' => ['class'=>'table table-striped table-hover'],
@@ -57,9 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
              'format' => 'raw',
              'enableSorting' => true,
              'value' => function ($model) {                      
-                    return $model->category->desc_category.' <em class="text-muted">('.$model->description.')</em>';
+                    return $model->category->desc_category.' ' . Html::tag('span', '<i class="fa fa-plus-square-o"></i>', [
+                            'title'=>$model->description,
+                            'data-toggle'=>'tooltip',
+                            'style'=>'text-decoration: underline: cursor:pointer;'
+                        ]);
                     },
-             'contentOptions'=>['style'=>'width: 35%;text-align:left'],
+             'contentOptions'=>['style'=>'width: 30%;text-align:left'],
             ],
             [
              'class' => 'yii\grid\ActionColumn',
@@ -90,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     ]);
                 // },                                                  
              ],
-             'contentOptions'=>['style'=>'width: 20%;text-align:right'],
+             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
              'footer' => 'Total',
              'footerOptions' => ['style'=>'text-align:right'],             
             ],
@@ -102,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<strong style="color:'.$model->type->hexcolor_type.'"> R$ '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
-             'contentOptions'=>['style'=>'width: 15%;text-align:right'],
+             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],
             ],
