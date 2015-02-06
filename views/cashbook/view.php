@@ -6,13 +6,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cashbook */
 
-$this->title = $model->id;
+$this->title = Yii::t('app', 'Lançamento') . " #".$model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lançamento'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-view">
 
-    <h2>#<?= Html::encode($this->title) ?></h2>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <p>
         <?= Html::a(Yii::t('app', 'Alterar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>

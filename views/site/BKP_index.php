@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $thisyear  = date('Y');
 $thismonth = date('m');
-$lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
 ?>
 <div class="row">
         <div class="col-xs-6 col-md-3">
@@ -86,87 +85,100 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
           // Via Data Access Objects
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype1 = $command->queryScalar();
-
+          //echo round((int)$vtype1);
+          //echo "<br>";
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype2 = $command->queryScalar();
+          //echo abs(round((int)$vtype2));
 
-          // MES ANTERIOR;
-          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-          $lastmonth_type1 = $lastmonth_command->queryScalar();
+                 //$pie1 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 1')->groupby('MONTH(date)')->all();
+                 //echo $pie11 = ArrayHelper::getValue($pie1, 'total');
 
-          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-          $lastmonth_type2 = $lastmonth_command->queryScalar();
+                 //$pie2 = \app\models\Cashbook::find()->select(['date, SUM(value) as total'])->where('MONTH(date) = '.$thismonth.' and type_id = 2')->groupby('MONTH(date)')->all();
+                 //echo $pie22 = ArrayHelper::getValue($pie2, 'total');
 
-          function percent($num_amount, $num_total) {
-          $count1 = $num_amount / $num_total;
-          $count2 = $count1 * 100;
-          $count = number_format($count2, 2);
-          return $count;
-          }
+                   //echo $post;
+                   //echo array_map('floatval', $pie1);
 
             echo Highcharts::widget([
-                'options' => [
+                    'options' => [
                     'plotOptions ' => 'pie',
                     'credits' => ['enabled' => false],
-                    'chart'=> [
-                    'height'=> 300,
-                    ],
-                    'title' => ['text' => ''],
-                    'colors'=> ['#18bc9c','#e74c3c'],
-                    'tooltip'=> ['pointFormat'=> 'Percentual: <b>{point.percentage:.1f}%</b>'],
-                    'plotOptions'=> [
-                        'pie'=> [
+            'chart'=> [
+                'height'=> 300,
+            ],
+                  'title' => ['text' => ''],
+                  'colors'=> ['#18bc9c','#e74c3c'],
+            'tooltip'=> ['pointFormat'=> 'Percentual: <b>{point.percentage:.1f}%</b>'],
+                  'plotOptions'=> [
+                          'pie'=> [
                           'allowPointSelect'=> true,
                           'cursor'=> 'pointer',
                           'dataLabels'=> [
                           'enabled'=> false,
-                          ],
-                        'showInLegend'=> [
-                          'enabled'=> true,
-                          ]
-                        ]
-                    ],
-                    'series'=> [[
-                        'type'=> 'pie',
-                        'name'=> 'Valor',
-                        'data'=> [
-                            ['Receita',   round((int)$vtype1)],
-                            ['Despesa',   abs(round((int)$vtype2))],
-                        ]
-                    ]]
-                ]
+                        ],
+                    'showInLegend'=> [
+                      'enabled'=> true,
+                    ]
+                    ]
+                ],
+                  'series'=> [[
+                    'type'=> 'pie',
+                    'name'=> 'Valor',
+                    'data'=> [
+                        ['Receita',   round((int)$vtype1)],
+                        ['Despesa',   abs(round((int)$vtype2))],
+                    ]
+                ]]
+                   ]
                 ]);
                 ?></div></div></div>
                   <div class="col-md-6">
                       <div class="panel panel-default">
                     <div class="panel-heading"><strong>Desempenho</strong></div>
-                    <div class="panel-body">
-                    <h4>Seu saldo do mês está: <span class="label label-danger">Negativo</span></h4>
-                    <br>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Mês Atual</th>
-                                <th>Mês Anterior</th>
-                                <th>%</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Receita</td>
-                                <td><?php echo round((int)$vtype1);?></td>
-                                <td><?php echo round((int)$lastmonth_type1);?></td>
-                                <td><i class="fa fa-arrow-down"></i><?php echo percent(55, 4868);?></td>
-                            </tr>
-                            <tr>
-                                <td>Despesa</td>
-                                <td><?php echo abs(round((int)$vtype2));?></td>
-                                <td><?php echo abs(round((int)$lastmonth_type2));?></td>
-                                <td><i class="fa fa-long-arrow-up"></i> <?php echo percent(1084, 2038);?></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                      <div class="panel-body">
+                <?php 
+                   //$searchModel = New CashbookSearch();
+                   //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+                      $dataProvider = new SqlDataProvider([
+                      'sql' => 'SELECT category_id, value, date FROM tb_cashbook WHERE type_id=:status',
+                      'params' => [':status' => 1],
+                      //'totalCount' => $count,
+                      /*'sort' => [
+                          'attributes' => [
+                              'value',
+                              'name' => [
+                                  'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC],
+                                  'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC],
+                                  'default' => SORT_DESC,
+                                  'label' => 'Name',
+                              ],
+                          ],
+                      ],*/
+                      'pagination' => [
+                          'pageSize' => 6,
+                      ],
+                      ]);
+                ?>
+                <h4>Seu saldo do mês está: <span class="label label-danger">Negativo</span></h4>
+                <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        //'filterModel' => $searchModel,
+                        'tableOptions' => ['class'=>'table table-striped table-condensed'],
+                        'summary'      =>  '',
+                        'columns' => [
+                           [
+                              'attribute' => 'category_id',
+                              'header' => '',
+                              'value' => 'category.desc_category',
+                           ],
+                           [
+                              'attribute' => 'value',
+                              'header' => '',
+                              'value' => 'value',
+                           ]
+                        ],
+                    ]); ?>
                     </div>
                     </div>
                   </div>
