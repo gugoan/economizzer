@@ -73,7 +73,7 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
         <hr/>
             <div class="row">
                   <div class="col-md-6">
-                  <div class="panel panel-default">
+                  <div class="panel panel-primary">
                 <div class="panel-heading"><strong>Receita x Despesa</strong></div>
                   <div class="panel-body">       
                   <?php
@@ -90,18 +90,32 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
           $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype2 = $command->queryScalar();
 
-          // MES ANTERIOR;
+          // get las month values;
           $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
           $lastmonth_type1 = $lastmonth_command->queryScalar();
 
           $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
           $lastmonth_type2 = $lastmonth_command->queryScalar();
 
-          function percent($num_amount, $num_total) {
-          $count1 = $num_amount / $num_total;
-          $count2 = $count1 * 100;
-          $count = number_format($count2, 2);
-          return $count;
+          // get overbalance
+          if(round((int)$vtype1) >= abs(round((int)$vtype2)))
+          {
+            $overbalance = "<span class=\"label label-success\">Positivo <i class=\"fa fa-smile-o\"></i></span>";
+          }else{
+            $overbalance = "<span class=\"label label-danger\">Negativo <i class=\"fa fa-frown-o\"></i></span>";
+          }
+          // sign_types
+          if ((int)$vtype1 < (int)$lastmonth_type1)
+          {
+            $sign_type1 = "<i class=\"fa fa-long-arrow-up\" style=\"color:#18bc9c;\">";
+          }else{
+            $sign_type1 = "<i class=\"fa fa-arrow-down\" style=\"color:#e74c3c;\">";
+          }
+          if (abs((int)$vtype2) < abs((int)$lastmonth_type2))
+          {
+            $sign_type2 = "<i class=\"fa fa-long-arrow-up\" style=\"color:#e74c3c;\">";
+          }else{
+            $sign_type2 = "<i class=\"fa fa-arrow-down\" style=\"color:#18bc9c;\">";
           }
 
             echo Highcharts::widget([
@@ -138,10 +152,10 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                 ]);
                 ?></div></div></div>
                   <div class="col-md-6">
-                      <div class="panel panel-default">
+                      <div class="panel panel-primary">
                     <div class="panel-heading"><strong>Desempenho</strong></div>
                     <div class="panel-body">
-                    <h4>Seu saldo do mês está: <span class="label label-danger">Negativo</span></h4>
+                    <h3>Saldo do mês: <?php echo $overbalance;?></h3>
                     <br>
                     <table class="table table-bordered">
                         <thead>
@@ -149,21 +163,21 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                                 <th></th>
                                 <th>Mês Atual</th>
                                 <th>Mês Anterior</th>
-                                <th>%</th>
+                                <th><i class="fa fa-line-chart"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Receita</td>
-                                <td><?php echo round((int)$vtype1);?></td>
-                                <td><?php echo round((int)$lastmonth_type1);?></td>
-                                <td><i class="fa fa-arrow-down"></i><?php echo percent(55, 4868);?></td>
+                                <td><?php echo "R$ ".(int)$vtype1;?></td>
+                                <td><?php echo "R$ ".(int)$lastmonth_type1;?></td>
+                                <td><?php echo $sign_type1;?></td>
                             </tr>
                             <tr>
                                 <td>Despesa</td>
-                                <td><?php echo abs(round((int)$vtype2));?></td>
-                                <td><?php echo abs(round((int)$lastmonth_type2));?></td>
-                                <td><i class="fa fa-long-arrow-up"></i> <?php echo percent(1084, 2038);?></td>
+                                <td><?php echo "R$ ".abs((int)$vtype2);?></td>
+                                <td><?php echo "R$ ".abs((int)$lastmonth_type2);?></td>
+                                <td><?php echo $sign_type2;?></td>
                             </tr>
                         </tbody>
                     </table>
