@@ -28,16 +28,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id',
-            'type.desc_type',
-            'value',            
-            'category.desc_category',
-            'date',
+            [
+            'attribute' => 'value',
+            'value' => "R$ ".$model->value,
+            ],
+            [
+            'label' => 'Tipo',
+            'value' => $model->type->desc_type,
+            ],
+            [
+            'label' => 'Categoria',
+            'value' => $model->category->desc_category,
+            ],
+            [
+            'attribute' => 'date',
+            'format' => ['date', 'd/M/Y'],
+            ],
             'description',
-            'is_pending',
+            [
+             'attribute' => 'is_pending',
+             'format' => 'raw',
+             'value' => $model->is_pending == 1 ? '<span class="label label-warning">Sim</span' : 'Não'
+             ],
             'attachment',
-            'inc_datetime',
-            'edit_datetime',
+            [
+            'attribute' => 'inc_datetime',
+            'format' => ['date', 'd/M/Y H:m:s'],
+            ],            
+            [
+            'attribute' => 'edit_datetime',
+            'format' => ['date', 'd/M/Y H:m:s'],
+            ],             
         ],
     ]) ?>
 
