@@ -76,6 +76,7 @@ class CashbookController extends Controller
     public function actionCreate()
     {
         $model = new Cashbook;
+        $model->inc_datetime = date("Y-m-d H:i:s");
  
         if ($model->load(Yii::$app->request->post())) {
             // process uploaded image file instance
@@ -109,6 +110,7 @@ class CashbookController extends Controller
         $oldFile = $model->getImageFile();
         $oldattachment = $model->attachment;
         $oldFileName = $model->filename;
+        $model->edit_datetime = date("Y-m-d H:i:s");
  
         if ($model->load(Yii::$app->request->post())) {
             // process uploaded image file instance

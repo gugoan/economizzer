@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'format' => 'raw',
              'enableSorting' => true,
              'value' => function ($model) {                      
-                    return $model->category->desc_category.' <em class="text-muted">('.$model->description.')</em>';
+                    return $model->description <> '' ? $model->category->desc_category.' <em class="text-muted">('.$model->description.')</em>' : $model->category->desc_category;
                     },
              'contentOptions'=>['style'=>'width: 35%;text-align:left'],
             ],
