@@ -6,7 +6,7 @@ use yii\data\SqlDataProvider;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
 $this->title = 'Economizzer';
-$this->title = Yii::t('app', 'Vistão Geral');
+$this->title = Yii::t('app', 'overview');
 $this->params['breadcrumbs'][] = $this->title;
 
 
