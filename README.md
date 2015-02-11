@@ -43,4 +43,4 @@ To-Do
 - [x] Login | User autentication
 - [ ] Multiuser | indepent user data separation
 - [ ] Goals | Insert goals and reports 
-- [ ] Translation | Multi front-end language select for user
+- [x] Translation | Multi front-end language select for user (in teste...)

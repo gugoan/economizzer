@@ -11,19 +11,25 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lançamento'), 'url'
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-view">
-
-    <h2><?= Html::encode($this->title) ?></h2>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Alterar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>
-        <?= Html::a(Yii::t('app', 'Excluir'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger btn-sm',
-            'data' => [
-                'confirm' => Yii::t('app', 'Tem certeza que deseja excluir?'),
-                'method' => 'post',
-            ],
+    <h2>
+        <span><?= Html::encode($this->title) ?></span>
+        <div class="pull-right">
+        <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-pencil"></i> Alterar'), ['update', 'id' => $model->id], [
+                'class' => 'btn btn-primary btn-sm',
+                //'options' => ['style'=> 'margin-right: 2;margin-left: 2'],
+                //'contentOptions'=>['style'=>'margin-right: 2px;']
+                ]
+                ) ?> 
+        <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-trash"></i> Excluir'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger btn-sm',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Tem certeza que deseja excluir?'),
+                    'method' => 'post',
+                ],
         ]) ?>
-    </p>
+        </div>
+    </h2>
+    <hr/>
 
     <?= DetailView::widget([
         'model' => $model,
