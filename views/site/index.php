@@ -6,7 +6,7 @@ use yii\data\SqlDataProvider;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
 $this->title = 'Economizzer';
-$this->title = Yii::t('app', 'overview');
+$this->title = Yii::t('app', 'Overview');
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -74,7 +74,7 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
             <div class="row">
                   <div class="col-md-6">
                   <div class="panel panel-primary">
-                <div class="panel-heading"><strong>Receita x Despesa</strong></div>
+                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
                   <div class="panel-body">       
                   <?php
           // Via Query Builder
@@ -100,9 +100,9 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
           // get overbalance
           if(round((int)$vtype1) >= abs(round((int)$vtype2)))
           {
-            $overbalance = "<span class=\"label label-success\">Positivo <i class=\"fa fa-smile-o\"></i></span>";
+            $overbalance = "<span class=\"label label-success\">".Yii::t('app', 'Positive')." <i class=\"fa fa-smile-o\"></i></span>";
           }else{
-            $overbalance = "<span class=\"label label-danger\">Negativo <i class=\"fa fa-frown-o\"></i></span>";
+            $overbalance = "<span class=\"label label-danger\">".Yii::t('app', 'Negative')." <i class=\"fa fa-frown-o\"></i></span>";
           }
           // sign_types
           if ((int)$vtype1 < (int)$lastmonth_type1)
@@ -127,7 +127,7 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                     ],
                     'title' => ['text' => ''],
                     'colors'=> ['#18bc9c','#e74c3c'],
-                    'tooltip'=> ['pointFormat'=> 'Percentual: <b>{point.percentage:.1f}%</b>'],
+                    'tooltip'=> ['pointFormat'=> Yii::t('app', 'Percentage').': <b>{point.percentage:.1f}%</b>'],
                     'plotOptions'=> [
                         'pie'=> [
                           'allowPointSelect'=> true,
@@ -144,8 +144,8 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                         'type'=> 'pie',
                         'name'=> 'Valor',
                         'data'=> [
-                            ['Receita',   round((int)$vtype1)],
-                            ['Despesa',   abs(round((int)$vtype2))],
+                            [Yii::t('app', 'Revenue'),   round((int)$vtype1)],
+                            [Yii::t('app', 'Expenses'),   abs(round((int)$vtype2))],
                         ]
                     ]]
                 ]
@@ -155,26 +155,26 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                       <div class="panel panel-primary">
                     <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
                     <div class="panel-body">
-                    <h3>Saldo do mês: <?php echo $overbalance;?></h3>
+                    <h3><?php echo Yii::t('app', 'Monthly balance').": ".$overbalance;?></h3>
                     <br>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Mês Atual</th>
-                                <th>Mês Anterior</th>
+                                <th><?php echo Yii::t('app', 'Current Month');?></th>
+                                <th><?php echo Yii::t('app', 'Previous Month');?></th>
                                 <th><i class="fa fa-line-chart"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Receita</td>
+                                <td><?php echo Yii::t('app', 'Revenue');?></td>
                                 <td><?php echo "R$ ".(int)$vtype1;?></td>
                                 <td><?php echo "R$ ".(int)$lastmonth_type1;?></td>
                                 <td><?php echo $sign_type1;?></td>
                             </tr>
                             <tr>
-                                <td>Despesa</td>
+                                <td><?php echo Yii::t('app', 'Expenses');?></td>
                                 <td><?php echo "R$ ".abs((int)$vtype2);?></td>
                                 <td><?php echo "R$ ".abs((int)$lastmonth_type2);?></td>
                                 <td><?php echo $sign_type2;?></td>

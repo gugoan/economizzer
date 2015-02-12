@@ -52,19 +52,19 @@ SCRIPT;
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'encodeLabels' => false,
                 'items' => [
-                    ['label' => '<i class="fa fa-home"></i> Visão Geral', 'url' => ['/site/index'], 'visible' => !Yii::$app->user->isGuest,],
-                    ['label' => '<i class="fa fa-usd"></i> Lançamentos', 'url' => ['/cashbook/index'], 'visible' => !Yii::$app->user->isGuest,],
-                    ['label' => '<i class="fa fa-bullseye"></i> Metas', 'url' => ['/cashbook/target'], 'visible' => !Yii::$app->user->isGuest,],
-                    ['label' => '<i class="fa fa-briefcase"></i> Opções', 'visible' => !Yii::$app->user->isGuest,
+                    ['label' => '<i class="fa fa-home"></i> '.Yii::t('app', 'Overview').'', 'url' => ['/site/index'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-usd"></i> '.Yii::t('app', 'Cashbook').'', 'url' => ['/cashbook/index'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-bullseye"></i> '.Yii::t('app', 'Targets').'', 'url' => ['/cashbook/target'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Options').'', 'visible' => !Yii::$app->user->isGuest,
                     'items' => [
-                         ['label' => '<i class="fa fa-briefcase"></i> Categoria', 'url' => ['category/index']],
-                         ['label' => '<i class="fa fa-briefcase"></i> Tipo', 'url' => ['/type/index']],
+                         ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Category').'', 'url' => ['category/index']],
+                         ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type').'', 'url' => ['/type/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
                         //['label' => '<i class="fa fa-lock"></i> Entrar', 'url' => ['/user/login']] :
-                        ['label' => '<span class="glyphicon glyphicon-user"></span> Criar uma conta', 'url' => ['/user/register']] :
-                        ['label' => '<i class="fa fa-unlock"></i> Sair (' . Yii::$app->user->displayName . ')',
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('app', 'Create an account').'', 'url' => ['/user/register']] :
+                        ['label' => '<i class="fa fa-unlock"></i> '.Yii::t('app', 'Sign Out').' (' . Yii::$app->user->displayName . ')',
                             'url' => ['/user/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
