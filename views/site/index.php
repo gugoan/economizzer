@@ -68,7 +68,7 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>
-          <span>Resumo do Mês <small><?php echo $thismonth."/".$thisyear ?></small></span>
+          <span><?php echo Yii::t('app', 'Summary of the Month');?> <small><?php echo $thismonth."/".$thisyear ?></small></span>
         </h2>
         <hr/>
             <div class="row">
@@ -153,7 +153,7 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
                 ?></div></div></div>
                   <div class="col-md-6">
                       <div class="panel panel-primary">
-                    <div class="panel-heading"><strong>Desempenho</strong></div>
+                    <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
                     <div class="panel-body">
                     <h3>Saldo do mês: <?php echo $overbalance;?></h3>
                     <br>

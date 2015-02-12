@@ -1,6 +1,8 @@
 <?php
-
+// under construction
 return [
-    // models
-    'overview' => 'Visão Geral',
+    // site/index
+    'Overview' => 'Visão Geral',
+    'Summary of the Month' => 'Resumo do Mês',
+    'Performance' => 'Desempenho',
 ];

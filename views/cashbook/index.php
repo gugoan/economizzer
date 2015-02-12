@@ -103,6 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 15%;text-align:right'],
+             //'options' => ['width' => '10%',],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],
             ],
