@@ -5,6 +5,7 @@ return [
     // cashbook model
     'ID' => 'ID',
     'Category' => 'Categoria',
+    'Categories' => 'Categorias',
     'Type' => 'Tipo',
     'Value' => 'Valor',
     'Description' => 'Descrição',
@@ -13,6 +14,8 @@ return [
     'Attach' => 'Anexo',
     'Created' => 'Incluído',
     'Changed' => 'Alterado',
+    // category model
+    'Hex Color' => 'Hex Cor',
     // default
     'Login to access the system' => 'Autentique-se para acessar o sistema',
     // main menu
@@ -30,9 +33,9 @@ return [
     'Revenue' => 'Receita',
     'Expenses' => 'Despesa',
     'Percentage' => 'Percentual',
-    'Monthly balance' => 'Saldo do mês'
-    'Current Month' => 'Mês Atual'
-    'Previous Month' => 'Mês Anterior'
-    'Negative' => 'Negativo'
-    'Positive' => 'Positivo'
+    'Monthly balance' => 'Saldo do mês',
+    'Current Month' => 'Mês Atual',
+    'Previous Month' => 'Mês Anterior',
+    'Negative' => 'Negativo',
+    'Positive' => 'Positivo',
 ];
