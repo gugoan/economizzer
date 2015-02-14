@@ -57,6 +57,7 @@ class CategorySearch extends Category
 
         $query->andFilterWhere([
             'id_category' => $this->id_category,
+            'user_id' => Yii::$app->user->identity->id,
         ]);
 
         $query->andFilterWhere(['like', 'desc_category', $this->desc_category])

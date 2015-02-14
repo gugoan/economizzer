@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $thisyear  = date('Y');
 $thismonth = date('m');
 $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+$user      = Yii::$app->user->identity->id;
 ?>
 <div class="row">
         <div class="col-xs-6 col-md-3">
@@ -84,17 +85,17 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
           echo $sum."</br>";
           */
           // Via Data Access Objects
-          $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+          $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype1 = $command->queryScalar();
 
-          $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+          $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
           $vtype2 = $command->queryScalar();
 
           // get las month values;
-          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
           $lastmonth_type1 = $lastmonth_command->queryScalar();
 
-          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+          $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
           $lastmonth_type2 = $lastmonth_command->queryScalar();
 
           // get overbalance

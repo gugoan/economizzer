@@ -30,6 +30,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['desc_category'], 'required'],
+            [['user_id'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'string', 'max' => 45]
         ];
     }
@@ -53,4 +54,11 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Cashbook::className(), ['category_id' => 'id_category']);
     }
+    /** 
+    * @return \yii\db\ActiveQuery 
+    */ 
+    public function getUser() 
+    { 
+       return $this->hasOne(User::className(), ['id' => 'user_id']); 
+    } 
 }

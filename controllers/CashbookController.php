@@ -76,7 +76,8 @@ class CashbookController extends Controller
     public function actionCreate()
     {
         $model = new Cashbook;
-        $model->inc_datetime = date("Y-m-d H:i:s");        
+        $model->inc_datetime = date("Y-m-d H:i:s"); 
+        $model->user_id = Yii::$app->user->identity->id;       
  
         if ($model->load(Yii::$app->request->post())) {
             // process uploaded image file instance

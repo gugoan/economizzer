@@ -41,6 +41,6 @@ To-Do
 - [ ] Fix value with decimals
 - [ ] Subcat | Categories with sub-categories
 - [x] Login | User autentication
-- [ ] Multiuser | indepent user data separation
+- [x] Multiuser | indepent user data separation (in teste...)
 - [ ] Goals | Insert goals and reports 
 - [x] Translation | Multi front-end language select for user (in teste...)

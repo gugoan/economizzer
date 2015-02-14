@@ -81,12 +81,15 @@ class CashbookSearch extends Cashbook
             //'is_pending' => $this->is_pending,
             'inc_datetime' => $this->inc_datetime,
             'edit_datetime' => $this->edit_datetime,
+            'user_id' => Yii::$app->user->identity->id,
         ]);
 
         $query->andFilterWhere(['between', 'date', $this->start_date, $this->end_date]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'attachment', $this->attachment]);
+
+        //$query->andFilterWhere(['user_id' => 2]);
 
         return $dataProvider;
     }

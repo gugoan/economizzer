@@ -60,7 +60,7 @@ class Cashbook extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'type_id', 'value', 'date'], 'required'],
-            [['category_id', 'type_id', 'is_pending'], 'integer'],
+            [['category_id', 'type_id', 'user_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
             [['file'], 'file', 'extensions'=>'jpg, gif, png'],
             [['date', 'attachment', 'file', 'filename', 'inc_datetime', 'edit_datetime'], 'safe'],
@@ -153,6 +153,13 @@ class Cashbook extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
+    }
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     public static function pageTotal($provider, $value)
