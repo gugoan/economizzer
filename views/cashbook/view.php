@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lançamento'), 'url'
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-view">
+
     <h2>
         <span><?= Html::encode($this->title) ?></span>
         <div class="pull-right">

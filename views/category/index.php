@@ -24,8 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'id_category',
             'desc_category',
-            'hexcolor_category',
-
+            //'hexcolor_category',
+            [
+             'header' => Yii::t('app', 'Hex Color'),
+             'attribute' => 'hexcolor_category',
+             'format' => 'raw',
+             'value' => function ($model) {                      
+                    return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-circle"></i></strong>';
+                    },
+             'contentOptions'=>['style'=>'width: 30%;text-align:left'],
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

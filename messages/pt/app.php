@@ -25,6 +25,11 @@ return [
     'Category' => 'Categoria',
     'Type' => 'Tipo',
     'Sign Out' => 'Sair',
+    // views
+    'Create' => 'Novo',
+    'Update' => 'Alterar',
+    'Delete' => 'Excluir',
+    'Select' => 'Selecione',
     // site/index
     'Overview' => 'Visão Geral',
     'Summary of the Month' => 'Resumo do Mês',
