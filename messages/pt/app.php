@@ -30,6 +30,8 @@ return [
     'Update' => 'Alterar',
     'Delete' => 'Excluir',
     'Select' => 'Selecione',
+    // cashbook/index
+    'receipt' => 'Comprovante',
     // site/index
     'Overview' => 'Visão Geral',
     'Summary of the Month' => 'Resumo do Mês',
