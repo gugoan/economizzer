@@ -182,7 +182,7 @@ class CashbookController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Cashbook::findOne($id)) !== null) {
+        if (($model = Cashbook::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
