@@ -37,14 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             [
             'attribute' => 'value',
-            'value' => "R$ ".$model->value,
+            'value' => Yii::t('app', '$')." ".$model->value,
             ],
             [
-            'label' => 'Tipo',
+            'attribute' => 'type_id',
             'value' => $model->type->desc_type,
             ],
             [
-            'label' => 'Categoria',
+            //'label' => 'Categoria',
+            'attribute' => 'category_id',
             'value' => $model->category->desc_category,
             ],
             [
@@ -55,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
              'attribute' => 'is_pending',
              'format' => 'raw',
-             'value' => $model->is_pending == 1 ? '<span class="label label-warning">Sim</span' : 'Não'
+             'value' => $model->is_pending == 1 ? '<span class="label label-warning">'.Yii::t('app', 'Yes').'</span' : Yii::t('app', 'No'),
              ],
             'attachment',
             [

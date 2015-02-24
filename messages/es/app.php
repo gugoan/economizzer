@@ -33,7 +33,7 @@ return [
     'receipt' => 'Comprovante',
     // category model
     'Hex Color' => 'Hex Cor',
-    // view / site
+    // site/index
     'Overview' => 'Visão Geral',
     'Summary of the Month' => 'Resumo do Mês',
     'Revenue x Expenses' => 'Receita x Despesa',

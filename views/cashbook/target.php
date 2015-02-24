@@ -6,12 +6,12 @@ use yii\helpers\Html;
 /* @var $searchModel app\models\CashbookSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Metas');
+$this->title = Yii::t('app', 'Targets');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-index">
 <h2>
-  <span>Metas</span>
+  <span><?php echo $this->title;?></span>
 </h2>
 <hr/>
 </div>
