@@ -17,6 +17,9 @@ return [
     'Options' => 'Opções',
     'Category' => 'Categoria',
     'Type' => 'Tipo',
+    'Create an account' => 'Criar uma conta',
+    'Account' => 'Minha Conta',
+    'Profile' => 'Meu Perfil',
     'Sign Out' => 'Sair',
     // cashbook model
     'ID' => 'ID',

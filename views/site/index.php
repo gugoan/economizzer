@@ -18,6 +18,10 @@ $user      = Yii::$app->user->identity->id;
 <div class="row">
         <div class="col-xs-6 col-md-3">
             <?php
+            echo Yii::$app->user->displayName;
+            echo "<br>";
+            echo Yii::$app->user->identity->profile->language;
+            echo "<br>";
             echo Nav::widget([
                 'items' => [
                     [
@@ -32,6 +36,7 @@ $user      = Yii::$app->user->identity->id;
                     [
                         'label' => 'Desempenho Anual',
                         'url' => ['site/index'],
+                        'active' => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     [
@@ -43,13 +48,13 @@ $user      = Yii::$app->user->identity->id;
                     [
                         'label' => 'Top 5',
                         'url' => ['site/index'],
-                        'active' => 'false',
+                        'active' => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     [
                         'label' => 'Detalhamento',
                         'url' => ['site/index'],
-                        'active' => 'true',
+                        'active' => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     /*
@@ -64,6 +69,7 @@ $user      = Yii::$app->user->identity->id;
                     ],
                     */
                 ],
+                'options' => ['class' =>'nav-pills nav-stacked'], // set this to nav-tab to get tab-styled navigation
             ]);
             ?>
         </div>

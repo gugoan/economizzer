@@ -11,6 +11,17 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+
+        if(!Yii::$app->user->isGuest) {
+            //Yii::$app->user->getIdentity()->language = Yii::$app->language;
+            Yii::$app->language = Yii::$app->user->identity->profile->language;
+        }
+        //Yii::$app->language = 'pt';
+    }
+
     public function behaviors()
     {
         return [

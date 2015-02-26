@@ -6,8 +6,8 @@ $config = [
     'id' => 'economizzer',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'en',
-    'sourceLanguage' => 'en',
+    //'language' => 'en',
+    'sourceLanguage' => 'en-US',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
