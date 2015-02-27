@@ -14,6 +14,7 @@ return [
     'English USA' => 'English USA',
     'Brazilian Portuguese' => 'Brazilian Portuguese',
     'Spanish' => 'Spanish',
+    'The Open Source Personal Finance Manager' => 'The Open Source Personal Finance Manager!',
     // main menu
     'Cashbook' => 'Cashbook',
     'Targets' => 'Targets',

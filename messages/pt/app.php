@@ -14,6 +14,7 @@ return [
     'English USA' => 'Inglês USA',
     'Brazilian Portuguese' => 'Portugês Brasileiro',
     'Spanish' => 'Espanhol',
+    'The Open Source Personal Finance Manager' => 'O Gerenciador Financeiro Pessoal de Código Aberto!',
     // main menu
     'Cashbook' => 'Lançamentos',
     'Targets' => 'Metas',

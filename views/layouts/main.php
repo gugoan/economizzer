@@ -90,7 +90,9 @@ SCRIPT;
     </div>
 
     <footer class="footer">
-        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer</div>
+        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer - The Open Source Personal Finance Manager!
+        <?= Html::a('Economizzer.org ', ['/cashbook/create'], ['class'=>'pull-right']) ?>
+        </div>
     </footer>
 
 <?php $this->endBody() ?>

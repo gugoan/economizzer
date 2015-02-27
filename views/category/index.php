@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => ['class'=>'table table-striped table-condensed table-hover'],
         'summary'     =>  '',
         'columns' => [
-            'id_category',
+            //'id_category',
             'desc_category',
             //'hexcolor_category',
             [
