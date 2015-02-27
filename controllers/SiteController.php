@@ -9,18 +9,16 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends BaseController
 {
-    public function init()
-    {
-        parent::init();
+    // public function init()
+    // {
+    //     parent::init();
 
-        if(!Yii::$app->user->isGuest) {
-            //Yii::$app->user->getIdentity()->language = Yii::$app->language;
-            Yii::$app->language = Yii::$app->user->identity->profile->language;
-        }
-        //Yii::$app->language = 'pt';
-    }
+    //     if(!Yii::$app->user->isGuest) {
+    //         Yii::$app->language = Yii::$app->user->identity->profile->language;
+    //     }
+    // }
 
     public function behaviors()
     {

@@ -14,17 +14,16 @@ use yii\filters\AccessControl;
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
-        public function init()
-    {
-        parent::init();
+    // public function init()
+    // {
+    //     parent::init();
 
-        // if(!Yii::$app->user->isGuest) {
-        //   Yii::$app->user->getIdentity()->language = Yii::$app->language;
-        // }
-        Yii::$app->language = 'pt';
-    }
+    //     // if(!Yii::$app->user->isGuest) {
+    //     //   Yii::$app->user->getIdentity()->language = Yii::$app->language;
+    //     // }
+    // }
     public function behaviors()
     {
         return [

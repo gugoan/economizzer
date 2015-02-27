@@ -15,7 +15,7 @@ use yii\base\Security;
 /**
  * CashbookController implements the CRUD actions for Cashbook model.
  */
-class CashbookController extends Controller
+class CashbookController extends BaseController
 {
     public function behaviors()
     {

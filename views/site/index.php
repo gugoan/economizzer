@@ -18,10 +18,6 @@ $user      = Yii::$app->user->identity->id;
 <div class="row">
         <div class="col-xs-6 col-md-3">
             <?php
-            echo Yii::$app->user->displayName;
-            echo "<br>";
-            echo Yii::$app->user->identity->profile->language;
-            echo "<br>";
             echo Nav::widget([
                 'items' => [
                     [

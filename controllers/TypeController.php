@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * TypeController implements the CRUD actions for Type model.
  */
-class TypeController extends Controller
+class TypeController extends BaseController
 {
     public function behaviors()
     {
