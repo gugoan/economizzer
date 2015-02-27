@@ -10,7 +10,10 @@ return [
     'Yes'   => 'Sim',
     'No'    => 'Não',
     '$' => 'R$',
-    'Login to access the system' => 'Autentique-se para acessar o sistema',
+    'Login to access' => 'Autentique-se',
+    'English USA' => 'Inglês USA',
+    'Brazilian Portuguese' => 'Portugês Brasileiro',
+    'Spanish' => 'Espanhol',
     // main menu
     'Cashbook' => 'Lançamentos',
     'Targets' => 'Metas',

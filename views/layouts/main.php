@@ -59,11 +59,11 @@ SCRIPT;
                     'items' => 
                         [
                             ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Category'), 'url' => ['/category/index']],
-                            ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type'), 'url' => ['/type/index']],
+                            //['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type'), 'url' => ['/type/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
-                    ['label' => '<i class="fa fa-user"></i> '.Yii::t('app', 'Create an account'), 'url' => ['/user/register']] :
+                    ['label' => '<i class="fa fa-user-plus"></i> '.Yii::t('app', 'Create an account'), 'url' => ['/user/register']] :
                     ['label' => '<i class="fa fa-user"></i> '. Yii::$app->user->displayName,
                     'items' => 
                         [

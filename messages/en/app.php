@@ -10,7 +10,10 @@ return [
     'Yes'   => 'Yes',
     'No'    => 'No',
     '$' => '$',
-    'Login to access the system' => 'Login to access the system',
+    'Login to access' => 'Login to access',
+    'English USA' => 'English USA',
+    'Brazilian Portuguese' => 'Brazilian Portuguese',
+    'Spanish' => 'Spanish',
     // main menu
     'Cashbook' => 'Cashbook',
     'Targets' => 'Targets',
