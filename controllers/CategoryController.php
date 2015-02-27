@@ -133,10 +133,10 @@ class CategoryController extends BaseController
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The page you requested is not available or does not exist.');
         }
     }
 }
