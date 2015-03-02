@@ -8,14 +8,14 @@ use app\models\Cashbook;
 /* @var $searchModel app\models\CashbookSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Lançamentos');
+$this->title = Yii::t('app', 'Entries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
     <div class="row">
         <div class="col-sm-3">
             <div class="panel panel-primary">
-              <div class="panel-heading"><i class="fa fa-search"></i> Filtros</div>
+              <div class="panel-heading"><i class="fa fa-search"></i> <?php echo Yii::t('app', 'Filters');?></div>
               <div class="panel-body">
                 <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
               </div>
@@ -25,14 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="cashbook-index">
 <h2>
-  <span>Lançamentos</span>
-    <?= Html::a('<i class="fa fa-plus"></i> Lançamento', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
+  <span><?= Html::encode($this->title) ?></span>
+    <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Entry').'', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
 </h2>
 <hr/>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'tableOptions' => ['class'=>'table table-striped table-hover'],
-        'emptyText'    => '</br><p class="text-danger">Nenhum lançamento encontrado!</p>',
+        'emptyText'    => '</br><p class="text-danger">'.Yii::t('app', 'No entries found!').'</p>',
         'summary'      =>  '',
         'showFooter'   => true,
         'showOnEmpty'  => false,
@@ -45,14 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
         },
         'columns'    => [
             [
-             'label' => 'Dia',
+             //'label' => 'Dia',
              'attribute' => 'date',
              'enableSorting' => true,
              'format' => ['date', 'php:d/m/Y'],
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
             ],
             [
-             'label' => 'Categoria',
+             //'label' => 'Categoria',
              'attribute' => 'category_id',
              'format' => 'raw',
              'enableSorting' => true,

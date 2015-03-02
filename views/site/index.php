@@ -21,7 +21,7 @@ $user      = Yii::$app->user->identity->id;
             echo Nav::widget([
                 'items' => [
                     [
-                        'label' => 'Resumo do Mês', 'active'=>true,
+                        'label' => Yii::t('app', 'Monthly Summary'), 'active'=>true,
                         'url' => ['site/index'],
                         'options' => ['class' => 'active','role'=>'presentation'],
                         //'items' => [
@@ -30,27 +30,27 @@ $user      = Yii::$app->user->identity->id;
                         //],
                     ],
                     [
-                        'label' => 'Desempenho Anual',
-                        'url' => ['site/index'],
-                        'active' => false,
+                        'label'   => Yii::t('app', 'Annual Performance'),
+                        'url'     => ['site/index'],
+                        'active'  => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     [
-                        'label' => 'Evolução',
-                        'url' => ['site/index'],
-                        'active' => false,
+                        'label'   => Yii::t('app', 'Evolution'),
+                        'url'     => ['site/index'],
+                        'active'  => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     [
-                        'label' => 'Top 5',
-                        'url' => ['site/index'],
-                        'active' => false,
+                        'label'   => Yii::t('app', 'Top 5'),
+                        'url'     => ['site/index'],
+                        'active'  => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     [
-                        'label' => 'Detalhamento',
-                        'url' => ['site/index'],
-                        'active' => false,
+                        'label'   => Yii::t('app', 'Detailed'),
+                        'url'     => ['site/index'],
+                        'active'  => false,
                         'options' => ['class' => 'disabled'],
                     ],
                     /*
@@ -71,7 +71,7 @@ $user      = Yii::$app->user->identity->id;
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>
-          <span><?php echo Yii::t('app', 'Summary of the Month');?> <small><?php echo $thismonth."/".$thisyear ?></small></span>
+          <span><?php echo Yii::t('app', 'Monthly Summary');?> <small><?php echo $thismonth."/".$thisyear ?></small></span>
         </h2>
         <hr/>
             <div class="row">

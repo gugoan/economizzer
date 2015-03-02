@@ -27,7 +27,7 @@ use kartik\widgets\DatePicker;
     <div class="row">
         <div class="col-sm-9">
             <?php
-                echo '<label class="control-label">De</label>';
+                echo '<label class="control-label">'.Yii::t('app', 'From').'</label>';
                 echo DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'start_date',
@@ -50,7 +50,7 @@ use kartik\widgets\DatePicker;
     <div class="row">
         <div class="col-sm-9">
         <?php
-            echo '<label class="control-label">Até</label>';
+            echo '<label class="control-label">'.Yii::t('app', 'To').'</label>';
             echo DatePicker::widget([
                 'model' => $model,
                 'attribute' => 'end_date',
@@ -71,9 +71,9 @@ use kartik\widgets\DatePicker;
         </div>
     </div><p>
 
-    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>'-- Todos --'])  ?>
+    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Todos --'])  ?>
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'value') ?>
 
@@ -92,8 +92,8 @@ use kartik\widgets\DatePicker;
     <?php // echo $form->field($model, 'edit_datetime') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filtrar'), ['class' => 'btn btn-primary btn-sm']) ?>
-        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Limpar'), ['class' => 'btn btn-default btn-sm']) ?>
+        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filter'), ['class' => 'btn btn-primary btn-sm']) ?>
+        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Clean'), ['class' => 'btn btn-default btn-sm']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
