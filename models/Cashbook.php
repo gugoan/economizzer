@@ -168,7 +168,7 @@ class Cashbook extends \yii\db\ActiveRecord
         foreach($provider as $item){
             $total+=$item[$value];
         }
-        return "R$ ".$total;
+        return Yii::t('app', '$')." ".$total;
     }
     
 }

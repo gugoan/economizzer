@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'value',
              'format' => 'raw',
              'value' => function ($model) {                      
-                    return '<strong style="color:'.$model->type->hexcolor_type.'"> R$ '.$model->value.'</strong>';
+                    return '<strong style="color:'.$model->type->hexcolor_type.'">'.Yii::t('app', '$').' '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 15%;text-align:right'],
