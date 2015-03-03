@@ -4,7 +4,7 @@ Personal Finance Manager
 
 Personal Finance Manager is a simple app made in PHP (Yii Framework) as a way to study.
 
-For now only available in pt-BR
+For now only available in en-US and pt-BR
 
 
 
@@ -41,6 +41,6 @@ To-Do
 - [ ] Fix value with decimals
 - [ ] Subcat | Categories with sub-categories
 - [x] Login | User autentication
-- [x] Multiuser | indepent user data separation (in teste...)
+- [x] Multiuser | indepent user data separation
 - [ ] Goals | Insert goals and reports 
-- [x] Translation | Multi front-end language select for user (in teste...)
+- [x] Translation | Multi front-end language select for user (Error/testing...)

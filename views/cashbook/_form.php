@@ -17,21 +17,21 @@ use kartik\file\FileInput;
         <div class="cashbook-form">
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab"><i class="fa fa-cube"></i> Informações Básicas</a></li>
-        <li><a href="#profile" data-toggle="tab"><i class="fa fa-cubes"></i> Avançadas</a></li>
+        <li class="active"><a href="#home" data-toggle="tab"><i class="fa fa-cube"></i> <?php echo Yii::t('app', 'Basic Information');?></a></li>
+        <li><a href="#profile" data-toggle="tab"><i class="fa fa-cubes"></i> <?php echo Yii::t('app', 'Additional');?></a></li>
     </ul>
     <div class="tab-content">
     <div class="tab-pane active" id="home">
 
     <?= $form->field($model, 'type_id')->radioList([
-        '1' => 'Receita', 
-        '2' => 'Despesa'
+        '1' => Yii::t('app', 'Revenue'), 
+        '2' => Yii::t('app', 'Expense'),
         ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('') ?>
 
     <div class="row">
         <div class="col-sm-2">
         <?php
-            echo '<label class="control-label">Data</label>';
+            echo Html::activeLabel($model,'date'); //label
             echo DatePicker::widget([
                 'model' => $model,
                 'attribute' => 'date',
@@ -107,7 +107,7 @@ use kartik\file\FileInput;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '<i class="fa fa-floppy-o"></i> Gravar') : Yii::t('app', '<i class="fa fa-floppy-o"></i> Gravar'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button btn-sm' : 'btn btn-primary grid-button btn-sm']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '<i class="fa fa-floppy-o"></i> Save') : Yii::t('app', '<i class="fa fa-floppy-o"></i> Save'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button btn-sm' : 'btn btn-primary grid-button btn-sm']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

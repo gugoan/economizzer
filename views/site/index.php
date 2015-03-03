@@ -148,7 +148,7 @@ $user      = Yii::$app->user->identity->id;
                         'name'=> 'Valor',
                         'data'=> [
                             [Yii::t('app', 'Revenue'),   round((int)$vtype1)],
-                            [Yii::t('app', 'Expenses'),   abs(round((int)$vtype2))],
+                            [Yii::t('app', 'Expense'),   abs(round((int)$vtype2))],
                         ]
                     ]]
                 ]
@@ -177,7 +177,7 @@ $user      = Yii::$app->user->identity->id;
                                 <td><?php echo $sign_type1;?></td>
                             </tr>
                             <tr>
-                                <td><?php echo Yii::t('app', 'Expenses');?></td>
+                                <td><?php echo Yii::t('app', 'Expense');?></td>
                                 <td><?php echo "R$ ".abs((int)$vtype2);?></td>
                                 <td><?php echo "R$ ".abs((int)$lastmonth_type2);?></td>
                                 <td><?php echo $sign_type2;?></td>

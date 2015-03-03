@@ -3,12 +3,14 @@
 // echo Yii::t('app', 'text');
 return [
     // general
+    'Save' => 'Gravar',
     'Create' => 'Novo',
     'Update' => 'Alterar',
     'Delete' => 'Excluir',
     'Select' => 'Selecione',
     'Yes'   => 'Sim',
     'No'    => 'Não',
+    'Are you sure you want to delete?' => 'Tem certeza que deseja excluir?',
     '$' => 'R$',
     'Login to access' => 'Autentique-se',
     'English USA' => 'Inglês USA',
@@ -40,6 +42,7 @@ return [
     'receipt' => 'Comprovante',
     'Entry' => 'Lançamento',
     'Entries' => 'Lançamentos',
+    'Update Entry' => 'Alterar Lançamento',
     'Filter' => 'Filtro',
     'Filters' => 'Filtros',
     'Clean' => 'Limpar',
@@ -47,6 +50,8 @@ return [
     'To' => 'até',
     'All' => 'Todos',
     'No entries found!' => 'Nenhum lançamento encontrado!',
+    'Basic Information' => 'Informações Básicas',
+    'Additional' => 'Complementares',
     // category model
     'Hex Color' => 'Hex Cor',
     // view / site
@@ -59,7 +64,7 @@ return [
     'Revenue x Expenses' => 'Receita x Despesa',
     'Performance' => 'Desempenho',
     'Revenue' => 'Receita',
-    'Expenses' => 'Despesa',
+    'Expense' => 'Despesa',
     'Percentage' => 'Percentual',
     'Monthly balance' => 'Saldo do mês',
     'Current Month' => 'Mês Atual',
