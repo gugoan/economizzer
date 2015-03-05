@@ -62,7 +62,7 @@ class Cashbook extends \yii\db\ActiveRecord
             [['category_id', 'type_id', 'value', 'date'], 'required'],
             [['category_id', 'type_id', 'user_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
-            [['file'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['file'], 'file', 'extensions'=>'jpg, png, pdf', 'maxSize' => 1024 * 1024 * 2],
             [['date', 'attachment', 'file', 'filename', 'inc_datetime', 'edit_datetime'], 'safe'],
             [['description'], 'string', 'max' => 100],
             [['attachment'], 'string', 'max' => 255],
