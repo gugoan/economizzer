@@ -6,6 +6,8 @@ Personal Finance Manager is a simple app made in PHP (Yii Framework) as a way to
 
 For now only available in en-US and pt-BR
 
+![Screnn](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
+
 
 
 Requirements

@@ -90,8 +90,7 @@ SCRIPT;
     </div>
 
     <footer class="footer">
-        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer - The Open Source Personal Finance Manager!
-        <?= Html::a('Economizzer.org ', '#', ['class'=>'pull-right']) ?>
+        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer - <?= Html::a('Economizzer.org ', '#', ['class'=>'pull-right']) ?>
         </div>
     </footer>
 
