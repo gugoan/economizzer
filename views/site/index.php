@@ -172,14 +172,14 @@ $user      = Yii::$app->user->identity->id;
                         <tbody>
                             <tr>
                                 <td><?php echo Yii::t('app', 'Revenue');?></td>
-                                <td><?php echo "R$ ".(int)$vtype1;?></td>
-                                <td><?php echo "R$ ".(int)$lastmonth_type1;?></td>
+                                <td><?php echo Yii::t('app', '$')." ".(int)$vtype1;?></td>
+                                <td><?php echo Yii::t('app', '$')." ".(int)$lastmonth_type1;?></td>
                                 <td><?php echo $sign_type1;?></td>
                             </tr>
                             <tr>
                                 <td><?php echo Yii::t('app', 'Expense');?></td>
-                                <td><?php echo "R$ ".abs((int)$vtype2);?></td>
-                                <td><?php echo "R$ ".abs((int)$lastmonth_type2);?></td>
+                                <td><?php echo Yii::t('app', '$')." ".abs((int)$vtype2);?></td>
+                                <td><?php echo Yii::t('app', '$')." ".abs((int)$lastmonth_type2);?></td>
                                 <td><?php echo $sign_type2;?></td>
                             </tr>
                         </tbody>

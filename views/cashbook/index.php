@@ -37,12 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'showFooter'   => true,
         'showOnEmpty'  => false,
         'footerRowOptions'=>['style'=>'font-weight:bold;'],
-        'rowOptions' => function($model){
-            if($model->is_pending == 1)
-                {
-                    return ['class' => 'text-warning'];
-                }
-        },
+        // 'rowOptions' => function($model){
+        //     if($model->is_pending == 1)
+        //         {
+        //             return ['class' => 'text-warning'];
+        //         }
+        // },
         'columns'    => [
             [
              //'label' => 'Dia',
@@ -57,14 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
              'format' => 'raw',
              'enableSorting' => true,
              'value' => function ($model) {                      
-                    return $model->description <> '' ? $model->category->desc_category.' <em class="text-muted">('.$model->description.')</em>' : $model->category->desc_category;
+                    return $model->description <> '' ? '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>'.' <em class="text-muted">('.$model->description.')</em>' : '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>';
                     },
              'contentOptions'=>['style'=>'width: 35%;text-align:left'],
             ],
             [
              'class' => 'yii\grid\ActionColumn',
-             'template' => '{attachment} {view} {update} {delete}',
+             'template' => '{pending} {attachment} {view} {update} {delete}',
              'buttons' => [
+                 'pending' => function ($url, $model) {
+                        return $model->is_pending <> 0 ? Html::a('<span class="glyphicon glyphicon-alert text-danger" ></span>', $url, [
+                                    'title' => Yii::t('app', 'receipt'),
+                                    //'class'=>'btn btn-primary btn-xs',                                  
+                        ]) : '';
+                },
                 'attachment' => function ($url, $model) {
                     return $model->attachment <> '' ? Html::a('<span class="glyphicon glyphicon-paperclip"></span>', $url, [
                                 'title' => Yii::t('app', 'receipt'),
