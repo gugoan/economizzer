@@ -7,6 +7,7 @@ return [
     'Create Time' => 'Data de Criação',
     'Update Time' => 'Data de Atualização',
     'Full Name' => 'Nome Completo',
+    'Language' => 'Idioma',
     'Name' => 'Nome',
     'Can Admin' => 'Permite Administrar',
     'Role' => 'Cargo',
