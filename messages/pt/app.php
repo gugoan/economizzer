@@ -39,7 +39,7 @@ return [
     'Attach' => 'Anexo',
     'Created' => 'Incluído',
     'Changed' => 'Alterado',
-    'receipt' => 'Comprovante',
+    'Receipt' => 'Comprovante',
     'Entry' => 'Lançamento',
     'Entries' => 'Lançamentos',
     'Update Entry' => 'Alterar Lançamento',

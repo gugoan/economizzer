@@ -67,13 +67,13 @@ $this->params['breadcrumbs'][] = $this->title;
              'buttons' => [
                  'pending' => function ($url, $model) {
                         return $model->is_pending <> 0 ? Html::a('<span class="glyphicon glyphicon-alert text-danger" ></span>', $url, [
-                                    'title' => Yii::t('app', 'receipt'),
+                                    'title' => Yii::t('app', 'Pending'),
                                     //'class'=>'btn btn-primary btn-xs',                                  
                         ]) : '';
                 },
                 'attachment' => function ($url, $model) {
                     return $model->attachment <> '' ? Html::a('<span class="glyphicon glyphicon-paperclip"></span>', $url, [
-                                'title' => Yii::t('app', 'receipt'),
+                                'title' => Yii::t('app', 'Receipt'),
                                 //'class'=>'btn btn-primary btn-xs',                                  
                     ]) : '';
                 },

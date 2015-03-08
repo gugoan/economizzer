@@ -61,7 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'attachment',
             [
             'attribute' => 'inc_datetime',
-            'format' => ['date', 'd/M/Y H:m:s'],
+            'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'long'),
+            //'inc_datetime:datetime',
+            // 'format' => ['date', 'd/M/Y H:m:s'],
             ],            
             [
             'attribute' => 'edit_datetime',
