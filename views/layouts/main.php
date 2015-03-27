@@ -90,7 +90,7 @@ SCRIPT;
     </div>
 
     <footer class="footer">
-        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - Economizzer - <?= Html::a('Economizzer.org ', '#', ['class'=>'pull-right']) ?>
+        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - <?= Html::a('Economizzer', 'http://www.economizzer.org') ?>
         </div>
     </footer>
 
