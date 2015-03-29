@@ -170,5 +170,24 @@ class Cashbook extends \yii\db\ActiveRecord
         }
         return Yii::t('app', '$')." ".$total;
     }
-    
+    public static function monthlysummary($type_id)
+    {
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+        $user      = Yii::$app->user->identity->id;
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = $type_id AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $test = $command->queryScalar();
+        return $test;
+    }
+    public static function Accomplishment()
+    {
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+        $user      = Yii::$app->user->identity->id;
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = $type_id AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $test = $command->queryScalar();
+        return $test;
+    }
 }

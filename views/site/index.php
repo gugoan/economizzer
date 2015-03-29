@@ -1,10 +1,10 @@
 <?php
 use miloschuman\highcharts\Highcharts;
 use yii\web\JsExpression;
-use yii\bootstrap\Nav;
 use yii\data\SqlDataProvider;
 use yii\grid\GridView;
-/* @var $this yii\web\View */
+use app\models\Cashbook;
+
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Overview');
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,57 +17,7 @@ $user      = Yii::$app->user->identity->id;
 ?>
 <div class="row">
         <div class="col-xs-6 col-md-3">
-            <?php
-            echo Nav::widget([
-                'items' => [
-                    [
-                        'label' => Yii::t('app', 'Monthly Summary'), 'active'=>true,
-                        'url' => ['site/index'],
-                        'options' => ['class' => 'active','role'=>'presentation'],
-                        //'items' => [
-                        //     ['label' => 'Semanal', 'url' => '#'],
-                        //     ['label' => 'Media', 'url' => '#'],
-                        //],
-                    ],
-                    [
-                        'label'   => Yii::t('app', 'Annual Performance'),
-                        'url'     => ['site/index'],
-                        'active'  => false,
-                        'options' => ['class' => 'disabled'],
-                    ],
-                    [
-                        'label'   => Yii::t('app', 'Evolution'),
-                        'url'     => ['site/index'],
-                        'active'  => false,
-                        'options' => ['class' => 'disabled'],
-                    ],
-                    [
-                        'label'   => Yii::t('app', 'Top 5'),
-                        'url'     => ['site/index'],
-                        'active'  => false,
-                        'options' => ['class' => 'disabled'],
-                    ],
-                    [
-                        'label'   => Yii::t('app', 'Detailed'),
-                        'url'     => ['site/index'],
-                        'active'  => false,
-                        'options' => ['class' => 'disabled'],
-                    ],
-                    /*
-                    [
-                        'label' => 'Dropdown',
-                        'items' => [
-                             ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
-                             '<li class="divider"></li>',
-                             '<li class="dropdown-header">Dropdown Header</li>',
-                             ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
-                        ],
-                    ],
-                    */
-                ],
-                'options' => ['class' =>'nav-pills nav-stacked'], // set this to nav-tab to get tab-styled navigation
-            ]);
-            ?>
+            <?php  echo $this->render('_menu'); ?>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>

@@ -60,6 +60,16 @@ class SiteController extends BaseController
         return $this->render('index');
     }
 
+    public function actionAccomplishment()
+    {
+        return $this->render('accomplishment');
+    }
+
+    public function actionPerformance()
+    {
+        return $this->render('performance');
+    }
+
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
