@@ -180,8 +180,20 @@ class Cashbook extends \yii\db\ActiveRecord
         $test = $command->queryScalar();
         return $test;
     }
-    public static function Accomplishment()
+    public static function accomplishment($category_id)
     {
+        //SELECT SUM(value), MONTH(date) FROM tb_cashbook WHERE YEAR(date) = 2015 AND user_id = 3 AND category_id = 18 GROUP BY MONTH(date) ORDER BY MONTH(date) asc;
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $user    = Yii::$app->user->identity->id;
+        $command = Yii::$app->db->createCommand("SELECT SUM(value), MONTH(date) FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = 18 GROUP BY MONTH(date) ORDER BY MONTH(date) asc;");
+        $accomplishment = $command->queryAll();
+        return $accomplishment;
+    }
+     public static function annualperformance()
+    {
+        // SELECT SUM(value) as VALOR, MONTH(date) FROM tb_cashbook WHERE YEAR(date) = 2015 AND type_id = 2 AND user_id = 3 GROUP BY MONTH(date) ORDER BY MONTH(date);
+
         $thisyear  = date('Y');
         $thismonth = date('m');
         $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
@@ -190,4 +202,5 @@ class Cashbook extends \yii\db\ActiveRecord
         $test = $command->queryScalar();
         return $test;
     }
+    //https://github.com/yiisoft/yii2/blob/master/docs/guide/db-query-builder.md
 }

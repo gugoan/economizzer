@@ -25,9 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </h2>
         <hr/>
             <div class="row">
-                <?php //echo Cashbook::monthlysummary(1);?>
-				</br>
-				<?php //echo Cashbook::monthlysummary(2);?>
+                <?php var_dump(Cashbook::accomplishment(18)) ;?>
 				</br>
 				<?php
 				echo Highcharts::widget([
