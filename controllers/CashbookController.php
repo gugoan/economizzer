@@ -22,7 +22,7 @@ class CashbookController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::classname(),
-                'only'  => ['index','create','update','delete','view','target'],
+                'only'  => ['index','create','update','delete','view','target','accomplishment','overview','performance'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -169,6 +169,42 @@ class CashbookController extends BaseController
     {
         $model = new Cashbook();
         return $this->render('target', [
+                'model' => $model,
+            ]);
+    }
+    public function actionOverview()
+    {
+        $model = new Cashbook();
+        return $this->render('overview', [
+                'model' => $model,
+            ]);
+    }
+    public function actionAccomplishment()
+    {
+        $model = new Cashbook();
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $user    = Yii::$app->user->identity->id;
+        $command = Yii::$app->db->createCommand("SELECT SUM(value) as v, MONTH(date) as m FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = 18 GROUP BY MONTH(date) ORDER BY MONTH(date) asc;");
+        $accomplishment = $command->queryAll();
+        
+        $m = array();
+        $v = array();
+ 
+        for ($i = 0; $i < sizeof($accomplishment); $i++) {
+           $m[] = $accomplishment[$i]["m"];
+           $v[] = (int) $accomplishment[$i]["v"];
+        }
+        return $this->render('accomplishment', [
+            'model'=>$model,
+            'm' => $m, 
+            'v' => $v,
+            ]);    
+    }
+    public function actionPerformance()
+    {
+        $model = new Cashbook();
+        return $this->render('performance', [
                 'model' => $model,
             ]);
     }

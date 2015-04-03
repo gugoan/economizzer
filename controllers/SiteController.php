@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Cashbook;
 
 class SiteController extends BaseController
 {
@@ -62,7 +63,21 @@ class SiteController extends BaseController
 
     public function actionAccomplishment()
     {
-        return $this->render('accomplishment');
+        $model = new Cashbook();
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $user    = Yii::$app->user->identity->id;
+        $command = Yii::$app->db->createCommand("SELECT SUM(value) as v, MONTH(date) as m FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = 18 GROUP BY MONTH(date) ORDER BY MONTH(date) asc;");
+        $accomplishment = $command->queryAll();
+        
+        $m = array();
+        $v = array();
+ 
+        for ($i = 0; $i < sizeof($accomplishment); $i++) {
+           $m[] = $accomplishment[$i]["m"];
+           $v[] = (int) $accomplishment[$i]["v"];
+        }
+        return $this->render('accomplishment', ['m' => $m, 'v' => $v]);    
     }
 
     public function actionPerformance()

@@ -5,9 +5,9 @@ use yii\bootstrap\Nav;
             echo Nav::widget([
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Monthly Summary'), 'active'=>true,
-                        'url' => ['site/index'],
-                        'options' => ['class' => 'active','role'=>'presentation'],
+                        'label' => Yii::t('app', 'Monthly Summary'),
+                        'url' => ['cashbook/overview'],
+                        //'options' => ['class' => 'active','role'=>'presentation'],
                         //'items' => [
                         //     ['label' => 'Semanal', 'url' => '#'],
                         //     ['label' => 'Media', 'url' => '#'],
@@ -15,13 +15,13 @@ use yii\bootstrap\Nav;
                     ],
                     [
                         'label'   => Yii::t('app', 'Accomplishment'),
-                        'url'     => ['site/accomplishment'],
-                        'active'  => false,
+                        'url'     => ['cashbook/accomplishment'],
+                        'active'  => true,
                         //'options' => ['class' => 'disabled'],
                     ],
                     [
                         'label'   => Yii::t('app', 'Annual Performance'),
-                        'url'     => ['site/performance'],
+                        'url'     => ['cashbook/performance'],
                         'active'  => false,
                         //'options' => ['class' => 'disabled'],
                     ],

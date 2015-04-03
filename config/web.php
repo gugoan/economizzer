@@ -6,6 +6,7 @@ $config = [
     'id' => 'economizzer',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'cashbook/index',
     //'language' => 'en',
     'sourceLanguage' => 'en-US',
     'components' => [
