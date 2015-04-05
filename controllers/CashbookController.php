@@ -175,15 +175,38 @@ class CashbookController extends BaseController
     public function actionOverview()
     {
         $model = new Cashbook();
+
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));        
+        $user    = Yii::$app->user->identity->id;        
+
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $vtype1 = $command->queryScalar();
+
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $vtype2 = $command->queryScalar();
+
+        // get las month values;
+        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_type1 = $lastmonth_command->queryScalar();
+
+        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_type2 = $lastmonth_command->queryScalar();
+
         return $this->render('overview', [
-                'model' => $model,
-            ]);
+            'model'=>$model,
+            'vtype1' => $vtype1, 
+            'vtype2' => $vtype2,
+            'lastmonth_type1' => $lastmonth_type1, 
+            'lastmonth_type2' => $lastmonth_type2,            
+            ]);  
     }
     public function actionAccomplishment()
     {
         $model = new Cashbook();
 
-        $category_id = 18; //$this->attachment
+        $category_id = 0; //$this->attachment
 
         $thisyear  = date('Y');
         $thismonth = date('m');
@@ -207,6 +230,7 @@ class CashbookController extends BaseController
             'model'=>$model,
             'm' => $m, 
             'v' => $v,
+            'category_id' => $category_id,
             ]);    
     }
     public function actionPerformance()

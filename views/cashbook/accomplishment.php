@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
 				            'labelOptions' => ['class' => 'col-lg-2 control-label'],
 				        ],
-				        //'action' => ['accomplishment'],
+				        'action' => ['cashbook/accomplishment'],
         				'method' => 'get',
     			]); ?>
 		        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['onchange'=>'this.form.submit()','prompt'=>'-- Selecione --'])  ?>
