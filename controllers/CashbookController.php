@@ -182,10 +182,18 @@ class CashbookController extends BaseController
     public function actionAccomplishment()
     {
         $model = new Cashbook();
+
+        $category_id = 18; //$this->attachment
+
         $thisyear  = date('Y');
         $thismonth = date('m');
         $user    = Yii::$app->user->identity->id;
-        $command = Yii::$app->db->createCommand("SELECT SUM(value) as v, MONTH(date) as m FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = 18 GROUP BY MONTH(date) ORDER BY MONTH(date) asc;");
+
+        $command = Yii::$app->db->createCommand("SELECT 
+            SUM(value) as v, MONTHNAME(date) as m 
+            FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = $category_id 
+            GROUP BY MONTH(date) 
+            ORDER BY MONTH(date) asc;");
         $accomplishment = $command->queryAll();
         
         $m = array();
@@ -203,10 +211,41 @@ class CashbookController extends BaseController
     }
     public function actionPerformance()
     {
+
+        //      SELECT  
+        //      SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
+        //      SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
+        //      MONTHNAME(date) as m 
+        //      FROM tb_cashbook WHERE user_id = 3 AND YEAR(date) = 2015 GROUP BY m DESC
         $model = new Cashbook();
+        
+        $thisyear  = date('Y');
+        $thismonth = date('m');
+        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+        $user      = Yii::$app->user->identity->id;
+
+        $command = Yii::$app->db->createCommand("SELECT 
+            SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
+            SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
+            MONTHNAME(date) as m 
+            FROM tb_cashbook WHERE user_id = $user  AND YEAR(date) = $thisyear GROUP BY m DESC");
+        $performance = $command->queryAll();
+        
+        $m = array();
+        $v1 = array();
+        $v2 = array();
+ 
+        for ($i = 0; $i < sizeof($performance); $i++) {
+           $m[] = $performance[$i]["m"];
+           $v1[] = (int) $performance[$i]["v1"];
+           $v2[] = (int) $performance[$i]["v2"];
+        }
         return $this->render('performance', [
-                'model' => $model,
-            ]);
+            'model'=>$model,
+            'm' => $m, 
+            'v1' => $v1,
+            'v2' => $v2,
+            ]); 
     }
 
     /**

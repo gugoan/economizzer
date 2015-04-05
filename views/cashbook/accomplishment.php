@@ -33,13 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
 		// var_dump($m);
 		?>
         <div class="row">
-            <div class="row">
-		        <div class="col-sm-3">
-		        <?php $form = ActiveForm::begin(['id' => 'CategoryForm']); ?>
-		        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
+
+		        <?php $form = ActiveForm::begin([
+				        'id' => 'accomplishment-form',
+				        'options' => ['class' => 'form-horizontal'],
+				        'fieldConfig' => [
+				            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
+				            'labelOptions' => ['class' => 'col-lg-2 control-label'],
+				        ],
+				        //'action' => ['accomplishment'],
+        				'method' => 'get',
+    			]); ?>
+		        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['onchange'=>'this.form.submit()','prompt'=>'-- Selecione --'])  ?>
 		        <?php ActiveForm::end(); ?>
-		        </div>
-		    </div>
+
+
 			<?php
 				echo Highcharts::widget([
 			   'options' => [
