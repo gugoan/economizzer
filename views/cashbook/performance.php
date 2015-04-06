@@ -25,6 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </h2>
         <hr/>
             <div class="row">
+            <div class="container-fluid">
+                <div class="panel panel-primary">
+                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
+                <div class="panel-body">
                 <?php
                 echo Highcharts::widget([
 
@@ -52,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]
                 ]);
-                ?>
+                ?></div></div>
             </div>
-            
+            </div>
             </div>
         </div>

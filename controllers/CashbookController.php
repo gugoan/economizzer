@@ -202,11 +202,14 @@ class CashbookController extends BaseController
             'lastmonth_type2' => $lastmonth_type2,            
             ]);  
     }
+    //https://github.com/yiisoft/yii2/blob/master/docs/guide/db-query-builder.md    
     public function actionAccomplishment()
     {
         $model = new Cashbook();
 
-        $category_id = 0; //$this->attachment
+        $url = Yii::$app->getRequest()->getQueryParam('category_id');
+        $category_id = isset($url) ? $url : 0;
+        //$category_id = $model->category_id;
 
         $thisyear  = date('Y');
         $thismonth = date('m');

@@ -170,27 +170,4 @@ class Cashbook extends \yii\db\ActiveRecord
         }
         return Yii::t('app', '$')." ".$total;
     }
-    public static function monthlysummary($type_id)
-    {
-        $thisyear  = date('Y');
-        $thismonth = date('m');
-        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
-        $user      = Yii::$app->user->identity->id;
-        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = $type_id AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
-        $test = $command->queryScalar();
-        return $test;
-    }
-     public static function annualperformance()
-    {
-        // SELECT SUM(value) as VALOR, MONTH(date) FROM tb_cashbook WHERE YEAR(date) = 2015 AND type_id = 2 AND user_id = 3 GROUP BY MONTH(date) ORDER BY MONTH(date);
-
-        $thisyear  = date('Y');
-        $thismonth = date('m');
-        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
-        $user      = Yii::$app->user->identity->id;
-        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = $type_id AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
-        $test = $command->queryScalar();
-        return $test;
-    }
-    //https://github.com/yiisoft/yii2/blob/master/docs/guide/db-query-builder.md
 }
