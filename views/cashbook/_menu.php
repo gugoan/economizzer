@@ -3,10 +3,12 @@
 use yii\bootstrap\Nav;
 
             echo Nav::widget([
+                'activateItems' => true,
                 'items' => [
                     [
                         'label' => Yii::t('app', 'Monthly Summary'),
-                        'url' => ['cashbook/overview'],
+                        'url' => ['/cashbook/overview'],
+                        'visible' => !Yii::$app->user->isGuest,
                         //'options' => ['class' => 'active','role'=>'presentation'],
                         //'items' => [
                         //     ['label' => 'Semanal', 'url' => '#'],
@@ -15,14 +17,16 @@ use yii\bootstrap\Nav;
                     ],
                     [
                         'label'   => Yii::t('app', 'Accomplishment'),
-                        'url'     => ['cashbook/accomplishment'],
-                        'active'  => true,
+                        'url'     => ['/cashbook/accomplishment'],
+                        'visible' => !Yii::$app->user->isGuest,
+                        //'active'  => true,
                         //'options' => ['class' => 'disabled'],
                     ],
                     [
                         'label'   => Yii::t('app', 'Annual Performance'),
-                        'url'     => ['cashbook/performance'],
-                        'active'  => false,
+                        'url'     => ['/cashbook/performance'],
+                        'visible' => !Yii::$app->user->isGuest,
+                        //'active'  => false,
                         //'options' => ['class' => 'disabled'],
                     ],
                     // [

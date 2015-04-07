@@ -33,9 +33,8 @@ coming soon...
 To-Do 
 ------
 
-- [x] File upload (testing)
+- [x] File upload
 - [x] Initial dashboard
-- [x] Description up to varchar(100)
 - [x] Totals on gridview
 - [x] Some datepicker
 - [x] Filter by date, range
@@ -45,4 +44,4 @@ To-Do
 - [x] Login | User autentication
 - [x] Multiuser | indepent user data separation
 - [ ] Goals | Insert goals and reports 
-- [x] Translation | Multi front-end language select for user (Error/testing...)
+- [x] Translation | Multi front-end language select for user
