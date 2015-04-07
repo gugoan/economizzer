@@ -7,6 +7,7 @@ use yii\data\SqlDataProvider;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CashbookSearch */
@@ -41,8 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
 				            'labelOptions' => ['class' => 'col-lg-2 control-label'],
 				        ],
-				        'action' => ['accomplishment'],
-        				'method' => 'get',
+				        //'action' => ['accomplishment'],
+				        'action' => Url::to(['/cashbook/accomplishment', 'category_id' => 19]),
+        				'method' => 'post',
     			]); ?>
 		        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['onchange'=>'this.form.submit()','prompt'=>'-- Selecione --'])  ?>
 		        <?php ActiveForm::end(); ?>
@@ -62,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				      ],
 				      'series' => [
 				         //['name' => 'Jane', 'data' => [1, 0, 4]],
-				         ['name' => 'Cemig', 'data' => $v]
+				         ['name' => $n, 'data' => $v]
 				      ]
 				   ]
 				]);

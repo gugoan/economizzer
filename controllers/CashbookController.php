@@ -216,23 +216,29 @@ class CashbookController extends BaseController
         $user    = Yii::$app->user->identity->id;
 
         $command = Yii::$app->db->createCommand("SELECT 
-            SUM(value) as v, MONTHNAME(date) as m 
-            FROM tb_cashbook WHERE YEAR(date) = $thisyear AND user_id = $user AND category_id = $category_id 
+            desc_category as n, SUM(value) as v, MONTHNAME(date) as m 
+            FROM tb_cashbook 
+            INNER JOIN tb_category
+            on tb_category.id_category = tb_cashbook.category_id
+            WHERE YEAR(date) = $thisyear AND tb_cashbook.user_id = $user AND category_id = $category_id 
             GROUP BY MONTH(date) 
             ORDER BY MONTH(date) asc;");
         $accomplishment = $command->queryAll();
         
         $m = array();
         $v = array();
+        $n = array();
  
         for ($i = 0; $i < sizeof($accomplishment); $i++) {
            $m[] = $accomplishment[$i]["m"];
            $v[] = (int) $accomplishment[$i]["v"];
+           $n = $accomplishment[$i]["n"];
         }
         return $this->render('accomplishment', [
             'model'=>$model,
             'm' => $m, 
             'v' => $v,
+            'n' => $n,
             'category_id' => $category_id,
             ]);    
     }
@@ -255,7 +261,7 @@ class CashbookController extends BaseController
             SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
             SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
             MONTHNAME(date) as m 
-            FROM tb_cashbook WHERE user_id = $user  AND YEAR(date) = $thisyear GROUP BY m DESC");
+            FROM tb_cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m DESC");
         $performance = $command->queryAll();
         
         $m = array();
