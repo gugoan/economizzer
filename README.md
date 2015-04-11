@@ -38,10 +38,11 @@ To-Do
 - [x] Totals on gridview
 - [x] Some datepicker
 - [x] Filter by date, range
+- [x] Login | User autentication
+- [x] Multiuser | indepent user data separation
+- [x] Translation | Multi front-end language select for user
 - [ ] Open attachment (if exist)
 - [ ] Fix value with decimals
 - [ ] Subcat | Categories with sub-categories
-- [x] Login | User autentication
-- [x] Multiuser | indepent user data separation
+- [ ] Option after a release, add another
 - [ ] Goals | Insert goals and reports 
-- [x] Translation | Multi front-end language select for user
