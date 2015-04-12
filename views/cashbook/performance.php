@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
             <div class="container-fluid">
                 <div class="panel panel-primary">
-                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
+                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Monthly Comparative Revenue x Expense');?></strong></div>
                 <div class="panel-body">
                 <?php
                 echo Highcharts::widget([

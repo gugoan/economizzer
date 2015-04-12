@@ -35,8 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		// var_dump($m);
 		?>
         <div class="row">
-
-		        <?php 
+        	<div class="panel panel-primary">
+                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Track each category during the year');?></strong></div>
+                <div class="panel-body">
+                
+                <?php 
 		        $this->registerJs('var submit = function (val){if (val > 0) {
 				    window.location.href = "' . Url::to(['/cashbook/accomplishment']) . '&category_id=" + val;
 				}
@@ -44,35 +47,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		       echo Html::activeDropDownList($model, 'category_id', ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])
                             ->orderBy("desc_category ASC")
-                            ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>'-- Select --']);?>
-
-		        
-<!--     http://stackoverflow.com/questions/27606508/how-to-make-yii2-activeform-ignore-previous-submitted-values
-
-	http://zapone.org/barry/2015/01/28/yii2-how-to-add-onchange-event-in-activeform/
-
-	https://www.google.com.br/search?q=Yii%3A%3A%24app-%3Erequest-%3EqueryParams&oq=Yii%3A%3A%24app-%3Erequest-%3EqueryParams&aqs=chrome..69i57j69i58.735j0j8&sourceid=chrome&es_sm=93&ie=UTF-8#q=yii2+ActiveForm+action+field+value&start=10
- -->
-
-			<?php
-				echo Highcharts::widget([
-			   'options' => [
-			   		  'credits' => ['enabled' => false],
-				      'title' => ['text' => ''],
-				      'colors'=> ['#18bc9c','#e74c3c'],
-				      'xAxis' => [
-				         'categories' => $m,
-				      ],
-				      'yAxis' => [
-				         'title' => ['text' => '']
-				      ],
-				      'series' => [
-				         //['name' => 'Jane', 'data' => [1, 0, 4]],
-				         ['name' => $n, 'data' => $v]
-				      ]
-				   ]
-				]);
-			?>
+                            ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>'-- Select --','class'=>'form-control']);
+                ?>
+                </p>
+				<?php
+					echo Highcharts::widget([
+				   'options' => [
+				   		  'credits' => ['enabled' => false],
+					      'title' => ['text' => ''],
+					      'colors'=> ['#18bc9c','#e74c3c'],
+					      'xAxis' => [
+					         'categories' => $m,
+					      ],
+					      'yAxis' => [
+					         'title' => ['text' => '']
+					      ],
+					      'series' => [
+					         //['name' => 'Jane', 'data' => [1, 0, 4]],
+					         ['name' => $n, 'data' => $v]
+					      ]
+					   ]
+					]);
+				?>	
+				</div>
+			</div>
         </div>
             
             </div>

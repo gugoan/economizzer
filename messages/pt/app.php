@@ -61,6 +61,8 @@ return [
     'Accomplishment' => 'Realização',
     'Revenue x Expenses' => 'Receita x Despesa',
     'Performance' => 'Desempenho',
+    'Track each category during the year' => 'Acompanhe cada categoria durante o ano',
+    'Monthly Comparative Revenue x Expense' => 'Comparativo mensal de Receita x Despesa',
     'Revenue' => 'Receita',
     'Expense' => 'Despesa',
     'Percentage' => 'Percentual',
