@@ -41,6 +41,7 @@ use kartik\file\FileInput;
                 //'readonly' => true,
                 'options' => [
                     'placeholder' => '',
+                     'class'=>'form-control',
                 ],
                 'pluginOptions' => [
                     'autoclose'=>true,
@@ -48,7 +49,6 @@ use kartik\file\FileInput;
                     'format' => 'yyyy-mm-dd',
                 ]
             ]);
-            // http://www.yiiframework.com/doc-2.0/yii-bootstrap-activefield.html
         ?></div>
         </div>
     <p>

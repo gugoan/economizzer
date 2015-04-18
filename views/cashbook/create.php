@@ -6,10 +6,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cashbook */
 
-$this->title = Yii::t('app', 'Novo Lançamento', [
+$this->title = Yii::t('app', 'New Entry', [
     'modelClass' => 'Cashbook',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lançamentos'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-create">
