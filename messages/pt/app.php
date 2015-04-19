@@ -41,6 +41,7 @@ return [
     'Changed' => 'Alterado',
     'Receipt' => 'Comprovante',
     'Entry' => 'Lançamento',
+    'New Entry' => 'Novo Lançamento',
     'Entries' => 'Lançamentos',
     'Update Entry' => 'Alterar Lançamento',
     'Filter' => 'Filtro',

@@ -31,9 +31,9 @@ use kartik\file\FileInput;
     <div class="row">
         <div class="col-sm-2">
         <?php
-            echo Html::activeLabel($model,'date'); //label
             echo DatePicker::widget([
                 'model' => $model,
+                'form' => $form,
                 'attribute' => 'date',
                 'type' => DatePicker::TYPE_INPUT,
                 'size' => 'sm',
@@ -41,7 +41,6 @@ use kartik\file\FileInput;
                 //'readonly' => true,
                 'options' => [
                     'placeholder' => '',
-                     'class'=>'form-control',
                 ],
                 'pluginOptions' => [
                     'autoclose'=>true,
