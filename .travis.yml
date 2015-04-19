@@ -1,0 +1,5 @@
+deploy:
+  provider: openshift
+  user: "gugoan@hotmail.com"
+  password: "tigusta" # can be encrypted
+  domain: "economizzer"
