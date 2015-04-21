@@ -27,10 +27,11 @@ Download zip way:
 Configuration
 -------------
 
-Create the 'economizzer' database and import the file 'economizzer.sql'.
+Create the "economizzer" database and import the file "economizzer.sql".
 Access with User and password below:
 
 User: joe
+
 Pass: 123456
 
 
