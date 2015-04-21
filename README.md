@@ -19,15 +19,19 @@ The minimum requirement by this application that your Web server supports PHP 5.
 Installation
 ------------
 
+Composer way:
 
-coming soon...
+Download zip way:
 
 
 Configuration
 -------------
 
+Create the 'economizzer' database and import the file 'economizzer.sql'.
+Access with User and password below:
 
-coming soon...
+User: joe
+Pass: 123456
 
 
 To-Do 
