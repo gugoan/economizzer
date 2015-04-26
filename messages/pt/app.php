@@ -53,8 +53,14 @@ return [
     'No entries found!' => 'Nenhum lançamento encontrado!',
     'Basic Information' => 'Informações Básicas',
     'Additional' => 'Complementares',
+    'Entry successfully included' => 'Lançamento incluído com sucesso',
+    'Entry updated' => 'Lançamento atualizado',
+    'Entry successfully deleted' => 'Lançamento excluído com sucesso',
     // category model
     'Hex Color' => 'Hex Cor',
+    'Category successfully included' => 'Categoria incluída com sucesso',
+    'Category updated' => 'Categoria atualizada',
+    'Category successfully deleted' => 'Categoria excluído com sucesso',
     // view / site
     'Overview' => 'Visão Geral',
     'Monthly Summary' => 'Resumo Mensal',

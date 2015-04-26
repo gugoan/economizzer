@@ -31,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </h2>
     <hr/>
+    <?php if ($flash = Yii::$app->session->getFlash("Entry-success")): ?>
 
+        <div class="alert text-success">
+            <p><em><?= $flash ?></em></p>
+        </div>
+
+    <?php endif; ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

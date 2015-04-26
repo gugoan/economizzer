@@ -84,6 +84,7 @@ class CategoryController extends BaseController
         $model->user_id = Yii::$app->user->identity->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully included"));
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -103,6 +104,7 @@ class CategoryController extends BaseController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category updated"));
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -120,6 +122,7 @@ class CategoryController extends BaseController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));
 
         return $this->redirect(['index']);
     }

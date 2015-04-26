@@ -16,6 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Category').'', ['/category/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
 </h2>
 <hr/>
+    <?php if ($flash = Yii::$app->session->getFlash("Category-success")): ?>
+
+        <div class="alert text-success">
+            <p><em><?= $flash ?></em></p>
+        </div>
+
+    <?php endif; ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,

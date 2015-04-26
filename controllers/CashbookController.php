@@ -89,7 +89,8 @@ class CashbookController extends BaseController
                     $path = $model->getImageFile();
                     $file->saveAs($path);
                 }
-                return $this->redirect(['view', 'id'=>$model->id]);
+                Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully included"));
+                return $this->redirect(['index']);
             } else {
                 // error in saving model
             }
@@ -129,6 +130,7 @@ class CashbookController extends BaseController
                     $path = $model->getImageFile();
                     $file->saveAs($path);
                 }
+                Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry updated"));
                 return $this->redirect(['view', 'id'=>$model->id]);
             } else {
                 // error in saving model
@@ -156,6 +158,7 @@ class CashbookController extends BaseController
                 Yii::$app->session->setFlash('error', 'Error deleting image');
             }
         }
+        Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully deleted"));
         return $this->redirect(['index']);
     }
 
