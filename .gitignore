@@ -27,4 +27,4 @@ phpunit.phar
 /phpunit.xml
 
 # attachments
-/web/attachment/*
+#/web/attachment/*
