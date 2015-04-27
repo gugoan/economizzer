@@ -135,7 +135,7 @@ class Cashbook extends \yii\db\ActiveRecord
             'is_pending' => Yii::t('app', 'Pending'),
             'attachment' => Yii::t('app', 'Attach'),
             'inc_datetime' => Yii::t('app', 'Created'),
-            'edit_datetime' => Yii::t('app', 'Changed '),
+            'edit_datetime' => Yii::t('app', 'Changed'),
         ];
     }
 

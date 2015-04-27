@@ -25,7 +25,7 @@ use kartik\widgets\DatePicker;
     ]); ?>
 
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-11">
             <?php
                 echo '<label class="control-label">'.Yii::t('app', 'From').'</label>';
                 echo DatePicker::widget([
@@ -48,7 +48,7 @@ use kartik\widgets\DatePicker;
         </div>
     </div><p>
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-11">
         <?php
             echo '<label class="control-label">'.Yii::t('app', 'To').'</label>';
             echo DatePicker::widget([

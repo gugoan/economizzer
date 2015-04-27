@@ -73,7 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],            
             [
             'attribute' => 'edit_datetime',
-            'format' => ['date', 'd/M/Y H:m:s'],
+            'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'short'),
+            //'format' => ['date', 'd/M/Y H:m:s'],
             ],             
         ],
     ]) ?>
