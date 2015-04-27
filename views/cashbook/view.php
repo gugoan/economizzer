@@ -50,7 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => $model->type->desc_type,
             ],
             [
-            //'label' => 'Categoria',
             'attribute' => 'category_id',
             'value' => $model->category->desc_category,
             ],
@@ -68,12 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'attribute' => 'inc_datetime',
             'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'long'),
-            //'inc_datetime:datetime',
-            // 'format' => ['date', 'd/M/Y H:m:s'],
             ],            
             [
             'attribute' => 'edit_datetime',
-            'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'short'),
+            'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'long'),
             //'format' => ['date', 'd/M/Y H:m:s'],
             ],             
         ],

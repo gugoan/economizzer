@@ -52,14 +52,16 @@ $this->params['breadcrumbs'][] = $this->title;
         // },
         'columns'    => [
             [
-             //'label' => 'Dia',
              'attribute' => 'date',
              'enableSorting' => true,
-             'format' => ['date', 'php:d/m/Y'],
+             //'format' => ['date', 'php:d/m/Y'],
+             //'value' => Yii::$app->formatter->asDate($model->date, 'short'),
+                          'value' => function ($model) {                      
+                    return $model->date <> '' ? Yii::$app->formatter->asDate($model->date, 'short') : Yii::$app->formatter->asDate($model->date, 'short');
+                    },
              'contentOptions'=>['style'=>'width: 10%;text-align:left'],
             ],
             [
-             //'label' => 'Categoria',
              'attribute' => 'category_id',
              'format' => 'raw',
              'enableSorting' => true,
@@ -120,16 +122,6 @@ $this->params['breadcrumbs'][] = $this->title;
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],
             ],
-            //'id',
-            //'category_id',
-            //'type_id',
-            //'value',
-            //'description',
-            // 'date',
-            // 'is_pending',
-            // 'attachment',
-            // 'inc_datetime',
-            // 'edit_datetime',
         ],
     ]); ?>
 
