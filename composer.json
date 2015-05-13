@@ -15,13 +15,14 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "2.0.3",
+        "yiisoft/yii2": "dev-master",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "amnah/yii2-user": "*",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
+        "perminder-klair/yii2-dropzone": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
