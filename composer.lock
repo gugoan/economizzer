@@ -480,16 +480,16 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80"
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/cbab8a3487cfc2a2fd6a2d63812915523f648a80",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/a938210be3276606b1d81d82776aff0e4962d3c9",
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9",
                 "shasum": ""
             },
             "type": "library",
@@ -500,7 +500,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -518,7 +518,7 @@
                 "option",
                 "select"
             ],
-            "time": "2015-02-01 13:03:27"
+            "time": "2015-05-22 12:25:10"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -861,16 +861,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65"
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/f508999940da61568b197ef4030b5f03f86b0d65",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +885,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -906,7 +906,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-08 19:07:46"
+            "time": "2015-05-22 10:15:23"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1653,12 +1653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "492aeb766b30eb00747c54096f790d2afd1090c8"
+                "reference": "f2ffe9b70deedf374934274ae31e7ed7a8fdf096"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/492aeb766b30eb00747c54096f790d2afd1090c8",
-                "reference": "492aeb766b30eb00747c54096f790d2afd1090c8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f2ffe9b70deedf374934274ae31e7ed7a8fdf096",
+                "reference": "f2ffe9b70deedf374934274ae31e7ed7a8fdf096",
                 "shasum": ""
             },
             "require": {
@@ -1733,7 +1733,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-11 09:52:29"
+            "time": "2015-05-24 21:33:55"
         },
         {
             "name": "yiisoft/yii2-authclient",
