@@ -264,7 +264,7 @@ class CashbookController extends BaseController
             SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
             SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
             MONTHNAME(date) as m 
-            FROM tb_cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m DESC");
+            FROM tb_cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m ORDER BY MONTH(date)");
         $performance = $command->queryAll();
         
         $m = array();
