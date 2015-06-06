@@ -1653,12 +1653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f2ffe9b70deedf374934274ae31e7ed7a8fdf096"
+                "reference": "06d2c79886d3d4388bf4eb8c471be4dcba331751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f2ffe9b70deedf374934274ae31e7ed7a8fdf096",
-                "reference": "f2ffe9b70deedf374934274ae31e7ed7a8fdf096",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/06d2c79886d3d4388bf4eb8c471be4dcba331751",
+                "reference": "06d2c79886d3d4388bf4eb8c471be4dcba331751",
                 "shasum": ""
             },
             "require": {
@@ -1733,7 +1733,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-24 21:33:55"
+            "time": "2015-06-05 19:53:24"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2011,16 +2011,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0"
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/010c7efedd88bf31141a02719f51fb44c732d5a0",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
                 "shasum": ""
             },
             "require": {
@@ -2030,14 +2030,18 @@
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
+            "suggest": {
+                "ext-intl": "*"
+            },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
             },
             "autoload": {
-                "psr-0": {
-                    "Faker": "src/",
-                    "Faker\\PHPUnit": "test/"
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2055,7 +2059,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2014-06-04 14:43:02"
+            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "phpspec/php-diff",

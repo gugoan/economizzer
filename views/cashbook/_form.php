@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use kartik\widgets\DatePicker;
-use kartik\file\FileInput;
+// use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Cashbook */
@@ -85,21 +85,22 @@ use kartik\file\FileInput;
     //     'options' => ['multiple' => false],
     //     'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png','pdf']],
     // ]);
-    $title = isset($model->filename) && !empty($model->filename) ? $model->filename : 'Anexo';
-    echo Html::img($model->getImageUrl(), [
-        'class'=>'img-thumbnail',
-        'alt'=>$title,
-        'title'=>$title
-    ]);
+    // $title = isset($model->filename) && !empty($model->filename) ? $model->filename : 'Anexo';
+    // echo Html::img($model->getImageUrl(), [
+    //     'class'=>'img-thumbnail',
+    //     'alt'=>$title,
+    //     'title'=>$title
+    // ]);
 
-    if (!$model->isNewRecord) {
-    echo Html::a('Delete', ['/Cashbook/delete', 'id'=>$model->id], ['class'=>'btn btn-danger']);
-}
+    // if (!$model->isNewRecord) {
+    //     echo Html::a('Delete', ['/Cashbook/delete', 'id'=>$model->id], ['class'=>'btn btn-danger']);
+    // }
 
-    echo $form->field($model, 'file')->widget(FileInput::classname(), [
-        //'options'=>['accept'=>'image/*'],
-        'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png', 'pdf']
-    ]]);
+    // echo $form->field($model, 'file')->widget(FileInput::classname(), [
+    //     //'options'=>['accept'=>'image/*'],
+    //     'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png', 'pdf']
+    // ]]);
+    echo $form->field($model, 'file')->fileInput();
     ?>
 
     </div>
