@@ -136,6 +136,8 @@ class Cashbook extends \yii\db\ActiveRecord
             'attachment' => Yii::t('app', 'Attach'),
             'inc_datetime' => Yii::t('app', 'Created'),
             'edit_datetime' => Yii::t('app', 'Changed'),
+            'file' => Yii::t('app', 'File'),
+            'filename' => Yii::t('app', 'Filename'),
         ];
     }
 

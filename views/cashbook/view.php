@@ -15,13 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2>
         <span><?= Html::encode($this->title) ?></span>
         <div class="pull-right">
-        <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-pencil"></i> Update'), ['update', 'id' => $model->id], [
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
                 'class' => 'btn btn-primary btn-sm',
                 //'options' => ['style'=> 'margin-right: 2;margin-left: 2'],
                 //'contentOptions'=>['style'=>'margin-right: 2px;']
                 ]
                 ) ?> 
-        <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-trash"></i> Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger btn-sm',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete?'),
