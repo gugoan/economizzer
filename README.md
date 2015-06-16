@@ -51,3 +51,5 @@ To-Do
 - [ ] Subcat | Categories with sub-categories
 - [ ] Option after a release, add another
 - [ ] Goals | Insert goals and reports 
+
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
