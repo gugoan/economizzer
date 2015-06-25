@@ -17,7 +17,6 @@
         "issues": "https://github.com/gugoan/economizzer/issues",
         "source": "https://github.com/gugoan/economizzer"
     },
-    "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "dev-master",
