@@ -1,8 +1,7 @@
-Economizzer - Open Source Personal Finance Manager
+Economizzer
 =================================
 
-
-Economizzer is a simple personal finance manager app made in PHP (Yii Framework 2.0).
+Economizzer is a simple and open source personal finance manager app made in PHP (Yii Framework 2.0).
 
 For now only available in **en-US** and **pt-BR**
 
