@@ -1,8 +1,8 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Application Template",
+    "name": "gugoan/economizzer",
+    "description": "Open Source Personal Finance Manager",
     "keywords": ["yii2", "framework", "basic", "application template"],
-    "homepage": "http://www.yiiframework.com/",
+    "homepage": "http://www.economizzer.org/",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
