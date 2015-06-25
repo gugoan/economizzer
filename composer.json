@@ -1,16 +1,21 @@
 {
     "name": "gugoan/economizzer",
     "description": "Open Source Personal Finance Manager",
-    "keywords": ["yii2", "framework", "basic", "application template"],
+    "keywords": ["yii2", "php", "finance", "money"],
     "homepage": "http://www.economizzer.org/",
     "type": "project",
     "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Gustavo G. Andrade",
+            "email": "gugoan@hotmail.com",
+            "homepage": "http://www.gustavoandrade.net.br",
+            "role": "Developer"
+        }    
+    ],
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "issues": "https://github.com/gugoan/economizzer/issues",
+        "source": "https://github.com/gugoan/economizzer"
     },
     "minimum-stability": "stable",
     "require": {
@@ -22,38 +27,10 @@
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "amnah/yii2-user": "*",
         "kartik-v/yii2-widgets": "*",
-        "perminder-klair/yii2-dropzone": "dev-master"
     },
-    "require-dev": {
-        "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
-    },
-    "config": {
-        "process-timeout": 1800
-    },
-    "scripts": {
-        "post-create-project-cmd": [
-            "yii\\composer\\Installer::postCreateProject"
-        ]
-    },
-    "extra": {
-        "yii\\composer\\Installer::postCreateProject": {
-            "setPermission": [
-                {
-                    "runtime": "0777",
-                    "web/assets": "0777",
-                    "yii": "0755"
-                }
-            ],
-            "generateCookieValidationKey": [
-                "config/web.php"
-            ]
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
+    "autoload": {
+        "psr-0": {
+            "Economizzer": "src"
         }
     }
 }
