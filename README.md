@@ -20,8 +20,6 @@ Installation
 
 Composer way:
 
-Download zip way: Unzip in your www directory
-
 
 Configuration
 -------------
@@ -33,22 +31,5 @@ User: joe
 
 Pass: 123456
 
-
-To-Do 
-------
-
-- [x] File upload
-- [x] Initial dashboard
-- [x] Totals on gridview
-- [x] Some datepicker
-- [x] Filter by date, range
-- [x] Login | User autentication
-- [x] Multiuser | indepent user data separation
-- [x] Translation | Multi front-end language select for user
-- [ ] Open attachment (if exist)
-- [ ] Fix value with decimals
-- [ ] Subcat | Categories with sub-categories
-- [ ] Option after a release, add another
-- [ ] Goals | Insert goals and reports 
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
