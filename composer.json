@@ -26,7 +26,7 @@
         "yiisoft/yii2-jui": "*",
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "amnah/yii2-user": "*",
-        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-widgets": "*"
     },
     "autoload": {
         "psr-0": {
