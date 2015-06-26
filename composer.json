@@ -4,7 +4,7 @@
     "keywords": ["yii2", "php", "finance", "money"],
     "homepage": "http://www.economizzer.org/",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "authors": [
         {
             "name": "Gustavo G. Andrade",
