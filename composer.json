@@ -24,6 +24,9 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
         "miloschuman/yii2-highcharts-widget": "*",
         "amnah/yii2-user": "*",
         "kartik-v/yii2-widgets": "*"
