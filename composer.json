@@ -17,7 +17,7 @@
         "issues": "https://github.com/gugoan/economizzer/issues",
         "source": "https://github.com/gugoan/economizzer"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
@@ -28,6 +28,11 @@
         "amnah/yii2-user": "*",
         "kartik-v/yii2-widgets": "*"
     },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    },    
     "autoload": {
         "psr-0": {
             "Economizzer": "src"
