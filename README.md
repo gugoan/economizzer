@@ -3,7 +3,7 @@ Economizzer
 
 Economizzer is a simple and open source personal finance manager app made in PHP (Yii Framework 2.0).
 
-For now only available in **en-US** and **pt-BR**
+For now only available in **english** and **portuguese (Brazilian)**
 
 ![Screnn](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
@@ -21,17 +21,33 @@ Installation
 ### Composer way: 
 ~~~
 git clone https://github.com/gugoan/economizzer.git
-composer global require "fxp/composer-asset-plugin:1.0.0"
 cd economizzer
-composer install
+composer require "fxp/composer-asset-plugin:~1.0"
 ~~~
+
+### Zip way:
 
 
 Configuration
 -------------
 
-Create the "economizzer" database and import the file "economizzer.sql".
-Access with User and password below:
+Create the **economizzer** database and import the file **economizzer.sql**.
+
+In folder **economizzer/config/db.php**
+
+```php
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=economizzer',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8',
+    'tablePrefix' => 'tb_',
+    'enableSchemaCache' => true,
+];
+```
+
+Access **http://economizzer/web** with user and password below:
 
 User: joe
 
