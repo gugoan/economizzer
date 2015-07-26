@@ -86,6 +86,12 @@ class CashbookController extends BaseController
             if ($model->save()) {
                 // upload only if valid uploaded file instance found
                 if ($file !== false) {
+                    // Create the ID folder 
+                    $idfolder = Yii::$app->user->identity->id;
+                    //$idfolder = str_pad($idfolder, 6, "0", STR_PAD_LEFT); // add 0000+ID
+                    if(!is_dir(Yii::$app->params['uploadUrl'] . $idfolder)){
+                    mkdir(Yii::$app->params['uploadUrl'] . $idfolder, 0777, true);
+                    }
                     $path = $model->getImageFile();
                     $file->saveAs($path);
                 }

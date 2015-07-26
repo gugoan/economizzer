@@ -71,7 +71,7 @@ class Cashbook extends \yii\db\ActiveRecord
 
     public function getImageFile()
     {
-        return isset($this->attachment) ? Yii::$app->params['uploadPath'] . $this->attachment : null;
+        return isset($this->attachment) ? Yii::$app->params['uploadPath'] . $this->user_id ."/". $this->attachment : null;
     }
     public function getImageUrl()
     {
