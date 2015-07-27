@@ -37,13 +37,18 @@ class Cashbook extends \yii\db\ActiveRecord
         if (parent::beforeSave($insert)) {
             if($this->type_id == 2 && $this->value > 0){
                 $this->value = $this->value*(-1);
-            }   
-            return parent::beforeSave($insert);
+            }else{
+                $this->value = abs($this->value);
+            }
+            //return parent::beforeSave($insert);
+            return true;
         } else {
             if($this->type_id == 2 && $this->value > 0){
                 $this->value = $this->value*(-1);
+            }else{
+                $this->value = abs($this->value);
             }
-            return parent::beforeSave($insert);
+            return false;
         }
     }
 
