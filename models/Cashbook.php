@@ -33,23 +33,25 @@ class Cashbook extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        // transform value into negative number
-        if (parent::beforeSave($insert)) {
-            if($this->type_id == 2 && $this->value > 0){
+        // transform value into negative number, case Expense criteries
+        if ($this->isNewRecord)
+        {
+            if($this->type_id == 2){
                 $this->value = $this->value*(-1);
-            }else{
-                $this->value = abs($this->value);
             }
-            //return parent::beforeSave($insert);
-            return true;
-        } else {
-            if($this->type_id == 2 && $this->value > 0){
-                $this->value = $this->value*(-1);
-            }else{
-                $this->value = abs($this->value);
-            }
-            return false;
         }
+
+        if($this->type_id == 2 && $this->value > 0){
+            $this->value = $this->value*(-1);
+        }
+        if($this->type_id == 2 && $this->value < 0){
+            $this->value = $this->value;
+        }
+        if($this->type_id == 1){
+            $this->value = abs($this->value);
+        }
+ 
+        return parent::beforeSave($insert);
     }
 
 
