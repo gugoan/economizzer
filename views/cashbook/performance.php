@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr/>
             <div class="row">
             <div class="container-fluid">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                 <div class="panel-heading"><strong><?php echo Yii::t('app', 'Monthly Comparative Revenue x Expense');?></strong></div>
                 <div class="panel-body">
                 <?php

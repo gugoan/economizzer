@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		// var_dump($m);
 		?>
         <div class="row">
-        	<div class="panel panel-primary">
+        	<div class="panel panel-default">
                 <div class="panel-heading"><strong><?php echo Yii::t('app', 'Track each category during the year');?></strong></div>
                 <div class="panel-body">
                 

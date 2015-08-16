@@ -26,7 +26,7 @@ $user      = Yii::$app->user->identity->id;
         <hr/>
             <div class="row">
                   <div class="col-md-6">
-                  <div class="panel panel-primary">
+                  <div class="panel panel-default">
                 <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
                   <div class="panel-body">       
                   <?php
@@ -85,7 +85,7 @@ $user      = Yii::$app->user->identity->id;
                 ]);
                 ?></div></div></div>
                   <div class="col-md-6">
-                      <div class="panel panel-primary">
+                      <div class="panel panel-default">
                     <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
                     <div class="panel-body">
                     <h3><?php echo Yii::t('app', 'Monthly balance').": ".$overbalance;?></h3>
