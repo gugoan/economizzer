@@ -39,9 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
              'value' => function ($model) {                      
                     return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-circle"></i></strong>';
                     },
-             'contentOptions'=>['style'=>'width: 30%;text-align:left'],
+             'contentOptions'=>['style'=>'width: 20%;text-align:left'],
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'contentOptions'=>['style'=>'width: 20%;text-align:right'],
+            ],
         ],
     ]); ?>
 
