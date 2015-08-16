@@ -14,7 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-account">
 
-	<h1><?= Html::encode($this->title) ?></h1>
+    <h2>
+      <span><?= Html::encode($this->title) ?></span>
+    </h2>
+    <hr/>
 
     <?php if ($flash = Yii::$app->session->getFlash("Account-success")): ?>
 

@@ -14,7 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-profile">
 
-	<h1><?= Html::encode($this->title) ?></h1>
+	<h2><?= Html::encode($this->title) ?></h2>
+    <hr/>
 
     <?php if ($flash = Yii::$app->session->getFlash("Profile-success")): ?>
 
@@ -35,6 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?= $form->field($profile, 'full_name') ?>
+
+    <?php echo $form->field($profile, 'language')->dropDownList([
+        'en' => Yii::t('app', 'English USA'), 
+        'pt' => Yii::t('app', 'Brazilian Portuguese'), 
+        ]); 
+    ?>
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
