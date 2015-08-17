@@ -82,6 +82,7 @@ SCRIPT;
         ?>
 
         <div class="container">
+            <p>
             <?= $content ?>
         </div>
     </div>

@@ -26,5 +26,6 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-# attachments
+# attachments and assets
 /web/attachment/*
+/web/assets/*

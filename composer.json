@@ -29,7 +29,7 @@
         "yiisoft/yii2-gii": "*",
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "amnah/yii2-user": "dev-master",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

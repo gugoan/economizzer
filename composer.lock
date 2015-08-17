@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "14026aa753a9e46af655d7420826a031",
+    "hash": "d81ec7be0a59857d55c253ce2a300007",
     "packages": [
         {
             "name": "amnah/yii2-user",
@@ -97,6 +97,49 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-toggle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minhur/bootstrap-toggle.git",
+                "reference": "8c21c6653b92afc505c646e370a0fae41c446b6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minhur/bootstrap-toggle/zipball/8c21c6653b92afc505c646e370a0fae41c446b6e",
+                "reference": "8c21c6653b92afc505c646e370a0fae41c446b6e",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./js/bootstrap-toggle.min.js",
+                    "./css/bootstrap-toggle.min.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ],
+                "branch-alias": {
+                    "dev-master": "2.2.1-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Bootstrap Toggle is a highly flexible Bootstrap plugin that converts checkboxes into toggles",
+            "keywords": [
+                "bootstrap",
+                "bootstrap-switch",
+                "bootstrap-toggle",
+                "switch",
+                "toggle"
             ]
         },
         {
@@ -1540,6 +1583,52 @@
             "time": "2015-04-21 15:37:51"
         },
         {
+            "name": "loveorigami/yii2-bootstrap-toggle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-bootstrap-toggle.git",
+                "reference": "c6077281d592d2c4a5c868b4f723ed610669e6c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-bootstrap-toggle/zipball/c6077281d592d2c4a5c868b4f723ed610669e6c4",
+                "reference": "c6077281d592d2c4a5c868b4f723ed610669e6c4",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap-toggle": "*",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "require-dev": {
+                "yiisoft/yii2-debug": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lo\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Lukyanov",
+                    "email": "loveorigami@mail.ru"
+                }
+            ],
+            "description": "Yii2 bootstrap-toggle widget",
+            "keywords": [
+                "bootstrap",
+                "toggle",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-08-13 15:23:55"
+        },
+        {
             "name": "miloschuman/yii2-highcharts-widget",
             "version": "dev-master",
             "source": {
@@ -1681,7 +1770,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/537aa8a5bbbb8c3593cd6d835557d05282807bf6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c009e2c377346677481f391118a5817558a4d0c0",
                 "reference": "537aa8a5bbbb8c3593cd6d835557d05282807bf6",
                 "shasum": ""
             },
@@ -1959,7 +2048,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/b510398a0d7030a9dd6d0431b8c5201540f137b2",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/edf9a4152c795d90e8b02fc6aa88e50d53a54d02",
                 "reference": "b510398a0d7030a9dd6d0431b8c5201540f137b2",
                 "shasum": ""
             },
