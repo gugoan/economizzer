@@ -12,9 +12,6 @@ use yii\web\UploadedFile;
 use yii\filters\AccessControl;
 use yii\base\Security;
 
-/**
- * CashbookController implements the CRUD actions for Cashbook model.
- */
 class CashbookController extends BaseController
 {
     public function behaviors()
@@ -38,11 +35,6 @@ class CashbookController extends BaseController
             ],
         ];
     }
-
-    /**
-     * Lists all Cashbook models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new CashbookSearch();
@@ -55,24 +47,12 @@ class CashbookController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Cashbook model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
-
-    /**
-     * Creates a new Cashbook model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Cashbook;
@@ -105,13 +85,6 @@ class CashbookController extends BaseController
             'model'=>$model,
         ]);
     }
-
-    /**
-     * Updates an existing Cashbook model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -146,17 +119,9 @@ class CashbookController extends BaseController
             'model'=>$model,
         ]);
     }
-
-    /**
-     * Deletes an existing Cashbook model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
- 
         // validate deletion and on failure process any exception
         // e.g. display an error message
         if ($model->delete()) {
@@ -167,13 +132,6 @@ class CashbookController extends BaseController
         Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully deleted"));
         return $this->redirect(['index']);
     }
-
-     /**
-     * User targets Cashbook model.
-     * 
-     * @param integer $id
-     * @return mixed
-     */
     public function actionTarget()
     {
         $model = new Cashbook();
@@ -196,7 +154,7 @@ class CashbookController extends BaseController
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $vtype2 = $command->queryScalar();
 
-        // get las month values;
+        // get last month values;
         $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
         $lastmonth_type1 = $lastmonth_command->queryScalar();
 
@@ -210,8 +168,7 @@ class CashbookController extends BaseController
             'lastmonth_type1' => $lastmonth_type1, 
             'lastmonth_type2' => $lastmonth_type2,            
             ]);  
-    }
-    //https://github.com/yiisoft/yii2/blob/master/docs/guide/db-query-builder.md    
+    }  
     public function actionAccomplishment()
     {
         $model = new Cashbook();
@@ -219,7 +176,6 @@ class CashbookController extends BaseController
         $url = Yii::$app->getRequest()->getQueryParam('category_id');
         $category_id = isset($url) ? $url : 0;
         //$category_id = $model->category_id;
-
         $thisyear  = date('Y');
         $thismonth = date('m');
         $user    = Yii::$app->user->identity->id;
@@ -240,7 +196,7 @@ class CashbookController extends BaseController
  
         for ($i = 0; $i < sizeof($accomplishment); $i++) {
            $m[] = $accomplishment[$i]["m"];
-           $v[] = (int) $accomplishment[$i]["v"];
+           $v[] = abs((int) $accomplishment[$i]["v"]); //turn value into positive number for chart gen
            $n = $accomplishment[$i]["n"];
         }
         return $this->render('accomplishment', [
