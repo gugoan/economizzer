@@ -15,6 +15,9 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+# development support files
+/dev
+
 # composer itself is not needed
 composer.phar
 

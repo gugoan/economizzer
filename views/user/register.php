@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-default-register">
 
 	<h2><?= Html::encode($this->title) ?></h2>
-
+    <hr/>
     <?php if ($flash = Yii::$app->session->getFlash("Register-success")): ?>
 
         <div class="alert alert-success">
