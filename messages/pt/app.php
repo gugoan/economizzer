@@ -13,10 +13,11 @@ return [
     'Are you sure you want to delete?' => 'Tem certeza que deseja excluir?',
     '$' => 'R$',
     'Login to access' => 'Autentique-se',
+    'Login to access the System' => 'Autentique-se para acessar',
     'English USA' => 'Inglês USA',
     'Brazilian Portuguese' => 'Portugês Brasileiro',
     'Spanish' => 'Espanhol',
-    'The Open Source Personal Finance Manager' => 'O Gerenciador Financeiro Pessoal de Código Aberto!',
+    'Open Source Personal Finance Manager' => 'Gerenciador Financeiro Pessoal de Código Aberto!',
     // main menu
     'Cashbook' => 'Lançamentos',
     'Targets' => 'Metas',

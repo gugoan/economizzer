@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>
-          <span><?php echo $this->title; ?></span>
+        	<span><?php echo $this->title; ?></span>
         </h2>
         <hr/>
         <div class="row">

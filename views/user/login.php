@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 	<div class="container">
 		<div class="row">
 		<div class="col-sm-6 col-md-4 col-md-offset-4">
-		<h1 class="text-center login-title"><?php echo Yii::t("user", "Login to access the System");?></h1>
+		<h1 class="text-center login-title"><?php echo Yii::t("app", "Login to access the System");?></h1>
 		<div class="account-wall">
 		<img class="profile-img" src="images/logo-profile.png" alt="">
 			<?php $form = ActiveForm::begin([
