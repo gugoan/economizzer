@@ -16,12 +16,12 @@ $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
 $user      = Yii::$app->user->identity->id;
 ?>
 <div class="row">
-        <div class="col-xs-6 col-md-3">
+        <div class="col-sm-3">
             <?php  echo $this->render('_menu'); ?>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
         <h2>
-          <span><?php echo Yii::t('app', 'Monthly Summary');?> <small><?php echo $thismonth."/".$thisyear ?></small></span>
+          <span><?php echo Yii::t('app', 'Monthly Summary');?></span>
         </h2>
         <hr/>
             <div class="row">

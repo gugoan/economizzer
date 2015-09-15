@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Accomplishment');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-        <div class="col-xs-6 col-md-3">
+        <div class="col-sm-3">
             <?php  echo $this->render('_menu'); ?>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-9">
