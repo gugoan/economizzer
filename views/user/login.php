@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 
 			]); ?>
 
-			<?= $form->field($model, 'username') ?>
+			<?= $form->field($model, 'username')->label(Yii::t('app', 'E-mail / Username'),['class'=>'label-class']) ?>
 			<?= $form->field($model, 'password')->passwordInput() ?>
 			<?= $form->field($model, 'rememberMe', [
 				'template' => "{label}<div class=\"checkbox pull-left\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",

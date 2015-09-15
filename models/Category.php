@@ -43,7 +43,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             'id_category' => Yii::t('app', 'ID'),
             'desc_category' => Yii::t('app', 'Description'),
-            'hexcolor_category' => Yii::t('app', 'Hex Color'),
+            'hexcolor_category' => Yii::t('app', 'Color'),
         ];
     }
 

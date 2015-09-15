@@ -14,6 +14,7 @@ return [
     '$' => 'R$',
     'Login to access' => 'Autentique-se',
     'Login to access the System' => 'Autentique-se para acessar',
+    'E-mail / Username' => 'E-mail / Usuário',
     'English USA' => 'Inglês USA',
     'Brazilian Portuguese' => 'Portugês Brasileiro',
     'Spanish' => 'Espanhol',
@@ -60,7 +61,8 @@ return [
     'Entry updated' => 'Lançamento atualizado',
     'Entry successfully deleted' => 'Lançamento excluído com sucesso',
     // category model
-    'Hex Color' => 'Hex Cor',
+    'Color' => 'Cor',
+    'Create category' => 'Adicionar categoria',
     'Category successfully included' => 'Categoria incluída com sucesso',
     'Category updated' => 'Categoria atualizada',
     'Category successfully deleted' => 'Categoria excluído com sucesso',
