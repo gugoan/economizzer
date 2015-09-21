@@ -4,10 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Cashbook;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\CashbookSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = Yii::t('app', 'Entries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -79,6 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->description <> '' ? '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>'.' <em class="text-muted">('.$model->description.')</em>' : '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>';
                     },
              'contentOptions'=>['style'=>'width: 35%;text-align:left'],
+             'footer' => 'Total',
+             'footerOptions' => ['style'=>'text-align:letf'],                  
             ],
             [
              'class' => 'yii\grid\ActionColumn',
@@ -115,9 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     ]);
                 // },                                                  
              ],
-             'contentOptions'=>['style'=>'width: 20%;text-align:right'],
-             'footer' => 'Total',
-             'footerOptions' => ['style'=>'text-align:right'],             
+             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
             ],
             [
              'label' => '',
@@ -127,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<strong style="color:'.$model->type->hexcolor_type.'">'.Yii::t('app', '$').' '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
-             'contentOptions'=>['style'=>'width: 15%;text-align:right'],
+             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
              //'options' => ['width' => '10%',],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],

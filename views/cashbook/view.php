@@ -12,25 +12,25 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-view">
 
-    <h2>
-        <span><?= Html::encode($this->title) ?></span>
-        <div class="pull-right">
+    <h2><?= Html::encode($this->title) ?></h2>
+    <hr/>
+    <h2 class="pull-right">
+        
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
-                'class' => 'btn btn-primary btn-sm',
-                //'options' => ['style'=> 'margin-right: 2;margin-left: 2'],
-                //'contentOptions'=>['style'=>'margin-right: 2px;']
+                'class' => 'btn btn-primary ',
                 ]
                 ) ?> 
         <?= Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger btn-sm',
+                'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete?'),
                     'method' => 'post',
                 ],
         ]) ?>
-        </div>
+        
     </h2>
-    <hr/>
+    
+
     <?php if ($flash = Yii::$app->session->getFlash("Entry-success")): ?>
 
         <div class="alert text-success">
@@ -38,16 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php endif; ?>
+
+    <h1 class="text-hide">Custom heading</h1>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             [
             'attribute' => 'value',
-            'value' => Yii::t('app', '$')." ".$model->value,
-            ],
-            [
-            'attribute' => 'type_id',
-            'value' => $model->type->desc_type,
+            'format' => 'raw',
+            //'value' => Yii::t('app', '$')." ".$model->value,
+            'value' => $model->type_id == 1 ? '<span class="label label-success">'.Yii::t('app', '$')." ".$model->value.'</span>' : '<span class="label label-danger">'.Yii::t('app', '$')." ".$model->value.'</span>'
             ],
             [
             'attribute' => 'category_id',
@@ -62,8 +63,12 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'is_pending',
              'format' => 'raw',
              'value' => $model->is_pending == 1 ? '<span class="label label-warning">'.Yii::t('app', 'Yes').'</span' : Yii::t('app', 'No'),
-             ],
-            'attachment',
+            ],
+            [
+           'attribute'=>'attachment',
+           'format' => 'raw',
+           'value' => $model->attachment == null ? 'sem anexo' : Html::a('Abrir',"/economizzer/web/attachment/".$model->user_id."/".$model->attachment, ['target' => '_blank']),
+            ],            
             [
             'attribute' => 'inc_datetime',
             'value' => Yii::$app->formatter->asDate($model->inc_datetime, 'long'),
