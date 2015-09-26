@@ -14,7 +14,7 @@ use kartik\color\ColorInput;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-    	<div class="col-sm-2">
+    	<div class="col-sm-3">
     		<?= $form->field($model, 'desc_category')->textInput(['maxlength' => 45]) ?>
     	</div>
     </div>
@@ -29,7 +29,7 @@ use kartik\color\ColorInput;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save') : '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button btn-sm' : 'btn btn-primary grid-button btn-sm']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save') : '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button' : 'btn btn-primary grid-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

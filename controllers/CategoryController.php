@@ -10,10 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-
-/**
- * CategoryController implements the CRUD actions for Category model.
- */
 class CategoryController extends BaseController
 {
     // public function init()
@@ -46,10 +42,6 @@ class CategoryController extends BaseController
         ];
     }
 
-    /**
-     * Lists all Category models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new CategorySearch();
@@ -61,11 +53,6 @@ class CategoryController extends BaseController
         ]);
     }
 
-    /**
-     * Displays a single Category model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -73,11 +60,6 @@ class CategoryController extends BaseController
         ]);
     }
 
-    /**
-     * Creates a new Category model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Category();
@@ -93,12 +75,6 @@ class CategoryController extends BaseController
         }
     }
 
-    /**
-     * Updates an existing Category model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,27 +89,20 @@ class CategoryController extends BaseController
         }
     }
 
-    /**
-     * Deletes an existing Category model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));
-
-        return $this->redirect(['index']);
+        $model= $this->findModel($id);
+        try {
+             $model->delete();
+             Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));
+             return $this->redirect(['index']);
+        } catch(\yii\db\IntegrityException $e) {
+             //throw new \yii\web\ForbiddenHttpException('Could not delete this record.');
+             Yii::$app->session->setFlash("Category-error", Yii::t("app", "This category is associated with some record"));
+             return $this->redirect(['index']);            
+        }        
     }
 
-    /**
-     * Finds the Category model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Category the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Category::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {

@@ -66,6 +66,7 @@ return [
     'Category successfully included' => 'Categoria incluída com sucesso',
     'Category updated' => 'Categoria atualizada',
     'Category successfully deleted' => 'Categoria excluído com sucesso',
+    'This category is associated with some record' => 'Essa categoria está associada a algum registro',
     // view / site
     'Overview' => 'Visão Geral',
     'Monthly Summary' => 'Resumo Mensal',
