@@ -12,25 +12,22 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
 
-    <h2>
-        <span><?= Html::encode($this->title) ?></span>
-        <div class="pull-right">
-            <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id_category], [
-                    'class' => 'btn btn-primary btn-sm',
-                    //'options' => ['style'=> 'margin-right: 2;margin-left: 2'],
-                    //'contentOptions'=>['style'=>'margin-right: 2px;']
-                    ]
-                    ) ?> 
-            <?= Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_category], [
-                    'class' => 'btn btn-danger btn-sm',
-                    'data' => [
-                        'confirm' => Yii::t('app', 'Tem certeza que deseja excluir?'),
-                        'method' => 'post',
-                    ],
-            ]) ?>
-        </div>
-    </h2>
+    <h2><?= Html::encode($this->title) ?></h2>
     <hr/>
+    <h2 class="pull-right">
+    
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id_category], [
+                'class' => 'btn btn-primary',
+                ]
+                ) ?> 
+        <?= Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_category], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Tem certeza que deseja excluir?'),
+                    'method' => 'post',
+                ],
+        ]) ?>
+    </h2>
 
     <?= DetailView::widget([
         'model' => $model,

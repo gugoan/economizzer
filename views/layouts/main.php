@@ -72,7 +72,7 @@ SCRIPT;
                     ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Options'), 'visible' => !Yii::$app->user->isGuest,
                     'items' => 
                         [
-                            ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Category'), 'url' => ['/category/index']],
+                            ['label' => '<i class="fa fa-tag"></i> '.Yii::t('app', 'Category'), 'url' => ['/category/index']],
                             //['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type'), 'url' => ['/type/index']],
                         ],
                     ],
