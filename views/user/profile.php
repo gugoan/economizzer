@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo $form->field($profile, 'language')->dropDownList([
         'en' => Yii::t('app', 'English USA'), 
         'pt' => Yii::t('app', 'Brazilian Portuguese'), 
+        'ru' => Yii::t('app', 'Russian'), 
         ]); 
     ?>
 

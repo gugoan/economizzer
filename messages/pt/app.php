@@ -17,6 +17,7 @@ return [
     'E-mail / Username' => 'E-mail / Usuário',
     'English USA' => 'Inglês USA',
     'Brazilian Portuguese' => 'Portugês Brasileiro',
+    'Russian' => 'Russo',
     'Spanish' => 'Espanhol',
     'Open Source Personal Finance Manager' => 'Gerenciador Financeiro Pessoal de Código Aberto!',
     // main menu
