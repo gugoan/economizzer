@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="cashbook-index">
 <h2>
   <span><?= Html::encode($this->title) ?></span>
-    <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Entry').'', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button btn-sm pull-right']) ?>
+    <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Create').'', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button pull-right']) ?>
 </h2>
 <hr/>
     <?php if ($flash = Yii::$app->session->getFlash("Entry-success")): ?>
