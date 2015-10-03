@@ -14,15 +14,10 @@ use yii\widgets\ActiveForm;
 			<?php $form = ActiveForm::begin([
 				'id' => 'login-form',
 				'options' => ['class' => 'form-signin'],
-				'fieldConfig' => [
-					//'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
-					//'labelOptions' => ['class' => 'col-lg-2 control-label'],
-				],
-
 			]); ?>
 
 			<?= $form->field($model, 'username')->label(Yii::t('app', 'E-mail / Username'),['class'=>'label-class']) ?>
-			<?= $form->field($model, 'password')->passwordInput() ?>
+			<?= $form->field($model, 'password')->label(Yii::t('app', 'Password'),['class'=>'label-class'])->passwordInput() ?>
 			<?= $form->field($model, 'rememberMe', [
 				'template' => "{label}<div class=\"checkbox pull-left\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
 			])->checkbox() ?>

@@ -70,6 +70,7 @@ return [
     'No entries found!' => 'Nenhum lançamento encontrado!',
     'Options' => 'Opções',
     'Overview' => 'Visão Geral',
+    'Password' => 'Senha',
     'Pending' => 'Pendente',
     'Percentage' => 'Percentual',
     'Performance' => 'Desempenho',
