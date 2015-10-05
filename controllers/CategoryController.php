@@ -108,7 +108,7 @@ class CategoryController extends BaseController
         if (($model = Category::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The page you requested is not available or does not exist.');
+            throw new NotFoundHttpException(Yii::t("app", "The page you requested is not available or does not exist."));
         }
     }
 }

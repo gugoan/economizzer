@@ -87,6 +87,7 @@ return [
     'Select' => 'Selecione',
     'Sign Out' => 'Sair',
     'Targets' => 'Metas',
+    'The page you requested is not available or does not exist.' => 'A página solicitada não está disponível ou não existe.',
     'This category is associated with some record' => 'Essa categoria está associada a algum registro',
     'To' => 'Até',
     'Track each category during the year' => 'Acompanhe cada categoria durante o ano',

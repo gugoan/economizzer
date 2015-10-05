@@ -87,6 +87,7 @@ return [
     'Select' => 'Выбор',
     'Sign Out' => 'Выйти',
     'Targets' => 'Цели',
+    'The page you requested is not available or does not exist.' => '',
     'This category is associated with some record' => 'Данная категория используется в записях',
     'To' => 'До',
     'Track each category during the year' => '',

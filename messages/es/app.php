@@ -87,6 +87,7 @@ return [
     'Select' => '',
     'Sign Out' => '',
     'Targets' => '',
+    'The page you requested is not available or does not exist.' => '',
     'This category is associated with some record' => '',
     'To' => '',
     'Track each category during the year' => '',
