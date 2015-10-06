@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_key` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `type` smallint(6) NOT NULL,
-  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `key_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   `consume_time` timestamp NULL DEFAULT NULL,
   `expire_time` timestamp NULL DEFAULT NULL
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_key` (
 -- Extraindo dados da tabela `tb_user_key`
 --
 
-INSERT INTO `tb_user_key` (`id`, `user_id`, `type`, `key`, `create_time`, `consume_time`, `expire_time`) VALUES
+INSERT INTO `tb_user_key` (`id`, `user_id`, `type`, `key_value`, `create_time`, `consume_time`, `expire_time`) VALUES
 (1, 3, 1, 'fgX4vB8x1UW8uGdCaKQTj9kKo7Kfbltp', '2015-02-14 05:03:28', NULL, NULL),
 (3, 3, 2, 'jkApCoj4zQ1osBGZ6gEwIJ9zgLeiOFxb', '2015-04-21 22:15:00', NULL, NULL);
 
@@ -302,7 +302,7 @@ ALTER TABLE `tb_user_auth`
 -- Indexes for table `tb_user_key`
 --
 ALTER TABLE `tb_user_key`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `tb_user_key_key` (`key`) USING BTREE, ADD KEY `tb_user_key_user_id` (`user_id`) USING BTREE;
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `tb_user_key_key` (`key_value`) USING BTREE, ADD KEY `tb_user_key_user_id` (`user_id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
