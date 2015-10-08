@@ -67,6 +67,7 @@ return [
     'Negative' => 'Отрицательный',
     'New Entry' => 'Новая запись',
     'No' => 'Нет',
+    'No attachment' => '',
     'No entries found!' => 'Записи не найдены!',
     'Options' => 'Настройки',
     'Overview' => 'Обзор',

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr/>
     <h2 class="pull-right">
         
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
+        <?= Html::a('<i class="fa fa-pencil-square-o"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
                 'class' => 'btn btn-primary ',
                 ]
                 ) ?> 
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
            'attribute'=>'attachment',
            'format' => 'raw',
-           'value' => $model->attachment == null ? 'sem anexo' : Html::a('Abrir',"/economizzer/web/attachment/".$model->user_id."/".$model->attachment, ['target' => '_blank']),
+           'value' => $model->attachment == null ? Yii::t('app', 'No attachment') : '<span class="glyphicon glyphicon-paperclip"></span> '.Html::a(Yii::t('app', 'Attach'),"/economizzer/web/attachment/".$model->user_id."/".$model->attachment, ['target' => '_blank']),
             ],            
             [
             'attribute' => 'inc_datetime',

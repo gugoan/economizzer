@@ -67,6 +67,7 @@ return [
     'Negative' => 'Negativo',
     'New Entry' => 'Novo Lançamento',
     'No' => 'Não',
+    'No attachment' => '',
     'No entries found!' => 'Nenhum lançamento encontrado!',
     'Options' => 'Opções',
     'Overview' => 'Visão Geral',
