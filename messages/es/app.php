@@ -67,6 +67,7 @@ return [
     'Negative' => '',
     'New Entry' => '',
     'No' => '',
+    'No attachment' => '',
     'No entries found!' => '',
     'Options' => '',
     'Overview' => '',
