@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr/>
     <h2 class="pull-right">
         
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
+        <?= Html::a('<i class="fa fa-pencil-square-o"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
                 'class' => 'btn btn-primary ',
                 ]
                 ) ?> 

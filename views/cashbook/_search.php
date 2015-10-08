@@ -92,8 +92,8 @@ use kartik\widgets\DatePicker;
     <?php // echo $form->field($model, 'edit_datetime') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filter'), ['class' => 'btn btn-primary btn-sm']) ?>
-        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Clean'), ['class' => 'btn btn-default btn-sm']) ?>
+        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filter'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Clean'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -11,7 +11,7 @@ $this->title = $model->desc_category;
     <hr/>
     <h2 class="pull-right">
     
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id_category], [
+        <?= Html::a('<i class="fa fa-pencil-square-o"></i> '.Yii::t('app', 'Update'), ['update', 'id' => $model->id_category], [
                 'class' => 'btn btn-primary',
                 ]
                 ) ?> 
