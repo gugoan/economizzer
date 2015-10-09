@@ -3,14 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\User $user
- * @var amnah\yii2\user\models\User $profile
- * @var string $userDisplayName
- */
-
 $this->title = Yii::t('user', 'Register');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -51,6 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php /* uncomment if you want to add profile fields here
         <?= $form->field($profile, 'full_name') ?>
         */ ?>
+
+        <div class="col-lg-offset-2" style="color:#999;">
+        <!-- These terms are only Economizzer.org :) -->
+            <p><?= Yii::t("user", "Creating your account on Economizzer.org you agree to the terms and usage policies.") ?> <?= HTML::a("Click to read", "http://www.economizzer.org/policies.html", ['target' => '_blank']) ?></p>
+        </div>
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
