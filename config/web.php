@@ -67,9 +67,20 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOAuth',
-                    'clientId' => '',
-                    'clientSecret' => '',
+                    'class' => 'app\components\GoogleOAuth',
+                    'clientId' => '899457081141-8b3tnth007nsmr9jibshoqtv6nvro4ff.apps.googleusercontent.com',
+                    'clientSecret' => 'tut6lEpaoMCmXlrmLiDutQOF',
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => 'xxxxxxxxxx',
+                    'clientSecret' => 'yyyyyyyyyy',
+                    'scope' => 'email',
+                ],
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'consumerKey' => 'xxxxxxxxxx',
+                    'consumerSecret' => 'yyyyyyyyyy',
                 ],
             ]
         ],

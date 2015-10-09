@@ -15,4 +15,8 @@ class UserController extends BaseUserController{
             //'forceTranslation' => true,
         ];
     }
+
+    public function actionAuth(){
+        return "wrong!";
+    }
 }

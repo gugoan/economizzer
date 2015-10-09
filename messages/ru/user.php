@@ -139,5 +139,5 @@ return [
     'Please fill out the following fields to register:' => 'Пожалуйста, заполните следующие поля для регистрации:',
     'Resend' => 'Повторить',
     'Password has been reset' => 'Пароль восстановлено',
-
+    'or'=>'или',
 ];
