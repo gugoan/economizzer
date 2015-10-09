@@ -5,7 +5,13 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'economizzer',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        [
+            'class' => 'app\components\LanguageSelector',
+            'supportedLanguages' => ['en', 'pt-br', 'ru'],
+        ],
+    ],
     'defaultRoute' => 'cashbook/index',
     //'language' => 'en',
     'sourceLanguage' => 'en-US',
@@ -57,10 +63,26 @@ $config = [
                 ],
             ],
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => '899457081141-8b3tnth007nsmr9jibshoqtv6nvro4ff.apps.googleusercontent.com',
+                    'clientSecret' => 'tut6lEpaoMCmXlrmLiDutQOF',
+                ],
+            ]
+        ],
     ],
     'modules' => [
         'user' => [
             'class' => 'amnah\yii2\user\Module',
+            'controllerMap' => [
+                'default' => 'app\controllers\UserController',
+            ],
+            'modelClasses'  => [
+                'Profile' => 'app\models\Profile',
+            ],
             // set custom module properties here ...
         ],
     ],
