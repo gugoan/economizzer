@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use app\models\Cashbook;
 use yii\web\UploadedFile;
 
 /**
