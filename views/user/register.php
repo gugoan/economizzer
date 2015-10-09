@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-lg-offset-2" style="color:#999;">
         <!-- These terms are only Economizzer.org :) -->
-            <p><?= Yii::t("user", "Creating your account on Economizzer.org you agree to the terms and usage policies.") ?> <?= HTML::a("Click to read", "http://www.economizzer.org/policies.html", ['target' => '_blank']) ?></p>
+            <p><?= Yii::t("app", "Creating your account on Economizzer.org you agree to the terms and usage policies,") ?> <?= HTML::a(Yii::t("app", "Click to read"), "http://www.economizzer.org/policies.html", ['target' => '_blank']) ?></p>
         </div>
 
         <div class="form-group">
