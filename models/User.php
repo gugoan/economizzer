@@ -1,103 +1,52 @@
 <?php
 
 namespace app\models;
+use amnah\yii2\user\models\User as BaseUser;
+use Yii;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends BaseUser
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public function rules()
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
-    }
+        // set initial rules
+        $rules = [
+            // general email and username rules
+            [['email', 'username'], 'string', 'max' => 255],
+            [['email', 'username'], 'unique'],
+            [['email', 'username'], 'filter', 'filter' => 'trim'],
+            [['email'], 'email'],
+            [['username'], 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u', 'message' => Yii::t('user', '{attribute} can contain only letters, numbers, and "_"')],
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
+            // password rules
+            [['newPassword'], 'string', 'min' => 3],
+            [['newPassword'], 'filter', 'filter' => 'trim'],
+            [['newPassword'], 'required', 'on' => ['register', 'reset', 'socialonlyaccount']],
+            [['newPasswordConfirm'], 'required', 'on' => ['reset', 'socialonlyaccount']],
+            [['newPasswordConfirm'], 'compare', 'compareAttribute' => 'newPassword', 'message' => Yii::t('user','Passwords do not match')],
+
+            // account page
+            [['currentPassword'], 'required', 'on' => ['account']],
+            [['currentPassword'], 'validateCurrentPassword', 'on' => ['account']],
+
+            // admin crud rules
+            [['role_id', 'status'], 'required', 'on' => ['admin']],
+            [['role_id', 'status'], 'integer', 'on' => ['admin']],
+            [['ban_time'], 'integer', 'on' => ['admin']],
+            [['ban_reason'], 'string', 'max' => 255, 'on' => 'admin'],
+        ];
+
+        // add required rules for email/username depending on module properties
+        $requireFields = ["requireEmail", "requireUsername"];
+        foreach ($requireFields as $requireField) {
+            if (Yii::$app->getModule("user")->$requireField) {
+                $attribute = strtolower(substr($requireField, 7)); // "email" or "username"
+                $rules[]   = [$attribute, "required"];
             }
         }
 
-        return null;
-    }
-
-    /**
-     * Finds user by username
-     *
-     * @param  string      $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param  string  $password password to validate
-     * @return boolean if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+        return $rules;
     }
 }
