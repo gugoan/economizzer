@@ -25,6 +25,7 @@ $config = [
         ],
         'user' => [
             'class' => 'amnah\yii2\user\components\User',
+            'identityClass' => 'app\models\User',
         ],
         'view' => [
                 'theme' => [
@@ -68,21 +69,34 @@ $config = [
             'clients' => [
                 'google' => [
                     'class' => 'app\components\GoogleOAuth',
-                    'clientId' => '899457081141-8b3tnth007nsmr9jibshoqtv6nvro4ff.apps.googleusercontent.com',
-                    'clientSecret' => 'tut6lEpaoMCmXlrmLiDutQOF',
+                    'clientId' => '',
+                    'clientSecret' => '',
                 ],
                 'facebook' => [
                     'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => 'xxxxxxxxxx',
-                    'clientSecret' => 'yyyyyyyyyy',
+                    'clientId' => '',
+                    'clientSecret' => '',
                     'scope' => 'email',
                 ],
                 'twitter' => [
                     'class' => 'yii\authclient\clients\Twitter',
-                    'consumerKey' => 'xxxxxxxxxx',
-                    'consumerSecret' => 'yyyyyyyyyy',
+                    'consumerKey' => '',
+                    'consumerSecret' => '',
+                ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => '',
+                    'clientSecret' => '', // @deploy - set in main-local.php
+                    'scope' => '4194304', // 4194304 in vk API bit masks means 'email'
                 ],
             ]
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\authclient\widgets\AuthChoiceStyleAsset' => [
+                    'sourcePath' => '@app/widgets/authchoice/assets',
+                ],
+            ],
         ],
     ],
     'modules' => [
@@ -90,6 +104,7 @@ $config = [
             'class' => 'amnah\yii2\user\Module',
             'controllerMap' => [
                 'default' => 'app\controllers\UserController',
+                'auth' => 'app\controllers\AuthController'
             ],
             'modelClasses'  => [
                 'Profile' => 'app\models\Profile',

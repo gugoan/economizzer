@@ -28,11 +28,12 @@ use yii\widgets\ActiveForm;
 			<?php ActiveForm::end(); ?>
 
 		    <?php if (Yii::$app->get("authClientCollection", false)): ?>
-		        <div class="col-lg-offset-2">
+<!--		        <div class="col-lg-offset-2">-->
 		            <?= yii\authclient\widgets\AuthChoice::widget([
-		                'baseAuthUrl' => ['/user/auth/login']
+		                'baseAuthUrl' => ['/user/auth/login'],
+						'options' => ['class'=>'auth-flex']
 		            ]) ?>
-		        </div>
+<!--		        </div>-->
 		    <?php endif; ?>
 		</div>
 		</div>

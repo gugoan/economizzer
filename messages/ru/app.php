@@ -70,7 +70,7 @@ return [
     'No entries found!' => 'Записи не найдены!',
     'Options' => 'Настройки',
     'Overview' => 'Обзор',
-    'Password' => '',
+    'Password' => 'Пароль',
     'Pending' => 'Ожидается',
     'Percentage' => 'Проценты',
     'Performance' => 'Производительность',

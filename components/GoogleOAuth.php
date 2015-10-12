@@ -11,7 +11,7 @@ class GoogleOAuth extends BaseGoogleOAuth{
     private $_returnUrl;
 
     /**
-     * Fix wrong redirect_uri
+     * Fix double encoded redirect_uri
      *
      * @return string
      */
