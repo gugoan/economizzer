@@ -69,8 +69,8 @@ INSERT INTO `tb_cashbook` (`id`, `value`, `description`, `date`, `is_pending`, `
 
 CREATE TABLE IF NOT EXISTS `tb_category` (
 `id_category` int(11) NOT NULL,
-  `desc_category` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `hexcolor_category` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `desc_category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `hexcolor_category` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Categories of entries: Water, light, card, etc.' AUTO_INCREMENT=24 ;
 
