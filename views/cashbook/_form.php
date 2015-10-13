@@ -23,7 +23,11 @@ use kartik\widgets\DatePicker;
         '1' => Yii::t('app', 'Revenue'), 
         '2' => Yii::t('app', 'Expense'),
         ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('') ?>
-
+    <div class="row">
+        <div class="col-sm-2">
+            <?= $form->field($model, 'account_id')->dropDownList($accountItems)?>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-2">
         <?php
@@ -33,11 +37,10 @@ use kartik\widgets\DatePicker;
                 'attribute' => 'date',
                 'type' => DatePicker::TYPE_INPUT,
                 'size' => 'sm',
-                'value' => '2015-01-30',
                 //'readonly' => true,
-                'options' => [
-                    'placeholder' => '',
-                ],
+//                'options' => [
+//                    'placeholder' => '',
+//                ],
                 'pluginOptions' => [
                     'autoclose'=>true,
                     'todayHighlight' => true,
@@ -46,7 +49,7 @@ use kartik\widgets\DatePicker;
             ]);
         ?></div>
         </div>
-    <p>
+
     <div class="row">
         <div class="col-sm-2">
         <?= $form->field($model, 'value')->textInput(['size' => 10]) ?>
@@ -55,7 +58,7 @@ use kartik\widgets\DatePicker;
 
     <div class="row">
         <div class="col-sm-3">
-        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>'-- Selecione --'])  ?>
+        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','-- Select one --')])  ?>
         </div>
     </div>
 

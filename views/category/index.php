@@ -14,11 +14,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Create').'', ['/category/create'], ['class'=>'btn btn-primary grid-button pull-right']) ?>
     </h2>
     <hr/>
+
     <?php if ($flash = Yii::$app->session->getFlash("Category-success")): ?>
-        <div class="alert alert-success"><p><em><?= $flash ?></em></p></div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p><em><?= $flash ?></em></p>
+        </div>
     <?php endif; ?>
     <?php if ($flash = Yii::$app->session->getFlash("Category-error")): ?>
-        <div class="alert alert-danger"><p><em><?= $flash ?></em></p></div>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p><em><?= $flash ?></em></p>
+        </div>
     <?php endif; ?>    
 
     <?= GridView::widget([
@@ -36,18 +43,18 @@ $this->params['breadcrumbs'][] = $this->title;
         },
         'columns' => [
             [
-            'attribute' => 'hexcolor_category',
-            'header' => '',
-            'format' => 'raw',
-            'value' => function ($model) {                      
-                    return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>';
-                    },
-            'contentOptions'=>['style'=>'width: 3%;text-align:right'],
+                'attribute' => 'hexcolor_category',
+                'header' => '',
+                'format' => 'raw',
+                'value' => function ($model) {
+                        return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>';
+                        },
+                'contentOptions'=>['style'=>'width: 3%;text-align:right'],
             ],
-            'desc_category',
+                'desc_category',
             [
-            'class' => 'yii\grid\ActionColumn',
-            'contentOptions'=>['style'=>'width: 30%;text-align:right'],
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions'=>['style'=>'width: 30%;text-align:right'],
             ],
         ],
     ]); ?>

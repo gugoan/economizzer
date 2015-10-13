@@ -71,9 +71,18 @@ use kartik\widgets\DatePicker;
         </div>
     </div><p>
 
-    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
+    <?= $form->field($model, 'type_id')->dropDownList(
+        [
+            '1' => Yii::t('app', 'Revenue'),
+            '2' => Yii::t('app', 'Expense'),
+        ],
+        [
+            'prompt'=>Yii::t('app', 'All')
+        ]);//->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app', 'All')])  ?>
+
+    <?= $form->field($model, 'account_id')->dropDownList(ArrayHelper::map(\app\models\Account::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("description ASC")->all(), 'id', 'description'),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'value') ?>
 

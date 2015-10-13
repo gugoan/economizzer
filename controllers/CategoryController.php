@@ -78,6 +78,9 @@ class CategoryController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->user_id != Yii::$app->user->id){
+            throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category updated"));
@@ -92,6 +95,9 @@ class CategoryController extends BaseController
     public function actionDelete($id)
     {
         $model= $this->findModel($id);
+        if ($model->user_id != Yii::$app->user->id){
+            throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
+        }
         try {
              $model->delete();
              Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));

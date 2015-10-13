@@ -78,17 +78,17 @@ $config = [
                     'clientSecret' => '',
                     'scope' => 'email',
                 ],
-                // 'twitter' => [
-                //     'class' => 'yii\authclient\clients\Twitter',
-                //     'consumerKey' => '',
-                //     'consumerSecret' => '',
-                // ],
-                // 'vkontakte' => [
-                //     'class' => 'yii\authclient\clients\VKontakte',
-                //     'clientId' => '',
-                //     'clientSecret' => '', // @deploy - set in main-local.php
-                //     'scope' => '4194304', // 4194304 in vk API bit masks means 'email'
-                // ],
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'consumerKey' => '',
+                    'consumerSecret' => '',
+                ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => '',
+                    'clientSecret' => '', // @deploy - set in main-local.php
+                    'scope' => '4194304', // 4194304 in vk API bit masks means 'email'
+                ],
             ]
         ],
         'assetManager' => [

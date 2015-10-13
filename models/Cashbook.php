@@ -18,6 +18,8 @@ use yii\web\UploadedFile;
  * @property string $attachment
  * @property string $inc_datetime
  * @property string $edit_datetime
+ * @property integer $account_id
+ * @property integer $user_id
  *
  * @property Type $type
  * @property Category $category
@@ -65,7 +67,7 @@ class Cashbook extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'type_id', 'value', 'date'], 'required'],
+            [['category_id', 'type_id', 'value', 'date', 'account_id'], 'required'],
             [['category_id', 'type_id', 'user_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
             [['file'], 'file', 'extensions'=>'jpg, png, pdf', 'maxSize' => 1024 * 1024 * 2],
@@ -144,6 +146,7 @@ class Cashbook extends \yii\db\ActiveRecord
             'edit_datetime' => Yii::t('app', 'Changed'),
             'file' => Yii::t('app', 'File'),
             'filename' => Yii::t('app', 'Filename'),
+            'account_id' => Yii::t('app', 'Account'),
         ];
     }
 
@@ -168,6 +171,14 @@ class Cashbook extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccount()
+    {
+        return $this->hasOne(Account::className(), ['id' => 'account_id']);
     }
 
     public static function pageTotal($provider, $value)

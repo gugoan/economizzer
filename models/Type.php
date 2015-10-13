@@ -42,7 +42,7 @@ class Type extends \yii\db\ActiveRecord
     {
         return [
             'id_type' => Yii::t('app', 'ID'),
-            'desc_type' => Yii::t('app', 'Descrição'),
+            'desc_type' => Yii::t('app', 'Description'),
             'hexcolor_type' => Yii::t('app', 'Hex Cor'),
             'icon_type' => Yii::t('app', 'Icon'),
         ];
