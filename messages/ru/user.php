@@ -54,7 +54,7 @@ return [
     'Update Time' => 'Дата обновления',
     'User ID' => 'Номер пользователя',
     'Yii 2 User' => 'Yii 2 пользователь',
-    'Your email [ {email} ] has been confirmed' => 'Ваш адрес электронной почты [ {email} ] был подтвержден',
+    'Your email [ {email} ] has been confirmed' => 'Ваш адрес электронной почты [ {email} ] было подтверждено',
     'or' => 'или',
     '{attribute} can contain only letters, numbers, and "_"' => '{attribute} может содержать только буквы, цифры и "_"',
     'Сan not disconnect a foreign account' => 'Нельзя отключить чужой аккаунт',

@@ -8,7 +8,7 @@ use app\assets\AppAsset;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+//AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -72,7 +72,9 @@ SCRIPT;
                     ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Options'), 'visible' => !Yii::$app->user->isGuest,
                     'items' => 
                         [
-                            ['label' => '<i class="fa fa-tag"></i> '.Yii::t('app', 'Category'), 'url' => ['/category/index']],
+                            ['label' => '<i class="fa fa-tag"></i> '.Yii::t('app', 'Categories'), 'url' => ['/category/index']],
+                            ['label' => '<i class="fa fa-credit-card"></i> '.Yii::t('app', 'Accounts'), 'url' => ['/account/index']],
+                            ['label' => '<i class="fa fa-money"></i> '.Yii::t('app', 'Currencies'), 'url' => ['/currency/index']],
                             //['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type'), 'url' => ['/type/index']],
                         ],
                     ],

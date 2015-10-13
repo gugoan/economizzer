@@ -79,6 +79,18 @@ $this->params['breadcrumbs'][] = $this->title;
              'footerOptions' => ['style'=>'text-align:letf'],                  
             ],
             [
+                'attribute' => 'account.description',
+                'header' => Yii::t('app','Account'),
+                //'format' => 'raw',
+//                'enableSorting' => true,
+//                'value' => function ($model) {
+//                    return $model->description <> '' ? '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>'.' <em class="text-muted">('.$model->description.')</em>' : '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>';
+//                },
+//                'contentOptions'=>['style'=>'width: 35%;text-align:left'],
+//                'footer' => 'Total',
+//                'footerOptions' => ['style'=>'text-align:letf'],
+            ],
+            [
              'class' => 'yii\grid\ActionColumn',
              'template' => '{pending} {attachment} {view} {update} {delete}',
              'buttons' => [
@@ -120,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'value',
              'format' => 'raw',
              'value' => function ($model) {                      
-                    return '<strong style="color:'.$model->type->hexcolor_type.'">'.Yii::t('app', '$').' '.$model->value.'</strong>';
+                    return '<strong style="color:'.$model->type->hexcolor_type.'">'.(isset($model->account)?$model->account->currency->iso_code:Yii::t('app','$')).' '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 25%;text-align:right'],

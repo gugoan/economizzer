@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17ae034002624a354a4b518de6757aa1",
+    "hash": "5ca75fe21198c0c9bdb42d2ef588430a",
     "content-hash": "7e9d50dda8fe4adae75addd1ff6a6cb2",
     "packages": [
         {
@@ -171,16 +171,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.63",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "c40c7287eadc31e341ebbf0c02352eb55b9cbc48"
+                "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/c40c7287eadc31e341ebbf0c02352eb55b9cbc48",
-                "reference": "c40c7287eadc31e341ebbf0c02352eb55b9cbc48",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/ebceb88a131e1fbc159733a88a6778ffc02debab",
+                "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab",
                 "shasum": ""
             },
             "require": {
@@ -189,12 +189,22 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": [
+                    "./dist/inputmask/inputmask.dependencyLib.jquery.js",
+                    "./dist/inputmask/inputmask.js",
+                    "./dist/inputmask/inputmask.extensions.js",
+                    "./dist/inputmask/inputmask.date.extensions.js",
+                    "./dist/inputmask/inputmask.numeric.extensions.js",
+                    "./dist/inputmask/inputmask.phone.extensions.js",
+                    "./dist/inputmask/inputmask.regex.extensions.js",
                     "./dist/inputmask/jquery.inputmask.js",
-                    "./dist/inputmask/jquery.inputmask.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.date.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.numeric.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.phone.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.regex.extensions.js"
+                    "./dist/jquery.inputmask.bundle.js",
+                    "./extra/dependencyLibs/inputmask.dependencyLib.jqlite.js",
+                    "./extra/dependencyLibs/inputmask.dependencyLib.js",
+                    "./extra/phone-codes/phone-be.js",
+                    "./extra/phone-codes/phone-codes.js",
+                    "./extra/phone-codes/phone-nl.js",
+                    "./extra/phone-codes/phone-ru.js",
+                    "./extra/phone-codes/phone-uk.js"
                 ],
                 "bower-asset-ignore": [
                     "**/.*",
@@ -310,8 +320,7 @@
             },
             "license": [
                 "MIT"
-            ],
-            "time": "2015-03-08 21:03:11"
+            ]
         },
         {
             "name": "cebe/markdown",
@@ -479,12 +488,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "629ec209db306e3838f5c829e3488ff96a8040d8"
+                "reference": "3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/629ec209db306e3838f5c829e3488ff96a8040d8",
-                "reference": "629ec209db306e3838f5c829e3488ff96a8040d8",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a",
+                "reference": "3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a",
                 "shasum": ""
             },
             "type": "library",
@@ -519,7 +528,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-09-29 07:48:34"
+            "time": "2015-10-09 09:23:08"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -1601,12 +1610,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/miloschuman/yii2-highcharts.git",
-                "reference": "d092818143963bcc68ec72e0c749bf1d056b7b8c"
+                "reference": "b251a9e3491f5f18721cc36d36c310047408dfad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/d092818143963bcc68ec72e0c749bf1d056b7b8c",
-                "reference": "d092818143963bcc68ec72e0c749bf1d056b7b8c",
+                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/b251a9e3491f5f18721cc36d36c310047408dfad",
+                "reference": "b251a9e3491f5f18721cc36d36c310047408dfad",
                 "shasum": ""
             },
             "require": {
@@ -1638,7 +1647,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-09-23 19:25:06"
+            "time": "2015-10-12 20:08:30"
         },
         {
             "name": "phpspec/php-diff",
@@ -1733,17 +1742,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e6d46673b555bce2ae84c4985746211cc51d0f4d"
+                "reference": "6f4f0b86030e79d97c0c9084659b5a313c4a3c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e6d46673b555bce2ae84c4985746211cc51d0f4d",
-                "reference": "e6d46673b555bce2ae84c4985746211cc51d0f4d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6f4f0b86030e79d97c0c9084659b5a313c4a3c2d",
+                "reference": "6f4f0b86030e79d97c0c9084659b5a313c4a3c2d",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/jquery": "2.1.*@stable | 1.11.*@stable",
-                "bower-asset/jquery.inputmask": "3.1.*",
+                "bower-asset/jquery.inputmask": "~3.2.2",
                 "bower-asset/punycode": "1.3.*",
                 "bower-asset/yii2-pjax": ">=2.0.1",
                 "cebe/markdown": "~1.0.0 | ~1.1.0",
@@ -1814,7 +1823,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-10-07 15:16:42"
+            "time": "2015-10-12 13:52:19"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2214,12 +2223,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "5c3fa245495903957df6737347cce04d0919a781"
+                "reference": "9198c2f7668b9ee494959f8ff7f5f6e6f65379ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5c3fa245495903957df6737347cce04d0919a781",
-                "reference": "5c3fa245495903957df6737347cce04d0919a781",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9198c2f7668b9ee494959f8ff7f5f6e6f65379ca",
+                "reference": "9198c2f7668b9ee494959f8ff7f5f6e6f65379ca",
                 "shasum": ""
             },
             "require": {
@@ -2256,7 +2265,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-10-06 08:17:03"
+            "time": "2015-10-12 15:48:46"
         },
         {
             "name": "yiisoft/yii2-faker",

@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Account;
 use Yii;
 use app\models\Cashbook;
 use app\models\CashbookSearch;
+use yii\base\ErrorException;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -57,7 +60,8 @@ class CashbookController extends BaseController
     {
         $model = new Cashbook;
         $model->inc_datetime = date("Y-m-d H:i:s"); 
-        $model->user_id = Yii::$app->user->identity->id;       
+        $model->user_id = Yii::$app->user->identity->id;
+        $model->date = date("Y-m-d");
  
         if ($model->load(Yii::$app->request->post())) {
             // process uploaded image file instance
@@ -81,13 +85,23 @@ class CashbookController extends BaseController
                 // error in saving model
             }
         }
+        $accountItems = Account::find()
+            ->select(['id','description'])
+            ->where(['user_id'=>Yii::$app->user->id])
+            ->asArray()
+            ->all();
+        $accountItems = ArrayHelper::map($accountItems,'id','description');
         return $this->render('create', [
-            'model'=>$model,
+            'model' => $model,
+            'accountItems' => $accountItems,
         ]);
     }
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->user_id != Yii::$app->user->id){
+            throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
+        }
         $oldFile = $model->getImageFile();
         $oldattachment = $model->attachment;
         $oldFileName = $model->filename;
@@ -110,18 +124,28 @@ class CashbookController extends BaseController
                     $file->saveAs($path);
                 }
                 Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry updated"));
-                return $this->redirect(['view', 'id'=>$model->id]);
+                return $this->redirect(['index']);
             } else {
                 // error in saving model
             }
         }
+        $accountItems = Account::find()
+            ->select(['id','description'])
+            ->where(['user_id'=>Yii::$app->user->id])
+            ->asArray()
+            ->all();
+        $accountItems = ArrayHelper::map($accountItems,'id','description');
         return $this->render('update', [
             'model'=>$model,
+            'accountItems'=>$accountItems,
         ]);
     }
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
+        if ($model->user_id != Yii::$app->user->id){
+            throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
+        }
         // validate deletion and on failure process any exception
         // e.g. display an error message
         if ($model->delete()) {
