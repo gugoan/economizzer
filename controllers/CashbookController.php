@@ -260,7 +260,7 @@ class CashbookController extends BaseController
         for ($i = 0; $i < sizeof($performance); $i++) {
            $m[] = $performance[$i]["m"];
            $v1[] = (int) $performance[$i]["v1"];
-           $v2[] = (int) $performance[$i]["v2"];
+           $v2[] = abs((int) $performance[$i]["v2"]);
         }
         return $this->render('performance', [
             'model'=>$model,

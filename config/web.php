@@ -17,7 +17,6 @@ $config = [
     'sourceLanguage' => 'en-US',
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'eco',
         ],
         'cache' => [
@@ -30,7 +29,7 @@ $config = [
         'view' => [
                 'theme' => [
                     'pathMap' => [
-                        '@vendor/amnah/yii2-user/views/default' => '@app/views/user', // example: @app/views/user/default/login.php
+                        '@vendor/amnah/yii2-user/views/default' => '@app/views/user',
                     ],
                 ],
             ],        
@@ -41,7 +40,7 @@ $config = [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => true,
             'messageConfig' => [
-                'from' => ['master@economizzer.com' => 'Admin'], // this is needed for sending emails
+                'from' => ['master@economizzer.com' => 'Admin'],
                 'charset' => 'UTF-8',
             ]
         ],
@@ -78,17 +77,17 @@ $config = [
                     'clientSecret' => '',
                     'scope' => 'email',
                 ],
-                'twitter' => [
-                    'class' => 'yii\authclient\clients\Twitter',
-                    'consumerKey' => '',
-                    'consumerSecret' => '',
-                ],
-                'vkontakte' => [
-                    'class' => 'yii\authclient\clients\VKontakte',
-                    'clientId' => '',
-                    'clientSecret' => '', // @deploy - set in main-local.php
-                    'scope' => '4194304', // 4194304 in vk API bit masks means 'email'
-                ],
+                // 'twitter' => [
+                //     'class' => 'yii\authclient\clients\Twitter',
+                //     'consumerKey' => '',
+                //     'consumerSecret' => '',
+                // ],
+                // 'vkontakte' => [
+                //     'class' => 'yii\authclient\clients\VKontakte',
+                //     'clientId' => '',
+                //     'clientSecret' => '', // @deploy - set in main-local.php
+                //     'scope' => '4194304', // 4194304 in vk API bit masks means 'email'
+                // ],
             ]
         ],
         'assetManager' => [

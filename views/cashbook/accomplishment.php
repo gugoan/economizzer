@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr/>
         <div class="row">
         	<div class="panel panel-default">
-                <div class="panel-heading"><strong><?php echo Yii::t('app', 'Track each category during the year');?></strong></div>
-                <div class="panel-body">
+                <div class="panel-heading clearfix"><strong><?php echo Yii::t('app', 'Track each category during the year');?></strong></div>
+                <div class="col-xs-9 col-md-4 pull-right">
+                </p>
                 <?php 
 		        $this->registerJs('var submit = function (val){if (val > 0) {
 				    window.location.href = "' . Url::to(['/cashbook/accomplishment']) . '&category_id=" + val;
@@ -37,7 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             ->orderBy("desc_category ASC")
                             ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
                 ?>
-                </p>
+                </div>
+                <div class="panel-body">
 				<?php
 					echo Highcharts::widget([
 				   'options' => [

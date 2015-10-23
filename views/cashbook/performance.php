@@ -6,13 +6,8 @@ use yii\web\JsExpression;
 use yii\data\SqlDataProvider;
 use app\models\Cashbook;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\CashbookSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Annual Performance');
-$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="row">
@@ -31,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel-body">
                 <?php
                 echo Highcharts::widget([
-
                     'options' => [
                         'credits' => ['enabled' => false],
                         'title' => [
@@ -39,12 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'colors'=> ['#18bc9c','#e74c3c'],
                         'xAxis' => [
-                            //'categories' => ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Nov', 'Dez'],
                             'categories' => $m,
                         ],
                           'yAxis' => [
                              'title' => ['text' => ''],
-                             //'min'=> 0,
                         ],                        
                         'series' => [
                             [
