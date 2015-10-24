@@ -320,7 +320,8 @@
             },
             "license": [
                 "MIT"
-            ]
+            ],
+            "time": "2015-03-08 21:03:11"
         },
         {
             "name": "cebe/markdown",
@@ -432,12 +433,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "f84731b714c4c8dc090c629b631c1fc7bd235d95"
+                "reference": "8e22c18bbe6a5b7831a9b8488e02b85398048c04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/f84731b714c4c8dc090c629b631c1fc7bd235d95",
-                "reference": "f84731b714c4c8dc090c629b631c1fc7bd235d95",
+                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/8e22c18bbe6a5b7831a9b8488e02b85398048c04",
+                "reference": "8e22c18bbe6a5b7831a9b8488e02b85398048c04",
                 "shasum": ""
             },
             "require": {
@@ -480,7 +481,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2015-09-28 09:03:31"
+            "time": "2015-10-17 09:47:56"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -488,12 +489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a"
+                "reference": "dbfca67925de600be890d3a5d976625b51620046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a",
-                "reference": "3457816dce40bc21cd0d34fb4d6a3ed5d3d1598a",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/dbfca67925de600be890d3a5d976625b51620046",
+                "reference": "dbfca67925de600be890d3a5d976625b51620046",
                 "shasum": ""
             },
             "type": "library",
@@ -528,7 +529,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-10-09 09:23:08"
+            "time": "2015-10-23 15:58:30"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -619,12 +620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19"
+                "reference": "2eed12db28138c50439a1429894f4df762b89ac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/2eed12db28138c50439a1429894f4df762b89ac4",
+                "reference": "2eed12db28138c50439a1429894f4df762b89ac4",
                 "shasum": ""
             },
             "require": {
@@ -657,7 +658,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-16 05:19:57"
+            "time": "2015-10-22 18:45:09"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -1742,12 +1743,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "6f4f0b86030e79d97c0c9084659b5a313c4a3c2d"
+                "reference": "0941bbce25f08ee8d0fbbb4d3292996d6cfbf63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6f4f0b86030e79d97c0c9084659b5a313c4a3c2d",
-                "reference": "6f4f0b86030e79d97c0c9084659b5a313c4a3c2d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/0941bbce25f08ee8d0fbbb4d3292996d6cfbf63b",
+                "reference": "0941bbce25f08ee8d0fbbb4d3292996d6cfbf63b",
                 "shasum": ""
             },
             "require": {
@@ -1823,7 +1824,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-10-12 13:52:19"
+            "time": "2015-10-23 14:18:59"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1879,12 +1880,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "5ca562bcc759fbb1d9e3fe679529e44c912aaf05"
+                "reference": "7c6b244d9cfd58a5a10cad9853edc090ffd479b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/5ca562bcc759fbb1d9e3fe679529e44c912aaf05",
-                "reference": "5ca562bcc759fbb1d9e3fe679529e44c912aaf05",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/7c6b244d9cfd58a5a10cad9853edc090ffd479b1",
+                "reference": "7c6b244d9cfd58a5a10cad9853edc090ffd479b1",
                 "shasum": ""
             },
             "require": {
@@ -1921,7 +1922,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-10-08 09:33:22"
+            "time": "2015-10-15 16:22:38"
         },
         {
             "name": "yiisoft/yii2-codeception",
@@ -2223,12 +2224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "9198c2f7668b9ee494959f8ff7f5f6e6f65379ca"
+                "reference": "f6b2ebd8c462494083bfea6c087f79da36503930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9198c2f7668b9ee494959f8ff7f5f6e6f65379ca",
-                "reference": "9198c2f7668b9ee494959f8ff7f5f6e6f65379ca",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f6b2ebd8c462494083bfea6c087f79da36503930",
+                "reference": "f6b2ebd8c462494083bfea6c087f79da36503930",
                 "shasum": ""
             },
             "require": {
@@ -2265,7 +2266,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-10-12 15:48:46"
+            "time": "2015-10-19 10:11:20"
         },
         {
             "name": "yiisoft/yii2-faker",
