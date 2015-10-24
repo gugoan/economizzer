@@ -1,9 +1,9 @@
 Economizzer
 =================================
 
-Economizzer is a simple and open source personal finance manager app made in PHP (Yii Framework 2.0).
+Economizzer is a simple and open source personal finance manager system made in PHP (Yii Framework 2.0).
 
-For now only available in **english** and **portuguese (Brazilian)**
+It is available in the following languages: **English**, **Brazilian Portuguese** and **Russian**.
 
 ![Screnn](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
