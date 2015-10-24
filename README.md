@@ -5,7 +5,7 @@ Economizzer is a simple and open source personal finance manager system made in 
 
 It is available in the following languages: **English**, **Brazilian Portuguese** and **Russian**.
 
-![Screnn](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
+![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
 
 
