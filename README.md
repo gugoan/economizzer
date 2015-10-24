@@ -25,10 +25,6 @@ cd economizzer
 composer require "fxp/composer-asset-plugin:~1.0"
 ~~~
 
-### Zip way:
-
-soon..
-
 
 Configuration
 -------------
