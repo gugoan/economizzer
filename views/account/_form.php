@@ -2,10 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Currency;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Account */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="account-form">
@@ -18,7 +17,8 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <?= $form->field($model, 'currency_id')->dropDownList($currencyItems) ?>
+            
+            <?= $form->field($model, 'currency_id')->dropDownList(ArrayHelper::map(Currency::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("name ASC")->all(), 'id', 'name'),['prompt'=>Yii::t('app','-- Select one --')])  ?>
         </div>
     </div>
 
