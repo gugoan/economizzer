@@ -5,8 +5,6 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'New Entry', [
     'modelClass' => 'Cashbook',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entries'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-create">
 

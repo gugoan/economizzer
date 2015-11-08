@@ -35,13 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('app', 'Create').'', ['/cashbook/create'], ['class'=>'btn btn-primary grid-button pull-right']) ?>
 </h2>
 <hr/>
-    <?php if ($flash = Yii::$app->session->getFlash("Entry-success")): ?>
-
-        <div class="alert text-success">
-            <p><em><?= $flash ?></em></p>
+    <!-- Alerts -->
+    <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
+        <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
+        <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p><?=$message?></p>
         </div>
-
-    <?php endif; ?>
+    <?php endforeach ?>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'tableOptions' => ['class'=>'table table-striped table-hover'],

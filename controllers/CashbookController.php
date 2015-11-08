@@ -150,7 +150,7 @@ class CashbookController extends BaseController
         // e.g. display an error message
         if ($model->delete()) {
             if (!$model->deleteImage()) {
-                Yii::$app->session->setFlash('error', 'Error deleting image');
+                Yii::$app->session->setFlash("Entry-danger", 'Error deleting image');
             }
         }
         Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully deleted"));

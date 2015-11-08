@@ -3,14 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\forms\ForgotForm $model
- */
-
 $this->title = Yii::t('user', 'Forgot password');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-forgot">
 

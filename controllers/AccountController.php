@@ -13,9 +13,6 @@ use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * AccountController implements the CRUD actions for Account model.
- */
 class AccountController extends BaseController
 {
     public function behaviors()
@@ -40,10 +37,6 @@ class AccountController extends BaseController
         ];
     }
 
-    /**
-     * Lists all Account models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new Account();
@@ -57,11 +50,6 @@ class AccountController extends BaseController
         ]);
     }
 
-    /**
-     * Creates a new Account model.
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Account();
@@ -79,12 +67,6 @@ class AccountController extends BaseController
         }
     }
 
-    /**
-     * Updates an existing Account model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -103,12 +85,6 @@ class AccountController extends BaseController
         }
     }
 
-    /**
-     * Deletes an existing Account model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -120,13 +96,6 @@ class AccountController extends BaseController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Account model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Account the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Account::findOne($id)) !== null) {

@@ -7,8 +7,6 @@ use app\models\Cashbook;
 
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Overview');
-$this->params['breadcrumbs'][] = $this->title;
-
 
 $thisyear  = date('Y');
 $thismonth = date('m');

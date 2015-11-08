@@ -3,14 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\forms\ResendForm $model
- */
-
 $this->title = Yii::t('user', 'Resend');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-resend">
 

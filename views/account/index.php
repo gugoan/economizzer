@@ -3,12 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\AccountSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = Yii::t('app', 'Accounts');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="account-index">
 
@@ -33,11 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => ['class'=>'table table-striped table-hover'],
         'summary'     =>  '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'description',
             'currency.name',
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',

@@ -4,13 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Button;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\User $user
- */
 $this->title = Yii::t('user', 'Account');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-account">
     <h2>

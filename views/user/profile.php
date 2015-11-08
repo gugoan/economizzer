@@ -3,27 +3,21 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\Profile $profile
- */
-
 $this->title = Yii::t('user', 'Profile');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-profile">
 
 	<h2><?= Html::encode($this->title) ?></h2>
     <hr/>
 
-    <?php if ($flash = Yii::$app->session->getFlash("Profile-success")): ?>
-
-        <div class="alert alert-success">
-            <p><?= $flash ?></p>
+    <!-- Alerts -->
+    <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
+        <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
+        <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p><?=$message?></p>
         </div>
-
-    <?php endif; ?>
+    <?php endforeach ?> 
 
     <?php $form = ActiveForm::begin([
         'id' => 'profile-form',

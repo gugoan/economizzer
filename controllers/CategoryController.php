@@ -104,7 +104,7 @@ class CategoryController extends BaseController
              return $this->redirect(['index']);
         } catch(\yii\db\IntegrityException $e) {
              //throw new \yii\web\ForbiddenHttpException('Could not delete this record.');
-             Yii::$app->session->setFlash("Category-error", Yii::t("app", "This category is associated with some record"));
+             Yii::$app->session->setFlash("Category-danger", Yii::t("app", "This category is associated with some record"));
              return $this->redirect(['index']);            
         }        
     }

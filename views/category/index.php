@@ -5,7 +5,6 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Categories');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="category-index">
@@ -15,18 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </h2>
     <hr/>
 
-    <?php if ($flash = Yii::$app->session->getFlash("Category-success")): ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
+    <!-- Alerts -->
+    <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
+        <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
+        <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <p><em><?= $flash ?></em></p>
+            <p><?=$message?></p>
         </div>
-    <?php endif; ?>
-    <?php if ($flash = Yii::$app->session->getFlash("Category-error")): ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <p><em><?= $flash ?></em></p>
-        </div>
-    <?php endif; ?>    
+    <?php endforeach ?> 
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

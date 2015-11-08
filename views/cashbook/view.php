@@ -3,12 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Cashbook */
-
 $this->title = Yii::t('app', 'Entry') . " #".$model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entry'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cashbook-view">
 
@@ -30,14 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
         
     </h2>
     
-
-    <?php if ($flash = Yii::$app->session->getFlash("Entry-success")): ?>
-
-        <div class="alert text-success">
-            <p><em><?= $flash ?></em></p>
+    <!-- Alerts -->
+    <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
+        <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
+        <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p><?=$message?></p>
         </div>
-
-    <?php endif; ?>
+    <?php endforeach ?> 
 
     <h1 class="text-hide">Custom heading</h1>
 

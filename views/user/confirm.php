@@ -2,11 +2,6 @@
 
 use yii\helpers\Html;
 
-/**
- * @var yii\web\View $this
- * @var bool $success
- */
-
 $this->title = Yii::t('user', $success ? 'Confirmed' : 'Error');
 ?>
 <div class="user-default-confirm">

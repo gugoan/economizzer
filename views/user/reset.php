@@ -3,16 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var amnah\yii2\user\models\User $user
- * @var bool $success
- * @var bool $invalidKey
- */
-
 $this->title = Yii::t('user', 'Reset');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-reset">
 
