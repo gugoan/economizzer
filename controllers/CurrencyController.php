@@ -11,9 +11,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
-/**
- * CurrencyController implements the CRUD actions for Currency model.
- */
 class CurrencyController extends BaseController
 {
     public function behaviors()
@@ -39,10 +36,6 @@ class CurrencyController extends BaseController
         ];
     }
 
-    /**
-     * Lists all Currency models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new Currency();
@@ -56,11 +49,6 @@ class CurrencyController extends BaseController
         ]);
     }
 
-    /**
-     * Creates a new Currency model.
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Currency();
@@ -75,12 +63,6 @@ class CurrencyController extends BaseController
         }
     }
 
-    /**
-     * Updates an existing Currency model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -91,7 +73,7 @@ class CurrencyController extends BaseController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash("Account-success", Yii::t("app", "Currency successfully updated"));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -99,12 +81,6 @@ class CurrencyController extends BaseController
         }
     }
 
-    /**
-     * Deletes an existing Currency model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -116,13 +92,6 @@ class CurrencyController extends BaseController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Currency model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Currency the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Currency::findOne($id)) !== null) {
