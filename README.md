@@ -1,4 +1,4 @@
-Economizzer
+![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/favicon-32x32.png) Economizzer
 =================================
 
 Economizzer is a simple and open source personal finance manager system made in PHP (Yii Framework 2.0).
