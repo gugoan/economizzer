@@ -40,7 +40,7 @@ class Currency extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => Yii::t('app', 'Currency'),
             'short_name' => Yii::t('app', 'Short Name'),
             'iso_code' => Yii::t('app', 'Iso Code'),
             'currency_rate' => Yii::t('app', 'Currency Rate'),

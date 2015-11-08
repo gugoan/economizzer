@@ -2,13 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\CurrencySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Currencies');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="currency-index">
 
@@ -18,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </h2>
     <hr/>
 
-    <!-- Alerts -->
     <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
         <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
         <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
@@ -29,20 +24,38 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
         'tableOptions' => ['class'=>'table table-striped table-hover'],
         'summary'     =>  '',
+        'rowOptions'   => function ($model, $index, $widget, $grid) {
+                return [
+                    'id' => $model['id'], 
+                    'onclick' => 'location.href="'
+                        . Yii::$app->urlManager->createUrl('currency/view') 
+                        . '&id="+(this.id);',
+                    'style' => "cursor: pointer",
+                ];
+        },        
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'name',
             'short_name',
             'iso_code',
             'currency_rate',
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',
+                'buttons' => [
+                    'update' => function ($url) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-edit"></span>',
+                            $url, 
+                            [
+                                'title' => Yii::t('app', 'Update'),
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },
+                ],
+                'contentOptions'=>['style'=>'width: 20%;text-align:right'],
             ],
         ],
     ]); ?>

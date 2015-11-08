@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Accounts');
 ?>
@@ -13,7 +14,6 @@ $this->title = Yii::t('app', 'Accounts');
     </h2>
     <hr/>
 
-    <!-- Alerts -->
     <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
         <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
         <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
@@ -24,15 +24,36 @@ $this->title = Yii::t('app', 'Accounts');
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
         'tableOptions' => ['class'=>'table table-striped table-hover'],
         'summary'     =>  '',
+        'rowOptions'   => function ($model, $index, $widget, $grid) {
+                return [
+                    'id' => $model['id'], 
+                    'onclick' => 'location.href="'
+                        . Yii::$app->urlManager->createUrl('account/view') 
+                        . '&id="+(this.id);',
+                    'style' => "cursor: pointer",
+                ];
+        },
         'columns' => [
             'description',
             'currency.name',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',
+                'buttons' => [
+                    'update' => function ($url) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-edit"></span>',
+                            $url, 
+                            [
+                                'title' => Yii::t('app', 'Update'),
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },
+                ],
+                'contentOptions'=>['style'=>'width: 20%;text-align:right'],
             ],
         ],
     ]); ?>

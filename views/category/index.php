@@ -14,7 +14,6 @@ $this->title = Yii::t('app', 'Categories');
     </h2>
     <hr/>
 
-    <!-- Alerts -->
     <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
         <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
         <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
@@ -49,7 +48,20 @@ $this->title = Yii::t('app', 'Categories');
                 'desc_category',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'contentOptions'=>['style'=>'width: 30%;text-align:right'],
+                'template' => '{update} {delete}',
+                'buttons' => [
+                    'update' => function ($url) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-edit"></span>',
+                            $url, 
+                            [
+                                'title' => Yii::t('app', 'Update'),
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },
+                ],
+                'contentOptions'=>['style'=>'width: 20%;text-align:right'],
             ],
         ],
     ]); ?>
