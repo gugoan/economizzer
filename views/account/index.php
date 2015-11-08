@@ -30,7 +30,7 @@ $this->title = Yii::t('app', 'Accounts');
                 return [
                     'id' => $model['id'], 
                     'onclick' => 'location.href="'
-                        . Yii::$app->urlManager->createUrl('account/view') 
+                        . Yii::$app->urlManager->createUrl('account/update') 
                         . '&id="+(this.id);',
                     'style' => "cursor: pointer",
                 ];

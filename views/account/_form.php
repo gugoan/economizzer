@@ -17,13 +17,12 @@ use app\models\Currency;
     </div>
     <div class="row">
         <div class="col-sm-3">
-            
             <?= $form->field($model, 'currency_id')->dropDownList(ArrayHelper::map(Currency::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("name ASC")->all(), 'id', 'name'),['prompt'=>Yii::t('app','-- Select one --')])  ?>
         </div>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save'), ['class' => 'btn btn-primary grid-button']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save') : '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button' : 'btn btn-primary grid-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

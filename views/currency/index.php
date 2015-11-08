@@ -30,7 +30,7 @@ $this->title = Yii::t('app', 'Currencies');
                 return [
                     'id' => $model['id'], 
                     'onclick' => 'location.href="'
-                        . Yii::$app->urlManager->createUrl('currency/view') 
+                        . Yii::$app->urlManager->createUrl('currency/update') 
                         . '&id="+(this.id);',
                     'style' => "cursor: pointer",
                 ];
