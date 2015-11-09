@@ -17,6 +17,8 @@ class LanguageSelector implements BootstrapInterface
         if(!Yii::$app->user->isGuest) {
 
             Yii::$app->language = Yii::$app->user->identity->profile->language;
+            Yii::$app->defaultRoute = Yii::$app->user->identity->profile->startpage;
+            //Yii::$app->defaultRoute = 'cashbook/overview';
             //Yii::$app->user->getIdentity()->language = Yii::$app->language;
             // Yii::$app->formatter->defaultTimeZone = 'Europe/Malta';
             // Yii::$app->formatter->timeZone = 'Europe/Malta';

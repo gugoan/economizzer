@@ -12,15 +12,6 @@ use app\models\Cashbook;
 
 class SiteController extends BaseController
 {
-    // public function init()
-    // {
-    //     parent::init();
-
-    //     if(!Yii::$app->user->isGuest) {
-    //         Yii::$app->language = Yii::$app->user->identity->profile->language;
-    //     }
-    // }
-
     public function behaviors()
     {
         return [

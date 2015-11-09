@@ -10,7 +10,6 @@ $this->title = Yii::t('user', 'Profile');
 	<h2><?= Html::encode($this->title) ?></h2>
     <hr/>
 
-    <!-- Alerts -->
     <?php foreach (Yii::$app->session->getAllFlashes() as $key=>$message):?>
         <?php $alertClass = substr($key,strpos($key,'-')+1); ?>
         <div class="alert alert-dismissible alert-<?=$alertClass?>" role="alert">
@@ -35,6 +34,12 @@ $this->title = Yii::t('user', 'Profile');
         'en' => Yii::t('app', 'English USA'), 
         'pt' => Yii::t('app', 'Brazilian Portuguese'), 
         'ru' => Yii::t('app', 'Russian'), 
+        ]); 
+    ?>
+
+    <?php echo $form->field($profile, 'startpage')->dropDownList([
+        'cashbook/index' => Yii::t('app', 'Entries Page'), 
+        'cashbook/overview' => Yii::t('app', 'Dashboard Page'), 
         ]); 
     ?>
 

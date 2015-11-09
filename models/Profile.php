@@ -17,23 +17,17 @@ use Yii;
  */
 class Profile extends BaseProfile {
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-//            [['user_id'], 'required'],
-//            [['user_id'], 'integer'],
-//            [['create_time', 'update_time'], 'safe'],
+            // [['user_id'], 'required'],
+            // [['user_id'], 'integer'],
+            // [['create_time', 'update_time'], 'safe'],
             [['full_name'], 'string', 'max' => 255],
-            [['language'], 'string', 'max' => 100],
+            [['language', 'startpage'], 'string', 'max' => 100],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -43,6 +37,7 @@ class Profile extends BaseProfile {
             'update_time' => Yii::t('user', 'Update Time'),
             'full_name'   => Yii::t('user', 'Full Name'),
             'language' => Yii::t('user', 'Language'),
+            'startpage'   => Yii::t('user', 'Start Page'), 
         ];
     }
 }
