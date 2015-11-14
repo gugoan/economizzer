@@ -100,8 +100,8 @@ SCRIPT;
     </div>
 
     <footer class="footer">
-        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - 
-            <?= Html::a('Economizzer', 'http://www.economizzer.org') ?> - 
+        <div class="container" align="center">
+            <?= Html::a('Economizzer', 'http://www.economizzer.org') ?> &copy; <?= date('Y') ?> - 
             <?= Html::a('<i class="fa fa-twitter-square fa-lg"></i>', 'https://twitter.com/economizzer') ?> <?= Html::a('<i class="fa fa-facebook-square fa-lg"></i>', 'https://www.facebook.com/economizzer') ?>
         </div>
     </footer>
