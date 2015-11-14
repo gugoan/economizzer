@@ -32,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php if (Yii::$app->getModule("user")->requireEmail): ?>
             <?= $form->field($user, 'email') ?>
+            <div class="col-lg-offset-2" style="color:#999;">
+                <p><?= Yii::t("app", "Enter a valid email! You need to confirm your registration!") ?></p>
+            </div>
         <?php endif; ?>
 
         <?php if (Yii::$app->getModule("user")->requireUsername): ?>

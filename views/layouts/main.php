@@ -101,8 +101,9 @@ SCRIPT;
 
     <footer class="footer">
         <div class="container" align="center">
-            <?= Html::a('Economizzer', 'http://www.economizzer.org') ?> &copy; <?= date('Y') ?> - 
-            <?= Html::a('<i class="fa fa-twitter-square fa-lg"></i>', 'https://twitter.com/economizzer') ?> <?= Html::a('<i class="fa fa-facebook-square fa-lg"></i>', 'https://www.facebook.com/economizzer') ?>
+            <?= Html::a('Economizzer', 'http://www.economizzer.org', ['target'=>'_blank']) ?> &copy; <?= date('Y') ?>  
+            <?= Html::a('<i class="fa fa-twitter-square fa-lg"></i>', 'https://twitter.com/economizzer', ['target'=>'_blank']) ?> 
+            <?= Html::a('<i class="fa fa-facebook-square fa-lg"></i>', 'https://www.facebook.com/economizzer', ['target'=>'_blank']) ?>
         </div>
     </footer>
 
