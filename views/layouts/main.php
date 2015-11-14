@@ -5,9 +5,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 //AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -75,7 +72,6 @@ SCRIPT;
                             ['label' => '<i class="fa fa-tag"></i> '.Yii::t('app', 'Categories'), 'url' => ['/category/index']],
                             ['label' => '<i class="fa fa-credit-card"></i> '.Yii::t('app', 'Accounts'), 'url' => ['/account/index']],
                             ['label' => '<i class="fa fa-money"></i> '.Yii::t('app', 'Currencies'), 'url' => ['/currency/index']],
-                            //['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Type'), 'url' => ['/type/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
@@ -104,7 +100,9 @@ SCRIPT;
     </div>
 
     <footer class="footer">
-        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - <?= Html::a('Economizzer', 'http://www.economizzer.org') ?>
+        <div class="container" align="center">Copyright &copy; <?= date('Y') ?> - 
+            <?= Html::a('Economizzer', 'http://www.economizzer.org') ?> - 
+            <?= Html::a('<i class="fa fa-twitter-square fa-lg"></i>', 'https://twitter.com/economizzer') ?> <?= Html::a('<i class="fa fa-facebook-square fa-lg"></i>', 'https://www.facebook.com/economizzer') ?>
         </div>
     </footer>
 
