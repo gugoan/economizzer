@@ -52,6 +52,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'showFooter'   => true,
         'showOnEmpty'  => false,
         'footerRowOptions'=>['style'=>'font-weight:bold;'],
+        'rowOptions'   => function ($model, $index, $widget, $grid) {
+                return [
+                    'id' => $model['id'], 
+                    'onclick' => 'location.href="'
+                        . Yii::$app->urlManager->createUrl('cashbook/view') 
+                        . '&id="+(this.id);',
+                    'style' => "cursor: pointer",
+                ];
+        },        
         'columns'    => [
             [
             'attribute' => 'date',
@@ -59,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function ($model) {                      
                     return $model->date <> '' ? Yii::$app->formatter->asDate($model->date, 'short') : Yii::$app->formatter->asDate($model->date, 'short');
                     },
-             'contentOptions'=>['style'=>'width: 10%;text-align:left'],
+             'contentOptions'=>['style'=>'width: 15%;text-align:left'],
             ],
             [
             'attribute' => 'category_id',
@@ -68,22 +77,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function ($model) {                      
                     return $model->description <> '' ? '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>'.' <em class="text-muted">('.$model->description.')</em>' : '<span style="color:'.$model->category->hexcolor_category.'">'.$model->category->desc_category.'</span>';
                     },
-            'contentOptions'=>['style'=>'width: 35%;text-align:left'],
+            'contentOptions'=>['style'=>'width: 55%;text-align:left'],
             'footer' => 'Total',
             'footerOptions' => ['style'=>'text-align:letf'],                  
-            ],
-            [
-            'class' => 'yii\grid\ActionColumn',
-            'template' => '{pending} {view} {update} {delete}',
-            'buttons' => [
-                'pending' => function ($url, $model) {
-                    return $model->is_pending <> 0 ? Html::a('<span class="glyphicon glyphicon-alert text-danger" ></span>', $url, [
-                        'title' => Yii::t('app', 'Pending'),
-                                    //'class'=>'btn btn-primary btn-xs',                                  
-                    ]) : '';
-                },                                                 
-             ],
-             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
             ],
             [
              'label' => '',
@@ -93,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<strong style="color:'.$model->type->hexcolor_type.'">'.' '.$model->value.'</strong>';
                     },
              'enableSorting' => true,
-             'contentOptions'=>['style'=>'width: 25%;text-align:right'],
+             'contentOptions'=>['style'=>'width: 30%;text-align:right'],
              //'options' => ['width' => '10%',],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],
