@@ -5,30 +5,8 @@ namespace app\models;
 use Yii;
 use yii\web\UploadedFile;
 
-/**
- * This is the model class for table "tb_cashbook".
- *
- * @property integer $id
- * @property integer $category_id
- * @property integer $type_id
- * @property double $value
- * @property string $description
- * @property string $date
- * @property integer $is_pending
- * @property string $attachment
- * @property string $inc_datetime
- * @property string $edit_datetime
- * @property integer $account_id
- * @property integer $user_id
- *
- * @property Type $type
- * @property Category $category
- */
 class Cashbook extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public $file;
     public $filename;
 
@@ -61,9 +39,6 @@ class Cashbook extends \yii\db\ActiveRecord
         return 'tb_cashbook';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -128,9 +103,6 @@ class Cashbook extends \yii\db\ActiveRecord
         return true;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -150,32 +122,21 @@ class Cashbook extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getType()
     {
         return $this->hasOne(Type::className(), ['id_type' => 'type_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id_category' => 'category_id']);
     }
-    /**
-    * @return \yii\db\ActiveQuery
-    */
+
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getAccount()
     {
         return $this->hasOne(Account::className(), ['id' => 'account_id']);

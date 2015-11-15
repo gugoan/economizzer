@@ -7,9 +7,6 @@ use app\models\Category;
 use app\models\Type;
 use kartik\widgets\DatePicker;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\CashbookSearch */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="cashbook-search">
@@ -78,27 +75,16 @@ use kartik\widgets\DatePicker;
         ],
         [
             'prompt'=>Yii::t('app', 'All')
-        ]);//->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
+        ]);
+        //->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app', 'All')])  ?>
-
-    <?= $form->field($model, 'account_id')->dropDownList(ArrayHelper::map(\app\models\Account::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("description ASC")->all(), 'id', 'description'),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'value') ?>
 
     <?= $form->field($model, 'description') ?>
 
     <?= $form->field($model, 'is_pending')->checkbox() ?>
-
-    <?php // echo $form->field($model, 'date') ?>
-
-    <?php // echo $form->field($model, 'is_pending') ?>
-
-    <?php // echo $form->field($model, 'attachment') ?>
-
-    <?php // echo $form->field($model, 'inc_datetime') ?>
-
-    <?php // echo $form->field($model, 'edit_datetime') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filter'), ['class' => 'btn btn-primary']) ?>

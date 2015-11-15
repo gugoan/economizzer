@@ -70,8 +70,6 @@ SCRIPT;
                     'items' => 
                         [
                             ['label' => '<i class="fa fa-tag"></i> '.Yii::t('app', 'Categories'), 'url' => ['/category/index']],
-                            ['label' => '<i class="fa fa-credit-card"></i> '.Yii::t('app', 'Accounts'), 'url' => ['/account/index']],
-                            ['label' => '<i class="fa fa-money"></i> '.Yii::t('app', 'Currencies'), 'url' => ['/currency/index']],
                         ],
                     ],
                     Yii::$app->user->isGuest ?
