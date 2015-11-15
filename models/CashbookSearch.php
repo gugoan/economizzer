@@ -7,14 +7,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Cashbook;
 
-/**
- * CashbookSearch represents the model behind the search form about `app\models\Cashbook`.
- */
 class CashbookSearch extends Cashbook
 {
-    /**
-     * @inheritdoc
-     */
     public $start_date;
     public $end_date;
     
@@ -28,22 +22,12 @@ class CashbookSearch extends Cashbook
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Cashbook::find();
@@ -51,15 +35,13 @@ class CashbookSearch extends Cashbook
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-            // Set the default sort by name ASC and created_at DESC.
-            'defaultOrder' => [
-                'date' => SORT_DESC, 
-                //'created_at' => SORT_DESC
+                'defaultOrder' => [
+                    'date' => SORT_DESC, 
                 ]
             ],
             'pagination' => [
                 'pageSize' => 100,
-                ],
+            ],
         ]);
 
         $this->load($params);
