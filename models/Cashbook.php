@@ -118,7 +118,6 @@ class Cashbook extends \yii\db\ActiveRecord
             'edit_datetime' => Yii::t('app', 'Changed'),
             'file' => Yii::t('app', 'File'),
             'filename' => Yii::t('app', 'Filename'),
-            'account_id' => Yii::t('app', 'Account'),
         ];
     }
 
@@ -135,11 +134,6 @@ class Cashbook extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    public function getAccount()
-    {
-        return $this->hasOne(Account::className(), ['id' => 'account_id']);
     }
 
     public static function pageTotal($provider, $value)

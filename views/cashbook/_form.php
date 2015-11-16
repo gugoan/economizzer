@@ -23,11 +23,7 @@ use kartik\widgets\DatePicker;
         '1' => Yii::t('app', 'Revenue'), 
         '2' => Yii::t('app', 'Expense'),
         ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('') ?>
-    <div class="row">
-        <div class="col-sm-2">
-            <?= $form->field($model, 'account_id')->dropDownList($accountItems)?>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-sm-2">
         <?php
@@ -58,7 +54,7 @@ use kartik\widgets\DatePicker;
 
     <div class="row">
         <div class="col-sm-3">
-        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','-- Select one --')])  ?>
+        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id, 'is_active' => 1])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','Select')])  ?>
         </div>
     </div>
 

@@ -85,15 +85,8 @@ class CashbookController extends BaseController
                 // error in saving model
             }
         }
-        $accountItems = Account::find()
-            ->select(['id','description'])
-            ->where(['user_id'=>Yii::$app->user->id])
-            ->asArray()
-            ->all();
-        $accountItems = ArrayHelper::map($accountItems,'id','description');
         return $this->render('create', [
             'model' => $model,
-            'accountItems' => $accountItems,
         ]);
     }
     public function actionUpdate($id)

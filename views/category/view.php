@@ -27,9 +27,18 @@ $this->title = $model->desc_category;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_category',
+            //'id_category',
             'desc_category',
-            'hexcolor_category',
+            [
+            'attribute' => 'hexcolor_category',
+            'format' => 'raw',
+            'value' => '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>',
+            ],
+            [
+            'attribute' => 'is_active',
+            'format' => 'raw',
+            'value' => $model->is_active == 1 ? Yii::t('app', 'Yes') : Yii::t('app', 'No'),
+            ],
         ],
     ]) ?>
 

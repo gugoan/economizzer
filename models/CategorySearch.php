@@ -12,7 +12,7 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id_category'], 'integer'],
+            [['id_category', 'is_active'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'safe'],
         ];
     }
@@ -49,6 +49,7 @@ class CategorySearch extends Category
 
         $query->andFilterWhere([
             'id_category' => $this->id_category,
+            'is_active' => $this->is_active,
             'user_id' => Yii::$app->user->identity->id,
         ]);
 

@@ -15,7 +15,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['desc_category'], 'required'],
-            [['user_id'], 'integer'],
+            [['is_active','user_id'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'string', 'max' => 45]
         ];
     }
@@ -26,6 +26,7 @@ class Category extends \yii\db\ActiveRecord
             'id_category' => Yii::t('app', 'ID'),
             'desc_category' => Yii::t('app', 'Description'),
             'hexcolor_category' => Yii::t('app', 'Color'),
+            'is_active' => Yii::t('app', 'Active'),
         ];
     }
 

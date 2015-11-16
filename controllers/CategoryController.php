@@ -12,14 +12,6 @@ use yii\filters\AccessControl;
 
 class CategoryController extends BaseController
 {
-    // public function init()
-    // {
-    //     parent::init();
-
-    //     // if(!Yii::$app->user->isGuest) {
-    //     //   Yii::$app->user->getIdentity()->language = Yii::$app->language;
-    //     // }
-    // }
     public function behaviors()
     {
         return [

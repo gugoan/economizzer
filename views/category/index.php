@@ -37,18 +37,26 @@ $this->title = Yii::t('app', 'Categories');
         },
         'columns' => [
             [
-                'attribute' => 'hexcolor_category',
-                'header' => '',
-                'format' => 'raw',
-                'value' => function ($model) {
-                        return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>';
-                        },
-                'contentOptions'=>['style'=>'width: 3%;text-align:right'],
+            'attribute' => 'hexcolor_category',
+            'header' => '',
+            'format' => 'raw',
+            'value' => function ($model) {
+                    return '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>';
+                    },
+            'contentOptions'=>['style'=>'width: 3%;text-align:right'],
             ],
-                'desc_category',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
+            'attribute' => 'desc_category',
+            'format' => 'raw',
+            'enableSorting' => true,
+            'value' => function ($model) {                      
+                return $model->is_active <> 1 ? '<del>'.$model->desc_category.'</del>' : $model->desc_category;
+                },
+             'contentOptions'=>['style'=>'width: 75%;text-align:left'],
+            ],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function ($url) {
                         return Html::a(
@@ -61,7 +69,7 @@ $this->title = Yii::t('app', 'Categories');
                         );
                     },
                 ],
-                'contentOptions'=>['style'=>'width: 20%;text-align:right'],
+            'contentOptions'=>['style'=>'width: 20%;text-align:right'],
             ],
         ],
     ]); ?>

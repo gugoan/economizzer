@@ -15,7 +15,7 @@ class CashbookSearch extends Cashbook
     public function rules()
     {
         return [
-            [['id', 'category_id', 'type_id', 'is_pending', 'account_id'], 'integer'],
+            [['id', 'category_id', 'type_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
             [['start_date', 'end_date'], 'date', 'format'=>'yyyy-mm-dd', 'message' => 'Data inválida!'],
             [['description', 'date', 'start_date', 'end_date', 'attachment', 'inc_datetime', 'edit_datetime'], 'safe'],
@@ -64,7 +64,6 @@ class CashbookSearch extends Cashbook
             'inc_datetime' => $this->inc_datetime,
             'edit_datetime' => $this->edit_datetime,
             'user_id' => Yii::$app->user->identity->id,
-            'account_id' => $this->account_id,
         ]);
 
         $query->andFilterWhere(['between', 'date', $this->start_date, $this->end_date]);

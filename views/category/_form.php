@@ -25,6 +25,15 @@ use kartik\color\ColorInput;
 	    </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-2">
+        <?= $form->field($model, 'is_active')->radioList([
+        '1' => Yii::t('app', 'Yes'), 
+        '0' => Yii::t('app', 'No'),
+        ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]]) ?>
+        </div>
+    </div>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save') : '<i class="fa fa-floppy-o"></i> '.Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-primary grid-button' : 'btn btn-primary grid-button']) ?>
     </div>
