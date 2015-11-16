@@ -122,15 +122,8 @@ class CashbookController extends BaseController
                 // error in saving model
             }
         }
-        $accountItems = Account::find()
-            ->select(['id','description'])
-            ->where(['user_id'=>Yii::$app->user->id])
-            ->asArray()
-            ->all();
-        $accountItems = ArrayHelper::map($accountItems,'id','description');
         return $this->render('update', [
             'model'=>$model,
-            'accountItems'=>$accountItems,
         ]);
     }
     public function actionDelete($id)
@@ -263,13 +256,6 @@ class CashbookController extends BaseController
             ]); 
     }
 
-    /**
-     * Finds the Cashbook model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Cashbook the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Cashbook::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
