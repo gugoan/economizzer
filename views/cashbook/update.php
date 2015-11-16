@@ -12,7 +12,6 @@ $this->title = Yii::t('app', 'Update Entry', [
 
     <?= $this->render('_form', [
         'model' => $model,
-        'accountItems' => $accountItems
     ]) ?>
 
 </div>

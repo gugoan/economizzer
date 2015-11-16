@@ -42,7 +42,7 @@ class Cashbook extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'type_id', 'value', 'date', 'account_id'], 'required'],
+            [['category_id', 'type_id', 'value', 'date'], 'required'],
             [['category_id', 'type_id', 'user_id', 'is_pending'], 'integer'],
             [['value'], 'number'],
             [['file'], 'file', 'extensions'=>'jpg, png, pdf', 'maxSize' => 1024 * 1024 * 2],
