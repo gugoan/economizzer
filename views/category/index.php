@@ -60,7 +60,7 @@ $this->title = Yii::t('app', 'Categories');
                 'buttons' => [
                     'update' => function ($url) {
                         return Html::a(
-                            '<span class="glyphicon glyphicon-edit"></span>',
+                            '<span class="glyphicon glyphicon-edit hidden-xs"></span>',
                             $url, 
                             [
                                 'title' => Yii::t('app', 'Update'),
@@ -68,6 +68,16 @@ $this->title = Yii::t('app', 'Categories');
                             ]
                         );
                     },
+                    'delete' => function ($url) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-trash hidden-xs"></span>',
+                            $url, 
+                            [
+                                'title' => Yii::t('app', 'delete'),
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },                    
                 ],
             'contentOptions'=>['style'=>'width: 20%;text-align:right'],
             ],
