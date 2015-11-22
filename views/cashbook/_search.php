@@ -87,8 +87,8 @@ use kartik\widgets\DatePicker;
     <?= $form->field($model, 'is_pending')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', '<i class="fa fa-filter"></i> Filter'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', '<i class="fa fa-eraser"></i> Clean'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('<i class="fa fa-filter"></i> ' . Yii::t('app', 'Filter'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('<i class="fa fa-eraser"></i> ' . Yii::t('app', 'Clean'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
