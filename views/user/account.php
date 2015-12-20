@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Button;
 
-$this->title = Yii::t('user', 'Account');
+$this->title = Yii::t('app', 'Account');
 ?>
 <div class="user-default-account">
     <h2>

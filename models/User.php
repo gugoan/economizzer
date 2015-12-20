@@ -49,4 +49,12 @@ class User extends BaseUser
 
         return $rules;
     }
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('app', 'Username'),
+            'newPassword' => Yii::t('app', 'New Password'),
+            'currentPassword' => Yii::t('app', 'Current Password'),
+        ];
+    }    
 }

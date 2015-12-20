@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Account' => 'Аккаунт',
     'Account has already been disabled' => 'Аккаунт уже был отвязан',
     'Account successfully disconnected' => 'Аккаунт успешно отвязан',
     'Account updated' => 'Аккаунт обновлен',
@@ -28,7 +27,6 @@ return [
     'Connected' => 'Подключен',
     'Create Time' => 'Дата создания',
     'Disconnect' => 'Отключен',
-    'Forgot password' => 'Забыли пароль',
     'Full Name' => 'Полное имя',
     'Go home' => 'На главную',
     'Go to my account' => 'К моему аккаунту',
@@ -44,7 +42,6 @@ return [
     'Passwords do not match' => 'Пароли не совпадают',
     'Pending email confirmation: [ {newEmail} ]' => 'В ожидании подтверждения по электронной почте: [ {newEmail} ]',
     'Profile' => 'Профиль',
-    'Register' => 'Зарегистрироваться',
     'Resend' => 'Повторить',
     'Reset' => 'Сбросить',
     'Start Page' => '',

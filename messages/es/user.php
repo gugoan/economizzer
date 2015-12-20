@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Account' => 'Cuenta',
     'Account has already been disabled' => '',
     'Account successfully disconnected' => '',
     'Account updated' => 'Cuenta modificada',
@@ -28,7 +27,6 @@ return [
     'Connected' => '',
     'Create Time' => 'Fecha de Creación',
     'Disconnect' => '',
-    'Forgot password' => 'Contraseña olvidada',
     'Full Name' => 'Nombre completo',
     'Go home' => 'Inicio',
     'Go to my account' => 'Ir a mi cuenta',
@@ -44,7 +42,6 @@ return [
     'Passwords do not match' => 'Las contraseñas no coinciden',
     'Pending email confirmation: [ {newEmail} ]' => 'Confirmación de correo pendiente: [ {newEmail} ]',
     'Profile' => 'Perfil',
-    'Register' => 'Registro',
     'Resend' => 'Reenviar',
     'Reset' => 'Reiniciar',
     'Start Page' => '',
