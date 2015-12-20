@@ -43,7 +43,6 @@ return [
     'Password has been reset' => 'Пароль восстановлено',
     'Passwords do not match' => 'Пароли не совпадают',
     'Pending email confirmation: [ {newEmail} ]' => 'В ожидании подтверждения по электронной почте: [ {newEmail} ]',
-    'Please fill out the following fields to register:' => 'Пожалуйста, заполните следующие поля для регистрации:',
     'Profile' => 'Профиль',
     'Register' => 'Зарегистрироваться',
     'Resend' => 'Повторить',

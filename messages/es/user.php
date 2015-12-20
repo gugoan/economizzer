@@ -43,7 +43,6 @@ return [
     'Password has been reset' => 'La contraseña ha sido reiniciada',
     'Passwords do not match' => 'Las contraseñas no coinciden',
     'Pending email confirmation: [ {newEmail} ]' => 'Confirmación de correo pendiente: [ {newEmail} ]',
-    'Please fill out the following fields to register:' => 'Por favor rellena los siguientes campos para poder registrarte:',
     'Profile' => 'Perfil',
     'Register' => 'Registro',
     'Resend' => 'Reenviar',

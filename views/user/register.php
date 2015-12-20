@@ -3,8 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = Yii::t('user', 'Register');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Register');
 ?>
 <div class="user-default-register">
 
@@ -18,22 +17,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php else: ?>
 
-        <p><?= Yii::t("user", "Please fill out the following fields to register:") ?></p>
+        <p><?= Yii::t('app', 'Please fill out the following fields to register:') ?></p>
 
         <?php $form = ActiveForm::begin([
             'id' => 'register-form',
             'options' => ['class' => 'form-horizontal'],
             'fieldConfig' => [
                 'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
-                'labelOptions' => ['class' => 'col-lg-2 control-label'],
+                'labelOptions' => ['class' => 'col-lg-1 control-label'],
             ],
             'enableAjaxValidation' => true,
         ]); ?>
 
         <?php if (Yii::$app->getModule("user")->requireEmail): ?>
             <?= $form->field($user, 'email') ?>
-            <div class="col-lg-offset-2" style="color:#999;">
-                <p><?= Yii::t("app", "Enter a valid email! You need to confirm your registration!") ?></p>
+            <div class="col-lg-offset-1" style="color:#999;">
+                <p><?= Yii::t('app', 'Enter a valid email! You need to confirm your registration!') ?></p>
             </div>
         <?php endif; ?>
 
@@ -47,14 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($profile, 'full_name') ?>
         */ ?>
 
-        <div class="col-lg-offset-2" style="color:#999;">
+        <div class="col-lg-offset-1" style="color:#999;">
         <!-- These terms are only Economizzer.org :) -->
-            <p><?= Yii::t("app", "Creating your account on Economizzer.org you agree to the terms and usage policies,") ?> <?= HTML::a(Yii::t("app", "Click to read"), "http://www.economizzer.org/policies.html", ['target' => '_blank']) ?></p>
+            <p><?= Yii::t('app', 'Creating your account on Economizzer.org you agree to the terms and usage policies,') ?> <?= HTML::a(Yii::t('app', 'Click to read'), "http://www.economizzer.org/policies.html", ['target' => '_blank']) ?></p>
         </div>
 
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <?= Html::submitButton(Yii::t('user', 'Register'), ['class' => 'btn btn-primary']) ?>
+            <div class="col-lg-offset-1 col-lg-10">
+                <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
 
                 <?= Html::a(Yii::t('user', 'Login'), ["/user/login"]) ?>
             </div>
@@ -66,12 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <br/>
             <div class="row">
                 <div class="col-lg-offset-2 col-sm-3">
-                    <!--		        <div class="col-lg-offset-2">-->
                     <?= yii\authclient\widgets\AuthChoice::widget([
                         'baseAuthUrl' => ['/user/auth/login'],
                         'options' => ['class'=>'auth-flex']
                     ]) ?>
-                    <!--		        </div>-->
                 </div>
             </div>
         <?php endif; ?>

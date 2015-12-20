@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = Yii::t('user', 'Forgot password');
+$this->title = Yii::t('app', 'Forgot password');
 ?>
 <div class="user-default-forgot">
 
@@ -23,7 +23,7 @@ $this->title = Yii::t('user', 'Forgot password');
                 <?php $form = ActiveForm::begin(['id' => 'forgot-form']); ?>
                     <?= $form->field($model, 'email') ?>
                     <div class="form-group">
-                        <?= Html::submitButton(Yii::t('user', 'Submit'), ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
                     </div>
                 <?php ActiveForm::end(); ?>
             </div>
