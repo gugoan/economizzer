@@ -55,7 +55,9 @@ Pass: 123456
 Contribution
 -------------
 
+Please see the documentation on Contribution.
 
 -------------
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
+[![pledgie](https://pledgie.com/campaigns/30857.png?skin_name=chrome)](https://pledgie.com/campaigns/30857/)
