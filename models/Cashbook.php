@@ -36,7 +36,7 @@ class Cashbook extends \yii\db\ActiveRecord
 
     public static function tableName()
     {
-        return 'tb_cashbook';
+        return 'cashbook';
     }
 
     public function rules()

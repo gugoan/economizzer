@@ -158,17 +158,17 @@ class CashbookController extends BaseController
         $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));        
         $user    = Yii::$app->user->identity->id;        
 
-        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $vtype1 = $command->queryScalar();
 
-        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
+        $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $vtype2 = $command->queryScalar();
 
         // get last month values;
-        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
         $lastmonth_type1 = $lastmonth_command->queryScalar();
 
-        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM tb_cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
         $lastmonth_type2 = $lastmonth_command->queryScalar();
 
         return $this->render('overview', [
@@ -192,10 +192,10 @@ class CashbookController extends BaseController
 
         $command = Yii::$app->db->createCommand("SELECT 
             desc_category as n, SUM(value) as v, MONTHNAME(date) as m 
-            FROM tb_cashbook 
-            INNER JOIN tb_category
-            on tb_category.id_category = tb_cashbook.category_id
-            WHERE YEAR(date) = $thisyear AND tb_cashbook.user_id = $user AND category_id = $category_id 
+            FROM cashbook 
+            INNER JOIN category
+            on category.id_category = cashbook.category_id
+            WHERE YEAR(date) = $thisyear AND cashbook.user_id = $user AND category_id = $category_id 
             GROUP BY MONTH(date) 
             ORDER BY MONTH(date) asc;");
         $accomplishment = $command->queryAll();
@@ -221,10 +221,10 @@ class CashbookController extends BaseController
     {
 
         //      SELECT  
-        //      SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
-        //      SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
+        //      SUM(IF(cashbook.type_id=1, value, 0)) as v1,
+        //      SUM(IF(cashbook.type_id=2, value, 0)) as v2,
         //      MONTHNAME(date) as m 
-        //      FROM tb_cashbook WHERE user_id = 3 AND YEAR(date) = 2015 GROUP BY m DESC
+        //      FROM cashbook WHERE user_id = 3 AND YEAR(date) = 2015 GROUP BY m DESC
         $model = new Cashbook();
         
         $thisyear  = date('Y');
@@ -233,10 +233,10 @@ class CashbookController extends BaseController
         $user      = Yii::$app->user->identity->id;
 
         $command = Yii::$app->db->createCommand("SELECT 
-            SUM(IF(tb_cashbook.type_id=1, value, 0)) as v1,
-            SUM(IF(tb_cashbook.type_id=2, value, 0)) as v2,
+            SUM(IF(cashbook.type_id=1, value, 0)) as v1,
+            SUM(IF(cashbook.type_id=2, value, 0)) as v2,
             MONTHNAME(date) as m 
-            FROM tb_cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m ORDER BY MONTH(date)");
+            FROM cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m ORDER BY MONTH(date)");
         $performance = $command->queryAll();
         
         $m = array();

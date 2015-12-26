@@ -3,18 +3,7 @@ namespace app\models;
 
 use amnah\yii2\user\models\Profile as BaseProfile;
 use Yii;
-/**
- * This is the model class for table "tbl_profile".
- *
- * @property integer $id
- * @property integer $user_id
- * @property string  $create_time
- * @property string  $update_time
- * @property string  $full_name
- * @property string  $language
- *
- * @property User    $user
- */
+
 class Profile extends BaseProfile {
 
     public function rules()
