@@ -54,6 +54,7 @@ $this->title = Yii::t('app', 'Categories');
                 },
              'contentOptions'=>['style'=>'width: 75%;text-align:left'],
             ],
+            'parent_id',  
             [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',

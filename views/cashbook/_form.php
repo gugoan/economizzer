@@ -57,7 +57,16 @@ use kartik\widgets\DatePicker;
     
     <?= $form->field($model, 'value')->textInput(['size' => 10]) ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id, 'is_active' => 1])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','Select')])  ?>
+    <?php // echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id, 'is_active' => 1])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','Select')])  ?>
+
+    <?=
+    $form->field($model, 'category_id', [
+        'inputOptions' => [
+            'class' => 'selectpicker '
+        ]
+    ]
+    )->dropDownList(app\models\Category::getHierarchy(), ['prompt' => 'Selecione', 'class'=>'form-control required']);
+    ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 100]) ?>
 

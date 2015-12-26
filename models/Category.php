@@ -15,7 +15,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['desc_category'], 'required'],
-            [['is_active','user_id'], 'integer'],
+            [['is_active','user_id','parent_id'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'string', 'max' => 45]
         ];
     }
@@ -26,6 +26,7 @@ class Category extends \yii\db\ActiveRecord
             'id_category' => Yii::t('app', 'ID'),
             'desc_category' => Yii::t('app', 'Description'),
             'hexcolor_category' => Yii::t('app', 'Color'),
+            'parent_id' => Yii::t('app', 'Categoria Pai'),
             'is_active' => Yii::t('app', 'Active'),
         ];
     }
@@ -39,4 +40,19 @@ class Category extends \yii\db\ActiveRecord
     { 
        return $this->hasOne(User::className(), ['id' => 'user_id']); 
     } 
+
+    public static function getHierarchy() {
+        $options = [];
+         
+        $parents = self::find()->where(['parent_id' => null,'user_id' => Yii::$app->user->identity->id, 'is_active' => 1])->all();
+        foreach($parents as $id_category => $p) {
+            $children = self::find()->where("parent_id=:parent_id", [":parent_id"=>$p->id_category])->all();
+            $child_options = [];
+            foreach($children as $child) {
+                $child_options[$child->id_category] = $child->desc_category;
+            }
+            $options[$p->desc_category] = $child_options;
+        }
+        return $options;
+    }        
 }

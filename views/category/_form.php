@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\color\ColorInput;
+use yii\helpers\ArrayHelper;
 
 ?>
 
@@ -27,6 +28,12 @@ use kartik\color\ColorInput;
     	'options' => ['placeholder' => Yii::t('app', 'Select')],
 	]);
     ?>
+
+    <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map(app\models\Category::find()->where([
+        'parent_id' => null,
+        'user_id' => Yii::$app->user->identity->id, 
+        'is_active' => 1
+        ])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','None')])  ?>
 
     <?= $form->field($model, 'is_active')->radioList([
     '1' => Yii::t('app', 'Yes'), 
