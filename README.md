@@ -18,7 +18,6 @@ The minimum requirement by this application that your Web server supports PHP 5.
 Installation
 ------------
 
-### Composer way: 
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
@@ -31,7 +30,7 @@ Configuration
 
 Create the **economizzer** database and import the file **economizzer.sql**.
 
-In folder **economizzer/config/db.php**
+In folder **economizzer/config/db.php** set as follows:
 
 ```php
 return [
@@ -40,23 +39,31 @@ return [
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
-    'tablePrefix' => 'tb_',
     'enableSchemaCache' => true,
 ];
 ```
 
-Access **http://economizzer/web** with user and password below:
+To test, go to **http://yourserver/economizzer/web** with user and password below:
 
 User: joe
-
 Pass: 123456
 
 
 Contribution
 -------------
 
-Please see the documentation on Contribution.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+
+License
+-------------
+
+Economizzer is Copyright © 2008-2014 Gustavo G. Andrade. 
+It is free software, and may be redistributed under the terms specified in the
+[LICENSE]() file.
+
+
+Badges
 -------------
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
