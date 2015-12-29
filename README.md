@@ -46,6 +46,7 @@ return [
 To test, go to **http://yourserver/economizzer/web** with user and password below:
 
 User: joe
+
 Pass: 123456
 
 
@@ -60,7 +61,7 @@ License
 
 Economizzer is Copyright © 2008-2014 Gustavo G. Andrade. 
 It is free software, and may be redistributed under the terms specified in the
-[LICENSE]() file.
+[LICENSE](LICENSE.md) file.
 
 
 Badges
