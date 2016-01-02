@@ -27,12 +27,16 @@ $this->title = $model->desc_category;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id_category',
             'desc_category',
             [
             'attribute' => 'hexcolor_category',
             'format' => 'raw',
             'value' => '<strong style="color:'.$model->hexcolor_category.'"><i class="fa fa-tag"></i></strong>',
+            ],
+            [
+            'attribute' => 'parent_id',
+            'format' => 'raw',
+            'value' => $model->parent->desc_category,
             ],
             [
             'attribute' => 'is_active',

@@ -54,7 +54,15 @@ $this->title = Yii::t('app', 'Categories');
                 },
              'contentOptions'=>['style'=>'width: 75%;text-align:left'],
             ],
-            'parent_id',  
+            [
+                'attribute' => 'parent_id',
+                'format' => 'raw',
+                'enableSorting' => true,
+                'value' => function ($model) {                      
+                    return $model->parent ? $model->parent->desc_category : '<span class="text-danger"><em>Nenhum</em></span>';
+                },
+                'contentOptions'=>['style'=>'width: 15%;text-align:left'],
+            ],            
             [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',

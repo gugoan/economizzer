@@ -14,7 +14,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['desc_category'], 'required'],
+            [['desc_category', 'is_active'], 'required'],
             [['is_active','user_id','parent_id'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'string', 'max' => 45]
         ];
@@ -54,5 +54,10 @@ class Category extends \yii\db\ActiveRecord
             $options[$p->desc_category] = $child_options;
         }
         return $options;
-    }        
+    }      
+
+    public function getParent()
+    {
+        return $this->hasOne(Category::className(), ['id_category' => 'parent_id']);
+    }      
 }
