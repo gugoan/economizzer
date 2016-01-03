@@ -46,23 +46,25 @@ $this->title = Yii::t('app', 'Categories');
             'contentOptions'=>['style'=>'width: 3%;text-align:right'],
             ],
             [
-            'attribute' => 'desc_category',
+            'attribute' => 'parent_id',
+            'header' => '',
             'format' => 'raw',
             'enableSorting' => true,
             'value' => function ($model) {                      
-                return $model->is_active <> 1 ? '<del>'.$model->desc_category.'</del>' : $model->desc_category;
-                },
-             'contentOptions'=>['style'=>'width: 75%;text-align:left'],
-            ],
-            [
-                'attribute' => 'parent_id',
-                'format' => 'raw',
-                'enableSorting' => true,
-                'value' => function ($model) {                      
-                    return $model->parent ? $model->parent->desc_category : '<span class="text-danger"><em>Nenhum</em></span>';
-                },
-                'contentOptions'=>['style'=>'width: 15%;text-align:left'],
+                return $model->parent ? $model->parent->desc_category." > ".$model->desc_category : "<span class=\"text-danger\"><em>".$model->desc_category."</em></span>";
+            },
+            'contentOptions'=>['style'=>'width: 75%;text-align:left'],
             ],            
+            // [
+            // 'attribute' => 'desc_category',
+            // 'format' => 'raw',
+            // 'enableSorting' => true,
+            // 'value' => function ($model) {                      
+            //     return $model->is_active <> 1 ? '<del>'.$model->desc_category.'</del>' : $model->desc_category;
+            //     },
+            //  'contentOptions'=>['style'=>'width: 75%;text-align:left'],
+            // ],
+            
             [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',
@@ -92,5 +94,4 @@ $this->title = Yii::t('app', 'Categories');
             ],
         ],
     ]); ?>
-
 </div>

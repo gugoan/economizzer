@@ -12,7 +12,7 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id_category', 'is_active'], 'integer'],
+            [['id_category', 'parent_id', 'is_active'], 'integer'],
             [['desc_category', 'hexcolor_category'], 'safe'],
         ];
     }
@@ -31,6 +31,7 @@ class CategorySearch extends Category
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
+                    'parent_id' => SORT_ASC,
                     'desc_category' => SORT_ASC, 
                 ]
             ],

@@ -36,7 +36,7 @@ $this->title = $model->desc_category;
             [
             'attribute' => 'parent_id',
             'format' => 'raw',
-            'value' => $model->parent->desc_category,
+            'value' => $model->parent ? $model->parent->desc_category : '<span class="text-danger"><em>Nenhum</em></span>',
             ],
             [
             'attribute' => 'is_active',
