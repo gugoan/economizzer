@@ -22,7 +22,7 @@ return [
     'Account' => 'Minha Conta',
     'Active' => 'Ativo',
     'Additional' => 'Complementares',
-    'After the last update on January 3, 2015, the categories were separated hierarchically, with only the sub-categories will be selectable.' => 'Após a última atualização em 03 de janeiro de 2015, as categorias foram separadas hierarquicamente, sendo que apenas as sub-categorias serão selecionáveis.',
+    'After the last update on January 3, 2016, the categories were separated hierarchically, with only the sub-categories will be selectable.' => 'Após a última atualização em 03 de janeiro de 2016, as categorias foram separadas hierarquicamente, sendo que apenas as sub-categorias serão selecionáveis.',
     'All' => 'Todos',
     'Annual Performance' => 'Desempenho Anual',
     'Are you sure you want to delete?' => 'Tem certeza que deseja excluir?',
