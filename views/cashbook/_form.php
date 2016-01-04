@@ -10,6 +10,7 @@ use kartik\widgets\DatePicker;
 
 <div class="cashbook-form">
 
+<div class="col-md-8">
     <?php $form = ActiveForm::begin([
         'id' => 'cashbookform',
         'options' => [
@@ -17,7 +18,7 @@ use kartik\widgets\DatePicker;
             'class' => 'form-horizontal',
             ],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
+            'template' => "{label}\n<div class=\"col-lg-4\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-2 control-label'],
         ],
     ]); ?>
@@ -33,7 +34,7 @@ use kartik\widgets\DatePicker;
     echo $form->field($model, 'type_id')->radioList([
         '1' => Yii::t('app', 'Revenue'), 
         '2' => Yii::t('app', 'Expense'),
-        ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:5px;')]])->label('');
+        ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:4px;')]])->label('');
     ?>
 
     <?php
@@ -90,5 +91,16 @@ use kartik\widgets\DatePicker;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+</div>
+<div class="col-md-4">
+<div class="panel panel-warning">
+      <div class="panel-body">
+<div class="alert alert-warning" role="alert"><h4><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <?php echo Yii::t('app', 'Attention');?></h4></div>
+<p><?php echo Yii::t('app', 'After the last update on January 3, 2015, the categories were separated hierarchically, with only the sub-categories will be selectable.');?></p>
+<p><?php echo Yii::t('app', 'So we need to organize your category structure, creating parent-categories and assign it subcategories.');?></p>
+<p><?php echo Yii::t('app', 'To start do the following: Create the GENERAL category, and assign all other categories as daughters of the GENERAL category. After that separates the way that suits you best.');?></p>
+<p><?php echo Yii::t('app', 'This will help you get a higher level of detail of the entries.');?></p>
+      </div>
+    </div>
+</div>
 </div>
