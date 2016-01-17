@@ -38,6 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             ->orderBy("desc_category ASC")
                             ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
                 ?>
+                <?php 
+		  //       $this->registerJs('var submit = function (val){if (val > 0) {
+				//     window.location.href = "' . Yii::$app->urlManager->createUrl(['/cashbook/accomplishment']) . '/" + val;
+				// }
+				// }', View::POS_HEAD);
+
+		  //       echo Html::activeDropDownList($model, 'category_id', ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])
+    //                         ->orderBy("desc_category ASC")
+    //                         ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
+                ?>                
                 </div>
                 <div class="panel-body">
 				<?php

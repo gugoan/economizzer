@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 return [
                     'id' => $model['id'], 
                     'onclick' => 'location.href="'
-                        . Yii::$app->urlManager->createUrl('cashbook/view') 
-                        . '&id="+(this.id);',
+                        . Yii::$app->urlManager->createUrl('cashbook/') 
+                        . '/"+(this.id);',
                     'style' => "cursor: pointer",
                 ];
         },        

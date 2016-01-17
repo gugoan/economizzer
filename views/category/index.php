@@ -30,8 +30,8 @@ $this->title = Yii::t('app', 'Categories');
                 return [
                     'id' => $model['id_category'], 
                     'onclick' => 'location.href="'
-                        . Yii::$app->urlManager->createUrl('category/view') 
-                        . '&id="+(this.id);',
+                        . Yii::$app->urlManager->createUrl('category/') 
+                        . '/"+(this.id);',
                     'style' => "cursor: pointer",
                 ];
         },

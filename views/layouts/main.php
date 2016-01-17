@@ -53,7 +53,7 @@ SCRIPT;
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => '<img src="images/logo-icon.png" style="height:20px;float:left;margin-right: 5px" align="absbottom">  Economizzer',
+                'brandLabel' => '<img src="'.Yii::$app->request->baseUrl.'/images/logo-icon.png" style="height:20px;float:left;margin-right: 5px" align="absbottom">  Economizzer',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar navbar-default navbar-fixed-top',
