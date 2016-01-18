@@ -63,7 +63,7 @@ SCRIPT;
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'encodeLabels' => false,
                 'items' => [
-                    ['label' => '<i class="fa fa-home"></i> '.Yii::t('app', 'Overview'), 'url' => ['/cashbook/overview'], 'visible' => !Yii::$app->user->isGuest,],
+                    ['label' => '<i class="fa fa-home"></i> '.Yii::t('app', 'Overview'), 'url' => ['/dashboard/overview'], 'visible' => !Yii::$app->user->isGuest,],
                     ['label' => '<i class="fa fa-usd"></i> '.Yii::t('app', 'Entries'), 'url' => ['/cashbook/index'], 'visible' => !Yii::$app->user->isGuest,],
                     ['label' => '<i class="fa fa-bullseye"></i> '.Yii::t('app', 'Targets'), 'url' => ['/cashbook/target'], 'visible' => !Yii::$app->user->isGuest,],
                     ['label' => '<i class="fa fa-briefcase"></i> '.Yii::t('app', 'Options'), 'visible' => !Yii::$app->user->isGuest,

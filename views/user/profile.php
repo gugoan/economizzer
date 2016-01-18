@@ -39,7 +39,7 @@ $this->title = Yii::t('user', 'Profile');
 
     <?php echo $form->field($profile, 'startpage')->dropDownList([
         'cashbook/index' => Yii::t('app', 'Entries Page'), 
-        'cashbook/overview' => Yii::t('app', 'Dashboard Page'), 
+        'dashboard/overview' => Yii::t('app', 'Dashboard Page'), 
         ]); 
     ?>
 

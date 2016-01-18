@@ -7,7 +7,7 @@ use yii\bootstrap\Nav;
                 'items' => [
                     [
                         'label' => Yii::t('app', 'Monthly Summary'),
-                        'url' => ['/cashbook/overview'],
+                        'url' => ['/dashboard/overview'],
                         'visible' => !Yii::$app->user->isGuest,
                         //'options' => ['class' => 'active','role'=>'presentation'],
                         //'items' => [
@@ -17,14 +17,14 @@ use yii\bootstrap\Nav;
                     ],
                     [
                         'label'   => Yii::t('app', 'Accomplishment'),
-                        'url'     => ['/cashbook/accomplishment'],
+                        'url'     => ['/dashboard/accomplishment'],
                         'visible' => !Yii::$app->user->isGuest,
                         //'active'  => true,
                         //'options' => ['class' => 'disabled'],
                     ],
                     [
                         'label'   => Yii::t('app', 'Annual Performance'),
-                        'url'     => ['/cashbook/performance'],
+                        'url'     => ['/dashboard/performance'],
                         'visible' => !Yii::$app->user->isGuest,
                         //'active'  => false,
                         //'options' => ['class' => 'disabled'],
