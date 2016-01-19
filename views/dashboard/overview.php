@@ -26,8 +26,9 @@ $user      = Yii::$app->user->identity->id;
                   <div class="col-md-6">
                   <div class="panel panel-default">
                 <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
-                  <div class="panel-body" style="height: 250px;">       
+                  <div class="panel-body" style="height: 250px;">
                   <?php
+                  $balance = ((round((int)$vtype1)-abs(round((int)$vtype2))) >=0 ? (round((int)$vtype1)-abs(round((int)$vtype2))) : 0);
                   echo Highcharts::widget([
                       'options' => [
                           'credits' => ['enabled' => false],
@@ -54,7 +55,7 @@ $user      = Yii::$app->user->identity->id;
                               'type'=> 'pie',
                               'name'=> 'Valor',
                               'data'=> [
-                                  [Yii::t('app', 'Revenue'),   round((int)$vtype1)],
+                                  [Yii::t('app', 'Balance'),   $balance],
                                   [Yii::t('app', 'Expense'),   abs(round((int)$vtype2))],
                               ]
                           ]]
