@@ -32,6 +32,7 @@ return [
     'Go to my account' => 'Ir a mi cuenta',
     'Guests can not disconnect accounts' => '',
     'ID' => 'Código',
+    'Instructions to reset your password have been sent' => '',
     'Invalid key' => 'Key inválida',
     'Keychain' => '',
     'Language' => 'Idioma',

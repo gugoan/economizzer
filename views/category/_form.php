@@ -9,13 +9,15 @@ use yii\helpers\ArrayHelper;
 
 <div class="category-form">
 
+<div class="col-md-8">
+
     <?php $form = ActiveForm::begin([
         'id' => 'categoryform',
         'options' => [
             'class' => 'form-horizontal',
             ],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
+            'template' => "{label}\n<div class=\"col-lg-4\">{input}</div>\n<div class=\"col-lg-7\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-2 control-label'],
         ],
     ]); ?>
@@ -47,5 +49,17 @@ use yii\helpers\ArrayHelper;
     </div>
 
     <?php ActiveForm::end(); ?>
+</div>
+<div class="col-md-4">
+<div class="panel panel-success">
+      <div class="panel-body">
+<div class="alert alert-success" role="alert"><h4><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <?php echo Yii::t('app', 'Follow us');?></h4></div>
+<p><?php echo Yii::t('app', 'Support the Save and stay on top of updates, follow us and share with your friends');?></p>
+<p><a href="https://twitter.com/economizzer" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-twitter.png" align="absbottom"></a></p>
+<p><a href="https://www.facebook.com/economizzer" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-facebook.png" align="absbottom"></a></p>
+<p><a href="https://plus.google.com/101075084400357449168" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-googleplus.png" align="absbottom"></a></p>
+      </div>
+    </div>
+</div>
 
 </div>

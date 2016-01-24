@@ -24,9 +24,6 @@ class UserController extends BaseUserController{
         return "wrong!";
     }
 
-    /**
-     * Account
-     */
     public function actionAccount()
     {
         /** @var \amnah\yii2\user\models\User $user */
@@ -79,6 +76,17 @@ class UserController extends BaseUserController{
         return $this->render("account", [
             'user' => $user,
             'keychainConnects' => $keychainConnects
+        ]);
+    }
+
+    public function actionForgot()
+    {
+        $model = Yii::$app->getModule("user")->model("ForgotForm");
+        if ($model->load(Yii::$app->request->post()) && $model->sendForgotEmail()) {
+            Yii::$app->session->setFlash("Forgot-success", Yii::t("user", "Instructions to reset your password have been sent"));
+        }
+        return $this->render("forgot", [
+            "model" => $model,
         ]);
     }
 }
