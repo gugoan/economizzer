@@ -87,12 +87,12 @@ $user      = Yii::$app->user->identity->id;
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="text-success">
                                 <td><?php echo Yii::t('app', 'Revenue');?></td>
                                 <td><?php echo Yii::t('app', '$')." ".(int)$vtype1;?></td>
                                 <td><?php echo Yii::t('app', '$')." ".(int)$lastmonth_type1;?></td>
                             </tr>
-                            <tr>
+                            <tr class="text-danger">
                                 <td><?php echo Yii::t('app', 'Expense');?></td>
                                 <td><?php echo Yii::t('app', '$')." ".abs((int)$vtype2);?></td>
                                 <td><?php echo Yii::t('app', '$')." ".abs((int)$lastmonth_type2);?></td>
@@ -102,6 +102,55 @@ $user      = Yii::$app->user->identity->id;
                     </div>
                     </div>
                   </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Detalhamento por Grupo</strong></div>
+                    <div class="panel-body">
+                      <?php 
+                      //var_dump($cat);
+                      echo Highcharts::widget([
+                      'options' => [
+                          'credits' => ['enabled' => false],
+                          'title' => [
+                              'text' => '',
+                          ],
+                          //'tooltip'=> ['valueSuffix' => '%'],
+                          'colors'=> ['#e74c3c','#e74c3c'],
+                          'xAxis' => [
+                              'categories' => $cat,
+                          ],
+                          'yAxis' => [
+                              'min' => 0,
+                              'title' => '',
+                          ],                        
+                          'series' => [
+                              [
+                                  'type' => 'bar',
+                                  'name' => Yii::t('app', 'Category'),
+                                  'data' => $value,
+                              ],                          
+                          ],
+                      ]
+                  ]);
+                      ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Detalhamento por Categoria</strong></div>
+                    <div class="panel-body">
+                      <?php
+//                       SELECT desc_category, value FROM cashbook
+// INNER JOIN category
+// ON cashbook.category_id = category.id_category
+// WHERE category.parent_id is null AND cashbook.user_id = 29
+                      ?>
+                    </div>
+                  </div>
+                </div>
             </div>
             
             </div>

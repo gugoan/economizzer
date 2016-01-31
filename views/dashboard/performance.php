@@ -40,12 +40,12 @@ $this->title = Yii::t('app', 'Annual Performance');
                         ],                        
                         'series' => [
                             [
-                                'type' => 'column',
+                                'type' => 'spline',
                                 'name' => Yii::t('app', 'Revenue'),
                                 'data' => $v1,
                             ],
                             [
-                                'type' => 'column',
+                                'type' => 'spline',
                                 'name' => Yii::t('app', 'Expense'),
                                 'data' => $v2,
                             ],
