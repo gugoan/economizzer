@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </p>
                 <?php 
 		        $this->registerJs('var submit = function (val){if (val > 0) {
-				    window.location.href = "' . Url::to(['/cashbook/accomplishment']) . '&category_id=" + val;
+				    window.location.href = "' . Url::to(['/dashboard/accomplishment']) . '?category_id=" + val;
 				}
 				}', View::POS_HEAD);
 

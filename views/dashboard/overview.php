@@ -117,7 +117,7 @@ $user      = Yii::$app->user->identity->id;
                               'text' => '',
                           ],
                           //'tooltip'=> ['valueSuffix' => '%'],
-                          'colors'=> ['#e74c3c','#e74c3c'],
+                          'colors'=> ['#2C3E50','#e74c3c'],
                           'xAxis' => [
                               'categories' => $cat,
                           ],
