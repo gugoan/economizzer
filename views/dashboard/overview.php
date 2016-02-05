@@ -71,9 +71,11 @@ $user      = Yii::$app->user->identity->id;
                     // get overbalance
                     if(round((int)$vtype1) >= abs(round((int)$vtype2)))
                     {
-                      $overbalance = "<div class=\"alert alert-success\">".Yii::t('app', 'Monthly balance').": <b class=\"pull-right\">".Yii::t('app', 'Positive')." <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span></b></div>";
+                      //$overbalance = "<div class=\"alert alert-success\">".Yii::t('app', 'Monthly balance').": <b class=\"pull-right\">".Yii::t('app', 'Positive')." <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span></b></div>";
+                      $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<h3 class=\"label label-success pull-right\">".Yii::t('app', 'Positive')."</h3></div>";
                     }else{
-                      $overbalance = "<div class=\"alert alert-danger\">".Yii::t('app', 'Monthly balance').": <b class=\"pull-right\">".Yii::t('app', 'Negative')." <span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span></b></div>";
+                      // $overbalance = "<div class=\"alert alert-danger\">".Yii::t('app', 'Monthly balance').": <b class=\"pull-right\">".Yii::t('app', 'Negative')." <span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span></b></div>";
+                      $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<span class=\"label label-danger pull-right\">".Yii::t('app', 'Negative')."</span></div>";
                     }
                     echo $overbalance;
                     ?>
@@ -106,10 +108,9 @@ $user      = Yii::$app->user->identity->id;
             <div class="row">
                 <div class="col-md-6">
                   <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Detalhamento por Grupo</strong></div>
+                    <div class="panel-heading"><strong>Despesas por Grupo</strong></div>
                     <div class="panel-body">
                       <?php 
-                      //var_dump($cat);
                       echo Highcharts::widget([
                       'options' => [
                           'credits' => ['enabled' => false],
@@ -140,7 +141,7 @@ $user      = Yii::$app->user->identity->id;
                 </div>
                 <div class="col-md-6">
                   <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Detalhamento por Categoria</strong></div>
+                    <div class="panel-heading"><strong>Despesas por Categoria</strong></div>
                     <div class="panel-body">
                       <?php
 //                       SELECT desc_category, value FROM cashbook
