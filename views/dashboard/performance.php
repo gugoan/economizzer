@@ -9,10 +9,10 @@ use app\models\Cashbook;
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Annual Performance');
 ?>
-<div class="row">
+<div class="dashboard-index">
     <div class="row">
-        <div class="col-md-6"><h2><?php echo $this->title; ?></h2></div>
         <div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
+        <div class="col-md-6"></div>
     </div>
     <hr/>
     <div class="row">

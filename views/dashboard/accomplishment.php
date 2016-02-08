@@ -13,13 +13,14 @@ use yii\web\View;
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Accomplishment');
 ?>
-<div class="row">
+<div class="dashboard-index">
 	<div class="row">
-		<div class="col-md-6"><h2><?php echo $this->title; ?></h2></div>
-	    <div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
+		<div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
+		<div class="col-md-6"></div>
 	</div>
 	<hr/>
     <div class="row">
+    <div class="container-fluid">
     	<div class="panel panel-default">
             <div class="panel-heading clearfix"><strong><?php echo Yii::t('app', 'Track each category during the year');?></strong></div>
             <div class="col-xs-9 col-md-4 pull-right">
@@ -29,20 +30,9 @@ $this->title = Yii::t('app', 'Accomplishment');
 			    window.location.href = "' . Url::to(['/dashboard/accomplishment']) . '?category_id=" + val;
 			}
 			}', View::POS_HEAD);
-
 	        echo Html::activeDropDownList($model, 'category_id', ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])
                         ->orderBy("desc_category ASC")
                         ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
-            ?>
-            <?php 
-	  //       $this->registerJs('var submit = function (val){if (val > 0) {
-			//     window.location.href = "' . Yii::$app->urlManager->createUrl(['/cashbook/accomplishment']) . '/" + val;
-			// }
-			// }', View::POS_HEAD);
-
-	  //       echo Html::activeDropDownList($model, 'category_id', ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])
-//                         ->orderBy("desc_category ASC")
-//                         ->all(), 'id_category', 'desc_category'), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
             ?>                
             </div>
             <div class="panel-body">
@@ -66,7 +56,7 @@ $this->title = Yii::t('app', 'Accomplishment');
 				]);
 			?>	
 			</div>
-		</div>
-    </div>
-</div>
+    	</div>
+    	</div>
+	</div>
 </div>

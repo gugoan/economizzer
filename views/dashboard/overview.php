@@ -8,17 +8,16 @@ use app\models\Cashbook;
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Overview');
 ?>
-<div class="row">
+<div class="dashboard-index">
       <div class="row">
-        <div class="col-md-4"><?php  echo $this->render('_menu'); ?></div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
+        <div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
+        <div class="col-md-6"></div>
       </div>
       <hr/>
       <div class="row">
             <div class="col-md-6">
             <div class="panel panel-default">
-          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Revenue x Expenses');?></strong></div>
+          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
             <div class="panel-body" style="height: 250px;">
             <?php
             $balance = ((round((int)$vtype1)-abs(round((int)$vtype2))) >=0 ? (round((int)$vtype1)-abs(round((int)$vtype2))) : 0);
@@ -66,7 +65,7 @@ $this->title = Yii::t('app', 'Overview');
             </div></div></div>
             <div class="col-md-6">
                 <div class="panel panel-default">
-              <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
+              <div class="panel-heading"><strong><?php echo Yii::t('app', 'Evolution');?></strong></div>
               <div class="panel-body" style="height: 250px;">
               <?php 
               // get overbalance
@@ -83,25 +82,25 @@ $this->title = Yii::t('app', 'Overview');
                   <thead>
                       <tr>
                           <th class="text-center"><i class="fa fa-line-chart"></i></th>
-                          <th class="text-center"><?php echo Yii::t('app', 'Current Month');?></th>
                           <th class="text-center"><?php echo Yii::t('app', 'Previous Month');?></th>
+                          <th class="text-center"><?php echo Yii::t('app', 'Current Month');?></th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr class="text-success">
                           <td><?php echo Yii::t('app', 'Revenue');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".(int)$vtype1;?></td>
                           <td><?php echo Yii::t('app', '$')." ".(int)$lastmonth_type1;?></td>
+                          <td><?php echo Yii::t('app', '$')." ".(int)$vtype1;?></td>
                       </tr>
                       <tr class="text-danger">
                           <td><?php echo Yii::t('app', 'Expense');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".abs((int)$vtype2);?></td>
                           <td><?php echo Yii::t('app', '$')." ".abs((int)$lastmonth_type2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".abs((int)$vtype2);?></td>
                       </tr>
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".((int)$vtype1 - abs((int)$vtype2));?></td>
                           <td><?php echo Yii::t('app', '$')." ".((int)$lastmonth_type1 - abs((int)$lastmonth_type2));?></td>
+                          <td><?php echo Yii::t('app', '$')." ".((int)$vtype1 - abs((int)$vtype2));?></td>
                       </tr>
                   </tbody>
               </table>
@@ -112,7 +111,7 @@ $this->title = Yii::t('app', 'Overview');
             <div class="row">
                 <div class="col-md-6">
                   <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Despesas por categoria</strong></div>
+                    <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Category');?></strong></div>
                     <div class="panel-body">
                       <?php 
                       echo Highcharts::widget([
