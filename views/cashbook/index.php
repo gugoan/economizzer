@@ -7,17 +7,16 @@ use app\models\Cashbook;
 $this->title = Yii::t('app', 'Entries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="row">
         <div class="col-sm-3">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
-                  <h4 class="panel-title"><i class="fa fa-search"></i> <?php echo Yii::t('app', 'Filters');?>
+                  <strong><?php echo Yii::t('app', 'Filters');?>
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
                       <span class="glyphicon glyphicon-resize-small pull-right" aria-hidden="true"></span>
                     </a>
-                  </h4>
+                  </strong>
                 </div>
                 <div id="collapseFilter" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">

@@ -7,7 +7,6 @@ use app\models\Cashbook;
 
 $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Overview');
-
 ?>
 <div class="row">
       <div class="row">
@@ -98,6 +97,11 @@ $this->title = Yii::t('app', 'Overview');
                           <td><?php echo Yii::t('app', 'Expense');?></td>
                           <td><?php echo Yii::t('app', '$')." ".abs((int)$vtype2);?></td>
                           <td><?php echo Yii::t('app', '$')." ".abs((int)$lastmonth_type2);?></td>
+                      </tr>
+                      <tr class="text-primary">
+                          <td><?php echo Yii::t('app', 'Balance');?></td>
+                          <td><?php echo Yii::t('app', '$')." ".((int)$vtype1 - abs((int)$vtype2));?></td>
+                          <td><?php echo Yii::t('app', '$')." ".((int)$lastmonth_type1 - abs((int)$lastmonth_type2));?></td>
                       </tr>
                   </tbody>
               </table>
