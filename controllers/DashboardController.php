@@ -110,18 +110,21 @@ class DashboardController extends Controller
         $lastmonth_type2 = $lastmonth_command->queryScalar();
 
         $category_cmd = Yii::$app->db->createCommand(
-            "SELECT desc_category AS cat, value FROM cashbook
+            "SELECT desc_category AS cat, category.hexcolor_category as color, value FROM cashbook
             INNER JOIN category
             ON cashbook.category_id = category.id_category
             WHERE category.user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear
+            ORDER BY value ASC
             ");
         $category = $category_cmd->queryAll();
         
         $cat = array();
+        $color = array();
         $value = array();
  
         for ($i = 0; $i < sizeof($category); $i++) {
            $cat[] = $category[$i]["cat"];
+           $color[] = ($category[$i]["color"] <> '' ? $category[$i]["color"] : '#2C3E50');
            $value[] = abs((int) $category[$i]["value"]); //turn value into positive number for chart gen
         }        
 
@@ -132,6 +135,7 @@ class DashboardController extends Controller
             'lastmonth_type1' => $lastmonth_type1, 
             'lastmonth_type2' => $lastmonth_type2, 
             'cat' => $cat,
+            'color' => $color,
             'value' => $value,                       
             ]);  
     }    

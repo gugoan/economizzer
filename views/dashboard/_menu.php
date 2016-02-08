@@ -4,8 +4,26 @@ use yii\bootstrap\Nav;
 
             echo Nav::widget([
                 'activateItems' => true,
+                'encodeLabels' => false,
                 'items' => [
+                    
+                    // [
+                    //     'label'   => Yii::t('app', 'Top 5'),
+                    //     'url'     => ['site/index'],
+                    //     'active'  => false,
+                    //     'options' => ['class' => 'disabled'],
+                    // ],
+                    // [
+                    //     'label'   => Yii::t('app', 'Detailed'),
+                    //     'url'     => ['site/index'],
+                    //     'active'  => false,
+                    //     'options' => ['class' => 'disabled'],
+                    // ],
+                    
                     [
+                        'label' => 'Relatório',
+                        'items' => [
+[
                         'label' => Yii::t('app', 'Monthly Summary'),
                         'url' => ['/dashboard/overview'],
                         'visible' => !Yii::$app->user->isGuest,
@@ -29,29 +47,9 @@ use yii\bootstrap\Nav;
                         //'active'  => false,
                         //'options' => ['class' => 'disabled'],
                     ],
-                    // [
-                    //     'label'   => Yii::t('app', 'Top 5'),
-                    //     'url'     => ['site/index'],
-                    //     'active'  => false,
-                    //     'options' => ['class' => 'disabled'],
-                    // ],
-                    // [
-                    //     'label'   => Yii::t('app', 'Detailed'),
-                    //     'url'     => ['site/index'],
-                    //     'active'  => false,
-                    //     'options' => ['class' => 'disabled'],
-                    // ],
-                    /*
-                    [
-                        'label' => 'Dropdown',
-                        'items' => [
-                             ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
-                             '<li class="divider"></li>',
-                             '<li class="dropdown-header">Dropdown Header</li>',
-                             ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
                         ],
                     ],
-                    */
+                    
                 ],
                 'options' => ['class' =>'nav-pills nav-stacked'], // set this to nav-tab to get tab-styled navigation
             ]);
