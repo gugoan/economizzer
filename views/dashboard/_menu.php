@@ -5,7 +5,7 @@ echo Nav::widget([
     'encodeLabels' => false,
     'items' => [
         [
-        'label' => Yii::t('app', 'Select Panel'),
+        'label' => Yii::t('app', 'Select Dashboard'),
             'items' => [
                 [
                     'label' => Yii::t('app', 'Monthly Summary'),
@@ -13,7 +13,7 @@ echo Nav::widget([
                     'visible' => !Yii::$app->user->isGuest,
                 ],
                 [
-                    'label'   => Yii::t('app', 'Accomplishment'),
+                    'label'   => Yii::t('app', 'Analysis by Category'),
                     'url'     => ['/dashboard/accomplishment'],
                     'visible' => !Yii::$app->user->isGuest,
                 ],
