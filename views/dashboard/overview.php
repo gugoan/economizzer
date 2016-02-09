@@ -55,8 +55,8 @@ $this->title = Yii::t('app', 'Overview');
                         'type'=> 'pie',
                         'name'=> 'Valor',
                         'data'=> [
-                            [Yii::t('app', 'Balance'),   $balance],
-                            [Yii::t('app', 'Expense'),   abs(round((int)$vtype2))],
+                            [Yii::t('app', 'Balance'),  'y'=> $balance],
+                            [Yii::t('app', 'Expense'),  'y'=> abs(round((int)$vtype2)), ['sliced'=> true]],
                         ]
                     ]]
                 ]
