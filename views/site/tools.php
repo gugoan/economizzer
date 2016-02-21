@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\export\ExportMenu;
+
 
 $this->title = Yii::t('app', 'Tools');
 ?>
@@ -17,7 +17,7 @@ $this->title = Yii::t('app', 'Tools');
 	  <div class="panel-heading"><strong><?php echo Yii::t('app', 'Export Data');?></strong></div>
 	  <div class="panel-body">
 		<?php
-		echo Yii::t('app', 'Entries').": ";
+		use kartik\export\ExportMenu;
         $gridColumns = [
             ['attribute'=>'date','format'=>['date'], 'hAlign'=>'right', 'width'=>'110px'],  
 		    [
@@ -39,6 +39,8 @@ $this->title = Yii::t('app', 'Tools');
         'emptyText' => Yii::t('app', 'No entries found!'),
         'showColumnSelector' => true,
         'asDropdown' => true,
+        'target' => ExportMenu::TARGET_BLANK,
+        'showConfirmAlert' => false,
         'exportConfig' => [
 	        ExportMenu::FORMAT_HTML => false,
 	        ExportMenu::FORMAT_PDF => false
@@ -47,7 +49,7 @@ $this->title = Yii::t('app', 'Tools');
 	    	'class' => 'btn btn-primary btn-sm',
 	    ],
 	    'dropdownOptions' => [
-	    	'label' => 'Export All',
+	    	'label' => Yii::t('app', 'Export Data'),
 	    	'class' => 'btn btn-primary btn-sm',
 	    ],
 	    ]);
