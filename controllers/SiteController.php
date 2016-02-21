@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Cashbook;
+use app\models\CashbookSearch;
 
 class SiteController extends BaseController
 {
@@ -51,6 +52,20 @@ class SiteController extends BaseController
     {
         return $this->render('index');
     }
+
+    public function actionTools()
+    {
+        $searchModel = new CashbookSearch();
+        $searchModel->start_date = '2016-01-01'; // get start date 
+        $searchModel->end_date = '2016-12-31'; // get end date
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('tools', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);        
+        //return $this->render('tools');
+    }    
 
     public function actionLogin()
     {

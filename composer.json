@@ -30,7 +30,9 @@
         "miloschuman/yii2-highcharts-widget": "dev-master",
         "amnah/yii2-user": "^3.0",
         "kartik-v/yii2-widgets": "*",
-        "fxp/composer-asset-plugin": "~1.0"
+        "fxp/composer-asset-plugin": "~1.0",
+        "kartik-v/yii2-export": "@dev",
+        "kartik-v/yii2-grid": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

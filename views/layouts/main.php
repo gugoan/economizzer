@@ -68,6 +68,7 @@ SCRIPT;
                     'items' => 
                         [
                             ['label' => '<span class="glyphicon glyphicon-tags" aria-hidden="true"></span> '.Yii::t('app', 'Categories'), 'url' => ['/category/index']],
+                            // ['label' => '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> '.Yii::t('app', 'Tools'), 'url' => ['/site/tools']],                            
                         ],
                     ],
                     Yii::$app->user->isGuest ?

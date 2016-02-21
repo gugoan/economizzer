@@ -95,7 +95,32 @@ $this->params['breadcrumbs'][] = $this->title;
              'footerOptions' => ['style'=>'text-align:right'],
             ],
         ],
-    ]); ?>
+    ]);
+     ?>
+     <div class="pull-right">
+      <?php
+      // use kartik\export\ExportMenu;
+      //     $gridColumns = [
+      //         ['attribute'=>'date','format'=>['date'], 'hAlign'=>'right', 'width'=>'110px'],  
+      //         ['attribute'=>'category_id','format'=>['decimal',2], 'hAlign'=>'right', 'width'=>'110px'],          
+      //         ['attribute'=>'value','format'=>['decimal',2], 'hAlign'=>'right', 'width'=>'110px'],
+      //     ];
+      //         echo ExportMenu::widget([
+      //         'dataProvider' => $dataProvider,
+      //         'columns' => $gridColumns,
+      //         'fontAwesome' => true,
+      //         'emptyText' => Yii::t('app', 'No entries found!'),
+      //         'showColumnSelector' => false,
+      //         'exportConfig' => [
+      //             ExportMenu::FORMAT_HTML => false,
+      //             ExportMenu::FORMAT_PDF => false
+      //         ],                        
+      //         'dropdownOptions' => [
+      //           'class' => 'btn btn-primary btn-xs',
+      //         ],              
+      //     ]);
+      ?>       
+     </div>
     </div>
     </div>
 </div>
