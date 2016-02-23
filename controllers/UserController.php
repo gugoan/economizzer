@@ -89,4 +89,13 @@ class UserController extends BaseUserController{
             "model" => $model,
         ]);
     }
+    public function actionCrawler()
+    {
+        $model = Yii::$app->getModule("user")->model("LoginForm");
+        if ($model->load(Yii::$app->request->post(), '') && $model->login(Yii::$app->getModule("user")->loginDuration)) {
+            return $this->goBack(Yii::$app->getModule("user")->loginRedirect);
+        }
+        return $this->render('crawler', compact("model"));
+ 
+    }    
 }

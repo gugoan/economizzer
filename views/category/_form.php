@@ -51,15 +51,7 @@ use yii\helpers\ArrayHelper;
     <?php ActiveForm::end(); ?>
 </div>
 <div class="col-md-4">
-<div class="panel panel-success">
-      <div class="panel-body">
-<div class="alert alert-success" role="alert"><h4><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <?php echo Yii::t('app', 'Follow us');?></h4></div>
-<p><?php echo Yii::t('app', 'Support the Save and stay on top of updates, follow us and share with your friends');?></p>
-<p><a href="https://twitter.com/economizzer" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-twitter.png" align="absbottom"></a></p>
-<p><a href="https://www.facebook.com/economizzer" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-facebook.png" align="absbottom"></a></p>
-<p><a href="https://plus.google.com/101075084400357449168" target="_blank"><img src="<?php echo Yii::$app->request->baseUrl;?>/images/follow-googleplus.png" align="absbottom"></a></p>
-      </div>
-    </div>
+<!-- ADS test -->
 </div>
 
 </div>
