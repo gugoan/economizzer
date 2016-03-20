@@ -21,7 +21,8 @@ Installation
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
-composer require "fxp/composer-asset-plugin:~1.0"
+composer global require "fxp/composer-asset-plugin:~1.1.1"
+composer install
 ~~~
 
 
