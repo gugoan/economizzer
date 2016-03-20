@@ -21,14 +21,13 @@ Installation
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
-composer require "fxp/composer-asset-plugin:~1.0"
+composer global require "fxp/composer-asset-plugin:~1.1.1"
+composer install
 ~~~
 
 
 Configuration
 -------------
-
-Create the **economizzer** database and import the file **economizzer.sql**.
 
 In folder **economizzer/config/db.php** set as follows:
 
@@ -42,6 +41,11 @@ return [
     'enableSchemaCache' => true,
 ];
 ```
+
+And install migrations
+~~~
+./yii migrate
+~~~
 
 To test, go to **http://yourserver/economizzer/web** with user and password below:
 
