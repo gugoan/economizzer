@@ -7,14 +7,14 @@ It is available in the following languages: **English**, **Brazilian Portuguese*
 
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
-Learn more the design features on the official website: [www.economizzer.org](http://www.economizzer.org)
+Learn more the features on the official website: [www.economizzer.org](http://www.economizzer.org)
 
 Live Demo
 ------------
 
-You may be accessing the address [live demo](www.economizzer.org/web)
+You can try: [www.economizzer.org/web](www.economizzer.org/web)
 
-> **ADVICE:** Use the user "joe" and password "123456".
+> Use the user "joe" and password "123456".
 
 
 Requirements
