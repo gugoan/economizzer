@@ -7,6 +7,14 @@ It is available in the following languages: **English**, **Brazilian Portuguese*
 
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
+Learn more the design features on the official website: [www.economizzer.org](http://www.economizzer.org)
+
+Live Demo
+------------
+
+You may be accessing the address [live demo](www.economizzer.org/web)
+
+> **ADVICE:** Use the user "joe" and password "123456".
 
 
 Requirements
@@ -57,13 +65,13 @@ Pass: 123456
 Contribution
 -------------
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 
 License
 -------------
 
-Economizzer is Copyright © 2008-2014 Gustavo G. Andrade. 
+Economizzer is Copyright © 2014 Gustavo G. Andrade. 
 It is free software, and may be redistributed under the terms specified in the
 [LICENSE](LICENSE.md) file.
 
