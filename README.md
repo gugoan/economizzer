@@ -12,7 +12,7 @@ Learn more the features on the official website: [www.economizzer.org](http://ww
 Live Demo
 ------------
 
-You can try: [www.economizzer.org/web](www.economizzer.org/web)
+You can try: [www.economizzer.org/web](http://www.economizzer.org/web)
 
 > Use the user "joe" and password "123456".
 
