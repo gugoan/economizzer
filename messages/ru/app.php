@@ -81,6 +81,7 @@ return [
     'Icon' => 'Значок',
     'Inc Datetime' => '',
     'Is Pending' => '',
+    'Korean' => '',
     'Login' => 'Войти',
     'Login to access the System' => 'Войдите для доступа к системе',
     'Monthly Comparative Revenue x Expense' => 'Помесячное сравнение доходов и расходов',

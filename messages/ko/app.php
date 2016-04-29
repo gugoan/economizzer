@@ -80,6 +80,7 @@ return [
     'Icon' => '',
     'Inc Datetime' => '',
     'Is Pending' => '',
+    'Korean' => '한국어',
     'Login' => '로그인',
     'Login to access the System' => '시스템 접근 로그인',
     'Monthly Comparative Revenue x Expense' => '',

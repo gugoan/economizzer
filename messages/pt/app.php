@@ -81,6 +81,7 @@ return [
     'Icon' => 'Icone',
     'Inc Datetime' => 'Inclusão',
     'Is Pending' => 'Pendente',
+    'Korean' => '',
     'Login' => 'Login',
     'Login to access the System' => 'Autentique-se para acessar',
     'Monthly Comparative Revenue x Expense' => 'Comparativo mensal de Receita x Despesa',

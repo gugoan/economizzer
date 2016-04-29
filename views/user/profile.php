@@ -34,6 +34,7 @@ $this->title = Yii::t('user', 'Profile');
         'en' => Yii::t('app', 'English USA'), 
         'pt' => Yii::t('app', 'Brazilian Portuguese'), 
         'ru' => Yii::t('app', 'Russian'), 
+        'ko' => Yii::t('app', 'Korean'), 
         ]); 
     ?>
 
