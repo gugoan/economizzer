@@ -9,24 +9,22 @@ $this->title = 'Economizzer';
 $this->title = Yii::t('app', 'Overview');
 ?>
 <div class="dashboard-index">
-      <div class="row">
-        <div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
-        <div class="col-md-6"></div>
-      </div>
-      <hr/>
-      <div class="row">
-            <div class="col-md-6">
-            <div class="panel panel-default">
-          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
-            <div class="panel-body" style="height: 250px;">
+  <div class="row">
+    <div class="col-md-6"><?php  echo $this->render('_menu'); ?></div>
+    <div class="col-md-6"></div>
+  </div>
+  <hr/>
+  <div class="row">
+        <div class="col-md-6">
+        <div class="panel panel-default">
+        <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
+        <div class="panel-body" style="height: 250px;">
             <?php
             $balance = ((round((int)$vtype1)-abs(round((int)$vtype2))) >=0 ? (round((int)$vtype1)-abs(round((int)$vtype2))) : 0);
             echo Highcharts::widget([
                 'options' => [
                     'credits' => ['enabled' => false],
-                    'chart'=> [
-                    'height'=> 200,
-                    ],
+                    'chart'=> ['height'=> 200,],
                     'title' => [
                         'text' => Yii::t('app', 'Expense'),
                         'align' => 'center',
@@ -35,8 +33,7 @@ $this->title = Yii::t('app', 'Overview');
                               'fontSize'=> '12px',
                               'color' => '#e74c3c',
                           ] 
-                        ],
-                    //'colors'=> ['#18bc9c','#e74c3c'],
+                    ],
                     'colors'=> ['#cccccc','#e74c3c'],
                     'tooltip'=> ['pointFormat'=> Yii::t('app', 'Percentage').': <b>{point.percentage:.1f}%</b>'],
                     'plotOptions'=> [
@@ -45,9 +42,7 @@ $this->title = Yii::t('app', 'Overview');
                             'cursor'=> 'pointer',
                             'size'=> '100%',
                             'innerSize'=> '60%',
-                            'dataLabels'=> [
-                                'enabled'=> false,
-                            ],
+                            'dataLabels'=> ['enabled'=> false,],
                             'center'=> ['50%', '55%'],
                         ]
                     ],
@@ -64,20 +59,18 @@ $this->title = Yii::t('app', 'Overview');
                 ?>
             </div></div></div>
             <div class="col-md-6">
-                <div class="panel panel-default">
+              <div class="panel panel-default">
               <div class="panel-heading"><strong><?php echo Yii::t('app', 'Evolution');?></strong></div>
               <div class="panel-body" style="height: 250px;">
               <?php 
-              // get overbalance
               if(round((int)$vtype1) >= abs(round((int)$vtype2)))
               {
                 $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<h3 class=\"label label-success pull-right\">".Yii::t('app', 'Positive')."</h3></div>";
               }else{
                 $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<span class=\"label label-danger pull-right\">".Yii::t('app', 'Negative')."</span></div>";
               }
-              echo $overbalance;
+                echo $overbalance;
               ?>
-
               <table class="table table-bordered text-center">
                   <thead>
                       <tr>
@@ -107,51 +100,41 @@ $this->title = Yii::t('app', 'Overview');
               </div>
               </div>
             </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Category');?></strong></div>
+          <div class="panel-body">
+            <?php 
+            echo Highcharts::widget([
+            'options' => [
+                'credits' => ['enabled' => false],
+                'title' => [
+                    'text' => '',
+                ],
+                'xAxis' => [
+                    'categories' => $cat,
+                ],
+                'yAxis' => [
+                    'min' => 0,
+                    'title' => '',
+                ],                        
+                'series' => [
+                    [
+                        'type' => 'bar',
+                        'colorByPoint'=> true,
+                        'name' => Yii::t('app', 'Category'),
+                        'data' => $value,
+                        'colors' => $color,
+                    ],                          
+                ],
+              ]
+            ]);
+            ?>
+          </div>
+        </div>
       </div>
-            <div class="row">
-                <div class="col-md-6">
-                  <div class="panel panel-default">
-                    <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Category');?></strong></div>
-                    <div class="panel-body">
-                      <?php 
-                      echo Highcharts::widget([
-                      'options' => [
-                          'credits' => ['enabled' => false],
-                          'title' => [
-                              'text' => '',
-                          ],
-                          'xAxis' => [
-                              'categories' => $cat,
-                          ],
-                          'yAxis' => [
-                              'min' => 0,
-                              'title' => '',
-                          ],                        
-                          'series' => [
-                              [
-                                  'type' => 'bar',
-                                  'colorByPoint'=> true,
-                                  'name' => Yii::t('app', 'Category'),
-                                  'data' => $value,
-                                  'colors' => $color,
-                              ],                          
-                          ],
-                      ]
-                  ]);
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-<!--                   <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Despesas por Categoria</strong></div>
-                    <div class="panel-body">
-
-                    </div>
-                  </div> -->
-                </div>
-            </div>
-            
-            </div>
-        
+      <div class="col-md-6"></div>
+  </div>
  </div>

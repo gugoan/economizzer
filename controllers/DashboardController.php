@@ -102,7 +102,6 @@ class DashboardController extends Controller
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $vtype2 = $command->queryScalar();
 
-        // get last month values;
         $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
         $lastmonth_type1 = $lastmonth_command->queryScalar();
 
@@ -114,7 +113,7 @@ class DashboardController extends Controller
             INNER JOIN category
             ON cashbook.category_id = category.id_category
             WHERE category.user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear
-            ORDER BY value ASC
+            ORDER BY value ASC LIMIT 10
             ");
         $category = $category_cmd->queryAll();
         
