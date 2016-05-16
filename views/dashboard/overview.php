@@ -135,6 +135,39 @@ $this->title = Yii::t('app', 'Overview');
           </div>
         </div>
       </div>
-      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Segment');?></strong></div>
+          <div class="panel-body">
+            <?php 
+             echo Highcharts::widget([
+                 'options' => [
+                    'credits' => ['enabled' => false],
+                    'title' => [
+                        'text' => '',
+                    ],
+                    'plotOptions' => [
+                        'pie' => [
+                            'cursor' => 'pointer',
+                        ],
+                    ],
+                    'series' => [
+                        [
+                          'type'=>'pie',                                                             
+                          'name'=>'Elements',
+                           'data' => [
+                                [$seg, $total],
+                          ],
+                        ]
+                    ],
+                 ],
+              ]);
+             var_dump($seg);
+             echo "<p>";
+             var_dump($total);
+            ?>
+          </div>
+        </div>        
+      </div>
   </div>
  </div>

@@ -125,7 +125,27 @@ class DashboardController extends Controller
            $cat[] = $category[$i]["cat"];
            $color[] = ($category[$i]["color"] <> '' ? $category[$i]["color"] : '#2C3E50');
            $value[] = abs((int) $category[$i]["value"]); //turn value into positive number for chart gen
-        }        
+        }   
+
+        $segment_cmd = Yii::$app->db->createCommand(
+            "SELECT y.desc_category as seg, sum( x.value) as total FROM (
+                SELECT category.id_category, category.desc_category, category.parent_id , c.value AS value
+                FROM category
+                INNER JOIN cashbook AS c ON category.id_category = c.category_id )AS x 
+                INNER JOIN category AS y ON x.parent_id = y.id_category
+                INNER JOIN user AS u ON y.user_id = u.id
+                WHERE u.id = 3
+                GROUP BY y.desc_category
+            ");
+        $segment = $segment_cmd->queryAll();  
+
+        $seg = array();
+        $total = array();
+ 
+        for ($i = 0; $i < sizeof($segment); $i++) {
+           $seg[] = $segment[$i]["seg"];
+           $total[] = abs((int) $segment[$i]["total"]); //turn value into positive number for chart gen
+        }            
 
         return $this->render('overview', [
             'model'=>$model,
@@ -136,6 +156,8 @@ class DashboardController extends Controller
             'cat' => $cat,
             'color' => $color,
             'value' => $value,                       
+            'seg' => $seg, 
+            'total' => $total, 
             ]);  
     }    
 
