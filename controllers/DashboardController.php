@@ -109,11 +109,11 @@ class DashboardController extends Controller
         $lastmonth_type2 = $lastmonth_command->queryScalar();
 
         $category_cmd = Yii::$app->db->createCommand(
-            "SELECT desc_category AS cat, category.hexcolor_category as color, value FROM cashbook
+            "SELECT desc_category AS cat, category.hexcolor_category as color, SUM(value) as value FROM cashbook
             INNER JOIN category
             ON cashbook.category_id = category.id_category
             WHERE category.user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear
-            ORDER BY value ASC LIMIT 10
+            GROUP BY category.id_category
             ");
         $category = $category_cmd->queryAll();
         
