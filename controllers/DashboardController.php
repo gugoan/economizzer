@@ -93,8 +93,8 @@ class DashboardController extends Controller
 
         $thisyear  = date('Y');
         $thismonth = date('m');
-        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));        
-        $user    = Yii::$app->user->identity->id;        
+        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+        $user    = Yii::$app->user->identity->id;
 
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $vtype1 = $command->queryScalar();
@@ -116,28 +116,28 @@ class DashboardController extends Controller
             GROUP BY category.id_category
             ");
         $category = $category_cmd->queryAll();
-        
+
         $cat = array();
         $color = array();
         $value = array();
- 
+
         for ($i = 0; $i < sizeof($category); $i++) {
            $cat[] = $category[$i]["cat"];
            $color[] = ($category[$i]["color"] <> '' ? $category[$i]["color"] : '#2C3E50');
            $value[] = abs((int) $category[$i]["value"]); //turn value into positive number for chart gen
-        }        
+        }
 
         return $this->render('overview', [
             'model'=>$model,
-            'vtype1' => $vtype1, 
+            'vtype1' => $vtype1,
             'vtype2' => $vtype2,
-            'lastmonth_type1' => $lastmonth_type1, 
-            'lastmonth_type2' => $lastmonth_type2, 
+            'lastmonth_type1' => $lastmonth_type1,
+            'lastmonth_type2' => $lastmonth_type2,
             'cat' => $cat,
             'color' => $color,
-            'value' => $value,                       
-            ]);  
-    }    
+            'value' => $value,
+            ]);
+    }
 
     public function actionAccomplishment()
     {
@@ -150,20 +150,25 @@ class DashboardController extends Controller
         $thismonth = date('m');
         $user    = Yii::$app->user->identity->id;
 
-        $command = Yii::$app->db->createCommand("SELECT 
-            desc_category as n, SUM(value) as v, MONTHNAME(date) as m 
-            FROM cashbook 
+        if (Yii::$app->db->driverName == 'mysql') {
+          $sql_mode_command = Yii::$app->db->createCommand("SET sql_mode = ''");
+          $sql_mode_command->execute();
+        }
+
+        $command = Yii::$app->db->createCommand("SELECT
+            desc_category as n, SUM(value) as v, MONTHNAME(date) as m
+            FROM cashbook
             INNER JOIN category
             on category.id_category = cashbook.category_id
-            WHERE YEAR(date) = $thisyear AND cashbook.user_id = $user AND category_id = $category_id 
-            GROUP BY MONTH(date) 
+            WHERE YEAR(date) = $thisyear AND cashbook.user_id = $user AND category_id = $category_id
+            GROUP BY MONTH(date)
             ORDER BY MONTH(date) asc;");
         $accomplishment = $command->queryAll();
-        
+
         $m = array();
         $v = array();
         $n = array();
- 
+
         for ($i = 0; $i < sizeof($accomplishment); $i++) {
            $m[] = $accomplishment[$i]["m"];
            $v[] = abs((int) $accomplishment[$i]["v"]); //turn value into positive number for chart gen
@@ -171,39 +176,44 @@ class DashboardController extends Controller
         }
         return $this->render('accomplishment', [
             'model'=>$model,
-            'm' => $m, 
+            'm' => $m,
             'v' => $v,
             'n' => $n,
             'category_id' => $category_id,
-            ]);    
+            ]);
     }
 
     public function actionPerformance()
     {
 
-        //      SELECT  
+        //      SELECT
         //      SUM(IF(cashbook.type_id=1, value, 0)) as v1,
         //      SUM(IF(cashbook.type_id=2, value, 0)) as v2,
-        //      MONTHNAME(date) as m 
+        //      MONTHNAME(date) as m
         //      FROM cashbook WHERE user_id = 3 AND YEAR(date) = 2015 GROUP BY m DESC
         $model = new Dashboard();
-        
+
         $thisyear  = date('Y');
         $thismonth = date('m');
         $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
         $user      = Yii::$app->user->identity->id;
 
-        $command = Yii::$app->db->createCommand("SELECT 
+        if (Yii::$app->db->driverName == 'mysql') {
+          $sql_mode_command = Yii::$app->db->createCommand("SET sql_mode = ''");
+          $sql_mode_command->execute();
+        }
+
+        $command = Yii::$app->db->createCommand("SELECT
             SUM(IF(cashbook.type_id=1, value, 0)) as v1,
             SUM(IF(cashbook.type_id=2, value, 0)) as v2,
-            MONTHNAME(date) as m 
+            MONTHNAME(date) as m
             FROM cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m ORDER BY MONTH(date)");
         $performance = $command->queryAll();
-        
+
         $m = array();
         $v1 = array();
         $v2 = array();
- 
+
         for ($i = 0; $i < sizeof($performance); $i++) {
            $m[] = $performance[$i]["m"];
            $v1[] = (int) $performance[$i]["v1"];
@@ -211,11 +221,11 @@ class DashboardController extends Controller
         }
         return $this->render('performance', [
             'model'=>$model,
-            'm' => $m, 
+            'm' => $m,
             'v1' => $v1,
             'v2' => $v2,
-            ]); 
-    }      
+            ]);
+    }
 
     protected function findModel($id)
     {

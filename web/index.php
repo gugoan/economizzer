@@ -9,4 +9,8 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 $config = require(__DIR__ . '/../config/web.php');
 
+if (isset($config['timeZone'])) {
+    @ini_set('date.timezone', $config['timeZone']);
+}
+
 (new yii\web\Application($config))->run();
