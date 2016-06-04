@@ -162,9 +162,16 @@ $this->title = Yii::t('app', 'Overview');
                     ],
                  ],
               ]);
-             var_dump($seg);
-             echo "<p>";
-             var_dump($total);
+                         $data = [
+                ['name' => 'Home', 'y' => 55134],
+                ['name' => 'Personal', 'y' => 116962]
+            ];
+             // var_dump($seg);
+             // echo "<p>";
+             // var_dump($total);
+
+             // echo "<p>";
+             var_dump($data);
             ?>
           </div>
         </div>        
