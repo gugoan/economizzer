@@ -114,6 +114,7 @@ class DashboardController extends Controller
             ON cashbook.category_id = category.id_category
             WHERE category.user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear
             GROUP BY category.id_category
+            ORDER BY value ASC LIMIT 10
             ");
         $category = $category_cmd->queryAll();
         
@@ -135,7 +136,7 @@ class DashboardController extends Controller
                 INNER JOIN category AS y ON x.parent_id = y.id_category
                 INNER JOIN user AS u ON y.user_id = u.id
                 WHERE u.id = 3
-                GROUP BY y.desc_category
+                GROUP BY y.desc_category       
             ");
         $segment = $segment_cmd->queryAll();  
 
@@ -144,7 +145,7 @@ class DashboardController extends Controller
  
         for ($i = 0; $i < sizeof($segment); $i++) {
            $seg[] = $segment[$i]["seg"];
-           $total[] = abs((int) $segment[$i]["total"]); //turn value into positive number for chart gen
+           $total[] = abs((int) $segment[$i]["total"]);
         }            
 
         return $this->render('overview', [
@@ -167,7 +168,6 @@ class DashboardController extends Controller
 
         $url = Yii::$app->getRequest()->getQueryParam('category_id');
         $category_id = isset($url) ? $url : 0;
-        //$category_id = $model->category_id;
         $thisyear  = date('Y');
         $thismonth = date('m');
         $user    = Yii::$app->user->identity->id;
@@ -202,12 +202,6 @@ class DashboardController extends Controller
 
     public function actionPerformance()
     {
-
-        //      SELECT  
-        //      SUM(IF(cashbook.type_id=1, value, 0)) as v1,
-        //      SUM(IF(cashbook.type_id=2, value, 0)) as v2,
-        //      MONTHNAME(date) as m 
-        //      FROM cashbook WHERE user_id = 3 AND YEAR(date) = 2015 GROUP BY m DESC
         $model = new Dashboard();
         
         $thisyear  = date('Y');

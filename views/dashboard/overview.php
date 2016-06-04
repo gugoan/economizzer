@@ -140,38 +140,30 @@ $this->title = Yii::t('app', 'Overview');
           <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Segment');?></strong></div>
           <div class="panel-body">
             <?php 
-             echo Highcharts::widget([
-                 'options' => [
-                    'credits' => ['enabled' => false],
-                    'title' => [
-                        'text' => '',
-                    ],
-                    'plotOptions' => [
-                        'pie' => [
-                            'cursor' => 'pointer',
-                        ],
-                    ],
-                    'series' => [
-                        [
-                          'type'=>'pie',                                                             
-                          'name'=>'Elements',
-                           'data' => [
-                                [$seg, $total],
-                          ],
-                        ]
-                    ],
-                 ],
-              ]);
-                         $data = [
-                ['name' => 'Home', 'y' => 55134],
-                ['name' => 'Personal', 'y' => 116962]
-            ];
-             // var_dump($seg);
-             // echo "<p>";
-             // var_dump($total);
-
-             // echo "<p>";
-             var_dump($data);
+            echo Highcharts::widget([
+            'options' => [
+                'credits' => ['enabled' => false],
+                'title' => [
+                    'text' => '',
+                ],
+                'xAxis' => [
+                    'categories' => $seg,
+                ],
+                'yAxis' => [
+                    'min' => 0,
+                    'title' => '',
+                ],                        
+                'series' => [
+                    [
+                        'type' => 'column',
+                        'colorByPoint'=> true,
+                        'name' => Yii::t('app', 'Category'),
+                        'data' => $total,
+                        //'colors' => $color,
+                    ],                          
+                ],
+              ]
+            ]);
             ?>
           </div>
         </div>        
