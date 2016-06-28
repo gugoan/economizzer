@@ -44,10 +44,6 @@ use kartik\widgets\DatePicker;
             'attribute' => 'date',
             'type' => DatePicker::TYPE_INPUT,
             'size' => 'sm',
-            // 'readonly' => true,
-            // 'options' => [
-            //     'placeholder' => '',
-            // ],
             'pluginOptions' => [
                 'autoclose'=>true,
                 'todayHighlight' => true,
@@ -66,7 +62,7 @@ use kartik\widgets\DatePicker;
             'class' => 'selectpicker '
         ]
     ]
-    )->dropDownList(app\models\Category::getHierarchy(), ['prompt' => 'Selecione', 'class'=>'form-control required']);
+    )->dropDownList(app\models\Category::getHierarchy(), ['prompt' => Yii::t('app', 'Select'), 'class'=>'form-control required']);
     ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 100]) ?>
