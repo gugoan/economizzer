@@ -125,7 +125,7 @@ return [
     'Track each category during the year' => 'Статистика по категории в течении года',
     'Type' => 'Тип',
     'Type ID' => 'ID типа',
-    'Update' => 'Обновить',
+    'Update' => 'Редактировать',
     'Update Entry' => 'Обновить транзакцию',
     'User ID' => 'ID пользователя',
     'Username' => 'Имя Пользователя',
