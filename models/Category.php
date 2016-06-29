@@ -26,7 +26,7 @@ class Category extends \yii\db\ActiveRecord
             'id_category' => Yii::t('app', 'ID'),
             'desc_category' => Yii::t('app', 'Description'),
             'hexcolor_category' => Yii::t('app', 'Color'),
-            'parent_id' => Yii::t('app', 'Categoria Pai'),
+            'parent_id' => Yii::t('app', 'Parent Category'),
             'is_active' => Yii::t('app', 'Active'),
         ];
     }

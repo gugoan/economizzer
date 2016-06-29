@@ -31,7 +31,6 @@ return [
     'Balance' => '잔고',
     'Basic Information' => '기본정보',
     'Brazilian Portuguese' => '브라질리안 포르투칼',
-    'Categoria Pai' => 'Categoria Pai',
     'Categories' => '분류',
     'Category' => '분류',
     'Category ID' => '분류 ID',
@@ -67,6 +66,7 @@ return [
     'Evolution' => '발전사항',
     'Expense' => '지출',
     'Expenses by Category' => '분류별 지출',
+    'Expenses by Segment' => '',
     'Export Data' => '데이터 내보내기',
     'File' => '파일',
     'Filename' => '파일 이름',
@@ -83,6 +83,7 @@ return [
     'Korean' => '한국어',
     'Login' => '로그인',
     'Login to access the System' => '시스템 접근 로그인',
+    'Magyar' => '',
     'Monthly Comparative Revenue x Expense' => '',
     'Monthly Summary' => '월 요약',
     'Monthly balance' => '월 잔고',
@@ -95,6 +96,7 @@ return [
     'None' => '없음',
     'Options' => '옵션',
     'Overview' => '개요',
+    'Parent Category' => '',
     'Password' => '비밀번호',
     'Pending' => '대기',
     'Percentage' => '비율',
@@ -131,4 +133,3 @@ return [
     'Yes' => '네',
     'delete' => '삭제',
 ];
-
