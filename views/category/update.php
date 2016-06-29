@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Update', [
+$this->title = Yii::t('app', 'Edit', [
     'modelClass' => 'Category',
 ]) . ' ' . $model->desc_category;
 ?>
