@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </a>
                   </strong>
                 </div>
-                <div id="collapseFilter" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div id="collapseFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
                     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
                   </div>
