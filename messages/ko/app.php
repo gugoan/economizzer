@@ -74,6 +74,7 @@ return [
     'Filters' => '필터',
     'Forbidden to change entries of other users' => '다른 사용자의 목록은 거부되었습니다',
     'Forgot password' => '비밀번호를 잊어버렸습니다',
+    'French' => 'French',
     'From' => '시작일',
     'Hex Cor' => '16진수',
     'ID' => '아이디',

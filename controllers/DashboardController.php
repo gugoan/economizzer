@@ -135,7 +135,7 @@ class DashboardController extends Controller
                 INNER JOIN cashbook AS c ON category.id_category = c.category_id )AS x 
                 INNER JOIN category AS y ON x.parent_id = y.id_category
                 INNER JOIN user AS u ON y.user_id = u.id
-                WHERE u.id = 3
+                WHERE u.id = $user
                 GROUP BY y.desc_category       
             ");
         $segment = $segment_cmd->queryAll();  

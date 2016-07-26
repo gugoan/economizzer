@@ -74,6 +74,7 @@ return [
     'Filters' => 'Фильтры',
     'Forbidden to change entries of other users' => 'Запрещено изменять значения пренадлежащие другим пользователям',
     'Forgot password' => 'Забыли пароль',
+    'French' => 'French',
     'From' => 'От',
     'Hex Cor' => 'Hex Кор',
     'ID' => 'ID',
