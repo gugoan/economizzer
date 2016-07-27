@@ -87,8 +87,8 @@ $this->title = Yii::t('app', 'Overview');
                       </tr>
                       <tr class="text-danger">
                           <td><?php echo Yii::t('app', 'Expense');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".abs(number_format((float)$lastmonth_type2,2));?></td>
-                          <td><?php echo Yii::t('app', '$')." ".abs(number_format((float)$vtype2,2));?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$lastmonth_type2),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$vtype2),2);?></td>
                       </tr>
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
