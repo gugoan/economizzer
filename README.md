@@ -22,26 +22,12 @@ Requirements
 
 The minimum requirement by this application that your Web server supports PHP 5.4.0 and either apache2 or nginx.
 
-##### Package Requirements
+> Rrequired libraries: libapache2-mod-php, php-mbstring, php-xml, php-curl
 
-1. libapache2-mod-php 
-2. php-mbstring 
-3. php-xml 
-4. php-curl
-
-You can run the following command on ubuntu to install. For other linux distrobutions replace apt with the perspective
-package manager.   
-EX1: pacman 
-EX2: yum
-
-```sh
-sudo apt install libapache2-mod-php php-mbstring php-xml php-curl
-```
 
 Installation
 ------------
 
-~~~sh
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
 composer global require "fxp/composer-asset-plugin:~1.1.1"
@@ -80,7 +66,7 @@ Pass: 123456
 Contribution
 -------------
 
-Please see [CONTRIBUTING](CONTRIBUTING.md).
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [TODO](TODO.md).
 
 
 License
