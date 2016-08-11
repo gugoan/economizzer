@@ -27,7 +27,7 @@ The minimum requirement by this application that your Web server supports PHP 5.
 
 Installation
 ------------
-
+~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
 composer global require "fxp/composer-asset-plugin:~1.1.1"
