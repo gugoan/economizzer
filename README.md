@@ -3,7 +3,7 @@
 
 Economizzer is a simple and open source personal finance manager system made in PHP (Yii Framework 2.0).
 
-It is available in the following languages: **English**, **Brazilian Portuguese** and **Russian**.
+It is available in the following languages:  English, Spanish, Portuguese, Russian, Korean, Hungarian and French.
 
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
@@ -58,9 +58,7 @@ And install migrations
 
 To test, go to **http://yourserver/economizzer/web** with user and password below:
 
-User: joe
-
-Pass: 123456
+> Use the user "joe" and password "123456".
 
 
 Contribution
