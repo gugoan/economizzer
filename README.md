@@ -22,7 +22,7 @@ Requirements
 
 The minimum requirement by this application that your Web server supports PHP 5.4.0 and either apache2 or nginx.
 
-> Rrequired libraries: libapache2-mod-php, php-mbstring, php-xml, php-curl
+> Required libraries: libapache2-mod-php, php-mbstring, php-xml, php-curl
 
 
 Installation
@@ -77,7 +77,7 @@ It is free software, and may be redistributed under the terms specified in the
 
 Donations
 -------------
-To encourage the developer with new enhancements, [web hosting](http://www.economizzer.org/web/) costs, or even to buy him a good beer, support the project by making a donation below.
+To encourage the developer with new enhancements, [web hosting](http://www.economizzer.org/web/) costs, or even to buy him a good beer, support the project by making a [donation](http://www.economizzer.org/donation.html).
 
 [![pledgie](https://pledgie.com/campaigns/30857.png?skin_name=chrome)](https://pledgie.com/campaigns/30857/)
 
