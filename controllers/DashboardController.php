@@ -97,16 +97,16 @@ class DashboardController extends Controller
         $user    = Yii::$app->user->identity->id;        
 
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
-        $vtype1 = $command->queryScalar();
+        $currentmonth_revenue = $command->queryScalar();
 
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
-        $vtype2 = $command->queryScalar();
+        $currentmonth_expense = $command->queryScalar();
 
         $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-        $lastmonth_type1 = $lastmonth_command->queryScalar();
+        $previousmonth_revenue = $lastmonth_command->queryScalar();
 
         $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-        $lastmonth_type2 = $lastmonth_command->queryScalar();
+        $previousmonth_expense = $lastmonth_command->queryScalar();
 
         $category_cmd = Yii::$app->db->createCommand(
             "SELECT desc_category AS cat, category.hexcolor_category as color, SUM(value) as value FROM cashbook
@@ -150,10 +150,10 @@ class DashboardController extends Controller
 
         return $this->render('overview', [
             'model'=>$model,
-            'vtype1' => $vtype1, 
-            'vtype2' => $vtype2,
-            'lastmonth_type1' => $lastmonth_type1, 
-            'lastmonth_type2' => $lastmonth_type2, 
+            'currentmonth_revenue' => $currentmonth_revenue, 
+            'currentmonth_expense' => $currentmonth_expense,
+            'previousmonth_revenue' => $previousmonth_revenue, 
+            'previousmonth_expense' => $previousmonth_expense, 
             'cat' => $cat,
             'color' => $color,
             'value' => $value,                       
