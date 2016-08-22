@@ -86,6 +86,7 @@ $this->title = Yii::t('app', 'Categories');
                             [
                                 'title' => Yii::t('app', 'delete'),
                                 'data-pjax' => '0',
+                                'data-method'=>'post',
                             ]
                         );
                     },                    
