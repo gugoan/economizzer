@@ -137,7 +137,7 @@ $this->title = Yii::t('app', 'Overview');
       </div>
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Segment');?></strong></div>
+          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Transactions by Segment');?></strong></div>
           <div class="panel-body">
             <?php 
             echo Highcharts::widget([
@@ -157,9 +157,9 @@ $this->title = Yii::t('app', 'Overview');
                     [
                         'type' => 'column',
                         'colorByPoint'=> true,
-                        'name' => Yii::t('app', 'Category'),
+                        'name' => Yii::t('app', 'Segment'),
                         'data' => $total,
-                        //'colors' => $color,
+                        'colors' => $colorseg,
                     ],                          
                 ],
               ]

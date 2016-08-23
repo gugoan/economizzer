@@ -129,22 +129,26 @@ class DashboardController extends Controller
         }   
 
         $segment_cmd = Yii::$app->db->createCommand(
-            "SELECT y.desc_category as seg, sum( x.value) as total FROM (
-                SELECT category.id_category, category.desc_category, category.parent_id , c.value AS value
+            "SELECT x.`year`, x.`month`, y.desc_category as seg, y.hexcolor_category as colorseg, sum( x.value) as total FROM (
+                SELECT category.id_category, category.desc_category, category.parent_id , c.value AS value, 
+                       year(c.`date`) as `year` , month(c.`date`) AS `month`
                 FROM category
-                INNER JOIN cashbook AS c ON category.id_category = c.category_id )AS x 
+                INNER JOIN cashbook AS c ON category.id_category = c.category_id ) AS x 
                 INNER JOIN category AS y ON x.parent_id = y.id_category
                 INNER JOIN user AS u ON y.user_id = u.id
                 WHERE u.id = $user
-                GROUP BY y.desc_category       
+                GROUP BY y.desc_category, x.`year`, x.`month`
+                having x.`year` = year(now())  and x.`month` = month(now())       
             ");
         $segment = $segment_cmd->queryAll();  
 
         $seg = array();
+        $colorseg = array();
         $total = array();
  
         for ($i = 0; $i < sizeof($segment); $i++) {
            $seg[] = $segment[$i]["seg"];
+           $colorseg[] = ($segment[$i]["colorseg"] <> '' ? $segment[$i]["colorseg"] : '#2C3E50');
            $total[] = abs((int) $segment[$i]["total"]);
         }            
 
@@ -159,6 +163,7 @@ class DashboardController extends Controller
             'value' => $value,                       
             'seg' => $seg, 
             'total' => $total, 
+            'colorseg' => $colorseg,
             ]);  
     }    
 
