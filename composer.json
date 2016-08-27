@@ -32,7 +32,8 @@
         "kartik-v/yii2-widgets": "*",
         "fxp/composer-asset-plugin": "~1.1.1",
         "kartik-v/yii2-export": "@dev",
-        "kartik-v/yii2-grid": "@dev"
+        "kartik-v/yii2-grid": "@dev",
+        "yiisoft/yii2-authclient": "2.0.6"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

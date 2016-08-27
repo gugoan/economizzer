@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Overview');
         <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
         <div class="panel-body" style="height: 250px;">
             <?php
-            $balance = ((round((int)$vtype1)-abs(round((int)$vtype2))) >=0 ? (round((int)$vtype1)-abs(round((int)$vtype2))) : 0);
+            $balance = ((round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) >=0 ? (round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) : 0);
             echo Highcharts::widget([
                 'options' => [
                     'credits' => ['enabled' => false],
@@ -51,7 +51,7 @@ $this->title = Yii::t('app', 'Overview');
                         'name'=> 'Valor',
                         'data'=> [
                             [Yii::t('app', 'Balance'),  'y'=> $balance],
-                            [Yii::t('app', 'Expense'),  'y'=> abs(round((int)$vtype2)), ['sliced'=> true]],
+                            [Yii::t('app', 'Expense'),  'y'=> abs(round((int)$currentmonth_expense)), ['sliced'=> true]],
                         ]
                     ]]
                 ]
@@ -63,7 +63,7 @@ $this->title = Yii::t('app', 'Overview');
               <div class="panel-heading"><strong><?php echo Yii::t('app', 'Evolution');?></strong></div>
               <div class="panel-body" style="height: 250px;">
               <?php 
-              if(round((int)$vtype1) >= abs(round((int)$vtype2)))
+              if(round((int)$currentmonth_revenue) >= abs(round((int)$currentmonth_expense)))
               {
                 $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<h3 class=\"label label-success pull-right\">".Yii::t('app', 'Positive')."</h3></div>";
               }else{
@@ -82,18 +82,18 @@ $this->title = Yii::t('app', 'Overview');
                   <tbody>
                       <tr class="text-success">
                           <td><?php echo Yii::t('app', 'Revenue');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$lastmonth_type1,2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$vtype1,2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$previousmonth_revenue,2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$currentmonth_revenue,2);?></td>
                       </tr>
                       <tr class="text-danger">
                           <td><?php echo Yii::t('app', 'Expense');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".abs(number_format((float)$lastmonth_type2,2));?></td>
-                          <td><?php echo Yii::t('app', '$')." ".abs(number_format((float)$vtype2,2));?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$previousmonth_expense),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$currentmonth_expense),2);?></td>
                       </tr>
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$lastmonth_type1 - abs((float)$lastmonth_type2)),2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$vtype1 - abs((float)$vtype2)),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$previousmonth_revenue - abs((float)$previousmonth_expense)),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue - abs((float)$currentmonth_expense)),2);?></td>
                       </tr>
                   </tbody>
               </table>
