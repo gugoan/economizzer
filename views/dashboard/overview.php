@@ -34,7 +34,7 @@ $this->title = Yii::t('app', 'Overview');
                               'color' => '#e74c3c',
                           ] 
                     ],
-                    'colors'=> ['#cccccc','#e74c3c'],
+                    'colors'=> ['#18bc9c','#e74c3c'],
                     'tooltip'=> ['pointFormat'=> Yii::t('app', 'Percentage').': <b>{point.percentage:.1f}%</b>'],
                     'plotOptions'=> [
                         'pie'=> [
