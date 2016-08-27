@@ -93,7 +93,7 @@ $this->title = Yii::t('app', 'Overview');
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
                           <td><?php echo Yii::t('app', '$')." ".number_format(((float)$previousmonth_revenue - abs((float)$previousmonth_expense)),2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense))) - abs((float)$currentmonth_expense)),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense)) - abs((float)$currentmonth_expense)),2);?></td>
                       </tr>
                   </tbody>
               </table>
