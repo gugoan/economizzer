@@ -9,5 +9,5 @@ $this->title = Yii::t('app', 'Targets');
   <span><?php echo $this->title;?></span>
 </h2>
 <hr/>
-<p class="text-info text-center">Work in Progress</p>
+<p class="text-info text-center">Work in Progress...</p>
 </div>
