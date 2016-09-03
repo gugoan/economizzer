@@ -34,7 +34,7 @@ $this->title = Yii::t('app', 'Overview');
                               'color' => '#e74c3c',
                           ] 
                     ],
-                    'colors'=> ['#cccccc','#e74c3c'],
+                    'colors'=> ['#18bc9c','#e74c3c'],
                     'tooltip'=> ['pointFormat'=> Yii::t('app', 'Percentage').': <b>{point.percentage:.1f}%</b>'],
                     'plotOptions'=> [
                         'pie'=> [
@@ -63,7 +63,7 @@ $this->title = Yii::t('app', 'Overview');
               <div class="panel-heading"><strong><?php echo Yii::t('app', 'Evolution');?></strong></div>
               <div class="panel-body" style="height: 250px;">
               <?php 
-              if(round((int)$currentmonth_revenue) >= abs(round((int)$currentmonth_expense)))
+              if(round((int)($currentmonth_revenue+($previousmonth_revenue - abs((int)$previousmonth_expense)))) >= abs(round((int)$currentmonth_expense)))
               {
                 $overbalance = "<div>". Yii::t('app', 'Monthly balance'). "<h3 class=\"label label-success pull-right\">".Yii::t('app', 'Positive')."</h3></div>";
               }else{
@@ -83,7 +83,7 @@ $this->title = Yii::t('app', 'Overview');
                       <tr class="text-success">
                           <td><?php echo Yii::t('app', 'Revenue');?></td>
                           <td><?php echo Yii::t('app', '$')." ".number_format((float)$previousmonth_revenue,2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$currentmonth_revenue,2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format((float)($currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense))),2);?></td>
                       </tr>
                       <tr class="text-danger">
                           <td><?php echo Yii::t('app', 'Expense');?></td>
@@ -93,7 +93,7 @@ $this->title = Yii::t('app', 'Overview');
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
                           <td><?php echo Yii::t('app', '$')." ".number_format(((float)$previousmonth_revenue - abs((float)$previousmonth_expense)),2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue - abs((float)$currentmonth_expense)),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense)) - abs((float)$currentmonth_expense)),2);?></td>
                       </tr>
                   </tbody>
               </table>
