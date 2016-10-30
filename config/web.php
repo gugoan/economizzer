@@ -78,7 +78,7 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'app\components\GoogleOAuth',
+                    'class' => 'yii\authclient\clients\Google',
                     'clientId' => '',
                     'clientSecret' => '',
                 ],
