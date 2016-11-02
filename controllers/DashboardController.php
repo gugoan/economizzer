@@ -96,17 +96,28 @@ class DashboardController extends Controller
         $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));        
         $user    = Yii::$app->user->identity->id;        
 
+//get current month revenue
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $currentmonth_revenue = $command->queryScalar();
-
+//get current month expense
         $command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $thismonth AND YEAR(date) = $thisyear");
         $currentmonth_expense = $command->queryScalar();
-
-        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-        $previousmonth_revenue = $lastmonth_command->queryScalar();
-
-        $lastmonth_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
-        $previousmonth_expense = $lastmonth_command->queryScalar();
+//get previous month revenue
+        $lastmonth_revenue_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_revenue = $lastmonth_revenue_command->queryScalar();
+//get all revenue exclude previous month
+        $all_revenue_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) < $lastmonth");
+        $all_revenue = $all_revenue_command->queryScalar();
+//get previous month expense
+        $lastmonth_expense_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $previousmonth_expense = $lastmonth_expense_command->queryScalar();
+//get all expense exclude previous month
+        $all_expense_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) < $lastmonth");
+        $all_expense = $all_expense_command->queryScalar();
+//calculate balance exclude previous month
+        $balance = $all_revenue+$all_expense;
+//calculate previous month revenue include balance
+        $previousmonth_revenue = $balance+$lastmonth_revenue;
 
         $category_cmd = Yii::$app->db->createCommand(
             "SELECT desc_category AS cat, category.hexcolor_category as color, SUM(value) as value FROM cashbook
