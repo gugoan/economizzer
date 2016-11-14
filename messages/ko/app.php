@@ -38,6 +38,7 @@ return [
     'Category successfully included' => '분류가 성공적으로 포함되었습니다',
     'Category updated' => '분류 갱신',
     'Changed' => '변경',
+    'Chinese' => '중국어',
     'Clean' => '정리',
     'Click to read' => '읽기 선택',
     'Color' => '색',
