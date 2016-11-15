@@ -38,6 +38,7 @@ return [
     'Category successfully included' => '',
     'Category updated' => '',
     'Changed' => 'Frissítve',
+    'Chinese' => 'Kínai',
     'Clean' => '',
     'Click to read' => '',
     'Color' => 'Szín',
