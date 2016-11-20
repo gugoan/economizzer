@@ -12,11 +12,6 @@ use kartik\widgets\DatePicker;
 <div class="cashbook-search">
 
     <?php $form = ActiveForm::begin([
-        //'options' => ['class' => 'form-horizontal'],
-        //'fieldConfig' => [
-        //    'template' => "{label}\n<div class=\"col-lg-8\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        //    'labelOptions' => ['class' => 'col-lg-4 control-label'],
-        //    ],
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
@@ -29,9 +24,6 @@ use kartik\widgets\DatePicker;
                     'model' => $model,
                     'attribute' => 'start_date',
                     'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                    //'size' => 'sm',
-                    //'value' => '2015-01-30',
-                    //'readonly' => true,
                     'options' => [
                         'placeholder' => '',
                     ],
@@ -52,9 +44,6 @@ use kartik\widgets\DatePicker;
                 'model' => $model,
                 'attribute' => 'end_date',
                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                //'size' => 'sm',
-                //'value' => '2015-01-30',
-                //'readonly' => true,
                 'options' => [
                     'placeholder' => '',
                 ],
@@ -78,7 +67,7 @@ use kartik\widgets\DatePicker;
         ]);
         //->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app', 'All')])  ?>
+    <?= $form->field($model, 'category_id')->dropDownList(Category::getHierarchy(),['prompt'=>Yii::t('app', 'All')])  ?>
 
     <?= $form->field($model, 'value') ?>
 

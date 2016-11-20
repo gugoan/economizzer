@@ -6,7 +6,6 @@ use yii\widgets\ActiveForm;
 use app\models\Category;
 use kartik\widgets\DatePicker;
 use kartik\money\MaskMoney;
-
 ?>
 
 <div class="cashbook-form">
