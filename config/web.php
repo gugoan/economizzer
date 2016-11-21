@@ -15,6 +15,11 @@ $config = [
     //'defaultRoute' => 'cashbook/index',
     'sourceLanguage' => 'en-US',
     'components' => [
+        // 'formatter' => [
+        //     'class' => 'yii\i18n\formatter',
+        //     'thousandSeparator' => '.',
+        //     'decimalSeparator' => ',',
+        // ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'showScriptName' => false,

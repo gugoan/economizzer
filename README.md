@@ -65,7 +65,7 @@ To test, go to **http://yourserver/economizzer/web** with user and password belo
 Contribution
 -------------
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [TODO](TODO.md).
+Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 
 License

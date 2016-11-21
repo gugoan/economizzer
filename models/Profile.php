@@ -13,7 +13,7 @@ class Profile extends BaseProfile {
             // [['user_id'], 'integer'],
             // [['create_time', 'update_time'], 'safe'],
             [['full_name'], 'string', 'max' => 255],
-            [['language', 'startpage'], 'string', 'max' => 100],
+            [['language', 'startpage', 'currencycode', 'decimalseparator'], 'string', 'max' => 100],
         ];
     }
 
@@ -27,6 +27,8 @@ class Profile extends BaseProfile {
             'full_name'   => Yii::t('user', 'Full Name'),
             'language' => Yii::t('user', 'Language'),
             'startpage'   => Yii::t('user', 'Start Page'), 
+            'currencycode'   => Yii::t('user', 'Currency'), 
+            'decimalseparator'   => Yii::t('user', 'Decimal Separator'), 
         ];
     }
 }
