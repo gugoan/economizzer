@@ -56,8 +56,8 @@ CREATE TABLE `profile` (
   `full_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `language` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en',
   `startpage` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'cashbook/index',
-  'currencycode' varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'USD',
-  'decimalseparator' varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '.',
+  `currencycode` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'USD',
+  `decimalseparator` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '.',
   PRIMARY KEY (`id`),
   KEY `tb_profile_user_id` (`user_id`) USING BTREE,
   CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
@@ -66,8 +66,8 @@ CREATE TABLE `profile` (
 -- ----------------------------
 -- Records of profile
 -- ----------------------------
-INSERT INTO `profile` VALUES ('1', '1', '2015-01-25 02:53:12', null, 'the one', 'en', 'cashbook/index');
-INSERT INTO `profile` VALUES ('3', '3', '2015-02-14 03:03:28', '2015-12-24 19:55:40', 'Joe Mac', 'pt', 'cashbook/index');
+INSERT INTO `profile` VALUES ('1', '1', '2015-01-25 02:53:12', null, 'the one', 'en', 'cashbook/index','USD','.');
+INSERT INTO `profile` VALUES ('3', '3', '2015-02-14 03:03:28', '2015-12-24 19:55:40', 'Joe Mac', 'pt', 'cashbook/index','USD','.');
 
 -- ----------------------------
 -- Table structure for `role`
