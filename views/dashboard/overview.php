@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Overview');
         <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
         <div class="panel-body" style="height: 250px;">
             <?php
-            
+            /* testing get currency by locale */ 
             $sum = 4362;
             echo Yii::$app->formatter->asCurrency(str_replace(',', '', $sum));
 
