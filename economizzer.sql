@@ -1,5 +1,6 @@
 
 SET FOREIGN_KEY_CHECKS=0;
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
 -- ----------------------------
 -- Table structure for `cashbook`
@@ -18,12 +19,12 @@ CREATE TABLE `cashbook` (
   `category_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tb_cashbook_tb_user1_idx` (`user_id`),
-  KEY `fk_tb_cashbook_tb_category1_idx` (`category_id`),
-  KEY `fk_tb_cashbook_tb_type1_idx` (`type_id`),
-  CONSTRAINT `fk_tb_cashbook_tb_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_cashbook_tb_type1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_cashbook_tb_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_cashbook_user_id` (`user_id`),
+  KEY `fk_cashbook_category_id` (`category_id`),
+  KEY `fk_cashbook_type_id` (`type_id`),
+  CONSTRAINT `fk_cashbook_tb_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cashbook_tb_type` FOREIGN KEY (`type_id`) REFERENCES `type` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cashbook_tb_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=611 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Control financial movement';
 
 
