@@ -21,8 +21,8 @@ $this->title = Yii::t('app', 'Overview');
         <div class="panel-body" style="height: 250px;">
             <?php
             /* testing get currency by locale */ 
-            $sum = 4362;
-            echo Yii::$app->formatter->asCurrency(str_replace(',', '', $sum));
+            //$sum = 4362;
+            //echo Yii::$app->formatter->asCurrency(str_replace(',', '', $sum));
 
             $balance = ((round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) >=0 ? (round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) : 0);
             echo Highcharts::widget([

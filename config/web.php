@@ -30,6 +30,10 @@ $config = [
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ],
+        'session' => [
+            'name' => '_economizzerSessionId', // unique for frontend
+            'savePath' => __DIR__ . '/../runtime', // a temporary folder on frontend
+        ],  
         'request' => [
             'cookieValidationKey' => 'eco',
         ],
