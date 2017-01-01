@@ -2225,12 +2225,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "19441efcf93877490c66ca5136135e7d7c73f787"
+                "reference": "d3a56bd7598fcd323bd4f6aa26f99ea7426db226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/19441efcf93877490c66ca5136135e7d7c73f787",
-                "reference": "19441efcf93877490c66ca5136135e7d7c73f787",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d3a56bd7598fcd323bd4f6aa26f99ea7426db226",
+                "reference": "d3a56bd7598fcd323bd4f6aa26f99ea7426db226",
                 "shasum": ""
             },
             "require": {
@@ -2317,7 +2317,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-12-30 21:52:02"
+            "time": "2017-01-01 05:11:25"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2708,7 +2708,7 @@
                 "jQuery UI",
                 "yii2"
             ],
-            "time": "2016-12-27T11:19:15+00:00"
+            "time": "2016-12-27 11:19:15"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -2810,7 +2810,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-12-21T09:03:27+00:00"
+            "time": "2016-12-21 09:03:27"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -2857,7 +2857,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2016-12-02T21:11:03+00:00"
+            "time": "2016-12-02 21:11:03"
         }
     ],
     "aliases": [],
