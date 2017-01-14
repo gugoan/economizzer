@@ -38,6 +38,7 @@ return [
     'Category successfully included' => 'Категория успешно включена',
     'Category updated' => 'Категория обновлена',
     'Changed' => 'Изменено',
+    'Chinese' => 'Китайский',
     'Clean' => 'чистый',
     'Click to read' => 'Нажмите, чтобы прочитать',
     'Color' => 'Цвет',

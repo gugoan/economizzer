@@ -20,6 +20,10 @@ $this->title = Yii::t('app', 'Overview');
         <div class="panel-heading"><strong><?php echo Yii::t('app', 'Performance');?></strong></div>
         <div class="panel-body" style="height: 250px;">
             <?php
+            /* testing get currency by locale */ 
+            //$sum = 4362;
+            //echo Yii::$app->formatter->asCurrency(str_replace(',', '', $sum));
+
             $balance = ((round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) >=0 ? (round((int)$currentmonth_revenue)-abs(round((int)$currentmonth_expense))) : 0);
             echo Highcharts::widget([
                 'options' => [
@@ -137,7 +141,7 @@ $this->title = Yii::t('app', 'Overview');
       </div>
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Transactions by Segment');?></strong></div>
+          <div class="panel-heading"><strong><?php echo Yii::t('app', 'Expenses by Segment');?></strong></div>
           <div class="panel-body">
             <?php 
             echo Highcharts::widget([

@@ -13,9 +13,13 @@ $config = [
         ],
     ],
     //'defaultRoute' => 'cashbook/index',
-    //'language' => 'en',
     'sourceLanguage' => 'en-US',
     'components' => [
+        // 'formatter' => [
+        //     'class' => 'yii\i18n\formatter',
+        //     'thousandSeparator' => '.',
+        //     'decimalSeparator' => ',',
+        // ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'showScriptName' => false,
@@ -24,9 +28,12 @@ $config = [
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    //'category/<id:\w+>' => 'category/view'
             ),
         ],
+        'session' => [
+            'name' => '_economizzerSessionId', // unique for frontend
+            'savePath' => __DIR__ . '/../runtime', // a temporary folder on frontend
+        ],  
         'request' => [
             'cookieValidationKey' => 'eco',
         ],
@@ -70,7 +77,6 @@ $config = [
                 '*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
                         'basePath' => '@app/messages',
-                        //'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation'],
                 ],
             ],
         ],
@@ -78,7 +84,7 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'app\components\GoogleOAuth',
+                    'class' => 'yii\authclient\clients\Google',
                     'clientId' => '',
                     'clientSecret' => '',
                 ],
@@ -101,11 +107,6 @@ $config = [
     'modules' => [
         'gridview' =>  [
             'class' => '\kartik\grid\Module',
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
-            // message source
-            // 'downloadAction' => 'gridview/export/download',
-            // 'i18n' => []
         ],
         'user' => [
             'class' => 'amnah\yii2\user\Module',
@@ -116,7 +117,6 @@ $config = [
             'modelClasses'  => [
                 'Profile' => 'app\models\Profile',
             ],
-            // set custom module properties here ...
         ],
     ],
     'params' => $params,

@@ -38,6 +38,7 @@ return [
     'Category successfully included' => 'Categoria incluída com sucesso',
     'Category updated' => 'Categoria atualizada',
     'Changed' => 'Alterado',
+    'Chinese' => 'Chinês',
     'Clean' => 'Limpar',
     'Click to read' => 'Clique para ler',
     'Color' => 'Cor',
