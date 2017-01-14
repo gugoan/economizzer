@@ -31,7 +31,7 @@ Installation
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
-composer global require "fxp/composer-asset-plugin:~1.1.1"
+composer global require "fxp/composer-asset-plugin:~1.2"
 composer install
 ~~~
 
@@ -65,7 +65,7 @@ To test, go to **http://yourserver/economizzer/web** with user and password belo
 Contribution
 -------------
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [TODO](TODO.md).
+Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 
 License

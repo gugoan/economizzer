@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use kartik\widgets\DatePicker;
-
+use kartik\money\MaskMoney;
 ?>
 
 <div class="cashbook-form">
@@ -52,9 +52,21 @@ use kartik\widgets\DatePicker;
         ]);
     ?>
     
-    <?= $form->field($model, 'value')->textInput(['size' => 10]) ?>
-
-    <?php // echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->where(['user_id' => Yii::$app->user->identity->id, 'is_active' => 1])->orderBy("desc_category ASC")->all(), 'id_category', 'desc_category'),['prompt'=>Yii::t('app','Select')])  ?>
+    <?php 
+    echo $form->field($model, 'value')->widget(MaskMoney::classname(), [
+        'pluginOptions' => [
+            //'prefix' => 'R$ ',
+            //'suffix' => ' c',
+            'affixesStay' => true,
+            //'thousands' => '.',
+            //'decimal' => ',',
+            'precision' => 2, 
+            'allowZero' => true,
+            'allowNegative' => true,
+            //'value' => 0.01
+        ],
+    ]); 
+    ?>
 
     <?=
     $form->field($model, 'category_id', [

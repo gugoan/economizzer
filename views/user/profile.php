@@ -37,6 +37,22 @@ $this->title = Yii::t('user', 'Profile');
         'ko' => Yii::t('app', 'Korean'), 
         'hu' => Yii::t('app', 'Magyar'),
         'fr' => Yii::t('app', 'French'),
+        'cn' => Yii::t('app', 'Chinese'),
+        ]); 
+    ?>
+
+    <?php echo $form->field($profile, 'currencycode')->dropDownList([
+        'USD' => Yii::t('app', 'United States Dollar'),
+        'BRL' => Yii::t('app', 'Brazil Real'),
+        'EUR' => Yii::t('app', 'Euro'),
+        'RUB' => Yii::t('app', 'Russia Ruble'), 
+        'KPW' => Yii::t('app', 'Korea'),
+        ]); 
+    ?>
+
+    <?php echo $form->field($profile, 'decimalseparator')->dropDownList([
+        '.' => '.', 
+        ',' => ',', 
         ]); 
     ?>
 

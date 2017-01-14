@@ -24,7 +24,6 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
-        "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "miloschuman/yii2-highcharts-widget": "dev-master",
@@ -33,10 +32,10 @@
         "fxp/composer-asset-plugin": "~1.1.1",
         "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-grid": "@dev",
-        "yiisoft/yii2-authclient": "2.0.6"
+        "yiisoft/yii2-authclient": "~2.0.6",
+        "kartik-v/yii2-money": "*"
     },
     "require-dev": {
-        "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*"
@@ -46,7 +45,19 @@
             "Economizzer": "src"
         }
     },
-     "extra": {
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        },
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
