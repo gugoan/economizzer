@@ -109,7 +109,7 @@ class DashboardController extends Controller
         $all_revenue_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 1 AND MONTH(date) < $lastmonth");
         $all_revenue = $all_revenue_command->queryScalar();
 //get previous month expense
-        $lastmonth_expense_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth AND YEAR(date) = $thisyear");
+        $lastmonth_expense_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) = $lastmonth");
         $previousmonth_expense = $lastmonth_expense_command->queryScalar();
 //get all expense exclude previous month
         $all_expense_command = Yii::$app->db->createCommand("SELECT sum(value) FROM cashbook WHERE user_id = $user AND type_id = 2 AND MONTH(date) < $lastmonth");
