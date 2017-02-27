@@ -65,7 +65,7 @@ use kartik\widgets\DatePicker;
         [
             'prompt'=>Yii::t('app', 'All')
         ]);
-        //->dropDownList(ArrayHelper::map(Type::find()->all(), 'id_type', 'desc_type'),['prompt'=>Yii::t('app', 'All')])  ?>
+    ?>
 
     <?= $form->field($model, 'category_id')->dropDownList(Category::getHierarchy(),['prompt'=>Yii::t('app', 'All')])  ?>
 
@@ -73,7 +73,15 @@ use kartik\widgets\DatePicker;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'is_pending')->checkbox() ?>
+    <?= $form->field($model, 'is_pending')->dropDownList(
+        [
+            '1' => Yii::t('app', 'Yes'),
+            '0' => Yii::t('app', 'No'),
+        ],
+        [
+            'prompt'=>Yii::t('app', 'All')
+        ]);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('<i class="fa fa-filter"></i> ' . Yii::t('app', 'Filter'), ['class' => 'btn btn-primary']) ?>
