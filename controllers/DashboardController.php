@@ -93,7 +93,7 @@ class DashboardController extends Controller
 
         $thisyear  = date('Y');
         $thismonth = date('m');
-        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));        
+        $lastmonth = date("m",mktime(0,0,0,date("m")-1,1,date("Y")));
         $user    = Yii::$app->user->identity->id;        
 
 //get current month revenue
@@ -222,7 +222,7 @@ class DashboardController extends Controller
         
         $thisyear  = date('Y');
         $thismonth = date('m');
-        $lastmonth = date('m', strtotime('-1 months', strtotime(date('Y-m-d'))));
+        $lastmonth = date("m",mktime(0,0,0,date("m")-1,1,date("Y")));
         $user      = Yii::$app->user->identity->id;
 
         $command = Yii::$app->db->createCommand("SELECT 
