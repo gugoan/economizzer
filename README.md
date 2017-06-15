@@ -31,7 +31,7 @@ Installation
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
-composer global require "fxp/composer-asset-plugin:~1.2"
+composer global require "fxp/composer-asset-plugin:^1.3.1"
 composer install
 ~~~
 
@@ -52,10 +52,10 @@ return [
 ];
 ```
 
-And install migrations
-~~~
-./yii migrate
-~~~
+And import the database sql file
+
+> economizzer.sql
+
 
 To test, go to **http://yourserver/economizzer/web** with user and password below:
 
