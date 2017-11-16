@@ -85,8 +85,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'attribute' => 'value',
              'format' => 'raw',
              'value' => function ($model) {  
-                    return $model->is_pending === 0 ? '<strong style="color:'.$model->type->hexcolor_type.'">'.' '.$model->value.'</strong>' :
-                    '<span class="glyphicon glyphicon-flag" style="color:orange" aria-hidden="true"></span> <strong style="color:'.$model->type->hexcolor_type.'">'.' '.$model->value.'</strong>';
+                    return $model->is_pending === 0 ? '<strong style="color:'.$model->type->hexcolor_type.'">'.' '.number_format($model->value,2,Yii::$app->formatter->decimalSeparator,' ').'</strong>' :
+                    '<span class="glyphicon glyphicon-flag" style="color:orange" aria-hidden="true"></span> <strong style="color:'.$model->type->hexcolor_type.'">'.' '.number_format($model->value,2,Yii::$app->formatter->decimalSeparator,' ').'</strong>';
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 30%;text-align:right'],

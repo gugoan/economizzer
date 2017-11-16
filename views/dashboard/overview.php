@@ -86,18 +86,18 @@ $this->title = Yii::t('app', 'Overview');
                   <tbody>
                       <tr class="text-success">
                           <td><?php echo Yii::t('app', 'Revenue');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$previousmonth_revenue,2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format((float)($currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense))),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format((float)$previousmonth_revenue,2,Yii::$app->formatter->decimalSeparator,' ');?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format((float)($currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense))),2,Yii::$app->formatter->decimalSeparator,' ');?></td>
                       </tr>
                       <tr class="text-danger">
                           <td><?php echo Yii::t('app', 'Expense');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$previousmonth_expense),2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$currentmonth_expense),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$previousmonth_expense),2,Yii::$app->formatter->decimalSeparator,' ');?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(abs((float)$currentmonth_expense),2,Yii::$app->formatter->decimalSeparator,' ');?></td>
                       </tr>
                       <tr class="text-primary">
                           <td><?php echo Yii::t('app', 'Balance');?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$previousmonth_revenue - abs((float)$previousmonth_expense)),2);?></td>
-                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense)) - abs((float)$currentmonth_expense)),2);?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$previousmonth_revenue - abs((float)$previousmonth_expense)),2,Yii::$app->formatter->decimalSeparator,' ');?></td>
+                          <td><?php echo Yii::t('app', '$')." ".number_format(((float)$currentmonth_revenue+($previousmonth_revenue - abs((float)$previousmonth_expense)) - abs((float)$currentmonth_expense)),2,Yii::$app->formatter->decimalSeparator,' ');?></td>
                       </tr>
                   </tbody>
               </table>

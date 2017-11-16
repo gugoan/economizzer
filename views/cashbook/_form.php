@@ -55,11 +55,11 @@ use kartik\money\MaskMoney;
     <?php 
     echo $form->field($model, 'value')->widget(MaskMoney::classname(), [
         'pluginOptions' => [
-            //'prefix' => 'R$ ',
-            //'suffix' => ' c',
+            'prefix' => Yii::t('app', '$').' ',
+            'suffix' => '',
             'affixesStay' => true,
-            //'thousands' => '.',
-            //'decimal' => ',',
+            'thousands' => ' ',
+            'decimal' => Yii::$app->formatter->decimalSeparator,
             'precision' => 2, 
             'allowZero' => true,
             'allowNegative' => true,
