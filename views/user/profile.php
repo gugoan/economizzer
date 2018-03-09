@@ -16,7 +16,7 @@ $this->title = Yii::t('user', 'Profile');
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <p><?=$message?></p>
         </div>
-    <?php endforeach ?> 
+    <?php endforeach ?>
 
     <?php $form = ActiveForm::begin([
         'id' => 'profile-form',
@@ -31,37 +31,39 @@ $this->title = Yii::t('user', 'Profile');
     <?= $form->field($profile, 'full_name') ?>
 
     <?php echo $form->field($profile, 'language')->dropDownList([
-        'en' => Yii::t('app', 'English USA'), 
-        'pt' => Yii::t('app', 'Brazilian Portuguese'), 
-        'ru' => Yii::t('app', 'Russian'), 
-        'ko' => Yii::t('app', 'Korean'), 
+        'en' => Yii::t('app', 'English USA'),
+        'pt' => Yii::t('app', 'Brazilian Portuguese'),
+        'ru' => Yii::t('app', 'Russian'),
+        'ko' => Yii::t('app', 'Korean'),
         'hu' => Yii::t('app', 'Magyar'),
         'fr' => Yii::t('app', 'French'),
         'cn' => Yii::t('app', 'Chinese'),
-	'de' => Yii::t('app', 'Deutsch'),
-        ]); 
+				'de' => Yii::t('app', 'Deutsch'),
+				'es' => Yii::t('app', 'Spanish'),
+				'ca' => Yii::t('app', 'Catalan')
+        ]);
     ?>
 
     <?php echo $form->field($profile, 'currencycode')->dropDownList([
         'USD' => Yii::t('app', 'United States Dollar'),
         'BRL' => Yii::t('app', 'Brazil Real'),
         'EUR' => Yii::t('app', 'Euro'),
-        'RUB' => Yii::t('app', 'Russia Ruble'), 
+        'RUB' => Yii::t('app', 'Russia Ruble'),
         'KPW' => Yii::t('app', 'Korea'),
 	'CHF' => Yii::t('app', 'Swiss Franks'),
-        ]); 
+        ]);
     ?>
 
     <?php echo $form->field($profile, 'decimalseparator')->dropDownList([
-        '.' => '.', 
-        ',' => ',', 
-        ]); 
+        '.' => '.',
+        ',' => ',',
+        ]);
     ?>
 
     <?php echo $form->field($profile, 'startpage')->dropDownList([
-        'cashbook/index' => Yii::t('app', 'Entries Page'), 
-        'dashboard/overview' => Yii::t('app', 'Dashboard Page'), 
-        ]); 
+        'cashbook/index' => Yii::t('app', 'Entries Page'),
+        'dashboard/overview' => Yii::t('app', 'Dashboard Page'),
+        ]);
     ?>
 
     <div class="form-group">
