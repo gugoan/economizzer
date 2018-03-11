@@ -43,7 +43,7 @@ $this->title = Yii::t('app', 'Entry') . " #".$model->id;
             'attribute' => 'value',
             'format' => 'raw',
             //'value' => Yii::t('app', '$')." ".$model->value,
-            'value' => $model->type_id == 1 ? '<span class="label label-success">'.Yii::t('app', '$')." ".$model->value.'</span>' : '<span class="label label-danger">'.Yii::t('app', '$')." ".$model->value.'</span>'
+            'value' => $model->type_id == 1 ? '<span class="label label-success">'.Yii::t('app', '$')." ".number_format($model->value,2,Yii::$app->formatter->decimalSeparator,' ').'</span>' : '<span class="label label-danger">'.Yii::t('app', '$')." ".number_format($model->value,2,Yii::$app->formatter->decimalSeparator,' ').'</span>'
             ],
             [
             'attribute' => 'category_id',
