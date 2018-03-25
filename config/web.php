@@ -12,7 +12,10 @@ $config = [
             'supportedLanguages' => ['en', 'pt-br', 'ru', 'ko'],
         ],
     ],
-    //'defaultRoute' => 'cashbook/index',
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'sourceLanguage' => 'en-US',
     'components' => [
         // 'formatter' => [
@@ -31,8 +34,8 @@ $config = [
             ),
         ],
         'session' => [
-            'name' => '_economizzerSessionId', // unique for frontend
-            'savePath' => __DIR__ . '/../runtime', // a temporary folder on frontend
+            'name' => '_economizzerSessionId',
+            'savePath' => __DIR__ . '/../runtime',
         ],  
         'request' => [
             'cookieValidationKey' => 'eco',

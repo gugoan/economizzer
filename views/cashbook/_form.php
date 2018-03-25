@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use kartik\widgets\DatePicker;
-use kartik\money\MaskMoney;
+use kartik\number\NumberControl;
 ?>
 
 <div class="cashbook-form">
@@ -53,19 +53,7 @@ use kartik\money\MaskMoney;
     ?>
     
     <?php 
-    echo $form->field($model, 'value')->widget(MaskMoney::classname(), [
-        'pluginOptions' => [
-            //'prefix' => 'R$ ',
-            //'suffix' => ' c',
-            'affixesStay' => true,
-            //'thousands' => '.',
-            //'decimal' => ',',
-            'precision' => 2, 
-            'allowZero' => true,
-            'allowNegative' => true,
-            //'value' => 0.01
-        ],
-    ]); 
+    echo $form->field($model, 'value')->widget(NumberControl::classname());
     ?>
 
     <?=

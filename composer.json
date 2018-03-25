@@ -20,30 +20,42 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": ">=2.0.4",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "yiisoft/yii2-jui": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-jui": "~2.0.0",
+        "yiisoft/yii2-authclient": "~2.0.6",
+        "miloschuman/yii2-highcharts-widget": "^6.0",
         "amnah/yii2-user": "^3.0",
         "kartik-v/yii2-widgets": "*",
-        "fxp/composer-asset-plugin": "~1.1.1",
         "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-grid": "@dev",
-        "yiisoft/yii2-authclient": "~2.0.6",
-        "kartik-v/yii2-money": "*"
+        "kartik-v/yii2-number": "*"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
-    },    
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0"
+    },   
     "autoload": {
         "psr-0": {
             "Economizzer": "src"
         }
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject",
+            "yii\\composer\\Installer::postInstall"
+        ]
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
@@ -53,7 +65,9 @@
                     "web/assets": "0777",
                     "yii": "0755"
                 }
-            ],
+            ]
+        },
+        "yii\\composer\\Installer::postInstall": {
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
@@ -62,5 +76,11 @@
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
