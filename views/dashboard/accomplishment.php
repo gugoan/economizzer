@@ -30,7 +30,7 @@ $this->title = Yii::t('app', 'Accomplishment');
 			    window.location.href = "' . Url::to(['/dashboard/accomplishment']) . '?category_id=" + val;
 			}
 			}', View::POS_HEAD);
-	        echo Html::activeDropDownList($model, 'category_id', Category::getHierarchy(), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'class'=>'form-control']);
+	        echo Html::activeDropDownList($model, 'category_id', Category::getHierarchy(), ['onchange'=>'submit(this.value);','prompt'=>Yii::t('app','Select'),'options' => [$category_id => ['selected'=>'selected']],'class'=>'form-control']);
             ?>                
             </div>
             <div class="panel-body">
