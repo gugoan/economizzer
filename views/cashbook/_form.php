@@ -38,22 +38,18 @@ use kartik\number\NumberControl;
     ?>
 
     <?php
-        echo DatePicker::widget([
-            'model' => $model,
-            'form' => $form,
-            'attribute' => 'date',
-            'type' => DatePicker::TYPE_INPUT,
-            'size' => 'sm',
-            'pluginOptions' => [
-                'autoclose'=>true,
-                'todayHighlight' => true,
-                'format' => 'yyyy-mm-dd',
-            ]
-        ]);
+    $form->field($model, 'date')->widget(DatePicker::className(),[
+        'type' => DatePicker::TYPE_INPUT,
+        'pickerButton' => false,
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd',
+            'autoclose' => true,
+            'todayHighlight' => true,
+        ]
+    ])
     ?>
     
-    <?php 
-    echo $form->field($model, 'value')->widget(NumberControl::classname());
+    <?= $form->field($model, 'value')->widget(NumberControl::classname());
     ?>
 
     <?=
