@@ -38,7 +38,7 @@ use kartik\number\NumberControl;
     ?>
 
     <?php
-    $form->field($model, 'date')->widget(DatePicker::className(),[
+    echo $form->field($model, 'date')->widget(DatePicker::className(),[
         'type' => DatePicker::TYPE_INPUT,
         'pickerButton' => false,
         'pluginOptions' => [
