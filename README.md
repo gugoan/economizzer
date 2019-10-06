@@ -31,7 +31,6 @@ Installation
 ~~~
 git clone https://github.com/gugoan/economizzer.git
 cd economizzer
-composer global require "fxp/composer-asset-plugin:^1.3.1"
 composer install
 ~~~
 
@@ -64,13 +63,11 @@ To test, go to **http://yourserver/economizzer/web** with user and password belo
 
 Contribution
 -------------
-
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 
 License
 -------------
-
 Economizzer is Copyright © 2014 Gustavo G. Andrade. 
 It is free software, and may be redistributed under the terms specified in the
 [LICENSE](LICENSE.md) file.
@@ -79,8 +76,6 @@ It is free software, and may be redistributed under the terms specified in the
 Donations
 -------------
 To encourage the developer with new enhancements, [web hosting](http://www.economizzer.org/web/) costs, or even to buy him a good beer, support the project by making a [donation](http://www.economizzer.org/donation.html).
-
-[![pledgie](https://pledgie.com/campaigns/30857.png?skin_name=chrome)](https://pledgie.com/campaigns/30857/)
 
 
 Thanks to
