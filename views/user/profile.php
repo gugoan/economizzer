@@ -38,9 +38,10 @@ $this->title = Yii::t('user', 'Profile');
         'hu' => Yii::t('app', 'Magyar'),
         'fr' => Yii::t('app', 'French'),
         'cn' => Yii::t('app', 'Chinese'),
-				'de' => Yii::t('app', 'Deutsch'),
-				'es' => Yii::t('app', 'Spanish'),
-				'ca' => Yii::t('app', 'Catalan')
+		'de' => Yii::t('app', 'Deutsch'),
+		'es' => Yii::t('app', 'Spanish'),
+		'ca' => Yii::t('app', 'Catalan'),
+		'lt' => Yii::t('app', 'Lithuanian'),
         ]);
     ?>
 
@@ -50,7 +51,7 @@ $this->title = Yii::t('user', 'Profile');
         'EUR' => Yii::t('app', 'Euro'),
         'RUB' => Yii::t('app', 'Russia Ruble'),
         'KPW' => Yii::t('app', 'Korea'),
-	'CHF' => Yii::t('app', 'Swiss Franks'),
+		'CHF' => Yii::t('app', 'Swiss Franks'),
         ]);
     ?>
 

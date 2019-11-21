@@ -9,7 +9,7 @@ $config = [
         'log',
         [
             'class' => 'app\components\LanguageSelector',
-            'supportedLanguages' => ['en', 'pt-br', 'ru', 'ko'],
+            'supportedLanguages' => ['en', 'pt', 'ru', 'ko', 'hu', 'fr', 'cn', 'de', 'es', 'ca', 'lt'],
         ],
     ],
     'aliases' => [
@@ -36,7 +36,7 @@ $config = [
         'session' => [
             'name' => '_economizzerSessionId',
             'savePath' => __DIR__ . '/../runtime',
-        ],  
+        ],
         'request' => [
             'cookieValidationKey' => 'eco',
         ],
@@ -53,7 +53,7 @@ $config = [
                         '@vendor/amnah/yii2-user/views/default' => '@app/views/user',
                     ],
                 ],
-            ],        
+            ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
