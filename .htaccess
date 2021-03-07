@@ -8,3 +8,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # otherwise forward it to index.php
 RewriteRule . web/index.php
+<IfModule mime_module>
+ AddHandler application/x-httpd-ea-php70 .php .php7 .phtml
+ </IfModule>
