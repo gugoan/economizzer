@@ -17,6 +17,9 @@ Thumbs.db
 
 # development support files
 /dev
+/database
+.dev
+.database
 
 # composer itself is not needed
 composer.phar

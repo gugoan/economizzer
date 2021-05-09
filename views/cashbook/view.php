@@ -15,6 +15,10 @@ $this->title = Yii::t('app', 'Entry') . " #".$model->id;
                 'class' => 'btn btn-primary ',
                 ]
                 ) ?> 
+        <?= Html::a('<i class="fa fa fa-clone"></i> '.Yii::t('app', 'Clone'), ['clone', 'id' => $model->id], [
+                'class' => 'btn btn-primary ',
+                ]
+                ) ?> 
         <?= Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [

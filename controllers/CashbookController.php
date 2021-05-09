@@ -149,6 +149,28 @@ class CashbookController extends BaseController
             ]);
     }
 
+    public function actionClone($id)
+    {
+
+        $model = $this->findModel($id);
+        $clone = new Cashbook;
+
+        $clone->user_id         = $model->user_id;
+        $clone->category_id     = $model->category_id;
+        $clone->type_id         = $model->type_id;
+        $clone->value           = $model->value;
+        $clone->description     = $model->description;
+        $clone->date            = $model->date;
+        $clone->is_pending      = $model->is_pending;
+        $clone->attachment      = $model->attachment;
+        $clone->inc_datetime    = date('Y-m-d');
+        $clone->edit_datetime   = date('Y-m-d');
+        $clone->save();
+
+        Yii::$app->session->setFlash("clone-success", Yii::t("app", "Entry successfully copied"));
+        return $this->redirect(['index']);
+    }
+
     protected function findModel($id)
     {
         if (($model = Cashbook::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
