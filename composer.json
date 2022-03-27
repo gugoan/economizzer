@@ -28,7 +28,6 @@
         "miloschuman/yii2-highcharts-widget": "^6.0",
         "amnah/yii2-user": "^3.0",
         "kartik-v/yii2-widgets": "*",
-        "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-number": "*"
     },
