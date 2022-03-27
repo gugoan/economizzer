@@ -19,7 +19,7 @@ class LanguageSelector implements BootstrapInterface
             Yii::$app->language = Yii::$app->user->identity->profile->language;
             Yii::$app->defaultRoute = Yii::$app->user->identity->profile->startpage;
             Yii::$app->formatter->currencyCode = Yii::$app->user->identity->profile->currencycode;
-            Yii::$app->formatter->decimalSeparator = Yii::$app->user->identity->profile->decimalseparator;
+            //Yii::$app->formatter->decimalSeparator = Yii::$app->user->identity->profile->decimalseparator;
 
             //Yii::$app->defaultRoute = 'cashbook/overview';
             //Yii::$app->user->getIdentity()->language = Yii::$app->language;

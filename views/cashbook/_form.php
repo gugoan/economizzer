@@ -37,16 +37,17 @@ use kartik\number\NumberControl;
         ], ['itemOptions' => ['class' =>'radio-inline','labelOptions'=>array('style'=>'padding:4px;')]])->label('');
     ?>
 
+    <?= $form->field($model, 'date')->textInput(['type' => 'date']) ?>
     <?php
-    echo $form->field($model, 'date')->widget(DatePicker::className(),[
-        'type' => DatePicker::TYPE_INPUT,
-        'pickerButton' => false,
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'autoclose' => true,
-            'todayHighlight' => true,
-        ]
-    ])
+    // echo $form->field($model, 'date')->widget(DatePicker::className(),[
+    //     'type' => DatePicker::TYPE_INPUT,
+    //     'pickerButton' => false,
+    //     'pluginOptions' => [
+    //         'format' => 'yyyy-mm-dd',
+    //         'autoclose' => true,
+    //         'todayHighlight' => true,
+    //     ]
+    // ])
     ?>
     
     <?= $form->field($model, 'value')->widget(NumberControl::classname());
