@@ -83,22 +83,22 @@ $config = [
                 ],
             ],
         ],
-        // 'authClientCollection' => [
-        //     'class' => 'yii\authclient\Collection',
-        //     'clients' => [
-        //         'google' => [
-        //             'class' => 'yii\authclient\clients\Google',
-        //             'clientId' => '',
-        //             'clientSecret' => '',
-        //         ],
-        //         'facebook' => [
-        //             'class' => 'yii\authclient\clients\Facebook',
-        //             'clientId' => '',
-        //             'clientSecret' => '',
-        //             'scope' => 'email',
-        //         ],
-        //     ]
-        // ],
+         'authClientCollection' => [
+             'class' => 'yii\authclient\Collection',
+             'clients' => [
+                 'google' => [
+                     'class' => 'yii\authclient\clients\Google',
+                     'clientId' => '',
+                     'clientSecret' => '',
+                 ],
+                 'facebook' => [
+                     'class' => 'yii\authclient\clients\Facebook',
+                     'clientId' => '',
+                     'clientSecret' => '',
+                     'scope' => 'email',
+                 ],
+             ]
+         ],
         'assetManager' => [
             'bundles' => [
                 'yii\authclient\widgets\AuthChoiceStyleAsset' => [
