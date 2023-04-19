@@ -44,8 +44,8 @@ In folder **economizzer/config/db.php** set as follows:
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=127.0.0.1;dbname=economizzer',
-    'username' => 'root',
-    'password' => '',
+    'username' => 'USER',
+    'password' => 'PASSWORD',
     'charset' => 'utf8',
     'enableSchemaCache' => true,
 ];
