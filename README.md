@@ -11,8 +11,15 @@ It is available in the following languages:  English, Spanish, Portuguese, Russi
 Table of Contents
 ------------
 [Features](#features)
-
-
+[Pages](#pages)
+[Live Demo](#demo)
+[Requirements](#reqs)
+[Installation](#installation)
+[Configuration](#config)
+[Contributions](#contributions)
+[Troubleshooting](#troubleshooting)
+[Licenses](#licenses)
+[Donations](#donations)
 
 Features <a id="features"></a>
 ------------
@@ -24,7 +31,7 @@ Features <a id="features"></a>
 
 Learn more about the features on the official website: [www.economizzer.org](http://www.economizzer.org)
 
-Pages
+Pages <a id="pages"></a>
 ------------
 ||
 |:--:| 
@@ -39,7 +46,7 @@ Pages
 | *The profile page allows users to change their display name, language, and default home page (either the dashboard or entries page)* |
 | ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss4.png) |
 
-Live Demo
+Live Demo <a id="demo"></a>
 ------------
 
 You can try: [www.economizzer.org/web](http://www.economizzer.org/web)
@@ -47,7 +54,7 @@ You can try: [www.economizzer.org/web](http://www.economizzer.org/web)
 > Use the user "joe" and password "123456".
 
 
-Requirements
+Requirements <a id="reqs"></a>
 ------------
 
 The minimum requirement by this application that your Web server supports PHP 5.4.0 and either apache2 or nginx.
@@ -55,7 +62,7 @@ The minimum requirement by this application that your Web server supports PHP 5.
 > Required libraries: libapache2-mod-php, php-mbstring, php-xml, php-curl
 
 
-Installation
+Installation <a id="install"></a>
 ------------
 ~~~
 git clone https://github.com/gugoan/economizzer.git
@@ -64,7 +71,7 @@ composer install
 ~~~
 
 
-Configuration
+Configuration <a id="config"></a>
 -------------
 
 In folder **economizzer/config/db.php** set as follows:
@@ -90,21 +97,21 @@ To test, go to **http://yourserver/economizzer/web** with user and password belo
 > Use the user "joe" and password "123456".
 
 
-Contribution
+Contribution <a id="contribution"></a>
 -------------
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
-Troubleshooting
+Troubleshooting <a id="troubleshooting"></a>
 -------------
 If there are any problems with the application, please [open an issue](https://github.com/gugoan/economizzer/issues) on Github. For smaller issues, you can contact us on [Twitter](https://twitter.com/economizzer).
 
-License
+License <a id="licenses"></a>
 -------------
 Economizzer is Copyright © 2014 Gustavo G. Andrade. 
 It is free software, and may be redistributed under the terms specified in the
 [LICENSE](LICENSE.md) file.
 
 
-Donations
+Donations <a id="donations"></a>
 -------------
 To encourage the developer with new enhancements, [web hosting](http://www.economizzer.org/web/) costs, or even to buy him a good beer, support the project by making a [donation](http://www.economizzer.org/donation.html).
