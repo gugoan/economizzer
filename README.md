@@ -18,6 +18,21 @@ Features
 - Input entries into a digital ledger
 - Upload billing documents to go alongside entries
 
+Pages
+------------
+||
+|:--:| 
+| *The dashboard page allows you to see a general overview of your finances through graphs and charts. Clicking on "Select Dashboard" on the top left allows you to view more in-depth analyses.* |
+| ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss1.png) |
+| *The graph that appears after clicking on "Annual Performance" in the "Select Dashboard" dropdown menu. This shows monthly revenue and expenses over a year.* |
+| ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss5.png) |
+| *The entries page shows a ledger of all income and expenses with an optional description and attached file. Filters can be applied to view only specific entries.* |
+| ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss2.png) |
+| *The categories page allows you to set custom categories for income and expenses, which can then be used to organize the values into graphs and such.* |
+| ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss3.png) |
+| *The profile page allows users to change their display name, language, and default home page (either the dashboard or entries page)* |
+| ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss4.png) |
+
 Live Demo
 ------------
 
