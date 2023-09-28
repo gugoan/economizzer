@@ -4,6 +4,8 @@
 
 Economizzer is a simple and open source personal finance manager system made in PHP [Yii Framework 2](http://www.yiiframework.com).
 
+Yii uses the model-view-controller architecture, so all page information is organized in the models, views, and controllers folders.
+
 It is available in the following languages:  English, Spanish, Portuguese, Russian, Korean, Hungarian and French.
 
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
@@ -103,7 +105,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 Troubleshooting <a id="troubleshooting"></a>
 -------------
-If there are any problems with the application, please [open an issue](https://github.com/gugoan/economizzer/issues) on Github. For smaller issues, you can contact us on [Twitter](https://twitter.com/economizzer).
+If there are any problems with the application, please [open an issue](https://github.com/gugoan/economizzer/issues) on Github. For smaller issues, you can contact us on [Twitter](https://twitter.com/economizzer) or by [email](gugoan@gmail.com).
 
 License <a id="licenses"></a>
 -------------
