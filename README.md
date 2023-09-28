@@ -43,7 +43,7 @@ Pages <a id="pages"></a>
 | ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss2.png) |
 | *The categories page allows you to set custom categories for income and expenses, which can then be used to organize the values into graphs and such.* |
 | ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss3.png) |
-| *The profile page allows users to change their display name, language, and default home page (either the dashboard or entries page)* |
+| *The [profile page](views/user/profile.php) allows users to change their display name, language, and default home page (either the dashboard or entries page)* |
 | ![Screen](https://github.com/FreeedTheDolfin/economizzer/blob/c9aa46f0754074b49df4805326cacc6aacf91661/opensource_ss4.png) |
 
 Live Demo <a id="demo"></a>
