@@ -8,15 +8,21 @@ It is available in the following languages:  English, Spanish, Portuguese, Russi
 
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/screen.png)
 
-Learn more the features on the official website: [www.economizzer.org](http://www.economizzer.org)
+Table of Contents
+------------
+[Features](#features)
 
-Features
+
+
+Features <a id="features"></a>
 ------------
 - View monthly revenue and expenses
 - Analyze annual performance via monthly trends
 - Create expense categories freely
 - Input entries into a digital ledger
 - Upload billing documents to go alongside entries
+
+Learn more about the features on the official website: [www.economizzer.org](http://www.economizzer.org)
 
 Pages
 ------------
@@ -88,6 +94,9 @@ Contribution
 -------------
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
+Troubleshooting
+-------------
+If there are any problems with the application, please [open an issue](https://github.com/gugoan/economizzer/issues) on Github. For smaller issues, you can contact us on [Twitter](https://twitter.com/economizzer).
 
 License
 -------------
