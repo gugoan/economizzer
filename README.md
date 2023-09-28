@@ -1,4 +1,5 @@
 ![Screen](https://raw.github.com/gugoan/economizzer/master/web/images/favicon-32x32.png) Economizzer
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com)
 =================================
 
 Economizzer is a simple and open source personal finance manager system made in PHP [Yii Framework 2](http://www.yiiframework.com).
@@ -9,6 +10,13 @@ It is available in the following languages:  English, Spanish, Portuguese, Russi
 
 Learn more the features on the official website: [www.economizzer.org](http://www.economizzer.org)
 
+Features
+------------
+- View monthly revenue and expenses
+- Analyze annual performance via monthly trends
+- Create expense categories freely
+- Input entries into a digital ledger
+- Upload billing documents to go alongside entries
 
 Live Demo
 ------------
@@ -76,8 +84,3 @@ It is free software, and may be redistributed under the terms specified in the
 Donations
 -------------
 To encourage the developer with new enhancements, [web hosting](http://www.economizzer.org/web/) costs, or even to buy him a good beer, support the project by making a [donation](http://www.economizzer.org/donation.html).
-
-
-Thanks to
--------------
-[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com)
