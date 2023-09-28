@@ -10,16 +10,16 @@ It is available in the following languages:  English, Spanish, Portuguese, Russi
 
 Table of Contents
 ------------
-[Features](#features)
-[Pages](#pages)
-[Live Demo](#demo)
-[Requirements](#reqs)
-[Installation](#installation)
-[Configuration](#config)
-[Contributions](#contributions)
-[Troubleshooting](#troubleshooting)
-[Licenses](#licenses)
-[Donations](#donations)
+1. [Features](#features)
+2. [Pages](#pages)
+3. [Live Demo](#demo)
+4. [Requirements](#reqs)
+5. [Installation](#installation)
+6. [Configuration](#config)
+7. [Contributions](#contribution)
+8. [Troubleshooting](#troubleshooting)
+9. [Licenses](#licenses)
+10. [Donations](#donations)
 
 Features <a id="features"></a>
 ------------
@@ -62,7 +62,7 @@ The minimum requirement by this application that your Web server supports PHP 5.
 > Required libraries: libapache2-mod-php, php-mbstring, php-xml, php-curl
 
 
-Installation <a id="install"></a>
+Installation <a id="installation"></a>
 ------------
 ~~~
 git clone https://github.com/gugoan/economizzer.git
