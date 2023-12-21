@@ -21,7 +21,7 @@ return [
     'Account successfully disconnected' => 'Compte déconnecté avec succès',
     'Account updated' => 'Compte actualisé',
     'Bind account' => 'Compte lié',
-    'Can not disconnect single authentication method. Please fill email and password and try again' => 'Ne peut pas déconnecter une méthode d\'authentification simple',
+    'Can not disconnect single authentication method. Please fill email and password and try again' => 'Ne peut pas déconnecter une méthode d\'authentification simple. Merci de saisir vos email et mot de passe pour réessayer',
     'Cancel' => 'Abandonner',
     'Changing your email requires email confirmation' => 'Modifier votre email demande une confirmation par email',
     'Connected' => 'Connecté',
@@ -54,6 +54,6 @@ return [
     'Yii 2 User' => 'Utilisateur de Yii 2',
     'Your email [ {email} ] has been confirmed' => 'Votre email [ {email} ] a été confirmé',
     'or' => 'ou',
-    '{attribute} can contain only letters, numbers, and "_"' => 'Doit contenir uniquement des lettres, nombres et , numeros e _',
+    '{attribute} can contain only letters, numbers, and "_"' => 'Doit contenir uniquement des lettres, nombres et , numeros et _',
     'Сan not disconnect a foreign account' => 'Ne peut pas déconnecter un compte étrangé',
 ];
