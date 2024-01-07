@@ -148,8 +148,8 @@ class DashboardController extends Controller
                 INNER JOIN category AS y ON x.parent_id = y.id_category
                 INNER JOIN user AS u ON y.user_id = u.id
                 WHERE u.id = $user
-                GROUP BY y.desc_category, x.`year`, x.`month`
-                having x.`year` = year(now())  and x.`month` = month(now())       
+                GROUP BY x.`year`, x.`month`, y.desc_category, y.hexcolor_category
+                HAVING x.`year` = year(now())  and x.`month` = month(now())       
             ");
         $segment = $segment_cmd->queryAll();  
 
@@ -188,14 +188,15 @@ class DashboardController extends Controller
         $thismonth = date('m');
         $user    = Yii::$app->user->identity->id;
 
-        $command = Yii::$app->db->createCommand("SELECT 
-            desc_category as n, SUM(value) as v, MONTHNAME(date) as m 
+        $command = Yii::$app->db->createCommand("
+            SELECT 
+            desc_category as n, MONTHNAME(date) as m, SUM(value) as v 
             FROM cashbook 
             INNER JOIN category
             on category.id_category = cashbook.category_id
             WHERE YEAR(date) = $thisyear AND cashbook.user_id = $user AND category_id = $category_id 
-            GROUP BY MONTH(date) 
-            ORDER BY MONTH(date) asc;");
+            GROUP BY desc_category, MONTHNAME(date) 
+            ORDER BY desc_category ASC, MONTHNAME(date) asc;");
         $accomplishment = $command->queryAll();
         
         $m = array();
@@ -229,7 +230,10 @@ class DashboardController extends Controller
             SUM(IF(cashbook.type_id=1, value, 0)) as v1,
             SUM(IF(cashbook.type_id=2, value, 0)) as v2,
             MONTHNAME(date) as m 
-            FROM cashbook WHERE user_id = $user AND YEAR(date) = $thisyear GROUP BY m ORDER BY MONTH(date)");
+            FROM cashbook 
+            WHERE user_id = $user AND YEAR(date) = $thisyear 
+            GROUP BY MONTHNAME(date) 
+            ORDER BY MONTHNAME(date)");
         $performance = $command->queryAll();
         
         $m = array();
