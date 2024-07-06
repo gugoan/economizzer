@@ -80,19 +80,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'footer' => 'Total',
             'footerOptions' => ['style'=>'text-align:letf'],                  
             ],
+            
             [
              'label' => '',
              'attribute' => 'value',
              'format' => 'raw',
              'value' => function ($model) {  
-                    return $model->is_pending === 0 ? '<strong style="color:'.$model->type->hexcolor_type.'">'.' '.$model->value.'</strong>' :
-                    '<span class="glyphicon glyphicon-flag" style="color:orange" aria-hidden="true"></span> <strong style="color:'.$model->type->hexcolor_type.'">'.' '.$model->value.'</strong>';
+                    return '<strong style="color:'.$model->type->hexcolor_type.'">'.' '.Yii::$app->formatter->asDecimal($model->value,2).'</strong>';
                     },
              'enableSorting' => true,
              'contentOptions'=>['style'=>'width: 30%;text-align:right'],
              //'options' => ['width' => '10%',],
              'footer' => Cashbook::pageTotal($dataProvider->models,'value'),
              'footerOptions' => ['style'=>'text-align:right'],
+            ],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function ($model) {  
+                    return $model->is_pending <> 0 ? '<span class="glyphicon glyphicon-flag" style="color:orange" aria-hidden="true"></span>' : '';
+                },
             ],
         ],
     ]);
