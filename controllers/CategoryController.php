@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Category;
 use app\models\CategorySearch;
+use ErrorException;
+use yii\base\ErrorException as BaseErrorException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,7 +19,7 @@ class CategoryController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::classname(),
-                'only'  => ['index','create','update','delete','view'],
+                'only'  => ['index', 'create', 'update', 'delete', 'view'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -70,8 +72,8 @@ class CategoryController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->user_id != Yii::$app->user->id){
-            throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
+        if ($model->user_id != Yii::$app->user->id) {
+            throw new BaseErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -86,19 +88,19 @@ class CategoryController extends BaseController
 
     public function actionDelete($id)
     {
-        $model= $this->findModel($id);
-        if ($model->user_id != Yii::$app->user->id){
+        $model = $this->findModel($id);
+        if ($model->user_id != Yii::$app->user->id) {
             throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
         }
         try {
-             $model->delete();
-             Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));
-             return $this->redirect(['index']);
-        } catch(\yii\db\IntegrityException $e) {
-             //throw new \yii\web\ForbiddenHttpException('Could not delete this record.');
-             Yii::$app->session->setFlash("Category-danger", Yii::t("app", "This category is associated with some record"));
-             return $this->redirect(['index']);            
-        }        
+            $model->delete();
+            Yii::$app->session->setFlash("Category-success", Yii::t("app", "Category successfully deleted"));
+            return $this->redirect(['index']);
+        } catch (\yii\db\IntegrityException $e) {
+            //throw new \yii\web\ForbiddenHttpException('Could not delete this record.');
+            Yii::$app->session->setFlash("Category-danger", Yii::t("app", "This category is associated with some record"));
+            return $this->redirect(['index']);
+        }
     }
 
     protected function findModel($id)

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use amnah\yii2\user\models\forms\LoginForm as FormsLoginForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -18,7 +19,7 @@ class SiteController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::classname(),
-                'only'  => ['index','about'],
+                'only'  => ['index', 'about'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -63,9 +64,9 @@ class SiteController extends BaseController
         return $this->render('tools', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);        
+        ]);
         //return $this->render('tools');
-    }    
+    }
 
     public function actionLogin()
     {
@@ -73,7 +74,7 @@ class SiteController extends BaseController
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new FormsLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {

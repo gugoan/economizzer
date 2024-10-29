@@ -179,5 +179,4 @@ CREATE TABLE `user_key` (
 -- ----------------------------
 -- Records of user_key
 -- ----------------------------
-INSERT INTO `user_key` VALUES ('1', '3', '1', 'fgX4vB8x1UW8uGdCaKQTj9kKo7Kfbltp', '2015-02-14 03:03:28', null, null);
-INSERT INTO `user_key` VALUES ('3', '3', '2', 'jkApCoj4zQ1osBGZ6gEwIJ9zgLeiOFxb', '2015-04-21 19:15:00', null, '2015-10-09 17:05:45');
+

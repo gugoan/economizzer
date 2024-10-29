@@ -29,7 +29,9 @@
         "amnah/yii2-user": "^3.0",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-number": "*"
+        "kartik-v/yii2-number": "*",
+        "smalot/pdfparser": "dev-master",
+        "setasign/fpdi-tcpdf": "^2.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

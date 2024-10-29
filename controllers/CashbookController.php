@@ -12,7 +12,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
-use yii\base\Security;
 
 class CashbookController extends BaseController
 {
@@ -20,8 +19,8 @@ class CashbookController extends BaseController
     {
         return [
             'access' => [
-                'class' => AccessControl::classname(),
-                'only'  => ['index','create','update','delete','view','target','accomplishment','overview','performance'],
+                'class' => AccessControl::class,
+                'only'  => ['index', 'create', 'update', 'delete', 'view', 'target', 'accomplishment', 'overview', 'performance'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -37,11 +36,12 @@ class CashbookController extends BaseController
             ],
         ];
     }
+
     public function actionIndex()
     {
         $searchModel = new CashbookSearch();
-        $searchModel->start_date = date('Y-m-01'); // get start date 
-        $searchModel->end_date = date("Y-m-t");; // get end date
+
+        // Configuração de busca para todas as transações, sem filtros adicionais
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,109 +49,136 @@ class CashbookController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
+
     public function actionCreate()
     {
-        $model = new Cashbook;
-        $model->inc_datetime = date("Y-m-d H:i:s"); 
+        $model = new Cashbook();
+        $model->inc_datetime = date("Y-m-d H:i:s");
         $model->user_id = Yii::$app->user->identity->id;
         $model->date = date("Y-m-d");
- 
+
         if ($model->load(Yii::$app->request->post())) {
-            // process uploaded image file instance
-            $file = $model->uploadImage();
- 
+            $file = $model->uploadFile();
+
             if ($model->save()) {
-                // upload only if valid uploaded file instance found
+                $this->processTransactions($model);
+
+                // Verificação de upload de arquivo
                 if ($file !== false) {
-                    // Create the ID folder 
                     $idfolder = Yii::$app->user->identity->id;
-                    //$idfolder = str_pad($idfolder, 6, "0", STR_PAD_LEFT); // add 0000+ID
-                    if(!is_dir(Yii::$app->params['uploadUrl'] . $idfolder)){
-                    mkdir(Yii::$app->params['uploadUrl'] . $idfolder, 0777, true);
+                    $userUploadPath = Yii::$app->params['uploadPath'] . $idfolder;
+
+                    if (!is_dir($userUploadPath)) {
+                        mkdir($userUploadPath, 0755, true);
                     }
-                    $path = $model->getImageFile();
+
+                    $path = $userUploadPath . '/' . $file->baseName . '.' . $file->extension;
                     $file->saveAs($path);
                 }
-                Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully included"));
+
+                Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entrada incluída com sucesso"));
                 return $this->redirect(['index']);
             } else {
-                // error in saving model
+                Yii::error("Falha ao salvar o modelo: " . json_encode($model->getErrors()), __METHOD__);
             }
         }
+
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+
+    protected function processTransactions($model)
+    {
+        if ($model->value < 0 && $model->type_id == 1) {
+            $model->value = abs($model->value);
+
+            if (!$model->save()) {
+                Yii::$app->session->setFlash('error', 'Erro ao processar a transação ID ' . $model->id);
+            }
+        }
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->user_id != Yii::$app->user->id){
+
+        if ($model->user_id != Yii::$app->user->id) {
             throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
         }
-        $oldFile = $model->getImageFile();
+
         $oldattachment = $model->attachment;
         $oldFileName = $model->filename;
         $model->edit_datetime = date("Y-m-d H:i:s");
- 
+
         if ($model->load(Yii::$app->request->post())) {
-            // process uploaded image file instance
-            $file = $model->uploadImage();
- 
-            // revert back if no valid file instance uploaded
+            $file = $model->uploadFile();
+
             if ($file === false) {
                 $model->attachment = $oldattachment;
                 $model->filename = $oldFileName;
             }
- 
+
             if ($model->save()) {
-                // upload only if valid uploaded file instance found
-                if ($file !== false && unlink($oldFile)) { // delete old and overwrite
-                    $path = $model->getImageFile();
-                    $file->saveAs($path);
+                if ($file !== false) {
+                    $path = Yii::$app->params['uploadPath'] . '/' . $file->baseName . '.' . $file->extension;
+                    $directory = dirname($path);
+
+                    if (!is_dir($directory)) {
+                        if (!@mkdir($directory, 0755, true)) {
+                            throw new \RuntimeException(sprintf('Directory "%s" could not be created', $directory));
+                        }
+                    }
+
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
+
+                    if (!$file->saveAs($path)) {
+                        Yii::$app->session->setFlash("Entry-error", Yii::t("app", "Failed to save the uploaded file."));
+                        return $this->redirect(['index']);
+                    }
                 }
+
                 Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry updated"));
                 return $this->redirect(['index']);
             } else {
-                // error in saving model
+                Yii::error("Failed to save model: " . json_encode($model->getErrors()), __METHOD__);
+                Yii::$app->session->setFlash("Entry-error", Yii::t("app", "Failed to update the entry."));
             }
         }
+
         return $this->render('update', [
-            'model'=>$model,
+            'model' => $model,
         ]);
     }
+
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if ($model->user_id != Yii::$app->user->id){
+        if ($model->user_id != Yii::$app->user->id) {
             throw new ErrorException(Yii::t('app', 'Forbidden to change entries of other users'));
         }
-        // validate deletion and on failure process any exception
-        // e.g. display an error message
+
         if ($model->delete()) {
-            if (!$model->deleteImage()) {
-                Yii::$app->session->setFlash("Entry-danger", 'Error deleting image');
+            if (!$model->deleteFile()) {
+                Yii::$app->session->setFlash("Entry-danger", 'Error deleting file');
             }
         }
+
         Yii::$app->session->setFlash("Entry-success", Yii::t("app", "Entry successfully deleted"));
         return $this->redirect(['index']);
-    }
-    public function actionTarget()
-    {
-        $model = new Cashbook();
-        return $this->render('target', [
-                'model' => $model,
-            ]);
     }
 
     public function actionClone($id)
     {
-
         $model = $this->findModel($id);
         $clone = new Cashbook;
 
@@ -176,7 +203,7 @@ class CashbookController extends BaseController
         if (($model = Cashbook::findOne($id)) !== null && $model->user_id == Yii::$app->user->id) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The page you requested is not available or does not exist.');
+            throw new NotFoundHttpException(Yii::t('app', 'You are not authorized to view this entry.'));
         }
     }
 }
