@@ -58,7 +58,7 @@ class PdfUploadForm extends Model
     $this->attachment = Yii::$app->security->generateRandomString() . ".{$ext}";
 
     // Verificar se a pasta de upload existe, caso contrário, criá-la
-    $uploadPath = Yii::getAlias('@webroot/uploads/');
+    $uploadPath = Yii::getAlias('@webroot/uploads/extrato/');
     if (!file_exists($uploadPath)) {
       mkdir($uploadPath, 0777, true);
     }

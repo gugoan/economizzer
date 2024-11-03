@@ -322,11 +322,10 @@ $parcelas = 1;
                                     <?php else: ?>
                                     <p>Não há clientes disponíveis.</p>
                                     <?php endif; ?>
-                                  </div> <!-- Fecha a div de col-6 para primeira coluna -->
+                                  </div>
 
                                   <div class="col-6">
-                                    <!-- Abertura da segunda coluna -->
-                                    <!-- Fecha a div de form-group col-md-6 -->
+
 
                                     <?= Html::button('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add Product'), [
                                         'class' => 'btn btn-success btn-block',
@@ -362,143 +361,218 @@ $parcelas = 1;
 <div class="modal fade" id="CreateProductModal" tabindex="-1" role="dialog" aria-labelledby="CreateProductModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title w-100" id="CreateProductModalLabel" style="font-weight: bold; color: #fff;">Adicionar
-          Produto</h5>
-        <label>
-          <p id="clienteIdDisplay" class="form-control-static"></p>
-        </label>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header bg-primary text-white text-center">
+        <h5 class="modal-title w-100" id="CreateProductModalLabel" style="font-weight: bold;">Adicionar Produto</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body p-4">
         <div class="produtos-clientes-form">
           <?php $form = ActiveForm::begin(['id' => 'CreateProductForm', 'action' => ['cliente/create-product']]); ?>
 
-          <div class="form-row">
-
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
-            </div>
-
+          <div class="form-row mb-3">
+            <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
           </div>
 
-          <div class="form-group col-md-6">
-            <?= Html::label('User ID', 'userId', ['class' => 'control-label']) ?>
+          <div class="form-group col-md-12 mb-3">
+            <?= Html::label('User ID', 'userId', ['class' => 'font-weight-bold']) ?>
             <?= Html::textInput('userId', Yii::$app->user->id, ['id' => 'userId', 'class' => 'form-control text-center', 'readonly' => true]) ?>
           </div>
+
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'data')->textInput(['id' => 'date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data do Pedido', ['class' => 'text-center']) ?>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'data')->textInput(['id' => 'date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data do Pedido', ['class' => 'font-weight-bold']) ?>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'data_entrega')->textInput(['id' => 'delivery-date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data de Entrega', ['class' => 'font-weight-bold']) ?>
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'data_entrega')->textInput(['id' => 'delivery-date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data de Entrega', ['class' => 'text-center']) ?>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'produto')->textInput(['id' => 'product-name', 'maxlength' => true, 'class' => 'form-control text-center'])->label('Nome do Produto', ['class' => 'font-weight-bold']) ?>
             </div>
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'produto')->textInput(['id' => 'product-name', 'maxlength' => true, 'class' => 'form-control text-center'])->label('Nome do Produto', ['class' => 'text-center']) ?>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'quantidade')->textInput(['id' => 'quantity', 'type' => 'number', 'min' => 0, 'class' => 'form-control text-center'])->label('Quantidade', ['class' => 'font-weight-bold']) ?>
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'quantidade')->textInput(['id' => 'quantity', 'type' => 'number', 'min' => 0, 'class' => 'form-control text-center'])->label('Quantidade', ['class' => 'text-center']) ?>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'valor_cliente')->textInput(['id' => 'client-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Cliente', ['class' => 'font-weight-bold']) ?>
             </div>
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'valor_cliente')->textInput(['id' => 'client-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Cliente', ['class' => 'text-center']) ?>
+            <div class="form-group col-md-6 mb-3">
+              <?= $form->field($model, 'valor_pagamento')->textInput(['id' => 'payment-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Revendedor', ['class' => 'font-weight-bold']) ?>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <?= $form->field($model, 'valor_pagamento')->textInput(['id' => 'payment-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Revendedor', ['class' => 'text-center']) ?>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), ['class' => 'btn btn-primary mx-2', 'id' => 'saveProductButton']) ?>
+
+          <div class="d-flex justify-content-center mt-4">
+            <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), ['class' => 'btn btn-success mx-2', 'id' => 'saveProductButton']) ?>
             <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Fechar</button>
           </div>
+
           <?php ActiveForm::end(); ?>
         </div>
       </div>
-      <div class="modal-footer">
-        <!-- Footer pode ser usado para mensagens adicionais, se necessário -->
+      <div class="modal-footer bg-light">
+        <!-- Footer para mensagens adicionais, se necessário -->
       </div>
     </div>
   </div>
 </div>
-<!-- Modal para update produtos -->
-<div class="modal fade" id="UpdateProductModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+
+
+<!-- Modal para atualização de produtos -->
+<div class="modal fade" id="UpdateProductModal" tabindex="-1" role="dialog" style="color: #333;">
+  <div class="modal-dialog" role="document" style="max-width: 700px;">
+    <div class="modal-content" style="border-radius: 10px; overflow: hidden;">
+      <div class="modal-header" style="background-color: #007bff; color: #fff;">
         <h5 class="modal-title">Atualizar Produto</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding: 20px;">
         <?php $form = ActiveForm::begin([
           'id' => 'UpdateProductForm',
-          'action' => ['cliente/update-product'], // Inclui o ID do produto na URL
+          'action' => ['cliente/update-product'],
           'method' => 'post',
         ]); ?>
+
         <?= Html::hiddenInput('product_id', null, ['id' => 'product-id']) ?>
 
         <div class="form-row">
-
           <div class="form-group col-md-6">
             <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
-            <!-- Campo oculto para o ID do Produto -->
-
-
-            <?= $form->field($model, 'clienteId')->textInput(['id' => 'clienteId', 'type' => 'text', 'class' => 'form-control text-center'])->label('id', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'clienteId')->textInput([
+              'id' => 'clienteId',
+              'type' => 'text',
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('ID', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
-
         </div>
-
 
         <div class="form-group col-md-6">
-          <?= Html::label('User ID', 'userId', ['class' => 'control-label']) ?>
-          <?= Html::textInput('userId', Yii::$app->user->id, ['id' => 'userId', 'class' => 'form-control text-center', 'readonly' => true]) ?>
+          <?= Html::label('User ID', 'userId', ['class' => 'control-label', 'style' => 'font-weight: bold;']) ?>
+          <?= Html::textInput('userId', Yii::$app->user->id, [
+            'id' => 'userId',
+            'class' => 'form-control text-center',
+            'readonly' => true,
+            'style' => 'border-radius: 5px; background-color: #f8f9fa;'
+          ]) ?>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'data')->textInput(['id' => 'date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data do Pedido', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'data')->textInput([
+              'id' => 'date',
+              'type' => 'date',
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Data do Pedido', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'data_entrega')->textInput(['id' => 'delivery-date', 'type' => 'date', 'class' => 'form-control text-center'])->label('Data de Entrega', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'data_entrega')->textInput([
+              'id' => 'delivery-date',
+              'type' => 'date',
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Data de Entrega', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'produto')->textInput(['id' => 'product-name', 'maxlength' => true, 'class' => 'form-control text-center'])->label('Nome do Produto', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'produto')->textInput([
+              'id' => 'product-name',
+              'maxlength' => true,
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Nome do Produto', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'quantidade')->textInput(['id' => 'quantity', 'type' => 'number', 'min' => 0, 'class' => 'form-control text-center'])->label('Quantidade', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'quantidade')->textInput([
+              'id' => 'quantity',
+              'type' => 'number',
+              'min' => 0,
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Quantidade', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'valor_cliente')->textInput(['id' => 'client-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Cliente', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'valor_cliente')->textInput([
+              'id' => 'client-value',
+              'type' => 'number',
+              'step' => '0.01',
+              'min' => 0,
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Valor Cliente', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-6">
-            <?= $form->field($model, 'valor_pagamento')->textInput(['id' => 'payment-value', 'type' => 'number', 'step' => '0.01', 'min' => 0, 'class' => 'form-control text-center'])->label('Valor Revendedor', ['class' => 'text-center']) ?>
+            <?= $form->field($model, 'valor_pagamento')->textInput([
+              'id' => 'payment-value',
+              'type' => 'number',
+              'step' => '0.01',
+              'min' => 0,
+              'class' => 'form-control text-center',
+              'style' => 'border-radius: 5px;'
+            ])->label('Valor Revendedor', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
           </div>
         </div>
+
         <div class="d-flex justify-content-center">
-          <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), ['class' => 'btn btn-primary mx-2', 'id' => 'saveProductButton']) ?>
-          <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Fechar</button>
+          <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), [
+            'class' => 'btn btn-primary mx-2',
+            'id' => 'saveProductButton',
+            'style' => 'padding: 10px 20px; border-radius: 5px; font-weight: bold;'
+          ]) ?>
+          <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal"
+            style="padding: 10px 20px; border-radius: 5px; font-weight: bold;">Fechar</button>
         </div>
+
         <?php ActiveForm::end(); ?>
       </div>
     </div>
-    <div class="modal-footer">
+
+    <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 10px;">
       <!-- Footer pode ser usado para mensagens adicionais, se necessário -->
     </div>
   </div>
 </div>
-</div>
+
+<!-- Custom CSS para o modal -->
+<style>
+.modal-header {
+  background-color: #007bff;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-control.text-center {
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+</style>
 <script>
 $(document).on('click', '.edit-product-btn', function(event) {
   const button = $(this); // Botão que abriu o modal
@@ -686,7 +760,7 @@ body {
   border-radius: 5px;
   margin-right: 10px;
   /* Espaço entre os botões */
-  font-size: 1.1em;
+  font-size: 0.5em;
   /* Aumentar a fonte */
 }
 
@@ -694,20 +768,38 @@ body {
   background-color: #0056b3;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
   border-radius: 5px;
+  margin-right: 10px;
+  font-size: 0.5em;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  border-color: #6c757d;
+  border-radius: 4px;
+  font-size: 0.5em;
 }
 
 .btn-secondary:hover {
-  background-color: #5a6268;
+  background-color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 0.5em;
 }
 
 /* Estilos adicionais */
 .product-row {
   transition: background-color 0.3s, transform 0.3s;
 }
+
 
 .product-row:hover {
   background-color: #f8f9fa;
