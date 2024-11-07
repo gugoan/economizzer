@@ -477,4 +477,11 @@ h1 {
     padding: 6px 10px;
   }
 }
+.modal {
+  z-index: 1050 !important;
+}
+
+.modal-backdrop {
+  z-index: 1040 !important;
+}
 </style>

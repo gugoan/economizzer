@@ -62,7 +62,10 @@ class CategoryController extends Controller
             // Verifica e aplica as regras de categorização automáticas, se existir
             if (!empty($model->regras_auto_categorizacao)) {
                 $model->regras_auto_categorizacao = json_encode($model->regras_auto_categorizacao);
+            } else {
+                $model->regras_auto_categorizacao = null;
             }
+            
 
             if ($model->save()) {
                 // Adiciona histórico de alterações

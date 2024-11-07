@@ -78,10 +78,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'date',
             'enableSorting' => true,
             'value' => function ($model) {
-              return $model->date <> '' ? Yii::$app->formatter->asDate($model->date, 'short') : Yii::$app->formatter->asDate($model->date, 'short');
+                return !empty($model->date) ? Yii::$app->formatter->asDate($model->date, 'php:d/m/y') : '';
             },
-            'contentOptions' => ['style' => 'width: 15%;text-align:left'],
-          ],
+            'contentOptions' => ['style' => 'width: 15%; text-align:left'],
+        ],
+        
           [
             'attribute' => 'category_id',
             'format' => 'raw',
