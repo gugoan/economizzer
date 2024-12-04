@@ -146,3 +146,7 @@ use app\assets\AppAsset;
 
 </html>
 <?php $this->endPage() ?>
+
+<style>
+
+</style>
