@@ -32,7 +32,7 @@ $parcelas = 1;
       <div class="cliente-index bancos-index container-fluid">
         <!-- Título da Página -->
         <h1><?= Html::encode($this->title) ?></h1>
-        <hr />
+
         <!-- Botões Separados do Título -->
         <div class="d-flex justify-content-end mb-3">
           <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create'), ['/cliente/create'], [
@@ -357,7 +357,6 @@ $parcelas = 1;
                             </table>
                           </div>
 
-                          <!-- Parcelas, Forma de Pagamento e Descrições -->
                           <div class="col-md-6">
                             <!-- Parcelas e Forma de Pagamento na Mesma Linha -->
                             <div class="form-group">
@@ -385,13 +384,16 @@ $parcelas = 1;
 
                             <!-- Descrição e Datas Editáveis -->
                             <div class="form-group">
-                              <label>Descrição e Datas:</label>
+                              <label>Descrição, Valor e Status de Pagamento:</label>
                               <div class="row">
                                 <?php
+                                  $totalValue = $cliente->total_value ?? 0;  // Supondo que o valor total esteja em uma variável chamada total_value
                                   $parcelasCount = $cliente->parcelas ?? 1;
+                                  $valorParcela = $totalValue / $parcelasCount;  // Calculando o valor da parcela
                                   for ($i = 1; $i <= $parcelasCount; $i++):
                                     $descricaoValue = isset($cliente->descricao[$i - 1]) ? Html::encode($cliente->descricao[$i - 1]) : '';
                                     $dataValue = Yii::$app->formatter->asDate($cliente->data_registro, 'Y-m-d');
+                                    $isPaidChecked = isset($cliente->paid[$i - 1]) && $cliente->paid[$i - 1] == 1 ? 'checked' : '';
                                   ?>
                                 <div class="col-md-6 mb-3">
                                   <label for="descricao-<?= $cliente->id ?>-<?= $i ?>">Descrição <?= $i ?>:</label>
@@ -399,41 +401,51 @@ $parcelas = 1;
                                     name="descricao-<?= $cliente->id ?>[]" value="<?= $descricaoValue ?>" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                  <label for="valor-<?= $cliente->id ?>-<?= $i ?>">Valor da Parcela <?= $i ?>:</label>
+                                  <input type="text" class="form-control" id="valor-<?= $cliente->id ?>-<?= $i ?>"
+                                    name="valor-<?= $cliente->id ?>[]"
+                                    value="<?= number_format($valorParcela, 2, ',', '.') ?>" readonly>
+                                </div>
+                                <div class="col-md-6 mb-3">
                                   <label for="data-<?= $cliente->id ?>-<?= $i ?>">Data <?= $i ?>:</label>
                                   <input type="date" class="form-control" id="data-<?= $cliente->id ?>-<?= $i ?>"
                                     name="data-<?= $cliente->id ?>[]"
                                     value="<?= date('Y-m-d', strtotime($dataValue)) ?>" required>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                  <label for="paid-<?= $cliente->id ?>-<?= $i ?>">Pago <?= $i ?>:</label>
+                                  <input type="checkbox" id="paid-<?= $cliente->id ?>-<?= $i ?>"
+                                    name="paid-<?= $cliente->id ?>[]" <?= $isPaidChecked ?>>
+                                </div>
                                 <?php endfor; ?>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <!-- Botões Salvar e Limpar dentro do Card -->
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <div class="btn-group" role="group" aria-label="Ações">
-                              <?= Html::button('<i class="fa fa-save"></i> Salvar', [
-                                  'class' => 'btn btn-primary salvar-cliente-btn mr-2',
-                                  'data-cliente-id' => $cliente->id,
-                                  'title' => 'Salvar',
-                                  'data-toggle' => 'tooltip',
-                                  'data-placement' => 'top',
-                                ]) ?>
+                          <!-- Botões Salvar e Limpar dentro do Card -->
+                          <div class="row mt-3">
+                            <div class="col-md-12">
+                              <div class="btn-group" role="group" aria-label="Ações">
+                                <?= Html::button('<i class="fa fa-save"></i> Salvar', [
+                                    'class' => 'btn btn-primary salvar-cliente-btn mr-2',
+                                    'data-cliente-id' => $cliente->id,
+                                    'title' => 'Salvar',
+                                    'data-toggle' => 'tooltip',
+                                    'data-placement' => 'top',
+                                  ]) ?>
 
-                              <?= Html::button('<i class="fa fa-eraser"></i> Limpar', [
-                                  'class' => 'btn btn-secondary limpar-cliente-btn',
-                                  'data-cliente-id' => $cliente->id,
-                                  'title' => 'Limpar',
-                                  'data-toggle' => 'tooltip',
-                                  'data-placement' => 'top',
-                                ]) ?>
+                                <?= Html::button('<i class="fa fa-eraser"></i> Limpar', [
+                                    'class' => 'btn btn-secondary limpar-cliente-btn',
+                                    'data-cliente-id' => $cliente->id,
+                                    'title' => 'Limpar',
+                                    'data-toggle' => 'tooltip',
+                                    'data-placement' => 'top',
+                                  ]) ?>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </form>
                 </td>
               </tr>

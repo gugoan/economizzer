@@ -18,9 +18,14 @@ class ClienteController extends Controller
   {
     $searchModel = new ClientesSearch();
     $model = new ProdutosClientes();
-
-    // Verifica se há parâmetros de busca e passa para o searchModel
-    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    // No controlador, ao configurar o dataProvider, filtre pelo user_id
+    $user_id = Yii::$app->user->id; // Obtenha o user_id do usuário logado
+    $dataProvider = new ActiveDataProvider([
+      'query' => Clientes::find()->where(['user_id' => $user_id]),
+      'pagination' => [
+        'pageSize' => 10, // Ajuste conforme necessário
+      ],
+    ]);
 
     $clienteId = Yii::$app->request->get('cliente_id');
 
@@ -39,14 +44,46 @@ class ClienteController extends Controller
       $produtos = ProdutosClientes::find()->where(['cliente_id' => $clienteId])->noCache()->all();
     }
 
+    // Verifica se os dados do formulário foram enviados (salvamento de cliente e produtos)
+    if (Yii::$app->request->isPost) {
+      // Obtém os dados do formulário
+      $parcelas = Yii::$app->request->post('parcelas');
+      $formaPagamento = Yii::$app->request->post('forma_pagamento');
+      $descricao = Yii::$app->request->post('descricao-' . $clienteId);
+      $data = Yii::$app->request->post('data-' . $clienteId);
+      $paid = Yii::$app->request->post('paid-' . $clienteId);  // Recebe os status de pagamento
+
+      // Valida se os dados necessários estão presentes
+      if ($parcelas && $formaPagamento && $descricao && $data) {
+        // Atualiza o modelo de cliente com as novas informações
+        $cliente->parcelas = $parcelas;
+        $cliente->forma_pagamento = $formaPagamento;
+        // Salve o modelo do cliente
+        if ($cliente->save()) {
+          // Atualiza as descrições, datas e status de pagamento
+          foreach ($descricao as $index => $desc) {
+            // Se necessário, associe ou atualize as descrições, datas e status de pagamento no banco
+            $produtosCliente = ProdutosClientes::findOne(['cliente_id' => $clienteId, 'parcela' => $index + 1]);
+            if ($produtosCliente) {
+              $produtosCliente->descricao = $desc;
+              $produtosCliente->data = $data[$index];
+              $produtosCliente->paid = isset($paid[$index]) ? 1 : 0;
+              $produtosCliente->save();
+            }
+          }
+        }
+      }
+    }
+
+    // Passa as variáveis para a view
     return $this->render('index', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
+      'clientes' => $clientes,
+      'cliente' => $cliente,
       'produtos' => $produtos,
       'clienteId' => $clienteId,
-      'model' => $model,
-      'cliente' => $cliente,
-      'clientes' => $clientes, // Passando para a view
+      'model' => $model, // Passando para a view
     ]);
   }
 
