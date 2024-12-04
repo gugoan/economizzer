@@ -10,6 +10,7 @@ use app\models\Clientes;
 use app\models\ClientesSearch;
 use app\models\ProdutosClientes;
 use yii\web\BadRequestHttpException;
+use yii\web\Response;
 
 class ClienteController extends Controller
 {
@@ -29,6 +30,9 @@ class ClienteController extends Controller
       ->where(['clientes.id' => $clienteId])
       ->one();
 
+    // Obter a lista de clientes para o modal de copiar produto
+    $clientes = Clientes::find()->select(['id', 'nome'])->asArray()->all();
+
     // Carrega os produtos do cliente diretamente do banco de dados, sem cache
     $produtos = [];
     if ($clienteId) {
@@ -42,9 +46,61 @@ class ClienteController extends Controller
       'clienteId' => $clienteId,
       'model' => $model,
       'cliente' => $cliente,
+      'clientes' => $clientes, // Passando para a view
     ]);
   }
 
+  public function actionCopyProduct()
+  {
+    Yii::$app->response->format = Response::FORMAT_JSON;
+
+    $request = Yii::$app->request;
+    if ($request->isPost) {
+      $productId = $request->post('product_id');
+      $targetClienteId = $request->post('target_cliente_id');
+      $quantidade = $request->post('copy_quantity');
+      $dataPedido = $request->post('copy_data_pedido');
+      $dataEntrega = $request->post('copy_data_entrega');
+      $produtoNome = $request->post('copy_produto_nome');
+      $valorCliente = $request->post('copy_valor_cliente');
+      $valorPagamento = $request->post('copy_valor_revendedor');
+
+      // Validar dados
+      if (empty($targetClienteId) || empty($produtoNome)) {
+        return ['success' => false, 'message' => 'Dados inválidos.'];
+      }
+
+      // Verificar se o cliente de destino existe
+      $clienteDestino = Clientes::findOne($targetClienteId);
+      if (!$clienteDestino) {
+        return ['success' => false, 'message' => 'Cliente de destino não encontrado.'];
+      }
+
+      // Encontrar o produto original (opcional, dependendo da lógica)
+      $originalProduct = ProdutosClientes::findOne($productId);
+      if (!$originalProduct) {
+        return ['success' => false, 'message' => 'Produto original não encontrado.'];
+      }
+
+      // Criar um novo produto com as informações copiadas
+      $newProduct = new ProdutosClientes();
+      $newProduct->cliente_id = $targetClienteId;
+      $newProduct->produto = $produtoNome;
+      $newProduct->quantidade = $quantidade;
+      $newProduct->data = $dataPedido;
+      $newProduct->data_entrega = $dataEntrega;
+      $newProduct->valor_cliente = $valorCliente;
+      $newProduct->valor_pagamento = $valorPagamento;
+
+      if ($newProduct->save()) {
+        return ['success' => true, 'message' => 'Produto copiado com sucesso.'];
+      } else {
+        return ['success' => false, 'message' => 'Erro ao salvar o produto copiado.'];
+      }
+    }
+
+    return ['success' => false, 'message' => 'Requisição inválida.'];
+  }
 
   public function actionUpdateProduct()
   {

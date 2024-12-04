@@ -32,6 +32,7 @@ class Bancos extends ActiveRecord
   {
     return [
       [['nome', 'descricao', 'data_registro', 'data_inicio_cartao', 'data_fechamento_cartao'], 'required'],
+      [['user_id'], 'integer'],
       [['data_registro', 'data_inicio_cartao', 'data_fechamento_cartao'], 'date', 'format' => 'php:Y-m-d'],
       [['nome'], 'string', 'max' => 255],
       [['descricao'], 'string'],
@@ -77,9 +78,10 @@ class Bancos extends ActiveRecord
   /**
    * Relacionamento com o usuário associado.
    */
+  // Relação com o usuário
   public function getUser()
   {
-    return $this->hasOne(User::class, ['id' => 'user_id']);
+    return $this->hasOne(User::className(), ['id' => 'user_id']);
   }
 
   /**

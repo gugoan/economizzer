@@ -93,56 +93,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 </div>
-
 <style>
-/* Ajuste de campos e botões */
-.styled-input {
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  font-size: 1.2rem;
-}
-
-.styled-input:hover {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  transform: scale(1.02);
-}
-
-.btn-action {
-  font-size: 1.2rem;
-  padding: 12px 24px;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-}
-
-.btn-action:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-/* Responsividade para dispositivos móveis */
-@media (max-width: 576px) {
-  .btn-action {
-    font-size: 1.1rem;
-    padding: 10px 20px;
+  /* Reset CSS para uma base uniforme */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-}
 </style>

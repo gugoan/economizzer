@@ -1,0 +1,764 @@
+/* =========================================
+   1. Variáveis CSS para Manutenção Facilitada
+   ========================================= */
+   :root {
+    /* Cores Primárias e Secundárias */
+    --primary-color: #02A8A4;        /* Cor principal */
+    --primary-hover: #05A796;        /* Cor principal ao passar o mouse */
+    --secondary-color: #05A796;      /* Cor secundária */
+    
+    /* Cores Neutras */
+    --background-color: #F2F2F2;     /* Fundo neutro */
+    --white-color: #FFFFFF;          /* Branco */
+    --light-gray: #F1F1F1;           /* Cinza claro */
+    --medium-gray: #E0E0E0;          /* Cinza médio */
+    --dark-gray: #6c757d;            /* Cinza escuro */
+    
+    /* Cores de Tooltip */
+    --tooltip-bg: #444;              /* Fundo de tooltip */
+    
+    /* Estilos dos Modais */
+    --modal-header-bg: #02A8A4;      /* Fundo do cabeçalho do modal */
+    --modal-body-bg: #FFFFFF;        /* Fundo do corpo do modal */
+    --modal-footer-bg: #F1F1F1;      /* Fundo do rodapé do modal */
+    --modal-border-radius: 10px;     /* Borda arredondada dos modais */
+    
+    /* Estilos de Inputs */
+    --input-border-color: #ced4da;   /* Cor da borda dos inputs */
+    --input-focus-border-color: #02A8A4; /* Cor da borda ao focar no input */
+    
+    /* Tipografia */
+    --font-size-base: 1.5rem;        /* Tamanho base das fontes */
+    --font-size-title: 3.5rem;       /* Tamanho das fontes do título */
+    --font-size-label: 1.5rem;       /* Tamanho das fontes das labels */
+    --font-size-modal-title: 2rem;    /* Tamanho das fontes do título do modal */
+    
+    /* Animações */
+    --animation-duration: 0.5s;      /* Duração das animações */
+  }
+  
+  /* =========================================
+     2. Reset e Estilos Gerais
+     ========================================= */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 200%;                  /* Ocupa 100% da altura da viewport */
+    font-size: var(--font-size-base); /* Define a fonte base */
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    overflow-x: hidden; /* Evita rolagem horizontal */
+  }
+  body {
+    width: auto;
+    background-color: var(--background-color);
+    font-family: 'Arial', sans-serif;
+    font-size: var(--font-size-base);
+    overflow-x: hidden; /* Evita rolagem horizontal */
+  }
+  
+  /* =========================================
+     3. Container Principal
+     ========================================= */
+  .bancos-index.container-fluid {
+    width: auto; /* Ocupa pelo menos toda a altura da viewport */
+    padding: 30px;
+    background-color: var(--white-color);
+    border-radius: var(--modal-border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+  }
+  
+  /* =========================================
+     4. Cabeçalho
+     ========================================= */
+  h1 {
+    font-size: var(--font-size-title);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+  }
+  
+  /* =========================================
+     5. Botões no Topo
+     ========================================= */
+  .btn-group {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    flex-wrap: wrap; /* Permite que os botões quebrem linha em telas menores */
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    border-radius: 8px;
+    margin: 4px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    text-align: center;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white-color);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+  }
+  
+  .btn-outline-secondary {
+    background-color: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    transform: scale(1.05);
+  }
+  
+  /* =========================================
+     6. Botões de Ação
+     ========================================= */
+  .btn-action {
+    border-radius: 50%;
+    margin: 5px;
+    font-size: 0.7rem;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-action:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+  }
+  
+  /* =========================================
+  7. Tabela
+     ========================================= */
+  .table {
+      width: 94%;
+      margin: 0 auto 30px auto;
+      border-collapse: collapse;
+      border: 2px solid var(--medium-gray);
+      table-layout: fixed; /* Garante que as células tenham uma largura uniforme */
+      overflow: hidden; /* Evita rolagem */
+      font-size: 1.4rem;
+    }
+  .table th,
+  .table td {
+   
+    padding: 15px;
+    border: 1px solid var(--medium-gray);
+    word-wrap: break-word;
+    font-size: 1.5rem;
+    vertical-align: middle;       /* Centraliza verticalmente */
+    text-align: center;           /* Centraliza horizontalmente */
+    line-height: normal;          /* Garante que o line-height não afete o alinhamento */
+  }
+
+    
+    
+    .table thead th {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      font-size: 1.2rem;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    
+    .table-hover tbody tr:hover {
+      background-color: #dff0d8;
+      transform: scale(1.01) ; /* Animação de leve rotação e zoom */
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .table tbody tr:nth-child(even) {
+      background-color: var(--light-gray);
+    }
+    
+    .table tbody tr:nth-child(odd) {
+      background-color: var(--white-color);
+    }
+       
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Leve rotação no hover das linhas da tabela */
+    .table tbody tr {
+      transition: transform 0.3s;
+    }
+    
+    .table tbody tr:hover {
+      animation: hoverRotate 0.3s ease-in-out forwards;
+    }
+  /* =========================================
+     8. Cartões
+     ========================================= */
+  .card {
+    border-radius: var(--modal-border-radius);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .card-header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-top-left-radius: var(--modal-border-radius);
+    border-top-right-radius: var(--modal-border-radius);
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .card-footer {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    border-bottom-left-radius: var(--modal-border-radius);
+    border-bottom-right-radius: var(--modal-border-radius);
+    padding: 15px;
+    text-align: center;
+  }
+  
+  /* =========================================
+     9. Lista de Resumo
+     ========================================= */
+  .list-group-item {
+    border: none;
+    background-color: var(--white-color);
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .list-group-item strong {
+    font-weight: 700;
+  }
+  
+  /* =========================================
+     10. Modais
+     ========================================= */
+  /* =========================================
+   Modal Tamanho e Alinhamento
+   ========================================= */
+.modal-dialog {
+  max-width: 600px; /* Define uma largura menor para o modal */
+  margin: 30px auto; /* Centraliza o modal horizontalmente */
+}
+
+.modal-content {
+  border-radius: var(--modal-border-radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: none;
+  overflow: hidden;
+  animation: fadeInDown var(--animation-duration) ease-out;
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+  background-color: var(--modal-header-bg);
+  color: var(--white-color);
+  border-bottom: 2px solid var(--medium-gray);
+  padding: 15px 20px;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* Corpo do Modal */
+.modal-body {
+  padding: 20px;
+  background-color: var(--modal-body-bg);
+}
+
+/* Inputs */
+.modal-body form input[type="text"],
+.modal-body form select {
+  width: 96%;
+  padding: 12px 18px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  font-size: 1.5rem;
+  transition: all 0.3s; /* Animações mais suaves */
+  background-color: var(--light-gray); /* Cor de fundo do input */
+  color: var(--dark-gray); /* Cor do texto */
+  text-align: center;
+}
+
+/* Hover para Inputs */
+.modal-body form input[type="text"]:hover,
+.modal-body form select:hover {
+  transform: scale(1.05); /* Efeito de aumentar levemente */
+  border-color: var(--input-focus-border-color); /* Cor de borda no hover */
+  background-color: #e6f7f5; /* Cor de fundo ao passar o mouse */
+}
+
+/* Efeito de Foco para Inputs */
+.modal-body form input[type="text"]:focus,
+.modal-body form select:focus {
+  border-color: var(--input-focus-border-color);
+  box-shadow: 0 0 10px rgba(2, 168, 164, 0.5);
+  outline: none;
+  transform: scale(1.05); /* Efeito de aumentar levemente */
+}
+
+/* Tooltip Explicativo */
+.modal-body .form-group input[type="text"]:hover::after,
+.modal-body .form-group select:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--tooltip-bg);
+  color: var(--white-color);
+  padding: 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Aparecimento do Tooltip */
+.modal-body .form-group input[type="text"]:hover::after,
+.modal-body .form-group select:hover::after {
+  opacity: 1;
+}
+
+/* Botão Centralizado */
+.modal-body form .btn-success {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: 1.4rem;
+  padding: 12px 25px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto 0 auto; /* Centraliza o botão */
+}
+
+/* Hover no Botão */
+.modal-body form .btn-success:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.1); /* Efeito de aumento ao passar o mouse */
+}
+
+  /* =========================================
+     11. Formulários com Dois Inputs por Linha
+     ========================================= */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Ajusta o espaçamento entre os grupos */
+  }
+  
+  .form-row .form-group {
+    flex: 0 0 50%;
+    padding: 10px;
+  }
+  
+  @media (max-width: 576px) {
+    .form-row .form-group {
+      flex: 0 0 100%;
+    }
+  }
+  
+  /* =========================================
+     12. Abas (Nav Tabs e Nav Pills)
+     ========================================= */
+  .nav-tabs,
+  .nav-pills {
+    border-bottom: 2px solid var(--secondary-color);
+    display: flex;
+    justify-content: center;
+      }
+  
+  .nav-tabs .nav-link,
+  .nav-pills .nav-link {
+    color: var(--secondary-color);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin: 2px;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    text-align: center;
+  }
+  
+  .nav-tabs .nav-link.active,
+  .nav-pills .nav-link.active {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+  }
+  
+  .nav-tabs .nav-link:hover,
+  .nav-pills .nav-link:hover {
+    background-color: #C4F2EF;
+    color: #333;
+    transform: scale(1.05);
+  }
+  
+  .tab-content .tab-pane {
+    padding: 20px;
+    animation: fadeIn var(--animation-duration) ease-in-out; /* Animação ao trocar de aba */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* =========================================
+     13. Tooltip
+     ========================================= */
+  .tooltip-inner {
+    background-color: var(--tooltip-bg);
+    color: var(--white-color);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+  }
+  
+  /* =========================================
+     14. Alerta
+     ========================================= */
+  .alert-dismissible .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: inherit;
+    font-size: 1.5rem;
+    opacity: 1;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .alert-dismissible .close:hover {
+    color: #cccccc;
+  }
+  
+  .alert {
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    font-size: 1.4rem;
+  }
+  
+  /* =========================================
+     15. Efeitos de Hover e Expansão
+     ========================================= */
+  .btn:hover,
+  .table-hover tr:hover {
+    cursor: pointer;
+  }
+  
+  /* =========================================
+     16. Z-Index para Modais
+     ========================================= */
+  .modal {
+    z-index: 1050 !important;
+  }
+  
+  .modal-backdrop {
+    z-index: 1040 !important;
+  }
+  
+  /* =========================================
+     17. Responsividade Adicional
+     ========================================= */
+  @media (max-width: 768px) {
+    .btn-group {
+      flex-direction: column;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .modal-title {
+      font-size: 1.8rem;
+    }
+    
+    .modal-body form input[type="text"],
+    .modal-body form select {
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+    
+    .modal-body form .btn-success,
+    .bancos-search form .btn-primary,
+    .bancos-search form .btn-default {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .modal-title {
+      font-size: 1.6rem;
+    }
+    
+    .btn {
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+    
+    .btn-action {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  }
+/* Estilo para o título do gráfico */
+h3.mt-4 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Efeito sutil de sombra no título */
+  transition: color 0.3s ease;
+}
+
+h3.mt-4:hover {
+  color: #3498db; /* Altera a cor do título ao passar o mouse */
+}
+
+/* Estilo para o painel que contém o gráfico */
+.panel-body {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+
+.panel-body:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+  transform: translateY(-5px); /* Leve deslocamento para dar a sensação de profundidade */
+}
+
+/* Estilo para o contêiner que envolve os dois gráficos */
+.graph-container {
+  display: flex;
+  justify-content: space-between; /* Garante que os gráficos ocupem o máximo possível */
+  gap: 30px; /* Aumenta o espaçamento entre os gráficos */
+  flex-wrap: wrap; /* Permite que os gráficos se ajustem em telas menores */
+  padding: 20px 0;
+}
+
+/* Estilo para o gráfico de área */
+.graph-container .highcharts-container:first-child {
+  flex: 1 1 48%; /* Gráfico de área ocupa 48% da largura */
+  min-width: 400px; /* Tamanho mínimo para o gráfico de área */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.graph-container .highcharts-container:first-child:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Aumenta a sombra do gráfico ao passar o mouse */
+}
+
+/* Estilo para o gráfico de pizza se mover para a direita */
+.graph-container .highcharts-container:last-child {
+  flex: 0 0 48%; /* Gráfico de pizza ocupa 48% da largura */
+  min-width: 400px; /* Tamanho mínimo para o gráfico de pizza */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: auto; /* Garante que o gráfico de pizza fique à direita */
+  transition: box-shadow 0.3s ease;
+}
+
+.graph-container .highcharts-container:last-child:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+}
+
+/* Responsividade: Ajustes para telas menores */
+@media (max-width: 768px) {
+  .graph-container {
+    flex-direction: column; /* Empilha os gráficos verticalmente em telas pequenas */
+    gap: 20px; /* Espaçamento entre os gráficos empilhados */
+  }
+
+  /* Ajuste no título do gráfico em telas menores */
+  h3.mt-4 {
+    font-size: 1.8rem;
+  }
+
+  /* Ajuste na área do painel em telas menores */
+  .panel-body {
+    padding: 25px;
+  }
+
+  /* Ajuste no tamanho do gráfico */
+  .highcharts-container {
+    min-width: 100%;
+  }
+}
+
+/* Estilo para o gráfico */
+.highcharts-container {
+  max-width: 100% !important;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* Estilo para o texto dentro da área do gráfico (mensagens de erro) */
+.panel-body p {
+  font-size: 1.2rem;
+  color: #e74c3c;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.panel-body p:hover {
+  color: #c0392b; /* Cor do texto altera ao passar o mouse */
+}
+
+/* Estilos adicionais para o tooltip do gráfico */
+.highcharts-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 1.1rem;
+  max-width: 300px; /* Limitar o tamanho máximo do tooltip */
+  word-wrap: break-word; /* Quebrar palavras longas no tooltip */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para o tooltip */
+}
+
+/* Estilo para quando não houver dados a serem exibidos */
+.panel-body p {
+  font-style: italic;
+  color: #999;
+  text-align: center;
+}
+
+/* Estilo para a legenda do gráfico de pizza (ajustado para não sobrepor o gráfico) */
+.highcharts-legend {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Garante que a legenda fique acima do gráfico */
+  transition: all 0.3s ease;
+}
+
+.highcharts-legend:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais forte ao passar o mouse */
+}
+
+/* Responsividade para legenda de gráficos */
+@media (max-width: 768px) {
+  .highcharts-legend {
+    position: static; /* Coloca a legenda abaixo do gráfico em telas menores */
+    margin-top: 20px;
+  }
+}
+
+/* Estilo para os títulos das categorias do gráfico de área */
+.highcharts-axis-title {
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Ajuste na altura do gráfico em telas grandes */
+@media (min-width: 1200px) {
+  .highcharts-container {
+    height: 600px; /* Ajusta a altura do gráfico em telas maiores */
+  }
+}
+
+/* Estilo para os gráficos em telas menores (otimização visual) */
+@media (max-width: 576px) {
+  .highcharts-container {
+    height: 400px; /* Ajusta a altura do gráfico para dispositivos menores */
+  }
+}
+
+/* Ajuste no gráfico de área para remover o excesso de marcação */
+.highcharts-markers {
+  display: none; /* Remove as bolinhas nos gráficos de áreas */
+}
+
+/* Transição suave para os gráficos ao carregá-los */
+.graph-container .highcharts-container {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards; /* Animação suave */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animação de fade-in */
+.alert {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

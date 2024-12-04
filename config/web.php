@@ -61,20 +61,11 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'serveraddress',
-                'username' => '',
-                'password' => '',
-                'port' => '587',
-                'encryption' => 'tls',
-                'streamOptions' => [
-                    'ssl' => [
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                    ],
-                ],
-            ],
+            'useFileTransport' => true,
+            'messageConfig' => [
+                'from' => ['master@economizzer.com' => 'Admin'],
+                'charset' => 'UTF-8',
+            ]
         ],
 
         'log' => [

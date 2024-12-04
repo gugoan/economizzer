@@ -11,28 +11,41 @@ use app\assets\AppAsset;
 <html lang="<?= Yii::$app->language ?>">
 
 <head>
+
+  <!-- Incluir Chartist.js -->
+  <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
   <!-- jQuery e Bootstrap JS (versão atualizada para evitar conflitos) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pV0Y3pTlBxPbNIDvXBdfX/WTLQH1bkh4e5X12hXl2N5uBWwq4o4TjI8eGmFNha+eJ3I+h35tI8BbVAdlN6imMw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <meta charset="<?= Yii::$app->charset ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?= Html::csrfMetaTags() ?>
   <title>Economizzer</title>
-  <?php $this->head();
+  <?php
+  $this->head();
   AppAsset::register($this);
   $js = <<< 'SCRIPT'
     /* Inicialização de tooltips e popovers */
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
-      });;
+      });
     /* To initialize BS3 popovers set this below */
     $(function () {        $("[data-toggle='popover']").popover();
     });
     SCRIPT;
   $this->registerJs($js);
   ?>
+
   <!-- Font Awesome e Favicon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/images/favicon.ico">
@@ -116,9 +129,7 @@ use app\assets\AppAsset;
     ?>
 
     <div class="container">
-      <p>
-        <?= $content ?>
-      </p>
+      <?= $content ?>
     </div>
   </div>
 

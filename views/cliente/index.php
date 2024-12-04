@@ -1,5 +1,6 @@
 <?php
 
+use app\assets\ClientesAsset;
 use app\models\ProdutosClientes;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -7,61 +8,53 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 
+// Registra o AssetBundle (inclui o JavaScript)
+ClientesAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model app\models\ProdutosClientes */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $clientes array */ // Certifique-se de passar a lista de clientes para a view
 
-$this->title = Yii::t('app', 'Entries');
+$this->title = Yii::t('app', 'Clientes');
 $this->params['breadcrumbs'][] = $this->title;
+
+// Inicialização de variáveis (se necessário)
 $totalQuantidade = 0;
 $totalValorCliente = 0;
 $totalValorRevendedor = 0;
 $lucro = $totalValorCliente - $totalValorRevendedor;
 $parcelas = 1;
 
-
 ?>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-20">
-      <div class="cliente-index">
-        <div class="col-lg-3">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <strong><?php echo Yii::t('app', 'Filters'); ?>
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilter"
-                    aria-expanded="true" aria-controls="collapseFilter">
-                    <span class="glyphicon glyphicon-resize-small pull-right" aria-hidden="true"></span>
-                  </a>
-                </strong>
-              </div>
-              <div id="collapseFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  <?php echo $this->render('_search', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider, // Adicionado para resolver o erro
-                  ]); ?>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="col-sm-12">
+      <div class="cliente-index bancos-index container-fluid">
+        <!-- Título da Página -->
+        <h1><?= Html::encode($this->title) ?></h1>
+        <hr />
+        <!-- Botões Separados do Título -->
+        <div class="d-flex justify-content-end mb-3">
+          <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create'), ['/cliente/create'], [
+            'class' => 'btn btn-primary mr-2',
+          ]) ?>
+          <?= Html::button('<i class="fa fa-upload"></i> ' . Yii::t('app', 'Upload PDF'), [
+            'class' => 'btn btn-secondary mr-2',
+            'data-toggle' => 'modal',
+            'data-target' => '#UploadPdfModal',
+          ]) ?>
+          <?= Html::button('<i class="fa fa-search"></i> ' . Yii::t('app', 'Search'), [
+            'class' => 'btn btn-info',
+            'data-toggle' => 'modal',
+            'data-target' => '#SearchModal',
+          ]) ?>
         </div>
 
-        <h2>
-          <span><?= Html::encode($this->title) ?></span>
-          <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create'), ['/cliente/create'], [
-            'class' => 'btn btn-primary grid-button pull-right',
-            'style' => 'margin-right: 10px;',
-          ]) ?>
-          <?= Html::a('<i class="fa fa-upload"></i> ' . Yii::t('app', 'Upload PDF'), ['pdf-upload/upload'], [
-            'class' => 'btn btn-secondary pull-right',
-            'style' => 'margin-right: 10px;',
-          ]) ?>
-        </h2>
-        <hr />
+
+
+        <!-- Alertas de Flash Messages -->
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
-        <div class="alert alert-dismissible alert-<?= substr($key, strpos($key, '-') + 1) ?>" role="alert">
+        <div class="alert alert-dismissible alert-<?= substr($key, strpos($key, '-') + 1) ?> fade show" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -69,8 +62,64 @@ $parcelas = 1;
         </div>
         <?php endforeach ?>
 
+        <!-- Modal para Pesquisa/Filtro -->
+        <div class="modal fade" id="SearchModal" tabindex="-1" role="dialog" aria-labelledby="SearchModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="SearchModalLabel">Filtros de Pesquisa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <?= $this->render('_search', [
+                  'searchModel' => $searchModel,
+                  'dataProvider' => $dataProvider,
+                ]); ?>
+              </div>
+              <div class="modal-footer">
+                <?= Html::submitButton('Filtrar', ['class' => 'btn btn-primary', 'form' => 'search-form']) ?>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para Upload PDF -->
+        <div class="modal fade" id="UploadPdfModal" tabindex="-1" role="dialog" aria-labelledby="UploadPdfModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="UploadPdfModalLabel">Upload de PDF</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <?php $form = ActiveForm::begin(['id' => 'UploadPdfForm', 'action' => ['pdf-upload/upload'], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+
+                <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'upload-clienteId'])->label(false) ?>
+
+                <div class="form-group">
+                  <?= Html::label('Selecionar PDF', 'pdfFile', ['class' => 'font-weight-bold']) ?>
+                  <?= Html::fileInput('pdfFile', null, ['class' => 'form-control', 'id' => 'pdfFile', 'accept' => 'application/pdf', 'required' => true]) ?>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                  <?= Html::submitButton('<i class="fa fa-floppy-o"></i> Salvar', ['class' => 'btn btn-primary mx-2']) ?>
+                  <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Fechar</button>
+                </div>
+
+                <?php ActiveForm::end(); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Clientes -->
         <div class="table-responsive table-container">
-          <table class="table" style="width: 100%; text-align: center;">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th>Nome do Cliente</th>
@@ -81,30 +130,56 @@ $parcelas = 1;
             </thead>
             <tbody>
               <?php foreach ($dataProvider->models as $cliente): ?>
-              <tr class="clickable-row product-row " data-id="<?= $cliente->id ?>"
-                data-nome="<?= Html::encode($cliente->nome) ?>">
+              <!-- Linha Principal do Cliente -->
+              <tr class="clickable-row" data-id="<?= $cliente->id ?>" data-nome="<?= Html::encode($cliente->nome) ?>">
                 <td><?= Html::encode($cliente->nome) ?></td>
-                <td><?= Html::encode($cliente->data_registro) ?></td>
-                <td><?= Html::encode($cliente->edit_datetime) ?></td>
+                <td><?= Yii::$app->formatter->asDate($cliente->data_registro, 'dd/MM') ?></td>
+                <td><?= Yii::$app->formatter->asDate($cliente->edit_datetime, 'dd/MM') ?></td>
                 <td>
                   <?= Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['cliente/update', 'id' => $cliente->id], [
-                      'class' => 'btn btn-warning',
+                      'class' => 'btn btn-warning btn-action',
                       'title' => Yii::t('app', 'Edit'),
+                      'data-toggle' => 'tooltip',
+                      'data-placement' => 'top',
                     ]) ?>
 
                   <?= Html::a('<span class="glyphicon glyphicon-trash"></span>', ['cliente/delete', 'id' => $cliente->id], [
-                      'class' => 'btn btn-danger',
+                      'class' => 'btn btn-danger btn-action',
                       'data-confirm' => Yii::t('app', 'Tem certeza que quer Deletar esse Cliente?'),
                       'data-method' => 'post',
+                      'title' => Yii::t('app', 'Delete'),
+                      'data-toggle' => 'tooltip',
+                      'data-placement' => 'top',
+                    ]) ?>
+
+                  <?= Html::button('<i class="fa fa-plus"></i>', [
+                      'class' => 'btn btn-success btn-action',
+                      'title' => Yii::t('app', 'Add Product'),
+                      'data-toggle' => 'modal',
+                      'data-target' => '#CreateProductModal',
+                      'data-cliente-id' => Html::encode($cliente->id),
+                      'data-cliente-nome' => Html::encode($cliente->nome),
+                    ]) ?>
+
+                  <?= Html::button('<i class="fa fa-upload"></i>', [
+                      'class' => 'btn btn-secondary btn-action',
+                      'title' => Yii::t('app', 'Upload PDF'),
+                      'data-toggle' => 'modal',
+                      'data-target' => '#UploadPdfModal',
+                      'data-cliente-id' => Html::encode($cliente->id),
+                      'data-cliente-nome' => Html::encode($cliente->nome),
                     ]) ?>
                 </td>
               </tr>
-              <tr id="product-row-<?= $cliente->id ?>" style="display: none; width: 100%;">
+
+              <!-- Linha Detalhada do Cliente (Produtos e Informações Adicionais) -->
+              <tr id="product-row-<?= $cliente->id ?>" style="display: none;">
                 <td colspan="4">
                   <div class="row">
+                    <!-- Tabela de Produtos -->
                     <div class="col-md-12">
                       <table class="table table-bordered table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead>
                           <tr>
                             <th>Data Do Pedido</th>
                             <th>Data de Entrega</th>
@@ -118,9 +193,9 @@ $parcelas = 1;
                         <tbody id="product-table-body-<?= $cliente->id ?>">
                           <?php if (!empty($cliente->produtosClientes)): ?>
                           <?php foreach ($cliente->produtosClientes as $produto): ?>
-                          <tr class="product-row">
-                            <td><?= Html::encode($produto->data) ?></td>
-                            <td><?= Html::encode($produto->data_entrega) ?></td>
+                          <tr>
+                            <td><?= Yii::$app->formatter->asDate($produto->data, 'dd/MM') ?></td>
+                            <td><?= Yii::$app->formatter->asDate($produto->data_entrega, 'dd/MM') ?></td>
                             <td><?= Html::encode($produto->produto) ?></td>
                             <td><?= Html::encode($produto->quantidade) ?></td>
                             <td><?= Yii::$app->formatter->asCurrency($produto->valor_cliente) ?></td>
@@ -128,29 +203,49 @@ $parcelas = 1;
                             <td>
                               <!-- Botão de Edição -->
                               <?= Html::button('<span class="glyphicon glyphicon-pencil"></span>', [
-                                      'class' => 'btn btn-warning btn-sm edit-product-btn',
+                                      'class' => 'btn btn-warning btn-sm mr-1 edit-product-btn',
                                       'data-toggle' => 'modal',
                                       'data-target' => '#UpdateProductModal',
                                       'data-client-id' => $cliente->id,
                                       'data-cliente-nome' => $cliente->nome,
                                       'data-product-id' => Html::encode($produto->id),
-                                      'data-date' => Html::encode($produto->data),
-                                      'data-delivery-date' => Html::encode($produto->data_entrega),
+                                      'data-date' => Yii::$app->formatter->asDate($produto->data, 'yyyy-MM-dd'),
+                                      'data-delivery-date' => Yii::$app->formatter->asDate($produto->data_entrega, 'yyyy-MM-dd'),
                                       'data-product-name' => Html::encode($produto->produto),
                                       'data-quantity' => Html::encode($produto->quantidade),
                                       'data-client-value' => Html::encode($produto->valor_cliente),
                                       'data-payment-value' => Html::encode($produto->valor_pagamento),
                                     ]) ?>
 
+                              <!-- Botão de Deleção -->
                               <?= Html::a(
                                       '<span class="glyphicon glyphicon-trash"></span>',
                                       ['cliente/deleteproduct', 'id' => $produto->id],
                                       [
-                                        'class' => 'btn btn-danger btn-sm',
+                                        'class' => 'btn btn-danger btn-sm mr-1',
                                         'data-confirm' => Yii::t('app', 'Tem certeza que quer Deletar esse Produto?'),
                                         'data-method' => 'post',
+                                        'title' => Yii::t('app', 'Delete Product'),
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'top',
                                       ]
                                     ) ?>
+
+                              <!-- Botão de Copiar Produto -->
+                              <?= Html::button('<span class="glyphicon glyphicon-copy"></span>', [
+                                      'class' => 'btn btn-info btn-sm copiar-produto-btn',
+                                      'title' => Yii::t('app', 'Copiar Produto'),
+                                      'data-toggle' => 'modal',
+                                      'data-target' => '#CopiarProdutoModal',
+                                      'data-product-id' => Html::encode($produto->id),
+                                      'data-cliente-id' => Html::encode($cliente->id),
+                                      'data-produto-name' => Html::encode($produto->produto),
+                                      'data-quantidade' => Html::encode($produto->quantidade),
+                                      'data-valor-cliente' => Html::encode($produto->valor_cliente),
+                                      'data-valor-pagamento' => Html::encode($produto->valor_pagamento),
+                                      'data-data-pedido' => Yii::$app->formatter->asDate($produto->data, 'yyyy-MM-dd'),
+                                      'data-data-entrega' => Yii::$app->formatter->asDate($produto->data_entrega, 'yyyy-MM-dd'),
+                                    ]) ?>
                             </td>
                           </tr>
                           <?php endforeach; ?>
@@ -163,182 +258,177 @@ $parcelas = 1;
                       </table>
                     </div>
                   </div>
-                  <!-- Funcionalidades adicionais ao lado do botão -->
-                  <form method="POST" action="update/<?= Html::encode($cliente->id) ?>">
-                    <div class="col-md-6" style="width: 100%;">
-                      <div class="additional-info additional-info-<?= $cliente->id ?> card mb-4"
-                        style="border: 1px solid #007bff; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
-                        <div class="card-header"
-                          style="background-color: #007bff; color: white; border-radius: 10px 10px 0 0;">
-                          <h5 class="card-title" style="margin: 0; font-weight: bold; text-align:center;">Informações do
-                            Cliente</h5>
-                        </div>
-                        <div class="card-body"
-                          style="padding: 2rem; background-color: #f9f9f9; border-radius: 0 0 10px 10px;">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-row">
-                                <table class="table">
-                                  <thead>
-                                    <tr>
-                                      <th style="font-weight: bold;">Descrição</th>
-                                      <th style="font-weight: bold; text-align: right;">Valor</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                      $totalQuantidade = 0;
-                                      $totalValorCliente = 0;
-                                      $totalValorRevendedor = 0;
 
-                                      foreach ($cliente->produtosClientes as $produto) {
-                                        $totalQuantidade += $produto->quantidade;
-                                        $totalValorCliente += $produto->valor_cliente * $produto->quantidade;
-                                        $totalValorRevendedor += $produto->valor_pagamento * $produto->quantidade;
-                                      }
-                                      $lucro = $totalValorCliente - $totalValorRevendedor;
+                  <!-- Formulário de Informações Adicionais do Cliente -->
+                  <form id="cliente-form-<?= $cliente->id ?>" method="POST"
+                    action="<?= Url::to(['cliente/update', 'id' => $cliente->id]) ?>">
+                    <div class="additional-info card mb-4" id="additional-info-<?= $cliente->id ?>">
+                      <div class="card-header">
+                        <h5 class="card-title">Informações do Cliente</h5>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Informações de Quantidade e Valores -->
+                          <div class="col-md-6">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Descrição</th>
+                                  <th>Valor</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php
+                                  $totalQuantidade = 0;
+                                  $totalValorCliente = 0;
+                                  $totalValorRevendedor = 0;
 
-                                      ?>
-                                    <tr class="product-row">
-                                      <td style="font-weight: bold;">Quantidade Total:</td>
-                                      <td style="color: #007bff; text-align: center;"><?= $totalQuantidade ?></td>
-                                    </tr>
-                                    <tr class="product-row">
-                                      <td style="font-weight: bold;">Valor Total Cliente:</td>
-                                      <td style="color: #28a745; text-align: center;">
-                                        <?= Yii::$app->formatter->asCurrency($totalValorCliente) ?></td>
-                                    </tr>
-                                    <tr class="product-row">
-                                      <td style="font-weight: bold;">Valor Total Revendedor:</td>
-                                      <td style="color: #dc3545; text-align: center;">
-                                        <?= Yii::$app->formatter->asCurrency($totalValorRevendedor) ?></td>
-                                    </tr>
-                                    <tr class="product-row">
-                                      <td style="font-weight: bold;">Lucro:</td>
-                                      <td style="color: #28a745; text-align: center;">
-                                        <?= Yii::$app->formatter->asCurrency($lucro) ?></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                              <table class="table table-bordered table-striped table-hover">
-                                <thead class="thead-dark">
-                                  <tr>
-
-                                  </tr>
-                                </thead>
-
-                                <tbody>
-                                  <tr class="product-row">
-                                    <td style="font-weight: bold;">Valor Total Cliente Dividido:</td>
-                                    <td style="color: #007bff;" id="valor-total-dividido">
-                                      <?php if (isset($totalValorCliente, $cliente->parcelas) && is_numeric($totalValorCliente) && is_numeric($cliente->parcelas) && $cliente->parcelas > 0): ?>
-                                      <?= Yii::$app->formatter->asCurrency($totalValorCliente / $cliente->parcelas) ?>
-                                      <?php else: ?>
-                                      <span>N/A</span>
-                                      <?php endif; ?>
-                                    </td>
-                                  </tr>
-                                  <tr class="product-row">
-                                    <td style="font-weight: bold;">Lucro Dividido:</td>
-                                    <td style="color: #28a745;" id="lucro-dividido">
-                                      <?php if (is_numeric($lucro) && is_numeric($cliente->parcelas) && $cliente->parcelas > 0): ?>
-                                      <?= Yii::$app->formatter->asCurrency($lucro / $cliente->parcelas) ?>
-                                      <?php else: ?>
-                                      <span>N/A</span>
-                                      <?php endif; ?>
-                                    </td>
-                                  </tr>
-                                  <tr class="product-row">
-                                    <td style="font-weight: bold;">Valor restante Cliente:</td>
-                                    <td style="color: #007bff;" id="valor-total-dividido">
-                                      <?php
-                                        $descricaoValue = $cliente->descricao;
-                                        // Verifica se a descrição é uma expressão matemática e a avalia
-                                        if (isset($totalValorCliente) && is_numeric($totalValorCliente)):
-                                          // Tenta calcular o valor da descrição, se for uma expressão matemática
-                                          try {
-                                            $valorDescricao = eval("return $descricaoValue;");
-                                          } catch (ParseError $e) {
-                                            $valorDescricao = 0; // Define um valor padrão em caso de erro
-                                          }
-                                        ?>
-                                      <?php if (is_numeric($valorDescricao) && $valorDescricao > 0): ?>
-                                      <?= Yii::$app->formatter->asCurrency($totalValorCliente - $valorDescricao) ?>
-                                      <?php else: ?>
-                                      <span>N/A</span>
-                                      <?php endif; ?>
-                                      <?php else: ?>
-                                      <span>N/A</span>
-                                      <?php endif; ?>
-                                    </td>
-                                  </tr>
-
-                                </tbody>
-
-                              </table>
-
-
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-row">
-                                <div class="row mt-4">
-                                  <div class="col-6">
-                                    <?php if (!empty($dataProvider->models)): ?>
-                                    <div class="product-row">
-                                      <div class="form-group col-md-6">
-                                        <label for="descricao">Descrição:</label>
-
-                                        <?php if (!empty($cliente->descricao)): ?>
-                                        <p id="descricao-<?= $cliente->id ?>" class="form-control stylish-dropdown">
-                                          <?= Html::encode($cliente->descricao) ?>
-                                        </p>
-                                        <?php else: ?>
-                                        <p>N/A</p>
-                                        <?php endif; ?>
-                                      </div>
-
-                                      <div class="form-group col-md-6">
-                                        <label for="parcelas">Parcelado em:</label>
-                                        <?php if (!empty($cliente->parcelas)): ?>
-                                        <p id="parcelas-<?= $cliente->id ?>" class="form-control stylish-dropdown">
-                                          <?= Html::encode($cliente->parcelas) ?>
-                                        </p>
-                                        <?php else: ?>
-                                        <p>N/A</p>
-                                        <?php endif; ?>
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                        <label for="category_id">Forma de Pagamento:</label>
-                                        <?php if (!empty($cliente) && !empty($cliente->category)): ?>
-                                        <p id="category_id-<?= $cliente->id ?>" class="form-control stylish-dropdown">
-                                          <?= Html::encode($cliente->category->desc_category) ?>
-                                        </p>
-                                        <?php else: ?>
-                                        <p>N/A</p>
-                                        <?php endif; ?>
-                                      </div>
-                                    </div>
+                                  foreach ($cliente->produtosClientes as $produto) {
+                                    $totalQuantidade += $produto->quantidade;
+                                    $totalValorCliente += $produto->valor_cliente * $produto->quantidade;
+                                    $totalValorRevendedor += $produto->valor_pagamento * $produto->quantidade;
+                                  }
+                                  $lucro = $totalValorCliente - $totalValorRevendedor;
+                                  ?>
+                                <tr>
+                                  <td><strong>Quantidade Total:</strong></td>
+                                  <td class="text-center text-primary"><?= $totalQuantidade ?></td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Valor Total Cliente:</strong></td>
+                                  <td class="text-center text-success">
+                                    <?= Yii::$app->formatter->asCurrency($totalValorCliente) ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Valor Total Cliente Dividido:</strong></td>
+                                  <td class="text-center text-primary">
+                                    <?php if (isset($totalValorCliente, $cliente->parcelas) && is_numeric($totalValorCliente) && is_numeric($cliente->parcelas) && $cliente->parcelas > 0): ?>
+                                    <?= Yii::$app->formatter->asCurrency($totalValorCliente / $cliente->parcelas) ?>
                                     <?php else: ?>
-                                    <p>Não há clientes disponíveis.</p>
+                                    <span>N/A</span>
                                     <?php endif; ?>
-                                  </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Valor Restante Cliente:</strong></td>
+                                  <td class="text-center text-primary">
+                                    <?php
+                                      $descricaoValue = $cliente->descricao;
+                                      if (isset($totalValorCliente) && is_numeric($totalValorCliente)):
+                                        try {
+                                          $valorDescricao = eval("return $descricaoValue;");
+                                        } catch (ParseError $e) {
+                                          $valorDescricao = 0;
+                                        }
+                                      ?>
+                                    <?php if (is_numeric($valorDescricao) && $valorDescricao > 0): ?>
+                                    <?= Yii::$app->formatter->asCurrency($totalValorCliente - $valorDescricao) ?>
+                                    <?php else: ?>
+                                    <span>N/A</span>
+                                    <?php endif; ?>
+                                    <?php else: ?>
+                                    <span>N/A</span>
+                                    <?php endif; ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Lucro:</strong></td>
+                                  <td class="text-center text-success"><?= Yii::$app->formatter->asCurrency($lucro) ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Lucro Dividido:</strong></td>
+                                  <td class="text-center text-success">
+                                    <?php if (is_numeric($lucro) && is_numeric($cliente->parcelas) && $cliente->parcelas > 0): ?>
+                                    <?= Yii::$app->formatter->asCurrency($lucro / $cliente->parcelas) ?>
+                                    <?php else: ?>
+                                    <span>N/A</span>
+                                    <?php endif; ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Valor Total Revendedor:</strong></td>
+                                  <td class="text-center text-danger">
+                                    <?= Yii::$app->formatter->asCurrency($totalValorRevendedor) ?>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
 
-                                  <div class="col-6">
-
-
-                                    <?= Html::button('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add Product'), [
-                                        'class' => 'btn btn-success btn-block',
-                                        'style' => 'margin-top: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);',
-                                        'data-toggle' => 'modal',
-                                        'data-target' => '#CreateProductModal',
-                                        'data-cliente-id' => Html::encode($cliente->id),
-                                        'data-cliente-nome' => Html::encode($cliente->nome),
-                                      ]) ?>
-                                  </div> <!-- Fecha a div de col-6 para segunda coluna -->
-
-                                </div> <!-- Fecha a div de row mt-4 -->
+                          <!-- Parcelas, Forma de Pagamento e Descrições -->
+                          <div class="col-md-6">
+                            <!-- Parcelas e Forma de Pagamento na Mesma Linha -->
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <label for="parcelas-<?= $cliente->id ?>">Parcelado em:</label>
+                                  <input type="number" class="form-control" id="parcelas-<?= $cliente->id ?>"
+                                    name="parcelas" value="<?= Html::encode($cliente->parcelas) ?>" min="1" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                  <label for="forma_pagamento-<?= $cliente->id ?>">Forma de Pagamento:</label>
+                                  <?php
+                                    $paymentMethods = ['Dinheiro', 'Cartão', 'Transferência']; // Exemplo de métodos de pagamento
+                                    $selectedPayment = !empty($cliente->category) ? $cliente->category->desc_category : '';
+                                    ?>
+                                  <?= Html::dropDownList('forma_pagamento', $selectedPayment, $paymentMethods, [
+                                      'class' => 'form-control',
+                                      'prompt' => 'Selecione',
+                                      'id' => 'forma_pagamento-' . $cliente->id,
+                                      'required' => true,
+                                    ]) ?>
+                                </div>
                               </div>
+                            </div>
+
+                            <!-- Descrição e Datas Editáveis -->
+                            <div class="form-group">
+                              <label>Descrição e Datas:</label>
+                              <div class="row">
+                                <?php
+                                  $parcelasCount = $cliente->parcelas ?? 1;
+                                  for ($i = 1; $i <= $parcelasCount; $i++):
+                                    $descricaoValue = isset($cliente->descricao[$i - 1]) ? Html::encode($cliente->descricao[$i - 1]) : '';
+                                    $dataValue = Yii::$app->formatter->asDate($cliente->data_registro, 'Y-m-d');
+                                  ?>
+                                <div class="col-md-6 mb-3">
+                                  <label for="descricao-<?= $cliente->id ?>-<?= $i ?>">Descrição <?= $i ?>:</label>
+                                  <input type="text" class="form-control" id="descricao-<?= $cliente->id ?>-<?= $i ?>"
+                                    name="descricao-<?= $cliente->id ?>[]" value="<?= $descricaoValue ?>" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                  <label for="data-<?= $cliente->id ?>-<?= $i ?>">Data <?= $i ?>:</label>
+                                  <input type="date" class="form-control" id="data-<?= $cliente->id ?>-<?= $i ?>"
+                                    name="data-<?= $cliente->id ?>[]"
+                                    value="<?= date('Y-m-d', strtotime($dataValue)) ?>" required>
+                                </div>
+                                <?php endfor; ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Botões Salvar e Limpar dentro do Card -->
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <div class="btn-group" role="group" aria-label="Ações">
+                              <?= Html::button('<i class="fa fa-save"></i> Salvar', [
+                                  'class' => 'btn btn-primary salvar-cliente-btn mr-2',
+                                  'data-cliente-id' => $cliente->id,
+                                  'title' => 'Salvar',
+                                  'data-toggle' => 'tooltip',
+                                  'data-placement' => 'top',
+                                ]) ?>
+
+                              <?= Html::button('<i class="fa fa-eraser"></i> Limpar', [
+                                  'class' => 'btn btn-secondary limpar-cliente-btn',
+                                  'data-cliente-id' => $cliente->id,
+                                  'title' => 'Limpar',
+                                  'data-toggle' => 'tooltip',
+                                  'data-placement' => 'top',
+                                ]) ?>
                             </div>
                           </div>
                         </div>
@@ -347,35 +437,36 @@ $parcelas = 1;
                   </form>
                 </td>
               </tr>
-
               <?php endforeach; ?>
             </tbody>
           </table>
         </div>
+
+        <!-- Placeholder para Detalhes de Produtos (se necessário) -->
         <div id="product-details" style="margin-top: 20px;"></div>
+
       </div>
     </div>
   </div>
 </div>
-<!-- Modal para adicionar produtos -->
+
+<!-- Modal para Adicionar Produtos -->
 <div class="modal fade" id="CreateProductModal" tabindex="-1" role="dialog" aria-labelledby="CreateProductModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white text-center">
-        <h5 class="modal-title w-100" id="CreateProductModalLabel" style="font-weight: bold;">Adicionar Produto</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CreateProductModalLabel">Adicionar Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body p-4">
+      <div class="modal-body">
         <div class="produtos-clientes-form">
           <?php $form = ActiveForm::begin(['id' => 'CreateProductForm', 'action' => ['cliente/create-product']]); ?>
 
-          <div class="form-row mb-3">
-            <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
-          </div>
+          <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
 
-          <div class="form-group col-md-12 mb-3">
+          <div class="form-group">
             <?= Html::label('User ID', 'userId', ['class' => 'font-weight-bold']) ?>
             <?= Html::textInput('userId', Yii::$app->user->id, ['id' => 'userId', 'class' => 'form-control text-center', 'readonly' => true]) ?>
           </div>
@@ -408,7 +499,7 @@ $parcelas = 1;
           </div>
 
           <div class="d-flex justify-content-center mt-4">
-            <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), ['class' => 'btn btn-success mx-2', 'id' => 'saveProductButton']) ?>
+            <?= Html::submitButton('<i class="fa fa-floppy-o"></i> Salvar', ['class' => 'btn btn-primary mx-2', 'id' => 'saveProductButton']) ?>
             <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Fechar</button>
           </div>
 
@@ -422,18 +513,17 @@ $parcelas = 1;
   </div>
 </div>
 
-
-<!-- Modal para atualização de produtos -->
-<div class="modal fade" id="UpdateProductModal" tabindex="-1" role="dialog" style="color: #333;">
+<!-- Modal para Atualização de Produtos -->
+<div class="modal fade" id="UpdateProductModal" tabindex="-1" role="dialog" aria-labelledby="UpdateProductModalLabel">
   <div class="modal-dialog" role="document" style="max-width: 700px;">
-    <div class="modal-content" style="border-radius: 10px; overflow: hidden;">
-      <div class="modal-header" style="background-color: #007bff; color: #fff;">
-        <h5 class="modal-title">Atualizar Produto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdateProductModalLabel">Atualizar Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="padding: 20px;">
+      <div class="modal-body">
         <?php $form = ActiveForm::begin([
           'id' => 'UpdateProductForm',
           'action' => ['cliente/update-product'],
@@ -446,21 +536,21 @@ $parcelas = 1;
           <div class="form-group col-md-6">
             <?= $form->field($model, 'clienteId')->hiddenInput(['id' => 'clienteId'])->label(false) ?>
             <?= $form->field($model, 'clienteId')->textInput([
-              'id' => 'clienteId',
+              'id' => 'clienteIdDisplay',
               'type' => 'text',
               'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('ID', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
+              'readonly' => true,
+              'placeholder' => 'Cliente',
+            ])->label('Cliente', ['class' => 'font-weight-bold']) ?>
           </div>
         </div>
 
-        <div class="form-group col-md-6">
-          <?= Html::label('User ID', 'userId', ['class' => 'control-label', 'style' => 'font-weight: bold;']) ?>
+        <div class="form-group">
+          <?= Html::label('User ID', 'userId', ['class' => 'font-weight-bold']) ?>
           <?= Html::textInput('userId', Yii::$app->user->id, [
             'id' => 'userId',
             'class' => 'form-control text-center',
             'readonly' => true,
-            'style' => 'border-radius: 5px; background-color: #f8f9fa;'
           ]) ?>
         </div>
 
@@ -470,143 +560,205 @@ $parcelas = 1;
               'id' => 'date',
               'type' => 'date',
               'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Data do Pedido', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
+            ])->label('Data do Pedido', ['class' => 'font-weight-bold']) ?>
           </div>
-        </div>
-
-        <div class="form-row">
           <div class="form-group col-md-6">
             <?= $form->field($model, 'data_entrega')->textInput([
               'id' => 'delivery-date',
               'type' => 'date',
               'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Data de Entrega', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
-          </div>
-          <div class="form-group col-md-6">
-            <?= $form->field($model, 'produto')->textInput([
-              'id' => 'product-name',
-              'maxlength' => true,
-              'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Nome do Produto', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
+            ])->label('Data de Entrega', ['class' => 'font-weight-bold']) ?>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <?= $form->field($model, 'quantidade')->textInput([
-              'id' => 'quantity',
-              'type' => 'number',
-              'min' => 0,
-              'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Quantidade', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
-          </div>
-          <div class="form-group col-md-6">
-            <?= $form->field($model, 'valor_cliente')->textInput([
-              'id' => 'client-value',
-              'type' => 'number',
-              'step' => '0.01',
-              'min' => 0,
-              'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Valor Cliente', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
-          </div>
+        <div class="form-group">
+          <?= $form->field($model, 'produto')->textInput([
+            'id' => 'product-name',
+            'maxlength' => true,
+            'class' => 'form-control text-center',
+          ])->label('Nome do Produto', ['class' => 'font-weight-bold']) ?>
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <?= $form->field($model, 'valor_pagamento')->textInput([
-              'id' => 'payment-value',
-              'type' => 'number',
-              'step' => '0.01',
-              'min' => 0,
-              'class' => 'form-control text-center',
-              'style' => 'border-radius: 5px;'
-            ])->label('Valor Revendedor', ['class' => 'text-center', 'style' => 'font-weight: bold;']) ?>
-          </div>
+        <div class="form-group">
+          <?= $form->field($model, 'quantidade')->textInput([
+            'id' => 'quantity',
+            'type' => 'number',
+            'min' => 0,
+            'class' => 'form-control text-center',
+          ])->label('Quantidade', ['class' => 'font-weight-bold']) ?>
+        </div>
+
+        <div class="form-group">
+          <?= $form->field($model, 'valor_cliente')->textInput([
+            'id' => 'client-value',
+            'type' => 'number',
+            'step' => '0.01',
+            'min' => 0,
+            'class' => 'form-control text-center',
+          ])->label('Valor Cliente', ['class' => 'font-weight-bold']) ?>
+        </div>
+
+        <div class="form-group">
+          <?= $form->field($model, 'valor_pagamento')->textInput([
+            'id' => 'payment-value',
+            'type' => 'number',
+            'step' => '0.01',
+            'min' => 0,
+            'class' => 'form-control text-center',
+          ])->label('Valor Revendedor', ['class' => 'font-weight-bold']) ?>
         </div>
 
         <div class="d-flex justify-content-center">
-          <?= Html::submitButton('<i class="fa fa-floppy-o"></i> ' . Yii::t('app', 'Salvar'), [
+          <?= Html::submitButton('<i class="fa fa-floppy-o"></i> Salvar', [
             'class' => 'btn btn-primary mx-2',
             'id' => 'saveProductButton',
-            'style' => 'padding: 10px 20px; border-radius: 5px; font-weight: bold;'
           ]) ?>
-          <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal"
-            style="padding: 10px 20px; border-radius: 5px; font-weight: bold;">Fechar</button>
+          <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Fechar</button>
         </div>
 
         <?php ActiveForm::end(); ?>
       </div>
-    </div>
-
-    <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 10px;">
-      <!-- Footer pode ser usado para mensagens adicionais, se necessário -->
+      <div class="modal-footer">
+        <!-- Footer pode ser usado para mensagens adicionais, se necessário -->
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Custom CSS para o modal -->
-<style>
-.modal-header {
-  background-color: #007bff;
-}
+<!-- Modal para Copiar Produto -->
+<div class="modal fade" id="CopiarProdutoModal" tabindex="-1" role="dialog" aria-labelledby="CopiarProdutoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CopiarProdutoModalLabel">Copiar Produto para Outro Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="copiar-produto-form">
+          <?= Html::hiddenInput('product_id', '', ['id' => 'copiar-product-id']) ?>
 
-.modal-content {
-  border-radius: 8px;
-}
+          <div class="form-group">
+            <label for="target_cliente_id">Selecione o Cliente:</label>
+            <?= Html::dropDownList('target_cliente_id', null, ArrayHelper::map($clientes, 'id', 'nome'), [
+              'class' => 'form-control',
+              'prompt' => 'Selecione',
+              'id' => 'target_cliente_id',
+              'required' => true,
+            ]) ?>
+          </div>
 
-.modal-body {
-  padding: 2rem;
-}
+          <div class="form-group">
+            <label for="copy_quantity">Quantidade:</label>
+            <?= Html::input('number', 'copy_quantity', 1, ['class' => 'form-control', 'id' => 'copy_quantity', 'min' => 1, 'required' => true]) ?>
+          </div>
 
-.form-control.text-center {
-  text-align: center;
-  font-weight: 500;
-}
+          <div class="form-group">
+            <label for="copy_data_pedido">Data do Pedido:</label>
+            <?= Html::input('date', 'copy_data_pedido', date('Y-m-d'), ['class' => 'form-control', 'id' => 'copy_data_pedido', 'required' => true]) ?>
+          </div>
 
-.btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-</style>
+          <div class="form-group">
+            <label for="copy_data_entrega">Data de Entrega:</label>
+            <?= Html::input('date', 'copy_data_entrega', date('Y-m-d'), ['class' => 'form-control', 'id' => 'copy_data_entrega', 'required' => true]) ?>
+          </div>
+
+          <div class="form-group">
+            <label for="copy_produto_nome">Nome do Produto:</label>
+            <?= Html::textInput('copy_produto_nome', '', ['class' => 'form-control', 'id' => 'copy_produto_nome', 'required' => true]) ?>
+          </div>
+
+          <div class="form-group">
+            <label for="copy_valor_cliente">Valor Cliente:</label>
+            <?= Html::input('number', 'copy_valor_cliente', 0, ['class' => 'form-control', 'id' => 'copy_valor_cliente', 'step' => '0.01', 'min' => 0, 'required' => true]) ?>
+          </div>
+
+          <div class="form-group">
+            <label for="copy_valor_revendedor">Valor Revendedor:</label>
+            <?= Html::input('number', 'copy_valor_revendedor', 0, ['class' => 'form-control', 'id' => 'copy_valor_revendedor', 'step' => '0.01', 'min' => 0, 'required' => true]) ?>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <?= Html::button('Copiar', ['class' => 'btn btn-info', 'id' => 'copiar-produto-submit']) ?>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- JavaScript -->
 <script>
-$(document).on('click', '.edit-product-btn', function(event) {
-  const button = $(this); // Botão que abriu o modal
-  const productId = button.data('product-id');
-  const clientId = button.data('client-id');
-  const clienteNome = button.data('cliente-nome'); // Obtém o nome do cliente
-  // ID do produto
-  const date = button.data('date');
-  const deliveryDate = button.data('delivery-date');
-  const productName = button.data('product-name');
-  const quantity = button.data('quantity');
-  const clientValue = button.data('client-value');
-  const paymentValue = button.data('payment-value');
-
-  console.log('Dados do botão:', button.data()); // Verifique todos os dados
-  console.log('clientId:', clientId); // Verifique o valor do clientId
-  $('#UpdateProductModal #product-id').val(productId);
-  // Defina o valor do ID do cliente no campo oculto
-  $('#UpdateProductModal #clienteId').val(clientId);
-  $('#UpdateProductModal #clienteIdDisplay').text(clienteNome); // Exibe o nome do cliente
-
-  $('#UpdateProductModal #product-name').val(productName);
-  $('#UpdateProductModal #quantity').val(quantity);
-  $('#UpdateProductModal #client-value').val(clientValue);
-  $('#UpdateProductModal #payment-value').val(paymentValue);
-  $('#UpdateProductModal #date').val(date);
-  $('#UpdateProductModal #delivery-date').val(deliveryDate);
-});
-
 $(document).ready(function() {
-  // Lógica para mostrar/ocultar a linha de produtos do cliente ao clicar
+  // Inicializar tooltips
+  $('[data-toggle="tooltip"]').tooltip();
+
+  // Função para preencher o modal de atualização de produto
+  $(document).on('click', '.edit-product-btn', function() {
+    const button = $(this);
+    const productId = button.data('product-id');
+    const clientId = button.data('client-id');
+    const clienteNome = button.data('cliente-nome');
+    const date = button.data('date');
+    const deliveryDate = button.data('delivery-date');
+    const productName = button.data('product-name');
+    const quantity = button.data('quantity');
+    const clientValue = button.data('client-value');
+    const paymentValue = button.data('payment-value');
+
+    $('#UpdateProductModal #product-id').val(productId);
+    $('#UpdateProductModal #clienteId').val(clientId);
+    $('#UpdateProductModal #clienteIdDisplay').val(clienteNome);
+
+    $('#UpdateProductModal #product-name').val(productName);
+    $('#UpdateProductModal #quantity').val(quantity);
+    $('#UpdateProductModal #client-value').val(clientValue);
+    $('#UpdateProductModal #payment-value').val(paymentValue);
+    $('#UpdateProductModal #date').val(date);
+    $('#UpdateProductModal #delivery-date').val(deliveryDate);
+  });
+
+  // Mostrar/ocultar a linha de produtos ao clicar na linha do cliente
   $('.clickable-row').click(function() {
     const clientId = $(this).data('id');
     $('#product-row-' + clientId).toggle();
+    // Adicionar classe 'selected' para destacar o cliente
+    $('.additional-info.card').removeClass('selected');
+    $('#additional-info-' + clientId).addClass('selected');
+  });
+
+  // Salvar alterações do cliente via AJAX
+  $('.salvar-cliente-btn').click(function() {
+    var clienteId = $(this).data('cliente-id');
+    var formData = $('#cliente-form-' + clienteId).serialize();
+
+    $.ajax({
+      url: '<?= Url::to(['cliente/update', 'id' => '']) ?>' + clienteId,
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      success: function(response) {
+        if (response.success) {
+          alert('Cliente salvo com sucesso!');
+          location.reload();
+        } else {
+          alert('Erro ao salvar o cliente: ' + response.message);
+        }
+      },
+      error: function() {
+        alert('Erro na requisição.');
+      }
+    });
+  });
+
+  // Limpar formulário do cliente
+  $('.limpar-cliente-btn').click(function() {
+    var clienteId = $(this).data('cliente-id');
+    $('#cliente-form-' + clienteId)[0].reset();
+    // Remover seleção
+    $('#additional-info-' + clienteId).removeClass('selected');
   });
 
   // Evento para quando o modal de criação de produto é exibido
@@ -614,271 +766,120 @@ $(document).ready(function() {
     const button = $(event.relatedTarget);
     const clientId = button.data('cliente-id');
     const clienteNome = button.data('cliente-nome');
-    $('#clienteId').val(clientId);
-    $('#clienteIdDisplay').text(clienteNome);
+    $('#CreateProductModal #clienteId').val(clientId);
+    // Opcional: exibir nome do cliente no modal
+    // $('#CreateProductModal #clienteNomeDisplay').text(clienteNome);
   });
 
-  // Envio do formulário de criação de produto
+  // Evento para quando o modal de upload de PDF é exibido
+  $('#UploadPdfModal').on('show.bs.modal', function(event) {
+    const button = $(event.relatedTarget);
+    const clientId = button.data('cliente-id');
+    const clienteNome = button.data('cliente-nome');
+    $('#UploadPdfModal #upload-clienteId').val(clientId);
+    // Opcional: exibir nome do cliente no modal
+    // $('#UploadPdfModal #clienteNomeDisplay').text(clienteNome);
+  });
+
+  // Envio do formulário de criação de produto via AJAX
   $('#CreateProductForm').on('beforeSubmit', function(e) {
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
       type: 'POST',
       data: $(this).serialize(),
-      dataType: 'json', // Define o tipo de dados esperados
+      dataType: 'json',
       success: function(response) {
         if (response.success) {
           $('#CreateProductModal').modal('hide');
-          alert(response.message); // Mostra a mensagem de sucesso
-
-          // Recarrega a página após um pequeno atraso (opcional)
+          alert(response.message);
           setTimeout(function() {
-            location.reload(); // Atualiza a página
-          }, 1000); // Atraso de 1 segundo (1000 ms)
+            location.reload();
+          }, 1000);
         } else {
-          // Se ocorrerem erros, exiba uma mensagem apropriada
           alert('Erro ao salvar o produto: ' + JSON.stringify(response.errors));
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('Erro ao salvar o produto. Detalhes: ' + errorThrown); // Mensagem de erro
+        alert('Erro ao salvar o produto. Detalhes: ' + errorThrown);
       }
     });
-    return false; // Previne o envio do formulário padrão
+    return false;
+  });
+
+  // Envio do formulário de upload de PDF via AJAX
+  $('#UploadPdfForm').on('beforeSubmit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+      url: $(this).attr('action'),
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+      success: function(response) {
+        if (response.success) {
+          $('#UploadPdfModal').modal('hide');
+          alert(response.message);
+          setTimeout(function() {
+            location.reload();
+          }, 1000);
+        } else {
+          alert('Erro ao fazer upload do PDF: ' + response.message);
+        }
+      },
+      error: function() {
+        alert('Erro na requisição.');
+      }
+    });
+    return false;
+  });
+
+  // Preencher o modal de copiar produto
+  $(document).on('click', '.copiar-produto-btn', function() {
+    var productId = $(this).data('product-id');
+    var produtoNome = $(this).data('produto-name');
+    var quantidade = $(this).data('quantidade');
+    var valorCliente = $(this).data('valor-cliente');
+    var valorPagamento = $(this).data('valor-pagamento');
+    var dataPedido = $(this).data('data-pedido');
+    var dataEntrega = $(this).data('data-entrega');
+
+    $('#copiar-produto-form')[0].reset();
+    $('#copiar-produto-form #copiar-product-id').val(productId);
+    $('#copiar-produto-form #copy_produto_nome').val(produtoNome);
+    $('#copiar-produto-form #copy_quantity').val(quantidade);
+    $('#copiar-produto-form #copy_valor_cliente').val(valorCliente);
+    $('#copiar-produto-form #copy_valor_revendedor').val(valorPagamento);
+    $('#copiar-produto-form #copy_data_pedido').val(dataPedido);
+    $('#copiar-produto-form #copy_data_entrega').val(dataEntrega);
+  });
+
+  // Enviar o formulário de copiar produto via AJAX
+  $('#copiar-produto-submit').click(function() {
+    var formData = $('#copiar-produto-form').serialize();
+
+    $.ajax({
+      url: '<?= Url::to(['cliente/copy-product']) ?>',
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      success: function(response) {
+        if (response.success) {
+          $('#CopiarProdutoModal').modal('hide');
+          alert('Produto copiado com sucesso!');
+          setTimeout(function() {
+            location.reload();
+          }, 1000);
+        } else {
+          alert('Erro ao copiar o produto: ' + response.message);
+        }
+      },
+      error: function() {
+        alert('Erro na requisição.');
+      }
+    });
   });
 });
 </script>
-<style>
-/* Ajuste de contêiner para tabelas responsivas */
-.table-container {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Ajuste das tabelas */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1em;
-  margin: 1em 0;
-}
-
-/* Melhora na aparência dos botões */
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  border-radius: 4px;
-  border: none;
-  background-color: #3498db;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-/* Layout Geral */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-/* Modal */
-.modal {
-  z-index: 1050 !important;
-}
-
-.modal-backdrop {
-  z-index: 1040 !important;
-}
-
-.modal-header {
-  background-color: #007bff;
-  color: white;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.modal-body {
-  padding: 2rem;
-}
-
-.modal-content {
-  border-radius: 10px;
-}
-
-/* Formulário */
-.produtos-clientes-form {
-  text-align: center;
-  /* Centraliza o conteúdo do formulário */
-}
-
-.form-control {
-  border-radius: 5px;
-  box-shadow: none;
-  border: 1px solid #ced4da;
-  margin-bottom: 1rem;
-  /* Espaçamento entre campos */
-  transition: border-color 0.3s;
-}
-
-.form-control:focus {
-  border-color: #007bff;
-  /* Cor de foco do input */
-}
-
-/* Estilo dos rótulos do formulário */
-.form-group label {
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Botões personalizados */
-.btn-custom {
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  /* Tamanho do botão */
-}
-
-.btn-custom:hover {
-  background-color: #218838;
-}
-
-/* Estilos dos botões primários e secundários */
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  border-radius: 5px;
-  margin-right: 10px;
-  /* Espaço entre os botões */
-  font-size: 0.5em;
-  /* Aumentar a fonte */
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-warning {
-  background-color: #ffc107;
-  border-color: #ffc107;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 0.5em;
-}
-
-.btn-secondary {
-  background-color: #fff;
-  border-color: #6c757d;
-  border-radius: 4px;
-  font-size: 0.5em;
-}
-
-.btn-secondary:hover {
-  background-color: #fff;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 0.5em;
-}
-
-/* Estilos adicionais */
-.product-row {
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-
-.product-row:hover {
-  background-color: #f8f9fa;
-  transform: scale(1.02);
-}
-
-.alert {
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-.alert-dismissible .close {
-  color: #fff;
-  opacity: 0.8;
-}
-
-.alert-dismissible .close:hover {
-  opacity: 1;
-}
-
-/* Estrutura de Cartões e Painéis */
-.card {
-  margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px 5px 0 0;
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 0 0 5px 5px;
-}
-
-/* Tabelas */
-.table {
-  width: 100%;
-  margin-bottom: 20px;
-  border-collapse: collapse;
-  max-width: 100%;
-  /* Para evitar que ultrapasse o limite do contêiner */
-}
-
-.table th,
-.table td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-.table th {
-  background-color: #f1f1f1;
-}
-
-.table tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-/* Contêiner da página */
-.cliente-index {
-  margin: 0 auto;
-  /* Centraliza o contêiner horizontalmente */
-  padding: 15px;
-  /* Adiciona algum espaçamento */
-}
-
-/* Colunas responsivas */
-.col-md-4,
-.col-md-9 {
-  flex: 0 0 auto;
-  /* Para evitar que as colunas encolham */
-  width: auto;
-  /* Isso deve manter a coluna no tamanho necessário */
-}
-</style>

@@ -137,7 +137,7 @@ $balance = ((round((int)$currentmonth_revenue) - abs(round((int)$currentmonth_ex
                 ],
               ],
               'yAxis' => [
-                'min' => min(min($expenseValues), 0), // Começar a partir do valor mínimo se for negativo
+                'min' => empty($expenseValues) ? 0 : min(min($expenseValues), 0),
                 'title' => [
                   'text' => Yii::t('app', 'Valor (R$)'),
                 ],

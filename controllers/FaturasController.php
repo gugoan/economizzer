@@ -79,7 +79,7 @@ class FaturasController extends Controller
 
     if ($fatura->load(Yii::$app->request->post()) && $fatura->save()) {
       Yii::$app->session->setFlash('success', 'Fatura atualizada com sucesso!');
-      return $this->redirect(['bancos/view', 'id' => $fatura->id_bancos]);
+      return $this->redirect(['bancos/index', 'id' => $fatura->id_bancos]);
     }
 
     return $this->render('update', [

@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\PdfUploadForm */
 
-$this->title = Yii::t('app', 'Envio de Fatura em PDF');
+$this->title = Yii::t('app', 'Envio de Fatura em PDF ou CSV');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Faturas'), 'url' => ['faturas/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,10 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pdf-upload-form container mt-5 p-4 rounded shadow-sm"
   style="max-width: 600px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
 
-  <h1 class="text-center mb-3" style="font-weight: 600; font-size: 2em; color: #2c3e50;">Envio de Fatura em PDF</h1>
+  <h1 class="text-center mb-3" style="font-weight: 600; font-size: 2em; color: #2c3e50;">Envio de Fatura em PDF ou CSV
+  </h1>
 
   <p class="text-center mb-4" style="font-size: 1.1em; color: #5d6d7e;">
-    Carregue seu arquivo PDF contendo os dados da fatura para registrá-los automaticamente em sua conta. Simplifique o
+    Carregue seu arquivo PDF ou CSV contendo os dados da fatura para registrá-los automaticamente em sua conta.
+    Simplifique o
     processo de acompanhamento!
   </p>
 
@@ -38,14 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group text-center mb-4">
       <label for="file-upload" class="btn btn-outline-primary"
         style="display: inline-block; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; cursor: pointer; background-color: #e7f3ff; color: #2c3e50;">
-        <i class="fa fa-file-pdf-o"></i> Escolher arquivo PDF
+        <i class="fa fa-file"></i> Escolher arquivo PDF ou CSV
       </label>
-      <input type="file" id="file-upload" name="FaturaPdfUploadForm[file]" accept="application/pdf"
-        style="display: none;" />
+      <input type="file" id="file-upload" name="FaturaPdfUploadForm[file]" accept=".pdf, .csv" style="display: none;" />
       <br>
 
       <small class="form-text text-muted text-center mt-2" style="font-size: 0.95em; color: #5d6d7e;">
-        Somente arquivos PDF são aceitos.
+        Somente arquivos PDF ou CSV são aceitos.
       </small>
     </div>
 
@@ -71,11 +72,11 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-// Atualiza o nome do arquivo no botão após a seleção
+// Atualiza o nome do arquivo no botão após a seleção e ajusta o rótulo
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('file-upload').addEventListener('change', function() {
-    var fileName = this.files[0] ? this.files[0].name : 'Escolher arquivo PDF';
-    document.querySelector('label[for="file-upload"]').innerHTML = '<i class="fa fa-file-pdf-o"></i> ' +
+    var fileName = this.files[0] ? this.files[0].name : 'Escolher arquivo PDF ou CSV';
+    document.querySelector('label[for="file-upload"]').innerHTML = '<i class="fa fa-file"></i> ' +
       fileName;
   });
 });

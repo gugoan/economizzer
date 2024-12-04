@@ -11,6 +11,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
+use yii\web\Response;
+use yii\helpers\ArrayHelper;
 
 class BancosController extends Controller
 {
@@ -27,9 +29,7 @@ class BancosController extends Controller
         ],
       ],
     ];
-  }
-
-  // Ação para listar todos os bancos
+  } // Controller
   public function actionIndex()
   {
     $searchModel = new BancosSearch();
@@ -39,13 +39,52 @@ class BancosController extends Controller
     $queryParams = Yii::$app->request->queryParams;
     $queryParams['ano'] = $selectedYear; // Adiciona o parâmetro do ano
 
-    // Filtro para buscar apenas as faturas do ano selecionado
-    $dataProvider = $searchModel->search($queryParams);
+    // Criação do DataProvider para garantir que o banco retornado seja do usuário logado
+    $dataProvider = new ActiveDataProvider([
+      'query' => Bancos::find()->where(['user_id' => Yii::$app->user->id]),
+      'pagination' => [
+        'pageSize' => 20,
+      ],
+    ]);
+    // Obtém todos os bancos do usuário para o modal
+    $bancos = Bancos::find()->where(['user_id' => Yii::$app->user->id])->all();
+    // Crie o objeto model para a criação de um novo banco
 
+    // Passando o DataProvider para a view
     return $this->render('index', [
-      'searchModel' => $searchModel,
+      'selectedYear' => $selectedYear,
       'dataProvider' => $dataProvider,
+      'searchModel' => $searchModel,
+      'bancos' => $bancos, // Exemplo: pega todos os bancos
+
+    ]);
+  }
+
+
+  // Ação para visualizar as faturas de um banco específico
+  public function actionView($id)
+  {
+    $banco = $this->findModel($id);
+
+    // Instância de FaturasSearch para o filtro
+    $searchModelFaturas = new FaturasSearch();
+    $selectedYear = Yii::$app->request->get('ano', date('Y')); // Ano atual como padrão
+
+    // Busca de faturas filtrando pelo ano selecionado e pelo banco
+    $faturasProvider = new ActiveDataProvider([
+      'query' => Faturas::find()
+        ->where(['id_bancos' => $banco->id_bancos])
+        ->andWhere(['YEAR(data)' => $selectedYear]), // Filtro por ano
+      'pagination' => false, // Remove a paginação para mostrar todas as faturas
+    ]);
+
+
+    return $this->render('view', [
+      'banco' => $banco,
+      'searchModelFaturas' => $searchModelFaturas,
+      'faturasProvider' => $faturasProvider,
       'selectedYear' => $selectedYear, // Passe a variável para a view
+
     ]);
   }
 
@@ -58,7 +97,7 @@ class BancosController extends Controller
       $model->user_id = Yii::$app->user->id; // Definir o ID do usuário atual
 
       if ($model->save()) {
-        return $this->redirect(['view', 'id' => $model->id_bancos]);
+        return $this->redirect(['index', 'id' => $model->id_bancos]);
       }
     }
 
@@ -66,8 +105,6 @@ class BancosController extends Controller
       'model' => $model,
     ]);
   }
-
-
 
   // Ação para atualizar um banco existente
   public function actionUpdate($id)
@@ -90,39 +127,81 @@ class BancosController extends Controller
     return $this->redirect(['index']);
   }
 
-  // Ação para visualizar as faturas de um banco específico
-  public function actionView($id)
+  public function actionCopyFatura()
   {
-    $banco = $this->findModel($id);
+    Yii::$app->response->format = Response::FORMAT_JSON;
 
-    // Instância de FaturasSearch para o filtro
-    $searchModelFaturas = new FaturasSearch();
-    $filtroData = Yii::$app->request->queryParams;
-    $selectedYear = Yii::$app->request->get('ano', date('Y')); // Ano atual como padrão
+    // Recupera os dados enviados via POST
+    $faturaId = Yii::$app->request->post('fatura_id');
+    $bancoId = Yii::$app->request->post('banco_id');
 
-    // Busca de faturas filtrando pelo ano selecionado e pelo banco
-    $faturasProvider = new ActiveDataProvider([
-      'query' => Faturas::find()
-        ->where(['id_bancos' => $banco->id_bancos])
-        ->andWhere(['YEAR(data)' => $selectedYear]), // Filtro por ano
-      'pagination' => false, // Remove a paginação para mostrar todas as faturas
-    ]);
+    // Validação básica dos dados recebidos
+    if (!$faturaId || !$bancoId) {
+      return [
+        'success' => false,
+        'message' => 'Dados inválidos.',
+      ];
+    }
 
-    return $this->render('view', [
-      'banco' => $banco,
-      'searchModelFaturas' => $searchModelFaturas,
-      'faturasProvider' => $faturasProvider,
-      'mes' => $filtroData['mes'] ?? date('Y-m'), // Mês atual como padrão
-      'id_bancos' => $banco->id_bancos, // Passando id_bancos para a view
-      'selectedYear' => $selectedYear, // Passe a variável para a view
-    ]);
+    // Verifica se o banco de destino existe e pertence ao usuário atual
+    $bancoDestino = Bancos::findOne(['id_bancos' => $bancoId, 'user_id' => Yii::$app->user->id]);
+
+    if (!$bancoDestino) {
+      return [
+        'success' => false,
+        'message' => 'Banco de destino inválido.',
+      ];
+    }
+
+    // Encontra a fatura original que será copiada
+    $faturaOriginal = Faturas::findOne($faturaId);
+
+    if (!$faturaOriginal) {
+      return [
+        'success' => false,
+        'message' => 'Fatura original não encontrada.',
+      ];
+    }
+
+    // Cria uma nova instância de Faturas para a cópia
+    $faturaCopia = new Faturas();
+    $faturaCopia->descricao = $faturaOriginal->descricao;
+    $faturaCopia->valor = $faturaOriginal->valor;
+    $faturaCopia->parcelas = $faturaOriginal->parcelas;
+    $faturaCopia->id_bancos = $bancoDestino->id_bancos;
+    $faturaCopia->data = $faturaOriginal->data; // Ajuste conforme necessário
+    $faturaCopia->user_id = Yii::$app->user->id; // Define o usuário atual como responsável
+    $faturaCopia->category_id = $faturaOriginal->category_id; // Copia a categoria da fatura original
+
+    // Tenta salvar a nova fatura copiada
+    if ($faturaCopia->save()) {
+      return [
+        'success' => true,
+        'message' => 'Fatura copiada com sucesso.',
+      ];
+    }
+
+    // Se a cópia falhar, retorna os erros de validação
+    $errors = $faturaCopia->getErrors();
+    return [
+      'success' => false,
+      'message' => 'Ocorreu um erro ao copiar a fatura.',
+      'errors' => $errors,
+    ];
   }
-  // Busca o modelo de banco com base no ID
+
+  /**
+   * Busca o modelo de banco com base no ID.
+   * @param integer $id
+   * @return Bancos o modelo encontrado
+   * @throws NotFoundHttpException se o modelo não for encontrado
+   */
   protected function findModel($id)
   {
     if (($model = Bancos::findOne(['id_bancos' => $id, 'user_id' => Yii::$app->user->id])) !== null) {
       return $model;
     }
+
     throw new NotFoundHttpException('O banco solicitado não foi encontrado.');
   }
 }

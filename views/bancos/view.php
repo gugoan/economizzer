@@ -477,6 +477,7 @@ h1 {
     padding: 6px 10px;
   }
 }
+
 .modal {
   z-index: 1050 !important;
 }
