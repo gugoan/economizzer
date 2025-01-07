@@ -36,6 +36,12 @@ class ProdutosClientes extends ActiveRecord
     return $this->hasOne(Clientes::class, ['id' => 'cliente_id']);
   }
 
+  // No modelo ProdutosClientes
+  public function getCategory()
+  {
+    return $this->hasOne(Category::class, ['id' => 'category_id']);
+  }
+
   // Mapeia a propriedade clienteId para a coluna cliente_id do banco de dados
   public function getClienteId()
   {

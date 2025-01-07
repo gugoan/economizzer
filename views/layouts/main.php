@@ -147,6 +147,12 @@ use app\assets\AppAsset;
 </html>
 <?php $this->endPage() ?>
 
-<style>
+<script>
+window.addEventListener('resize', adjustLayout);
+window.addEventListener('load', adjustLayout);
 
-</style>
+function adjustLayout() {
+  const navbarHeight = document.querySelector('.navbar').offsetHeight;
+  document.body.style.paddingTop = navbarHeight + 'px';
+}
+</script>

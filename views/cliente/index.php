@@ -356,7 +356,7 @@ $parcelas = 1;
                               </tbody>
                             </table>
                           </div>
-
+                          <!-- Parcelas, Forma de Pagamento e Descrições -->
                           <div class="col-md-6">
                             <!-- Parcelas e Forma de Pagamento na Mesma Linha -->
                             <div class="form-group">
@@ -369,7 +369,7 @@ $parcelas = 1;
                                 <div class="col-md-6 mb-3">
                                   <label for="forma_pagamento-<?= $cliente->id ?>">Forma de Pagamento:</label>
                                   <?php
-                                    $paymentMethods = ['Dinheiro', 'Cartão', 'Transferência']; // Exemplo de métodos de pagamento
+                                    $paymentMethods = ['Dinheiro', 'Cartão', 'Transferência']; // Métodos de pagamento
                                     $selectedPayment = !empty($cliente->category) ? $cliente->category->desc_category : '';
                                     ?>
                                   <?= Html::dropDownList('forma_pagamento', $selectedPayment, $paymentMethods, [
@@ -382,40 +382,32 @@ $parcelas = 1;
                               </div>
                             </div>
 
-                            <!-- Descrição e Datas Editáveis -->
+                            <!-- Descrição, Checkbox e Datas Editáveis -->
                             <div class="form-group">
-                              <label>Descrição, Valor e Status de Pagamento:</label>
+                              <label>Descrição, Pagamento e Datas:</label>
                               <div class="row">
                                 <?php
-                                  $totalValue = $cliente->total_value ?? 0;  // Supondo que o valor total esteja em uma variável chamada total_value
-                                  $parcelasCount = $cliente->parcelas ?? 1;
-                                  $valorParcela = $totalValue / $parcelasCount;  // Calculando o valor da parcela
-                                  for ($i = 1; $i <= $parcelasCount; $i++):
-                                    $descricaoValue = isset($cliente->descricao[$i - 1]) ? Html::encode($cliente->descricao[$i - 1]) : '';
-                                    $dataValue = Yii::$app->formatter->asDate($cliente->data_registro, 'Y-m-d');
-                                    $isPaidChecked = isset($cliente->paid[$i - 1]) && $cliente->paid[$i - 1] == 1 ? 'checked' : '';
+                                  $parcelasCount = $cliente->parcelas ?? 1;  // Número de parcelas (default 1)
+                                  $valorParcela = Yii::$app->formatter->asCurrency($totalValorCliente / $parcelasCount);  // Valor de cada parcela
+                                  $descricaoValor = $totalValorCliente / $parcelasCount; // Valor de descrição dividido pela quantidade de parcelas
+                                  $primeiraData = Yii::$app->formatter->asDate($cliente->data_registro, 'Y-m-d');  // Data de registro do cliente
                                   ?>
-                                <div class="col-md-6 mb-3">
+                                <?php for ($i = 1; $i <= $parcelasCount; $i++): ?>
+                                <div class="col-md-4 mb-3">
                                   <label for="descricao-<?= $cliente->id ?>-<?= $i ?>">Descrição <?= $i ?>:</label>
                                   <input type="text" class="form-control" id="descricao-<?= $cliente->id ?>-<?= $i ?>"
-                                    name="descricao-<?= $cliente->id ?>[]" value="<?= $descricaoValue ?>" required>
+                                    name="descricao-<?= $cliente->id ?>[]"
+                                    value="<?= number_format($descricaoValor, 2, ',', '.') ?>" readonly>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                  <label for="valor-<?= $cliente->id ?>-<?= $i ?>">Valor da Parcela <?= $i ?>:</label>
-                                  <input type="text" class="form-control" id="valor-<?= $cliente->id ?>-<?= $i ?>"
-                                    name="valor-<?= $cliente->id ?>[]"
-                                    value="<?= number_format($valorParcela, 2, ',', '.') ?>" readonly>
-                                </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                   <label for="data-<?= $cliente->id ?>-<?= $i ?>">Data <?= $i ?>:</label>
                                   <input type="date" class="form-control" id="data-<?= $cliente->id ?>-<?= $i ?>"
-                                    name="data-<?= $cliente->id ?>[]"
-                                    value="<?= date('Y-m-d', strtotime($dataValue)) ?>" required>
+                                    name="data-<?= $cliente->id ?>[]" value="<?= $primeiraData ?>" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                  <label for="paid-<?= $cliente->id ?>-<?= $i ?>">Pago <?= $i ?>:</label>
-                                  <input type="checkbox" id="paid-<?= $cliente->id ?>-<?= $i ?>"
-                                    name="paid-<?= $cliente->id ?>[]" <?= $isPaidChecked ?>>
+                                <div class="col-md-4 mb-3">
+                                  <label for="pago-<?= $cliente->id ?>-<?= $i ?>">Pago:</label>
+                                  <input type="checkbox" class="form-check-input"
+                                    id="pago-<?= $cliente->id ?>-<?= $i ?>" name="pago-<?= $cliente->id ?>[]">
                                 </div>
                                 <?php endfor; ?>
                               </div>
@@ -425,27 +417,45 @@ $parcelas = 1;
                           <!-- Botões Salvar e Limpar dentro do Card -->
                           <div class="row mt-3">
                             <div class="col-md-12">
-                              <div class="btn-group" role="group" aria-label="Ações">
-                                <?= Html::button('<i class="fa fa-save"></i> Salvar', [
-                                    'class' => 'btn btn-primary salvar-cliente-btn mr-2',
-                                    'data-cliente-id' => $cliente->id,
-                                    'title' => 'Salvar',
-                                    'data-toggle' => 'tooltip',
-                                    'data-placement' => 'top',
-                                  ]) ?>
-
-                                <?= Html::button('<i class="fa fa-eraser"></i> Limpar', [
-                                    'class' => 'btn btn-secondary limpar-cliente-btn',
-                                    'data-cliente-id' => $cliente->id,
-                                    'title' => 'Limpar',
-                                    'data-toggle' => 'tooltip',
-                                    'data-placement' => 'top',
-                                  ]) ?>
-                              </div>
+                              <?= Html::button('<i class="fa fa-save"></i> Salvar', [
+                                  'class' => 'btn btn-primary salvar-cliente-btn mr-2',
+                                  'data-cliente-id' => $cliente->id,
+                                  'title' => 'Salvar',
+                                  'data-toggle' => 'tooltip',
+                                  'data-placement' => 'top',
+                                ]) ?>
+                              <?= Html::button('<i class="fa fa-eraser"></i> Limpar', [
+                                  'class' => 'btn btn-secondary limpar-cliente-btn',
+                                  'data-cliente-id' => $cliente->id,
+                                  'title' => 'Limpar',
+                                  'data-toggle' => 'tooltip',
+                                  'data-placement' => 'top',
+                                ]) ?>
                             </div>
                           </div>
+
                         </div>
+
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                          const primeiraData = document.querySelector('[id^="data-"][id$="-1"]');
+                          if (primeiraData) {
+                            primeiraData.addEventListener('change', function() {
+                              const baseDate = new Date(this.value);
+                              const inputs = document.querySelectorAll('[id^="data-"]');
+                              inputs.forEach((input, index) => {
+                                if (index > 0) {
+                                  const newDate = new Date(baseDate);
+                                  newDate.setMonth(newDate.getMonth() + index);
+                                  input.value = newDate.toISOString().split('T')[0];
+                                }
+                              });
+                            });
+                          }
+                        });
+                        </script>
                       </div>
+                    </div>
                   </form>
                 </td>
               </tr>

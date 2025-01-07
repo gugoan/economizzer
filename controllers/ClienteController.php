@@ -18,6 +18,7 @@ class ClienteController extends Controller
   {
     $searchModel = new ClientesSearch();
     $model = new ProdutosClientes();
+
     // No controlador, ao configurar o dataProvider, filtre pelo user_id
     $user_id = Yii::$app->user->id; // Obtenha o user_id do usuário logado
     $dataProvider = new ActiveDataProvider([
@@ -51,27 +52,23 @@ class ClienteController extends Controller
       $formaPagamento = Yii::$app->request->post('forma_pagamento');
       $descricao = Yii::$app->request->post('descricao-' . $clienteId);
       $data = Yii::$app->request->post('data-' . $clienteId);
-      $paid = Yii::$app->request->post('paid-' . $clienteId);  // Recebe os status de pagamento
+      $paid = Yii::$app->request->post('pago-' . $clienteId);  // Recebe os status de pagamento
 
-      // Valida se os dados necessários estão presentes
-      if ($parcelas && $formaPagamento && $descricao && $data) {
-        // Atualiza o modelo de cliente com as novas informações
-        $cliente->parcelas = $parcelas;
-        $cliente->forma_pagamento = $formaPagamento;
-        // Salve o modelo do cliente
-        if ($cliente->save()) {
-          // Atualiza as descrições, datas e status de pagamento
-          foreach ($descricao as $index => $desc) {
-            // Se necessário, associe ou atualize as descrições, datas e status de pagamento no banco
-            $produtosCliente = ProdutosClientes::findOne(['cliente_id' => $clienteId, 'parcela' => $index + 1]);
-            if ($produtosCliente) {
-              $produtosCliente->descricao = $desc;
-              $produtosCliente->data = $data[$index];
-              $produtosCliente->paid = isset($paid[$index]) ? 1 : 0;
-              $produtosCliente->save();
-            }
-          }
-        }
+      // Somando as descrições (se mais de uma for selecionada)
+      $descricaoTotal = implode(', ', array_filter($descricao));  // Junta as descrições selecionadas em uma única string
+
+      // Atualizando os dados do cliente
+      $cliente->parcelas = $parcelas;
+      $cliente->descricao = $descricaoTotal;  // Salva as descrições somadas
+      $cliente->category_id = $formaPagamento;  // Forma de pagamento salva como category_id
+      $cliente->data_registro = date('Y-m-d');  // Data de registro atual
+
+      // Salvando no banco de dados
+      if ($cliente->save()) {
+        // Apenas salvando os dados no cliente, sem mexer em produtos_clientes
+        echo "Cliente atualizado com sucesso!";
+      } else {
+        echo "Erro ao atualizar cliente!";
       }
     }
 
