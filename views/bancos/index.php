@@ -178,52 +178,61 @@ $this->params['breadcrumbs'][] = $this->title;
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <?php
-                                  // Formatar o mês e o dia para garantir que eles tenham 2 dígitos
-                                  $currentMonth = str_pad($i + 1, 2, '0', STR_PAD_LEFT);  // Exemplo: '01' para Janeiro, '02' para Fevereiro, etc.
-                                  // Extrair apenas o dia de "data_inicio_cartao" e "data_fechamento_cartao"
-                                  $startDay = $banco->data_inicio_cartao ? str_pad(date('d', strtotime($banco->data_inicio_cartao)), 2, '0', STR_PAD_LEFT) : '01';
-                                  $endDay = $banco->data_fechamento_cartao ? str_pad(date('d', strtotime($banco->data_fechamento_cartao)), 2, '0', STR_PAD_LEFT) : '28';
-                                  // Definir a data de início com o ano e mês selecionado
-                                  try {
-                                    $startDate = new DateTime("{$selectedYear}-{$currentMonth}-{$startDay}");
-                                    $startDate->modify('-1 month');
-                                    // Caso o fechamento seja no próximo mês, ajustamos o mês de `$endDate`
-                                    // O ajuste aqui vai garantir que a data de fechamento seja no mês de fechamento
-                                    $nextMonth = ($currentMonth == '12') ? '01' : str_pad($i + 2, 2, '0', STR_PAD_LEFT); // Aumenta o mês para o próximo, ou janeiro se for dezembro
-                                    $endDate = new DateTime("{$selectedYear}-{$nextMonth}-{$endDay}");
-                                    $endDate->modify('-1 month');
-                                  } catch (Exception $e) {
-                                    // Em caso de erro, defina datas padrão
-                                    $startDate = new DateTime("{$selectedYear}-{$currentMonth}-01");
-                                    $endDate = new DateTime("{$selectedYear}-{$currentMonth}-28");
-                                  }
-                                  // Obtendo faturas para o mês atual e banco
-                                  $faturasPorMes = Faturas::find()
-                                    ->where(['id_bancos' => $banco->id_bancos])
-                                    ->andWhere(['between', 'data', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
-                                    ->all();
-                                  // Inicializar arrays para categorias e valores do gráfico
-                                  $categorias = [];
-                                  $valores = [];
-                                  foreach ($faturasPorMes as $fatura) {
-                                    $categoria = $fatura->category->desc_category; // Ajuste se necessário
-                                    if (isset($categorias[$categoria])) {
-                                      $categorias[$categoria] += $fatura->valor;
-                                    } else {
-                                      $categorias[$categoria] = $fatura->valor;
-                                    }
-                                  }
-                                  // Verificar se há faturas para o mês
-                                  if (empty($faturasPorMes)) {
-                                    // Caso não haja faturas, você pode exibir uma mensagem ou deixar o gráfico vazio
-                                    $graficoLabels = ['Sem dados'];
-                                    $graficoValores = [1];
-                                  } else {
-                                    $graficoLabels = array_keys($categorias); // Categorias para o gráfico
-                                    $graficoValores = array_values($categorias); // Valores para o gráfico
-                                  }
-                                  if (!empty($faturasPorMes)) {
+                                
+<?php
+// Formatar o mês e o dia para garantir que eles tenham 2 dígitos
+$currentMonth = str_pad($i + 1, 2, '0', STR_PAD_LEFT);  // Exemplo: '01' para Janeiro, '02' para Fevereiro, etc.
+// Extrair apenas o dia de "data_inicio_cartao" e "data_fechamento_cartao"
+$startDay = $banco->data_inicio_cartao ? str_pad(date('d', strtotime($banco->data_inicio_cartao)), 2, '0', STR_PAD_LEFT) : '01';
+$endDay = $banco->data_fechamento_cartao ? str_pad(date('d', strtotime($banco->data_fechamento_cartao)), 2, '0', STR_PAD_LEFT) : '28';
+
+// Definir a data de início com o ano e mês selecionado
+try {
+    $startDate = new DateTime("{$selectedYear}-{$currentMonth}-{$startDay}");
+
+    if ($currentMonth == '12') {
+        // Ajuste específico para dezembro
+        $endDate = new DateTime("{$selectedYear}-12-{$endDay}");
+    } else {
+        // Caso o fechamento seja no próximo mês, ajustamos o mês de `$endDate`
+        $nextMonth = str_pad($i + 2, 2, '0', STR_PAD_LEFT); // Aumenta o mês para o próximo
+        $endDate = new DateTime("{$selectedYear}-{$nextMonth}-{$endDay}");
+    }
+} catch (Exception $e) {
+    // Em caso de erro, defina datas padrão
+    $startDate = new DateTime("{$selectedYear}-{$currentMonth}-01");
+    $endDate = new DateTime("{$selectedYear}-{$currentMonth}-28");
+}
+
+// Obtendo faturas para o mês atual e banco
+$faturasPorMes = Faturas::find()
+    ->where(['id_bancos' => $banco->id_bancos])
+    ->andWhere(['between', 'data', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+    ->all();
+
+// Inicializar arrays para categorias e valores do gráfico
+$categorias = [];
+$valores = [];
+foreach ($faturasPorMes as $fatura) {
+    $categoria = $fatura->category->desc_category; // Ajuste se necessário
+    if (isset($categorias[$categoria])) {
+        $categorias[$categoria] += $fatura->valor;
+    } else {
+        $categorias[$categoria] = $fatura->valor;
+    }
+}
+
+// Verificar se há faturas para o mês
+if (empty($faturasPorMes)) {
+    // Caso não haja faturas, você pode exibir uma mensagem ou deixar o gráfico vazio
+    $graficoLabels = ['Sem dados'];
+    $graficoValores = [1];
+} else {
+    $graficoLabels = array_keys($categorias); // Categorias para o gráfico
+    $graficoValores = array_values($categorias); // Valores para o gráfico
+}
+
+if (!empty($faturasPorMes)) {
                                     foreach ($faturasPorMes as $fatura): ?>
                                       <tr>
                                         <td data-descricao="<?= Html::encode($fatura->descricao) ?>">
