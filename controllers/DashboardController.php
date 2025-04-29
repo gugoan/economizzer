@@ -193,10 +193,15 @@ class DashboardController extends Controller
             desc_category as n, MONTHNAME(date) as m, SUM(value) as v 
             FROM cashbook 
             INNER JOIN category
-            on category.id_category = cashbook.category_id
-            WHERE YEAR(date) = $thisyear AND cashbook.user_id = $user AND category_id = $category_id 
+            ON category.id_category = cashbook.category_id
+            WHERE YEAR(date) = :thisyear AND cashbook.user_id = :user AND category_id = :category_id 
             GROUP BY desc_category, MONTHNAME(date) 
-            ORDER BY desc_category ASC, MONTHNAME(date) asc;");
+            ORDER BY desc_category ASC, MONTHNAME(date) ASC;");
+
+        $command->bindValue(':thisyear', $thisyear);
+        $command->bindValue(':user', $user);
+        $command->bindValue(':category_id', $category_id);
+
         $accomplishment = $command->queryAll();
         
         $m = array();
