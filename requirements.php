@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application requirement checker script.
  *
@@ -124,7 +125,7 @@ $requirements = array(
     'phpSmtp' => array(
         'name' => 'PHP mail SMTP',
         'mandatory' => false,
-        'condition' => strlen(ini_get('SMTP'))>0,
+        'condition' => strlen(ini_get('SMTP')) > 0,
         'by' => 'Email sending',
         'memo' => 'PHP mail SMTP server required',
     ),

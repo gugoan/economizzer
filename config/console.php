@@ -1,6 +1,8 @@
 <?php
 
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests');
+Yii::setAlias('@app', dirname(__DIR__));
+
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');

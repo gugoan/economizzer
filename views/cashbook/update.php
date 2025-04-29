@@ -6,9 +6,8 @@ $this->title = Yii::t('app', 'Update Entry', [
     'modelClass' => 'Cashbook',
 ]) . ' #' . $model->id;
 ?>
-<div class="cashbook-update">
 
-    <h2><?= Html::encode($this->title) ?></h2>
+<div class="cashbook-update">
 
     <?= $this->render('_form', [
         'model' => $model,

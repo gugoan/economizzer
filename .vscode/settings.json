@@ -1,0 +1,7 @@
+{
+  "peacock.color": "",
+  "peacock.affectPanelBorder": false,
+  "editor.accessibilitySupport": "on",
+  "accessibility.accessibleView.closeOnKeyPress": true,
+  "accessibility.debugWatchVariableAnnouncements": true
+}

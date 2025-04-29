@@ -1,0 +1,400 @@
+/* =========================================
+   1. Variáveis CSS para Manutenção Facilitada
+   ========================================= */
+   :root {
+    --primary-color: #02A8A4;
+    --primary-hover: #05A796;
+    --secondary-color: #05A796;
+    --background-color: #F2F2F2;
+    --white-color: #FFFFFF;
+    --light-gray: #F1F1F1;
+    --medium-gray: #E0E0E0;
+    --dark-gray: #6c757d;
+    --tooltip-bg: #444;
+    --modal-header-bg: #02A8A4;
+    --modal-body-bg: #FFFFFF;
+    --modal-footer-bg: #F1F1F1;
+    --modal-border-radius: 12px;
+    --input-border-color: #ced4da;
+    --input-focus-border-color: #02A8A4;
+    --font-size-base: 1.7rem;
+    --font-size-title: 3rem;
+    --font-size-label: 1.7rem;
+    --font-size-modal-title: 2rem;
+    --animation-duration: 0.4s;
+    --animation-ease: ease-in-out;
+}
+
+/* =========================================
+   2. Reset e Estilos Gerais
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: var(--font-size-base);
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    overflow-x: hidden;
+}
+
+  /* =========================================
+     16. Z-Index para Modais
+     ========================================= */
+     .modal {
+      z-index: 1050 !important;
+    }
+    
+    .modal-backdrop {
+      z-index: 1040 !important;
+    }
+/* =========================================
+   3. Container Principal - Ajuste para Não Ocupação Total da Tela
+   ========================================= */
+.bancos-index.container-fluid {
+    max-width: 1600px; /* Limita a largura */
+    padding: 30px;
+    background-color: var(--white-color);
+    border-radius: var(--modal-border-radius);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinha os elementos no topo */
+    animation: fadeInUp 0.6s ease-out;
+    overflow: hidden; /* Evita rolagem horizontal */
+}
+
+/* =========================================
+   4. Cabeçalho
+   ========================================= */
+h1 {
+    font-size: var(--font-size-title);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    transition: color 0.3s, transform 0.3s;
+}
+
+h1:hover {
+    color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   5. Botões no Topo
+   ========================================= */
+.d-flex.justify-content-end.mb-3 .btn {
+    font-size: 1.6rem;
+    border-radius: 8px;
+    margin: 4px;
+    padding: 10px 20px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-info {
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--white-color);
+}
+
+.btn-info:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   6. Botões de Ação
+   ========================================= */
+   .btn-action {
+    border-radius: 50%;
+    margin: 5px;
+    font-size: 1.4rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-action:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.15);
+}
+
+/* =========================================
+   6. Tabela
+   ========================================= */
+   .table {
+    width: 94%;
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    border: 2px solid var(--medium-gray);
+    table-layout: fixed; /* Garante que as células tenham uma largura uniforme */
+    overflow: hidden; /* Evita rolagem */
+    font-size: 2rem;
+  }
+
+.table th,
+.table td {
+    padding: 12px;
+    border: 1px solid var(--medium-gray);
+    word-wrap: break-word;
+    vertical-align: middle;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 1.8rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e6f7f5;
+    transform: scale(1.01);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: var(--light-gray);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: var(--white-color);
+}
+
+/* =========================================
+   7. Botões de Ação de Produtos_Cliente
+   ========================================= */
+.btn-action {
+    border-radius: 50%;
+    margin: 5px;
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-action:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.15);
+}
+
+/* =========================================
+   8. Modais
+   ========================================= */
+.modal-dialog {
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.modal-content {
+    border-radius: var(--modal-border-radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border: none;
+    overflow: hidden;
+    animation: fadeInDown var(--animation-duration) var(--animation-ease);
+}
+
+.modal-header {
+    background-color: var(--modal-header-bg);
+    color: var(--white-color);
+    padding: 15px;
+}
+
+.modal-body {
+    padding: 20px;
+    background-color: var(--modal-body-bg);
+}
+
+.modal-footer {
+    padding: 10px;
+    background-color: var(--modal-footer-bg);
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--medium-gray);
+}
+
+/* =========================================
+   9. Animações
+   ========================================= */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   8. Cartões
+   ========================================= */
+   .card {
+    border-radius: var(--modal-border-radius);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-top-left-radius: var(--modal-border-radius);
+    border-top-right-radius: var(--modal-border-radius);
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 15px;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: var(--white-color);
+    border-radius: 0 0 12px 12px;
+}
+/* =========================================
+   10. Inputs e Textareas
+   ========================================= */
+   input,
+   textarea {
+       font-size: 2rem; /* Aumento do tamanho da fonte */
+       padding: 15px;
+       border: 2px solid var(--input-border-color); /* Aumentei a espessura da borda */
+       border-radius: 10px; /* Borda mais arredondada */
+       width: 100%;
+       background-color: var(--white-color);
+       color: var(--dark-gray);
+       text-align: center; /* Centraliza o texto */
+       line-height: 1.6; /* Melhora a legibilidade */
+       transition: all 0.3s ease-in-out; /* Suaviza todas as transições */
+       box-sizing: border-box; /* Ajusta o tamanho do input incluindo padding e border */
+   }
+   
+   /* Foco no input */
+   input:focus,
+   textarea:focus {
+       border-color: var(--input-focus-border-color); /* Cor da borda ao focar */
+       box-shadow: 0 0 10px rgba(2, 168, 164, 0.5); /* Sombra mais intensa */
+       background-color: #eafaf8; /* Cor de fundo clara ao focar */
+       outline: none; /* Remove a borda padrão do navegador */
+       transform: scale(1.03); /* Leve aumento de tamanho */
+   }
+   
+   /* Hover no input */
+   input:hover,
+   textarea:hover {
+       background-color: #f7f7f7; /* Cor de fundo mais suave ao passar o mouse */
+       border-color: var(--primary-hover); /* Mudança na borda ao passar o mouse */
+       transform: scale(1.02); /* Aumento suave no hover */
+   }
+   
+   /* Placeholder */
+   input::placeholder,
+   textarea::placeholder {
+       color: var(--input-placeholder-color); /* Cor do placeholder */
+       font-size: 1.6rem; /* Tamanho do texto do placeholder */
+       opacity: 0.7;
+       text-align: center; /* Centraliza o texto do placeholder */
+   }
+   
+   /* Input desabilitado */
+   input:disabled,
+   textarea:disabled {
+       background-color: var(--medium-gray);
+       border-color: var(--dark-gray);
+       color: var(--dark-gray);
+       cursor: not-allowed;
+   }
+   
+   /* Efeito de transição suave */
+   input,
+   textarea {
+       transition: all 0.3s ease-in-out;
+   }
+   
+   /* Foco com transformação */
+   input:focus,
+   textarea:focus {
+       transform: scale(1.03); /* Aumento no foco */
+       transition: transform 0.3s ease-in-out;
+   }
+   
+   /* Adicionando borda animada */
+   input:focus,
+   textarea:focus {
+       border: 2px solid var(--primary-color); /* Borda mais destacada ao focar */
+       transition: border 0.4s ease, transform 0.3s ease-in-out;
+   }
+   
+/* =========================================
+   11. Responsividade
+   ========================================= */
+@media screen and (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+        padding: 8px 16px;
+    }
+}

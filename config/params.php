@@ -2,6 +2,7 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'uploadPath' => 'attachment/',
-	'uploadUrl'  => 'attachment/',
+    'uploadPath' => Yii::getAlias('@app') . '/uploads/',  // Caminho físico
+    'uploadUrl'  => 'http://localhost/WORKFLOW/economizzer/web/uploads/',  // Caminho público
+
 ];

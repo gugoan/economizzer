@@ -1,5 +1,7 @@
 <?php
 
+Yii::setAlias('@app', dirname(__DIR__));
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -28,9 +30,9 @@ $config = [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
             'rules' => array(
-                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ],
         'session' => [
@@ -48,12 +50,12 @@ $config = [
             'identityClass' => 'app\models\User',
         ],
         'view' => [
-                'theme' => [
-                    'pathMap' => [
-                        '@vendor/amnah/yii2-user/views/default' => '@app/views/user',
-                    ],
+            'theme' => [
+                'pathMap' => [
+                    '@vendor/amnah/yii2-user/views/default' => '@app/views/user',
                 ],
             ],
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -65,6 +67,7 @@ $config = [
                 'charset' => 'UTF-8',
             ]
         ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -76,29 +79,29 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'i18n' => [
-        'translations' => [
+            'translations' => [
                 '*' => [
-                        'class' => 'yii\i18n\PhpMessageSource',
-                        'basePath' => '@app/messages',
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
                 ],
             ],
         ],
-         'authClientCollection' => [
-             'class' => 'yii\authclient\Collection',
-             'clients' => [
-                 'google' => [
-                     'class' => 'yii\authclient\clients\Google',
-                     'clientId' => '',
-                     'clientSecret' => '',
-                 ],
-                 'facebook' => [
-                     'class' => 'yii\authclient\clients\Facebook',
-                     'clientId' => '',
-                     'clientSecret' => '',
-                     'scope' => 'email',
-                 ],
-             ]
-         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '',
+                    'clientSecret' => '',
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '',
+                    'clientSecret' => '',
+                    'scope' => 'email',
+                ],
+            ]
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\authclient\widgets\AuthChoiceStyleAsset' => [
